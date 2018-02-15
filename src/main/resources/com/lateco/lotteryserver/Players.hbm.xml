@@ -1,0 +1,19 @@
+<hibernate-mapping>
+    <class name="com.lateco.lotteryserver.db.entities.Players" table="players">
+        <id name="playersId" type="java.lang.Long">
+            <column name="id" />
+        </id>
+        <property name="playersPlayerName" type="string">
+            <column name="player_name" />
+        </property>
+        <property name="playersFirstName" type="string">
+            <column name="first_name" />
+        </property>
+        <property name="playersLastName" type="string">
+            <column name="last_name" />
+        </property>
+        <property name="playersAmount" type="java.math.BigDecimal">
+            <column name="amount" />
+        </property>
+    </class>
+</hibernate-mapping>

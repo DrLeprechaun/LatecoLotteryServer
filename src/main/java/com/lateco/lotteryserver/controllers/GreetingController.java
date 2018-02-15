@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lateco.lotteryserver.entities.Greeting;
-import com.lateco.lotteryserver.entities.Mytest;
-import com.lateco.lotteryserver.entities.Users;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -23,7 +21,7 @@ public class GreetingController {
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
     	
-    	try {
+    	/*try {
     		Session session = HibernateUtil.getSessionFactory().openSession();
     		session.beginTransaction();
     	
@@ -33,7 +31,7 @@ public class GreetingController {
     		session.close();
     	} catch (Exception e) {
     		e.printStackTrace();
-    	}
+    	}*/
     	
         return new Greeting(counter.incrementAndGet(),
                             String.format(template, name));
