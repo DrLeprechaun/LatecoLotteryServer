@@ -38,15 +38,12 @@ public class RegularBets implements Serializable{
 	
 	public RegularBets() {}
 	
-	public RegularBets(long userId, int[] combination) {
-		this.regularBetsLotteryIdFk = new Long(userId);
-		this.regularBetsUserIdFk = new Long(1);
+	public RegularBets(long userId, long lotteryId) {
+		this.regularBetsLotteryIdFk = new Long(lotteryId);
+		this.regularBetsUserIdFk = new Long(userId);
 		this.regularBetsCombination = new ArrayList<Integer>();
-		for (int i: combination) {
-			this.regularBetsCombination.add(i);
-		}
 		this.regularBetsWin = false;
-		this.regularBetsBetTimestamp = null;
+		this.regularBetsBetTimestamp = new Date();
 	}
 	
 	public RegularBets(long userId, long lotteryId, int[] combination) {

@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lateco.lotteryserver.db.entities.PlayerAmount;
 import com.lateco.lotteryserver.db.entities.Players;
 import com.lateco.lotteryserver.db.entities.RegularBets;
 import com.lateco.lotteryserver.db.entities.RegularLottery;
 import com.lateco.lotteryserver.entities.BasicResponse;
+import com.lateco.lotteryserver.entities.PlayerAmount;
 import com.lateco.lotteryserver.persistence.HibernateUtil;
+import org.hibernate.Transaction;
 
 @RestController
 public class RegularBetsController {
@@ -31,17 +32,37 @@ public class RegularBetsController {
 	public BasicResponse createRegularBet(@RequestParam(value="userId") long userId, @RequestParam(value="combination") int[] combination) {
 		try {
 			Session session = HibernateUtil.getSessionFactory().openSession();
-    		session.beginTransaction();
+    		Transaction tx = session.beginTransaction();
     		
-    		//Next lottery
-    		 /*Query query = session.createQuery("from RegularLottery r where r.held is false order by r.date_planned desc").setMaxResults(1);
-    		 RegularLottery rl = (RegularLottery) query.uniqueResult();*/
+    		//Next lottery    		
+    		RegularLottery rl = (RegularLottery) session.createCriteria(RegularLottery.class)
+    				.add(Restrictions.eq("regularLotteryIsHeld", false))
+    				.addOrder( Order.desc("regularLotteryDatePlanned"))
+    				.setMaxResults(1)
+    				.uniqueResult();
+    		 
+    		//Regular bet
+    		RegularBets rb = new RegularBets(userId, rl.getRegularLotteryId(), combination);
+    		session.save(rb);
     		
-    		/*Query query = session.createQuery("from RegularLottery r");
-    		List<RegularLottery> rl = query.list();
-    		System.out.println("" + rl.size());
-    		System.out.println("is held: " + rl.get(0).getRegularLotteryIsHeld());*/
+    		tx.commit();
     		
+    		session.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+		return new BasicResponse("SUCCESS", "");
+	}
+	
+	@ExceptionHandler
+	@CrossOrigin
+	@RequestMapping("/buyRegularTicket")
+	public BasicResponse buyRegularTicket(@RequestParam(value="userId") long userId, @RequestParam(value="number") long number) {
+		try {
+			Session session = HibernateUtil.getSessionFactory().openSession();
+    		Transaction tx = session.beginTransaction();
+    		
+    		//Next lottery    		
     		RegularLottery rl = (RegularLottery) session.createCriteria(RegularLottery.class)
     				.add(Restrictions.eq("regularLotteryIsHeld", false))
     				.addOrder( Order.desc("regularLotteryDatePlanned"))
@@ -51,8 +72,12 @@ public class RegularBetsController {
     		//Проверять, если такой пользователь 
     		 
     		//Regular bet
-    		RegularBets rb = new RegularBets(userId, rl.getRegularLotteryId(), combination);
-    		session.save(rb);
+    		for (int i = 0; i < number; i++) {
+    			RegularBets rb = new RegularBets(userId, rl.getRegularLotteryId());
+    			session.save(rb);
+    		}
+    		
+    		tx.commit();
     		
     		session.close();
 		} catch (Exception e){
@@ -60,6 +85,8 @@ public class RegularBetsController {
 		}
 		return new BasicResponse("SUCCESS", "");
 	}
+	
+	
     /*public BasicResponse createRegularBet(@RequestParam(value="userId") long userId, @RequestParam(value="combination") int[] combination) {
 		
 			List<RegularBets> list = new ArrayList<RegularBets>();
