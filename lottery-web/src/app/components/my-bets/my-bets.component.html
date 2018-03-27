@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand" href="#">SuperJackpot</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/privateOffice">Buy Ticket!<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="my-bets">My Bets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="my-tokens">My Tokens</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="wallet">Wallet</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="my-statistics">Statistics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="settings">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="faq">FAQ</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+          <a class="nav-link" (click)="logOut()" href="/home">Logout</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+<div id="betContent">
+  <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Lottery/Jackpot</th>
+      <th scope="col">Type</th>
+      <th scope="col">Combination</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Lottery</td>
+      <td>5x36</td>
+      <td>11 22 33 7 14</td>
+      <td><button type="button" class="btn btn-dark">Reset</button></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jackpot</td>
+      <td>6x45</td>
+      <td>Random</td>
+      <td><button type="button" class="btn btn-dark">Reset</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>

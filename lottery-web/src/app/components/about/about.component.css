@@ -1,0 +1,23 @@
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  font-size: 13pt;
+  text-shadow: 1px 1px 8px #ffffff;
+}
+
+a:hover {
+  color: grey;
+}
+
+a:active {
+  color: grey;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+#navbar {
+  margin-top: 40px;
+}
