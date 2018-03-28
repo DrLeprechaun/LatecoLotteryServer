@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
+import { LotteryService } from '../../services/lottery.service';
+import { MakeBets } from '../../models/make-bets';
 
 @Component({
   selector: 'privateOffice',
@@ -12,7 +14,7 @@ export class PrivateOfficeComponent {
 
   private cost: number = 0;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router, private lottery: LotteryService) {}
 
   ngOnInit(): void {
   }
@@ -123,18 +125,21 @@ export class PrivateOfficeComponent {
     let j420 = document.getElementById("jackpot_4x20") as HTMLSelectElement;
     let j749 = document.getElementById("jackpot_7x49") as HTMLSelectElement;
 
-    var submitOblect = {
-      "l_5x36": l536.value,
-      "l_6x45": l645.value,
-      "l_4x20": l420.value,
-      "l_7x49": l749.value,
-      "j_5x36": j536.value,
-      "j_6x45": j645.value,
-      "j_4x20": j420.value,
-      "j_7x49": j749.value
-    }
+    let bet: MakeBets = new MakeBets(+l536.value, +l645.value, +l420.value, +l749.value, +j536.value, +j645.value, +j420.value, +j749.value);
 
-    console.log(submitOblect);
+    console.log(bet);
+
+    this.lottery.makeBets(bet)
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        this.router.navigateByUrl('/my-bets');
+      }
+    },
+    (err) => {
+      console.log(err);
+    })
+
   }
 
   logOut(): void {

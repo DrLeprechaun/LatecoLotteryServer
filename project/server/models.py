@@ -5,6 +5,7 @@ import jwt
 import datetime
 
 from project.server import app, db, bcrypt
+from sqlalchemy.dialects.postgresql import ARRAY
 
 
 class User(db.Model):
@@ -101,3 +102,83 @@ class LotteryTokens(db.Model):
     def __init__(self, user_id, amount):
         self.user_id = user_id
         self.amount = amount
+
+class BetsLottery_5_36(db.Model):
+
+    __tablename__ = 'bets_lottery_5_36'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+class BetsLottery_4_20(db.Model):
+
+    __tablename__ = 'bets_lottery_4_20'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+class BetsLottery_6_45(db.Model):
+
+    __tablename__ = 'bets_lottery_6_45'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+class BetsLottery_7_49(db.Model):
+
+    __tablename__ = 'bets_lottery_7_49'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+class BetsJackpot_5_36(db.Model):
+
+    __tablename__ = 'bets_jackpot_5_36'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+class BetsJackpot_4_20(db.Model):
+
+    __tablename__ = 'bets_jackpot_4_20'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+class BetsJackpot_6_45(db.Model):
+
+    __tablename__ = 'bets_jackpot_6_45'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+class BetsJackpot_7_49(db.Model):
+
+    __tablename__ = 'bets_jackpot_7_49'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)

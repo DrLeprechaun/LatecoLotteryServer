@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Headers, Http } from '@angular/http';
+import { MakeBets } from '../models/make-bets';
 
 @Injectable()
 export class LotteryService {
@@ -18,6 +19,16 @@ export class LotteryService {
       Authorization: `Bearer ${token}`
     });
     return this.http.get(url, {headers: headers}).toPromise();
+  }
+
+  makeBets(bets: MakeBets): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/make_bets`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, bets, {headers: headers}).toPromise();
   }
 
 }
