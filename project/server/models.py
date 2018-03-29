@@ -113,6 +113,12 @@ class BetsLottery_5_36(db.Model):
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
 
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
 class BetsLottery_4_20(db.Model):
 
     __tablename__ = 'bets_lottery_4_20'
@@ -122,6 +128,12 @@ class BetsLottery_4_20(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
 
 class BetsLottery_6_45(db.Model):
 
@@ -133,6 +145,12 @@ class BetsLottery_6_45(db.Model):
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
 
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
 class BetsLottery_7_49(db.Model):
 
     __tablename__ = 'bets_lottery_7_49'
@@ -142,6 +160,12 @@ class BetsLottery_7_49(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
 
 class BetsJackpot_5_36(db.Model):
 
@@ -153,6 +177,12 @@ class BetsJackpot_5_36(db.Model):
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
 
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
 class BetsJackpot_4_20(db.Model):
 
     __tablename__ = 'bets_jackpot_4_20'
@@ -162,6 +192,12 @@ class BetsJackpot_4_20(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
 
 class BetsJackpot_6_45(db.Model):
 
@@ -173,6 +209,12 @@ class BetsJackpot_6_45(db.Model):
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
 
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
 class BetsJackpot_7_49(db.Model):
 
     __tablename__ = 'bets_jackpot_7_49'
@@ -182,3 +224,9 @@ class BetsJackpot_7_49(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
