@@ -38,7 +38,7 @@
 </nav>
 
 <div id="betContent">
-  <table class="table table-dark">
+  <!--<table class="table table-dark">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -64,5 +64,41 @@
       <td><button type="button" class="btn btn-dark">Reset</button></td>
     </tr>
   </tbody>
+</table>-->
+
+<table class="table table-dark">
+  <tr>
+    <th>#</th>
+    <th>Type</th>
+    <th>Combination</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let d of tableData">
+    <td>{{ d.fake_id }}</td>
+    <td>{{ d.type_name }}</td>
+    <td>{{ d.combination }}</td>
+    <td><button type="button" class="btn btn-dark" (click)="open(d.id, d.fake_id, d.type, d.type_name, content)">Reset Combination</button></td>
+  </tr>
 </table>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title"><b>{{ modalType }}</b> - #{{ modalId }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!--<p>One fine body&hellip;</p>-->
+    <span *ngFor="let button of modalButtonsArray">
+      <button class="btn btn-dark">{{ button.title }}</button>
+    </span>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Save</button>
+  </div>
+</ng-template>
+
+<!--<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>-->
+
 </div>

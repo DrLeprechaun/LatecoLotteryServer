@@ -31,4 +31,14 @@ export class LotteryService {
     return this.http.post(url, bets, {headers: headers}).toPromise();
   }
 
+  getBets(): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/get_bets`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(url, {headers: headers}).toPromise();
+  }
+
 }
