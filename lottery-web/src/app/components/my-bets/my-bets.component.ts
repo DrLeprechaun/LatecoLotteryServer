@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LotteryService } from '../../services/lottery.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { CombinationUpdate } from '../../models/combination-update';
 
 
 @Component({
@@ -127,9 +128,13 @@ export class MyBetsComponent implements OnInit {
     })
   }
 
-  processCombination(combination: any): string {
+  processCombination(combination: number[]): string {
     if (combination != null) {
-      return combination.join(" ");
+      if (combination.length > 0) {
+        return combination.join(" ");
+      } else {
+        return "Random"
+      }
     } else {
       return "Random"
     }
@@ -290,10 +295,26 @@ export class MyBetsComponent implements OnInit {
     console.log(this.lotteryType);
     console.log(this.editedRecordId);
 
+    this.lottery.updateCombination(new CombinationUpdate(this.editedRecordId, this.lotteryType, this.editableCombination))
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        this.loadData();
+      }
+    },
+    (err) => {
+      console.log(err);
+    })
+
     this.editableCombination = [];
     this.lotteryType = "";
     this.editedRecordId = 0;
     this.combinationQuantity = 0;
+    this.modalId = "";
+    this.modalType = "";
+    this.modalButtonsQuantity = 0;
+    this.modalButtonsArray = [];
+    this.modalButtonsTable = [];
   }
 
   logOut(): void {
