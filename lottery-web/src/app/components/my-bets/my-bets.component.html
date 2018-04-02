@@ -90,12 +90,20 @@
   </div>
   <div class="modal-body">
     <!--<p>One fine body&hellip;</p>-->
-    <span *ngFor="let button of modalButtonsArray">
+    <!--<span *ngFor="let button of modalButtonsArray">
       <button class="btn btn-dark">{{ button.title }}</button>
-    </span>
+    </span>-->
+    <p>Select {{ combinationQuantity }} numbers or set the combination empty - the numbers will be selected automatically</p>
+    <hr>
+    <table class="modalTable">
+      <tr *ngFor="let r of modalButtonsTable">
+        <!--<td *ngFor="let c of r"><button id="button_{{c.title}}" (click)="editCombination(c.title)">{{ c.title }}</button></td>-->
+        <td *ngFor="let c of r"><button class="{{ c.class }}" id="button_{{c.title}}" (click)="editCombination(c.title)">{{ c.title }}</button></td>
+      </tr>
+    </table>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Save</button>
+    <button id="saveButton" type="button" class="btn btn-outline-dark" (click)="c('Close click')">Save</button>
   </div>
 </ng-template>
 

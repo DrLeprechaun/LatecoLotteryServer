@@ -1,3 +1,11 @@
 #betContent {
   margin-top: 10px;
 }
+.modalTable {
+  width: 100%;
+  text-align: center;
+}
+
+.modalTable tr td button {
+  width: 40px;
+}

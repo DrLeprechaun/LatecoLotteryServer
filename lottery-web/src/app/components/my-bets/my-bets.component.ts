@@ -14,8 +14,13 @@ export class MyBetsComponent implements OnInit {
   tableData: any[] = [];
   modalId: string = "";
   modalType: string = "";
+  combinationQuantity: number = 0;
   modalButtonsQuantity: number = 0;
   modalButtonsArray: any[] = [];
+  modalButtonsTable: any[] = [];
+  editableCombination: number[] = [];
+  lotteryType: string = "";
+  editedRecordId: number;
 
   constructor(private lottery: LotteryService, private modalService: NgbModal) { }
 
@@ -124,7 +129,7 @@ export class MyBetsComponent implements OnInit {
 
   processCombination(combination: any): string {
     if (combination != null) {
-      return "123"
+      return combination.join(" ");
     } else {
       return "Random"
     }
@@ -139,13 +144,23 @@ export class MyBetsComponent implements OnInit {
   }*/
 
   open(id, fake_id, type, type_name, content) {
-    console.log(id);
-    console.log(type);
+
+    this.editableCombination = [];
+    for (var i = 0; i < this.rawData[type].length; i++){
+      if (this.rawData[type][i].id == id) {
+        this.editableCombination = this.rawData[type][i].combination;
+        break;
+      }
+    }
+
     this.defineModalButtons(type);
     this.modalId = fake_id;
     this.modalType = type_name;
+    this.lotteryType = type;
+    this.editedRecordId = id;
     this.modalService.open(content).result.then((result) => {
       //this.closeResult = `Closed with: ${result}`;
+      this.updateCombination();
     }, (reason) => {
       //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
@@ -154,22 +169,87 @@ export class MyBetsComponent implements OnInit {
   defineModalButtons(type: string): void {
     if (type == "lottery_5x36" || type == "jackpot_5x36") {
       this.modalButtonsQuantity = 36;
+      this.combinationQuantity = 5;
     }
     if (type == "lottery_6x45" || type == "jackpot_6x45") {
       this.modalButtonsQuantity = 45;
+      this.combinationQuantity = 6;
     }
     if (type == "lottery_4x20" || type == "jackpot_4x20") {
       this.modalButtonsQuantity = 20;
+      this.combinationQuantity = 4;
     }
     if (type == "lottery_7x49" || type == "jackpot_7x49") {
       this.modalButtonsQuantity = 49;
+      this.combinationQuantity = 7;
     }
+
+    this.setModalButtonsArray(this.modalButtonsQuantity);
+  }
+
+  private setModalButtonsArray(max: number): void {
+
     this.modalButtonsArray = [];
+    this.modalButtonsTable = [];
+
+    //Array
     for (var i = 0; i < this.modalButtonsQuantity; i++) {
+      let buttonClass = "btn btn-dark";
+      if (this.editableCombination != null) {
+        if (this.editableCombination.indexOf(i+1) > -1) {
+          buttonClass = "btn btn-danger";
+        }
+      } else {
+        this.editableCombination = [];
+      }
       let button = {
-        title: i+1
+        title: i+1,
+        class: buttonClass
       }
       this.modalButtonsArray.push(button);
+    }
+
+    //Table
+    if (this.modalButtonsQuantity == 36) {
+      let k = 0;
+      for (var i = 0; i < 6; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 6; j++) {
+          subArray.push(this.modalButtonsArray[k]);
+          k++;
+        }
+        this.modalButtonsTable.push(subArray);
+      }
+    } else if (this.modalButtonsQuantity == 45) {
+      let k = 0;
+      for (var i = 0; i < 5; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 9; j++) {
+          subArray.push(this.modalButtonsArray[k]);
+          k++;
+        }
+        this.modalButtonsTable.push(subArray);
+      }
+    } else if (this.modalButtonsQuantity == 20) {
+      let k = 0;
+      for (var i = 0; i < 4; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 5; j++) {
+          subArray.push(this.modalButtonsArray[k]);
+          k++;
+        }
+        this.modalButtonsTable.push(subArray);
+      }
+    } else if (this.modalButtonsQuantity == 49) {
+      let k = 0;
+      for (var i = 0; i < 7; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 7; j++) {
+          subArray.push(this.modalButtonsArray[k]);
+          k++;
+        }
+        this.modalButtonsTable.push(subArray);
+      }
     }
   }
 
@@ -181,6 +261,39 @@ export class MyBetsComponent implements OnInit {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  editCombination(val: number) {
+
+    //Number button
+    if (document.getElementById("button_" + val).getAttribute("class") != "btn btn-danger") {
+      if (this.editableCombination.length < this.combinationQuantity) {
+        document.getElementById("button_" + val).setAttribute("class", "btn btn-danger");
+        this.editableCombination.push(val);
+      }
+    } else {
+      document.getElementById("button_" + val).setAttribute("class", "btn btn-dark");
+      this.editableCombination.splice(this.editableCombination.indexOf(val, 0), 1);
+    }
+
+    //Save button
+    if (this.editableCombination.length == this.combinationQuantity || this.editableCombination.length == 0) {
+      document.getElementById("saveButton").setAttribute("style", "visibility: visible;");
+    } else {
+      document.getElementById("saveButton").setAttribute("style", "visibility: hidden;");
+    }
+  }
+
+  updateCombination() {
+    console.log("UPDATE");
+    console.log(this.editableCombination);
+    console.log(this.lotteryType);
+    console.log(this.editedRecordId);
+
+    this.editableCombination = [];
+    this.lotteryType = "";
+    this.editedRecordId = 0;
+    this.combinationQuantity = 0;
   }
 
   logOut(): void {
