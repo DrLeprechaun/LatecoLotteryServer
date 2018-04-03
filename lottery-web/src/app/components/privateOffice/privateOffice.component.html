@@ -192,6 +192,7 @@
 
 <hr>
 <p class="text-right">{{cost }} tokens</p>
+<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
 <hr>
 <p class="text-right"><button type="button" (click)="buy()" class="btn btn-dark btn-lg">Buy!</button></p>
 </div>

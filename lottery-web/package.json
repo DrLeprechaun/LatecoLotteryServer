@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "@auth0/angular-jwt": "^1.1.0",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.4",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.6",
     "angular5-data-table": "^0.5.1",
     "core-js": "^2.4.1",
     "jwt-decode": "^2.2.0",

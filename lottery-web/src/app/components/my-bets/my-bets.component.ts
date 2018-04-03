@@ -94,10 +94,10 @@ export class MyBetsComponent implements OnInit {
         //Jackpot 6x45
         for (var i = 0; i < res.json().data.jackpot_6x45.length; i++) {
           let rowData = {
-            "id": res.json().data.jackpot_5x36[i].id,
-            "fake_id": "00" + 21645 + res.json().data.jackpot_5x36[i].id,
+            "id": res.json().data.jackpot_6x45[i].id,
+            "fake_id": "00" + 21645 + res.json().data.jackpot_6x45[i].id,
             "type_name": "Jackpot 6x45",
-            "type": "jackpot_5x36",
+            "type": "jackpot_6x45",
             "combination": this.processCombination(res.json().data.jackpot_6x45[i].combination)
           }
           this.tableData.push(rowData);

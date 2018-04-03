@@ -36,3 +36,20 @@
       </ul>
     </div>
 </nav>
+
+<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+
+
+
+<div id="walletContainer">
+  <p>BTC: {{ amount }}</p>
+  <p>ETC:  {{ (0.055 * amount).toPrecision(3) }}</p>
+  <hr>
+  <input id="fillUpInput" class="form-control" type="number" value="0" min ="1">
+  <br>
+  <button type="button" class="btn btn-dark btn-lg" (click)="fillUp()">Fill Up</button>
+  <hr>
+  <input id="withdrawInput" class="form-control" type="number" value="0" min ="1">
+  <br>
+  <button type="button" class="btn btn-dark btn-lg"  (click)="withdraw()">Withdraw</button>
+</div>

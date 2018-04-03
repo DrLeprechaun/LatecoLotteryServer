@@ -22,6 +22,16 @@ export class LotteryService {
     return this.http.get(url, {headers: headers}).toPromise();
   }
 
+  getWalletAmount(): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/wallet_amount`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(url, {headers: headers}).toPromise();
+  }
+
   makeBets(bets: MakeBets): Promise<any> {
     let token = this.auth.getToken();
     let url: string = `${this.BASE_URL}/make_bets`;
@@ -50,6 +60,36 @@ export class LotteryService {
       Authorization: `Bearer ${token}`
     });
     return this.http.post(url, combinationUpdate, {headers: headers}).toPromise();
+  }
+
+  fillUpWallet(amount: number): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/fill_up_wallet`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, {amount: amount}, {headers: headers}).toPromise();
+  }
+
+  withdrawWallet(amount: number): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/withdraw_wallet`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, {amount: amount}, {headers: headers}).toPromise();
+  }
+
+  fillUpTokens(quantity: number): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/fill_up_tokens`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, {quantity: quantity}, {headers: headers}).toPromise();
   }
 
 }

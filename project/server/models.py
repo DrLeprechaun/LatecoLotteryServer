@@ -7,7 +7,19 @@ import json
 
 from project.server import app, db, bcrypt
 from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.dialects.postgresql import REAL
 from sqlalchemy.ext.declarative import DeclarativeMeta
+from sqlalchemy.types import Numeric
+
+class DecimalEncoder(json.JSONEncoder):
+    def _iterencode(self, o, markers=None):
+        if isinstance(o, decimal.Decimal):
+            # wanted a simple yield str(o) in the next line,
+            # but that would mean a yield on the line with super(...),
+            # which wouldn't work (see my comment below), so...
+            return (str(o) for o in [o])
+        return super(DecimalEncoder, self)._iterencode(o, markers)
+
 
 class AlchemyEncoder(json.JSONEncoder):
     def default(self, obj):
@@ -250,3 +262,15 @@ class BetsJackpot_7_49(db.Model):
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
+
+class Wallets(db.Model):
+
+    __tablename__ = 'wallets'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    amount = db.Column(REAL, nullable=True)
+
+    def __init__(self, user_id, amount):
+        self.user_id = user_id
+        self.amount = amount

@@ -5,7 +5,7 @@ from flask import Blueprint, request, make_response, jsonify
 from flask.views import MethodView
 
 from project.server import bcrypt, db
-from project.server.models import User, BlacklistToken
+from project.server.models import User, BlacklistToken, Wallets, LotteryTokens
 
 auth_blueprint = Blueprint('auth', __name__)
 
@@ -31,6 +31,11 @@ class RegisterAPI(MethodView):
                 db.session.commit()
                 # generate the auth token
                 auth_token = user.encode_auth_token(user.id)
+                wallet = Wallets(user.id, 0.0)
+                lottery_tokens = LotteryTokens(user.id, 0.0)
+                db.session.add(wallet)
+                db.session.add(lottery_tokens)
+                db.session.commit()
                 responseObject = {
                     'status': 'success',
                     'message': 'Successfully registered.',

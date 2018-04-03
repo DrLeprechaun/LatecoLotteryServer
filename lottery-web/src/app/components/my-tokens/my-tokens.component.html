@@ -37,8 +37,14 @@
     </div>
 </nav>
 
+<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+
 <div id="tokensContainer">
   <h4>Amount: {{ amount }}</h4>
   <hr>
-  <button type="button" class="btn btn-dark btn-lg">Buy!</button>
+  <input id="tokensInput" class="form-control" type="number" value="0" (change)="calculateCost()" min ="1">
+  <br>
+  <p>BTC: {{ cost.toPrecision(3) }}</p>
+  <p>ETC: {{ (0.055 * cost).toPrecision(3) }}</p>
+  <button type="button" class="btn btn-dark btn-lg" (click)="buy()">Buy!</button>
 </div>

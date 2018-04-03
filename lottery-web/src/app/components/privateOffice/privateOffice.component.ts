@@ -4,6 +4,8 @@ import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
 import { LotteryService } from '../../services/lottery.service';
 import { MakeBets } from '../../models/make-bets';
+import {Subject} from 'rxjs/Subject';
+import {debounceTime} from 'rxjs/operator/debounceTime';
 
 @Component({
   selector: 'privateOffice',
@@ -13,10 +15,21 @@ import { MakeBets } from '../../models/make-bets';
 export class PrivateOfficeComponent {
 
   private cost: number = 0;
+  private _alert = new Subject<string>();
+  staticAlertClosed = false;
+  errorMessage: string
 
   constructor(private auth: AuthService, private router: Router, private lottery: LotteryService) {}
 
   ngOnInit(): void {
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+
+    this._alert.subscribe((message) => this.errorMessage = message);
+    debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
+  }
+
+  alertMessage(message: string) {
+    this._alert.next(message);
   }
 
   /*addTicket(): void {
@@ -134,6 +147,8 @@ export class PrivateOfficeComponent {
       console.log(res.json());
       if (res.json().status === 'success') {
         this.router.navigateByUrl('/my-bets');
+      } else {
+        this.alertMessage(res.json().message);
       }
     },
     (err) => {
