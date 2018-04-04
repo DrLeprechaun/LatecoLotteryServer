@@ -5,3 +5,28 @@
 .ticketDiv {
   width: 200px;
 }
+
+.buy-give {
+  width: 60px;
+  margin-left: 2px;
+}
+
+h5 {
+  margin-left: 40px;
+}
+
+#ticketInput {
+  width: 200px;
+}
+
+.modal-table tr td {
+  padding-left: 25px;
+}
+
+.modal-table tr button {
+  width: 100px;
+}
+
+.modal-table tr p {
+  margin-top: 12px;
+}

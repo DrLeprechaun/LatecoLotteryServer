@@ -1,3 +1,29 @@
+.header {
+  margin-top: 20px;
+}
+
+.header img {
+  width: 39px;
+  height: 34px;
+}
+
+.page-content td {
+  vertical-align: top;
+}
+
+.banner-cell {
+  padding-top: 25px;
+  padding-left: 25px;
+}
+
+#titleBanner {
+  /*width: 700px;*/
+}
+
+.lottery-cell {
+  padding: 5px;
+}
+
 a {
   text-decoration: none;
   font-weight: bold;
@@ -20,5 +46,14 @@ p {
 }
 
 #navbar {
-  margin-top: 40px;
+  margin-top: 20px;
+}
+
+.buy-give {
+  width: 60px;
+  margin-left: 2px;
+}
+
+h5 {
+  margin-left: 40px;
 }

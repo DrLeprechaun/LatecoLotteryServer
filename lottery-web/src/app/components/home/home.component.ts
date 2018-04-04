@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'home',
@@ -10,7 +11,9 @@ import { User } from '../../models/user';
 })
 export class HomeComponent {
 
-  constructor(private auth: AuthService) {}
+  private modalTitle: string;
+
+  constructor(private router: Router, private auth: AuthService, private modalService: NgbModal) {}
 
   ngOnInit(): void {}
 
@@ -26,6 +29,29 @@ export class HomeComponent {
       console.log(err);
     });*/
     localStorage.removeItem('token'); //localStorage.clear();
+  }
+
+  open(type, content) {
+    this.modalTitle = type;
+    this.modalService.open(content).result.then((result) => {
+      //this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+  goLogin(): void {
+    this.router.navigateByUrl('/login');
   }
 
 }

@@ -1,12 +1,160 @@
-<h1>SuperJackpot</h1>
-<div id="navbar">
-<p><a href="/login" style="color: grey">Home</a></p>
-<p><a href="/login">Log in</a></p>
-<p><a href="/register">Registration</a></p>
-<p><a href="/about">About</a></p>
-<p><a href="/how-it-works">How It Works</a></p>
-<p><a href="/public-statistics">Statistics</a></p>
-<p><a href="/buy-ticket">Buy Ticket!</a></p>
-<!--<p><a href="/status">Status</a></p>-->
+<div class="header">
+  <table>
+    <tr>
+      <td><img src="assets/img/logo_small.png" alt="logo"></td>
+      <td style="padding-top: 5px;"><h2><b>UPER</b>JACK<b>POT</b></h2></td>
+    </tr>
+  </table>
 </div>
-<button (click)="logOut()">LogOut</button>
+<div class="container">
+  <table class="page-content">
+    <tr>
+      <td>
+        <div id="navbar">
+        <p><a href="/login" style="color: grey">Home</a></p>
+        <p><a href="/login">Log in</a></p>
+        <p><a href="/register">Registration</a></p>
+        <p><a href="/about">About</a></p>
+        <p><a href="/how-it-works">How It Works</a></p>
+        <p><a href="/public-statistics">Statistics</a></p>
+        <p><a href="/buy-ticket">Buy Ticket!</a></p>
+        <!--<p><a href="/status">Status</a></p>-->
+        </div>
+    </td>
+  <!--<button (click)="logOut()">LogOut</button>-->
+    <td class="banner-cell">
+      <div>
+        <img src="assets/img/title_banner.png" id="titleBanner">
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <tr>
+        <td class="lottery-cell">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Lottery 5x36</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 5x36', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" >Give</button></p>
+            </div>
+          </div>
+        </td>
+        <td class="lottery-cell">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Lottery 6x45</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 6x45', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" >Give</button>
+              </p>
+            </div>
+          </div>
+        </td>
+        <td class="lottery-cell">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/4_20.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Lottery 4x20</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 4x20', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" >Give</button>
+              </p>
+            </div>
+          </div>
+        </td>
+        <td class="lottery-cell">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/7_49.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Lottery 7x49</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 7x49', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" >Give</button>
+              </p>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="lottery-cell">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/j_5_36.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Jackpot 5x36</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" >Give</button>
+              </p>
+            </div>
+          </div>
+        </td>
+        <td class="lottery-cell">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/j_6_45.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Jackpot 6x45</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" >Give</button>
+              </p>
+            </div>
+          </div>
+        </td>
+        <td class="lottery-cell">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/j_4_20.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Jackpot 4x20</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x20', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" >Give</button>
+              </p>
+            </div>
+          </div>
+        </td>
+        <td class="lottery-cell">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/j_7_49.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Jackpot 7x49</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 7x49', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" >Give</button>
+              </p>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </td>
+  </tr>
+</table>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{modalTitle}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Description&hellip;</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

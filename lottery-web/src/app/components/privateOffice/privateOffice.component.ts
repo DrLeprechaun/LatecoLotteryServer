@@ -6,6 +6,7 @@ import { LotteryService } from '../../services/lottery.service';
 import { MakeBets } from '../../models/make-bets';
 import {Subject} from 'rxjs/Subject';
 import {debounceTime} from 'rxjs/operator/debounceTime';
+import {NgbModal, ModalDismissReasons, NgbModalRef/*, NgbActiveModal*/} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'privateOffice',
@@ -14,12 +15,16 @@ import {debounceTime} from 'rxjs/operator/debounceTime';
 })
 export class PrivateOfficeComponent {
 
+  modalReference: NgbModalRef;
   private cost: number = 0;
   private _alert = new Subject<string>();
   staticAlertClosed = false;
-  errorMessage: string
+  errorMessage: string;
+  modalTitle: string;
+  buyContent: boolean;
+  aboutContent: boolean;
 
-  constructor(private auth: AuthService, private router: Router, private lottery: LotteryService) {}
+  constructor(private auth: AuthService, private router: Router, private lottery: LotteryService, private modalService: NgbModal/*, private activeModal: NgbActiveModal*/) {}
 
   ngOnInit(): void {
     setTimeout(() => this.staticAlertClosed = true, 20000);
@@ -128,6 +133,20 @@ export class PrivateOfficeComponent {
     this.cost = +l536.value + +l645.value + +l420.value + +l749.value + +j536.value*5 + +j645.value*5 + +j420.value*5 + +j749.value*5;
   }
 
+  calculateTicketCost() {
+    let coef = 0;
+
+    let ticketInput = document.getElementById("ticketInput") as HTMLSelectElement;
+
+    if (this.modalTitle == "Lottery 5x36" || this.modalTitle == "Lottery 6x45" || this.modalTitle == "Lottery 4x20" || this.modalTitle == "Lottery 7x49") {
+      coef = 1;
+    } else if (this.modalTitle == "Jackpot 5x36" || this.modalTitle == "Jackpot 6x45" || this.modalTitle == "Jackpot 4x20" || this.modalTitle == "Jackpot 7x49") {
+      coef = 5;
+    }
+
+    this.cost = coef * +ticketInput.value;
+  }
+
   buy() {
     let l536 = document.getElementById("lottery_5x36") as HTMLSelectElement;
     let l645 = document.getElementById("lottery_6x45") as HTMLSelectElement;
@@ -155,6 +174,96 @@ export class PrivateOfficeComponent {
       console.log(err);
     })
 
+  }
+
+  buyTicket() {
+
+    let ticketInput = document.getElementById("ticketInput") as HTMLSelectElement;
+
+    let l536 = 0;
+    let l645 = 0;
+    let l420 = 0;
+    let l749 = 0;
+    let j536 = 0;
+    let j645 = 0;
+    let j420 = 0;
+    let j749 = 0;
+
+    if (this.modalTitle == "Lottery 5x36") {
+      l536 = +ticketInput.value;
+    } else if (this.modalTitle == "Lottery 6x45") {
+      l645 = +ticketInput.value;
+    } else if (this.modalTitle == "Lottery 4x20") {
+      l420 = +ticketInput.value;
+    } else if (this.modalTitle == "Lottery 7x49") {
+      l749= +ticketInput.value;
+    } else if (this.modalTitle == "Jackpot 5x36") {
+      j536 = +ticketInput.value;
+    } else if (this.modalTitle == "Jackpot 6x45") {
+      j645 = +ticketInput.value;
+    } else if (this.modalTitle == "Jackpot 4x20") {
+      j420 = +ticketInput.value;
+    } else if (this.modalTitle == "Jackpot 7x49") {
+      j749= +ticketInput.value;
+    }
+
+    let bet: MakeBets = new MakeBets(l536, l645, l420, l749, j536, j645, j420, j749);
+
+    console.log(bet);
+
+    this.lottery.makeBets(bet)
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        /*this.activeModal.close();*/
+        //close('close');
+        this.modalReference.close();
+        this.router.navigateByUrl('/my-bets');
+      } else {
+        this.alertMessage(res.json().message);
+      }
+    },
+    (err) => {
+      console.log(err);
+    })
+
+  }
+
+  open(title, reason, content) {
+    this.modalTitle = title;
+    this.modalReference = this.modalService.open(content);
+    if (reason == "about") {
+      this.aboutContent = true;
+      this.buyContent = false;
+    } else if (reason == "buy") {
+      this.aboutContent = false;
+      this.buyContent = true;
+      if (this.modalTitle == "Lottery 5x36" || this.modalTitle == "Lottery 6x45" || this.modalTitle == "Lottery 4x20" || this.modalTitle == "Lottery 7x49") {
+        this.cost = 1;
+      } else if (this.modalTitle == "Jackpot 5x36" || this.modalTitle == "Jackpot 6x45" || this.modalTitle == "Jackpot 4x20" || this.modalTitle == "Jackpot 7x49") {
+        this.cost = 5;
+      }
+    }
+    //this.modalService.open(content).result.then((result) => {
+    this.modalReference.result.then((result) => {
+      //this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    this.modalTitle = "";
+    this.cost = 0;
+    let ticketInput = document.getElementById("ticketInput") as HTMLSelectElement;
+    ticketInput.value = "0";
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
   logOut(): void {

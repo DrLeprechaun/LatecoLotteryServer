@@ -18,9 +18,9 @@
         <li class="nav-item">
           <a class="nav-link" href="my-tokens">My Tokens</a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link" href="wallet">Wallet</a>
-        </li>
+        </li>-->
         <li class="nav-item">
           <a class="nav-link" href="my-statistics">Statistics</a>
         </li>
@@ -110,8 +110,14 @@
       <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Lottery 5x36</h5>
+        <p class="card-text">
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 5x36', 'about', content)">About</button>
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 5x36', 'buy', content)">Buy</button>
+          <button class="btn btn-dark btn-sm buy-give">Give</button>
+        </p>
+        <!--<h5 class="card-title">Lottery 5x36</h5>
         <p class="card-text">Description</p>
-        <input id="lottery_5x36" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">
+        <input id="lottery_5x36" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -120,8 +126,14 @@
       <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Lottery 6x45</h5>
+        <p class="card-text">
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 6x45', 'about', content)">About</button>
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 6x45', 'buy', content)">Buy</button>
+          <button class="btn btn-dark btn-sm buy-give">Give</button>
+        </p>
+        <!--<h5 class="card-title">Lottery 6x45</h5>
         <p class="card-text">Description</p>
-        <input id="lottery_6x45" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">
+        <input id="lottery_6x45" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -130,8 +142,14 @@
       <img class="card-img-top" src="assets/img/4_20.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Lottery 4x20</h5>
+        <p class="card-text">
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 4x20', 'about', content)">About</button>
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 4x20', 'buy', content)">Buy</button>
+          <button class="btn btn-dark btn-sm buy-give">Give</button>
+        </p>
+        <!--<h5 class="card-title">Lottery 4x20</h5>
         <p class="card-text">Description</p>
-        <input id="lottery_4x20" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">
+        <input id="lottery_4x20" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -140,12 +158,20 @@
       <img class="card-img-top" src="assets/img/7_49.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Lottery 7x49</h5>
+        <p class="card-text">
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 7x49', 'about', content)">About</button>
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 7x49', 'buy', content)">Buy</button>
+          <button class="btn btn-dark btn-sm buy-give">Give</button>
+        </p>
+        <!--<h5 class="card-title">Lottery 7x49</h5>
         <p class="card-text">Description</p>
-        <input id="lottery_7x49" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">
+        <input id="lottery_7x49" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
 </div>
+
+<br>
 
 <div class="row">
   <div class="col">
@@ -153,8 +179,14 @@
       <img class="card-img-top" src="assets/img/j_5_36.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Jackpot 5x36</h5>
+        <p class="card-text">
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'about', content)">About</button>
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'buy', content)">Buy</button>
+          <button class="btn btn-dark btn-sm buy-give">Give</button>
+        </p>
+        <!--<h5 class="card-title">Jackpot 5x36</h5>
         <p class="card-text">Description</p>
-        <input id="jackpot_5x36" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">
+        <input id="jackpot_5x36" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -163,8 +195,14 @@
       <img class="card-img-top" src="assets/img/j_6_45.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Jackpot 6x45</h5>
+        <p class="card-text">
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', 'about', content)">About</button>
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45','buy', content)">Buy</button>
+          <button class="btn btn-dark btn-sm buy-give">Give</button>
+        </p>
+        <!--<h5 class="card-title">Jackpot 6x45</h5>
         <p class="card-text">Description</p>
-        <input id="jackpot_6x45" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">
+        <input id="jackpot_6x45" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -173,8 +211,14 @@
       <img class="card-img-top" src="assets/img/j_4_20.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Jackpot 4x20</h5>
+        <p class="card-text">
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x20', 'about', content)">About</button>
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x20', 'buy', content)">Buy</button>
+          <button class="btn btn-dark btn-sm buy-give">Give</button>
+        </p>
+        <!--<h5 class="card-title">Jackpot 4x20</h5>
         <p class="card-text">Description</p>
-        <input id="jackpot_4x20" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">
+        <input id="jackpot_4x20" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -183,16 +227,55 @@
       <img class="card-img-top" src="assets/img/j_7_49.png" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">Jackpot 7x49</h5>
+        <p class="card-text">
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 7x49', 'about', content)">About</button>
+          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 7x49','buy', content)">Buy</button>
+          <button class="btn btn-dark btn-sm buy-give">Give</button>
+        </p>
+        <!--<h5 class="card-title">Jackpot 7x49</h5>
         <p class="card-text">Description</p>
-        <input id="jackpot_7x49" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">
+        <input id="jackpot_7x49" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
 </div>
 
-<hr>
+<!--<hr>
 <p class="text-right">{{cost }} tokens</p>
 <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
 <hr>
-<p class="text-right"><button type="button" (click)="buy()" class="btn btn-dark btn-lg">Buy!</button></p>
+<p class="text-right"><button type="button" (click)="buy()" class="btn btn-dark btn-lg">Buy!</button></p>-->
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ modalTitle }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" *ngIf="aboutContent">
+    <p>Description&hellip;</p>
+  </div>
+  <div class="modal-body" *ngIf="buyContent">
+    <!--<p>One fine body&hellip;</p>-->
+    <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+    <table class="modal-table" id="buyTable">
+      <tr>
+        <td>
+          <input id="ticketInput" class="form-control" type="number" value="1" (change)="calculateTicketCost()" min ="1" max="10">
+        </td>
+        <td>
+          <p>{{cost }} tokens</p>
+        </td>
+        <td>
+          <button type="button" (click)="buyTicket()" class="btn btn-dark">Buy!</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

@@ -16,9 +16,9 @@
         <li class="nav-item active">
           <a class="nav-link" href="my-tokens">My Tokens</a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link" href="wallet">Wallet</a>
-        </li>
+        </li>-->
         <li class="nav-item">
           <a class="nav-link" href="my-statistics">Statistics</a>
         </li>
@@ -40,11 +40,55 @@
 <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
 
 <div id="tokensContainer">
-  <h4>Amount: {{ amount }}</h4>
+  <h4>Tokens amount: {{ amount }}</h4>
   <hr>
   <input id="tokensInput" class="form-control" type="number" value="0" (change)="calculateCost()" min ="1">
   <br>
   <p>BTC: {{ cost.toPrecision(3) }}</p>
   <p>ETC: {{ (0.055 * cost).toPrecision(3) }}</p>
   <button type="button" class="btn btn-dark btn-lg" (click)="buy()">Buy!</button>
+  <hr>
+  <button type="button" class="btn btn-dark" (click)="open(content)">Wallet</button>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Wallet</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!--<p>One fine body&hellip;</p>-->
+    <ul>
+      <li>The won funds are transferred to this wallet</li>
+      <li>The funds on this wallet allows you to buy Lottery Tokens</li>
+      <li><a href="https://walletspace.io/" target="_blank">More information about Wallet Space</a></li>
+    </ul>
+    <hr>
+    <ngb-alert *ngIf="walletErrorMessage" type="danger" (close)="walletErrorMessage = null">{{ walletErrorMessage }}</ngb-alert>
+    <div id="walletContainer">
+      <table>
+        <tr>
+          <td>
+            <p>BTC: {{ walletAmount }}</p>
+            <p>ETC:  {{ (0.055 * walletAmount).toPrecision(3) }}</p>
+          </td>
+      <td>
+        <input id="fillUpInput" class="form-control" type="number" value="0" min ="1">
+        <br>
+        <button type="button" class="btn btn-dark" (click)="fillUp()">Fill Up</button>
+      </td>
+      <td>
+        <input id="withdrawInput" class="form-control" type="number" value="0" min ="1">
+        <br>
+        <button type="button" class="btn btn-dark"  (click)="withdraw()">Withdraw</button>
+      </td>
+      </tr>
+    </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button id="saveButton" type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

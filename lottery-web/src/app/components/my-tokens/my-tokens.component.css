@@ -5,3 +5,11 @@
 input {
   width: 100px;
 }
+
+#walletContainer table tr td {
+  padding-right: 50px;
+}
+
+#walletContainer table tr td button {
+  width: 100px;
+}
