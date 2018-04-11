@@ -50,8 +50,8 @@ export class MyBetsComponent implements OnInit {
         //Lottery 6x45
         for (var i = 0; i < res.json().data.lottery_6x45.length; i++) {
           let rowData = {
-            "id": res.json().data.lottery_5x36[i].id,
-            "fake_id": "00" + 10645 + res.json().data.lottery_5x36[i].id,
+            "id": res.json().data.lottery_6x45[i].id,
+            "fake_id": "00" + 10645 + res.json().data.lottery_6x45[i].id,
             "type_name": "Lottery 6x45",
             "type": "lottery_6x45",
             "combination": this.processCombination(res.json().data.lottery_6x45[i].combination)
@@ -199,10 +199,12 @@ export class MyBetsComponent implements OnInit {
 
     //Array
     for (var i = 0; i < this.modalButtonsQuantity; i++) {
-      let buttonClass = "btn btn-dark";
+      //let buttonClass = "btn btn-dark";
+      let buttonClass = "btn button-black";
       if (this.editableCombination != null) {
         if (this.editableCombination.indexOf(i+1) > -1) {
-          buttonClass = "btn btn-danger";
+          //buttonClass = "btn btn-danger";
+          buttonClass = "btn button-red";
         }
       } else {
         this.editableCombination = [];
@@ -271,13 +273,16 @@ export class MyBetsComponent implements OnInit {
   editCombination(val: number) {
 
     //Number button
-    if (document.getElementById("button_" + val).getAttribute("class") != "btn btn-danger") {
+    //if (document.getElementById("button_" + val).getAttribute("class") != "btn btn-danger") {
+    if (document.getElementById("button_" + val).getAttribute("class") != "btn button-red button-round") {
       if (this.editableCombination.length < this.combinationQuantity) {
-        document.getElementById("button_" + val).setAttribute("class", "btn btn-danger");
+        //document.getElementById("button_" + val).setAttribute("class", "btn btn-danger");
+        document.getElementById("button_" + val).setAttribute("class", "btn button-red button-round");
         this.editableCombination.push(val);
       }
     } else {
-      document.getElementById("button_" + val).setAttribute("class", "btn btn-dark");
+      //document.getElementById("button_" + val).setAttribute("class", "btn btn-dark");
+      document.getElementById("button_" + val).setAttribute("class", "btn button-black button-round");
       this.editableCombination.splice(this.editableCombination.indexOf(val, 0), 1);
     }
 
@@ -294,6 +299,8 @@ export class MyBetsComponent implements OnInit {
     console.log(this.editableCombination);
     console.log(this.lotteryType);
     console.log(this.editedRecordId);
+
+    console.log(new CombinationUpdate(this.editedRecordId, this.lotteryType, this.editableCombination));
 
     this.lottery.updateCombination(new CombinationUpdate(this.editedRecordId, this.lotteryType, this.editableCombination))
     .then((res) => {

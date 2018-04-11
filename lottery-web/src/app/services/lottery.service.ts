@@ -92,4 +92,24 @@ export class LotteryService {
     return this.http.post(url, {quantity: quantity}, {headers: headers}).toPromise();
   }
 
+  getSuperjackpot(): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/get_superjackpot`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(url, {headers: headers}).toPromise();
+  }
+
+  getBank(): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/get_bank`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(url, {headers: headers}).toPromise();
+  }
+
 }

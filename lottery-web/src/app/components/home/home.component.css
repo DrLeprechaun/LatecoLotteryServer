@@ -9,19 +9,25 @@
 
 .page-content td {
   vertical-align: top;
+  padding: 20px;
 }
 
 .banner-cell {
-  padding-top: 25px;
-  padding-left: 25px;
+  /*padding-top: 25px;*/
+  /*padding-left: 25px;*/
 }
 
 #titleBanner {
-  /*width: 700px;*/
+  width: 50rem;
 }
 
 .lottery-cell {
-  padding: 5px;
+  /*padding: 5px;*/
+  /*align: "center";*/
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  padding-top: 20px;
 }
 
 a {

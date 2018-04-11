@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { LotteryService } from '../../services/lottery.service';
 import { User } from '../../models/user';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
@@ -13,9 +14,22 @@ export class HomeComponent {
 
   private modalTitle: string;
 
-  constructor(private router: Router, private auth: AuthService, private modalService: NgbModal) {}
+  constructor(private router: Router, private lottery: LotteryService, private auth: AuthService, private modalService: NgbModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.lottery.getBank()
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        console.log(res.json().data);
+      } else {
+        console.log(res.json().message);
+      }
+    },
+    (err) => {
+      console.log(err);
+    })
+  }
 
   logOut(): void {
     /*const token = localStorage.getItem('token');

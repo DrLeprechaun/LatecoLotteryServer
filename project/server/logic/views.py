@@ -10,6 +10,44 @@ import json
 
 logic_blueprint = Blueprint('logic', __name__)
 
+class GetSuperjackpot(MethodView):
+    def get(self):
+        bank = Bank.query.one()
+        responseObject = {
+            'status': 'success',
+            'data': bank.superjackpot
+            }
+        return make_response(jsonify(responseObject)), 200
+        responseObject = {
+            'status': 'fail',
+            'message': resp
+        }
+        return make_response(jsonify(responseObject)), 401
+
+class GetBank(MethodView):
+    def get(self):
+        bank = Bank.query.one()
+        responseObject = {
+            'status': 'success',
+            'data': {
+                    'lottery_5x36': bank.lottery_5_36,
+                    'lottery_6x45': bank.lottery_6_45,
+                    'lottery_4x20': bank.lottery_4_20,
+                    'lottery_7x49': bank.lottery_7_49,
+                    'jackpot_5x36': bank.jackpot_5_36,
+                    'jackpot_6x45': bank.jackpot_6_45,
+                    'jackpot_4x20': bank.jackpot_4_20,
+                    'jackpot_7x49': bank.jackpot_4_20,
+                    'superjackpot': bank.superjackpot
+                }
+            }
+        return make_response(jsonify(responseObject)), 200
+        responseObject = {
+            'status': 'fail',
+            'message': resp
+        }
+        return make_response(jsonify(responseObject)), 401
+
 
 class TokensAmount(MethodView):
     def get(self):
@@ -510,8 +548,20 @@ wallet_amount_view = WalletAmount.as_view('wallet_amount');
 fill_up_wallet_view = FillUpWallet.as_view('fill_up_wallet');
 withdraw_wallet_view = WithdrawWallet.as_view('withdraw_wallet');
 fill_up_tokens_view = FillUpTokens.as_view('fill_up_tokens');
+get_superjackpot_view = GetSuperjackpot.as_view('get_superjackpot');
+get_bank_view = GetBank.as_view('get_bank');
 
 # add Rules for API Endpoints
+logic_blueprint.add_url_rule(
+    '/logic/get_superjackpot',
+    view_func=get_superjackpot_view,
+    methods=['GET']
+)
+logic_blueprint.add_url_rule(
+    '/logic/get_bank',
+    view_func=get_bank_view,
+    methods=['GET']
+)
 logic_blueprint.add_url_rule(
     '/logic/tokens_amount',
     view_func=tokens_amount_view,

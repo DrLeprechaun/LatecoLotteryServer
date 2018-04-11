@@ -37,7 +37,11 @@
     </div>
 </nav>
 
-<nav>
+<div align="center" style="margin-top: 20px;">
+  <img src="assets/img/title_banner.png" id="titleBanner">
+</div>
+
+<nav style="margin-top: 20px;">
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Current</a>
     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Archive</a>
@@ -78,7 +82,7 @@
         <table class="modalTable">
           <tr *ngFor="let r of modalButtonsTable">
             <!--<td *ngFor="let c of r"><button id="button_{{c.title}}" (click)="editCombination(c.title)">{{ c.title }}</button></td>-->
-            <td *ngFor="let c of r"><button class="{{ c.class }}" id="button_{{c.title}}" (click)="editCombination(c.title)">{{ c.title }}</button></td>
+            <td *ngFor="let c of r"><button class="{{ c.class }} button-round" id="button_{{c.title}}" (click)="editCombination(c.title)">{{ c.title }}</button></td>
           </tr>
         </table>
       </div>
