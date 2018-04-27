@@ -275,6 +275,20 @@ class Wallets(db.Model):
         self.user_id = user_id
         self.amount = amount
 
+class Lottery_5_36(db.Model):
+
+    __tablename__ = 'lottery_5_36'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    win_tikets = db.Column(ARRAY(db.Integer), nullable=True)
+    date = db.Column(db.DateTime, nullable=False)
+
+    def __init__(self, combination, win_tikets, date):
+        self.combination = combination
+        self.win_tikets = win_tikets
+        self.date = date
+
 class Bank(db.Model):
 
     __tablename__ = 'bank'

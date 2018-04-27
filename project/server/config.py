@@ -1,6 +1,8 @@
 # project/server/config.py
 
 import os
+from flask_apscheduler import APScheduler
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 #postgres_local_base = 'postgresql://postgres:@localhost:5432/'
 postgres_local_base = 'postgresql://postgres:latecO20112017@localhost/'
@@ -13,11 +15,30 @@ class BaseConfig:
     DEBUG = False
     BCRYPT_LOG_ROUNDS = 13
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    JOBS = [
+        {
+            'id': 'job1',
+            'func': 'project.server.jobs:job1',
+            'args': (1, 2),
+            'trigger': 'cron',
+            'year': '*',
+            'month': '*',
+            'day': '*',
+            'hour': '14',
+            'minute': '5',
+            'second': '0',
+            #'trigger': 'interval',
+            #'seconds': 10
+            #'hours': 24
+        }
+    ]
+
+SCHEDULER_API_ENABLED = True
 
 
 class DevelopmentConfig(BaseConfig):
     """Development configuration."""
-    DEBUG = True
+    DEBUG = False
     BCRYPT_LOG_ROUNDS = 4
     SQLALCHEMY_DATABASE_URI = postgres_local_base + database_name
 
@@ -36,3 +57,7 @@ class ProductionConfig(BaseConfig):
     SECRET_KEY = '_Q[6\xdc\xa2\x8a\x0c\xa1<\xf0\x1b\x93\xd9\xf9J%\xa6\xf8\x82 v4\xbe'
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = 'postgresql:///example'
+
+
+#def job1(a, b):
+    #print(str(a) + ' ' + str(b))

@@ -8,6 +8,14 @@ import coverage
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
+#import schedule
+import time
+
+import atexit
+
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger
+
 COV = coverage.coverage(
     branch=True,
     include='project/*',
@@ -67,7 +75,6 @@ def create_db():
 def drop_db():
     """Drops the db tables."""
     db.drop_all()
-
 
 if __name__ == '__main__':
     manager.run()

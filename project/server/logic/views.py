@@ -6,9 +6,34 @@ from flask.views import MethodView
 
 from project.server import bcrypt, db
 from project.server.models import *
-import json
+import codecs, json
+import numpy as np
+from random import randint
 
 logic_blueprint = Blueprint('logic', __name__)
+
+def GetRandomArray(min, max, size):
+	arr = []
+	while len(arr) < size:
+		item = randint(min, max)
+		if item not in arr:
+			arr.append(item)
+	return arr
+
+def CompareArrays(arr1, arr2):
+	return sorted(arr1) == sorted(arr2)
+
+
+class GetCominationTest(MethodView):
+	def get(self):
+		arr1 = GetRandomArray(20, 30, 10)
+		arr2 = GetRandomArray(20, 30, 10)
+		responseObject = {
+			'c1': arr1,
+			'c2': arr2,
+			'r': CompareArrays(arr1, arr2)
+		}
+		return make_response(jsonify(responseObject)), 200
 
 class GetSuperjackpot(MethodView):
     def get(self):
@@ -550,8 +575,14 @@ withdraw_wallet_view = WithdrawWallet.as_view('withdraw_wallet');
 fill_up_tokens_view = FillUpTokens.as_view('fill_up_tokens');
 get_superjackpot_view = GetSuperjackpot.as_view('get_superjackpot');
 get_bank_view = GetBank.as_view('get_bank');
+get_combination_test_view = GetCominationTest.as_view('get_combination_test');
 
 # add Rules for API Endpoints
+logic_blueprint.add_url_rule(
+    '/logic/get_combination_test',
+    view_func=get_combination_test_view,
+    methods=['GET']
+)
 logic_blueprint.add_url_rule(
     '/logic/get_superjackpot',
     view_func=get_superjackpot_view,

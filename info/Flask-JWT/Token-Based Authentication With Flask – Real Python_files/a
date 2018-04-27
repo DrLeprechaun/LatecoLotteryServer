@@ -1,0 +1,14 @@
+/**/ _ate.cbs.rcb_ivu10({
+   "share": {
+      "comment_count": 0,
+      "share_count": 43
+   },
+   "og_object": {
+      "id": "1732374486853765",
+      "description": "Here we look at how to handle user authentication using JSON Web Tokens in a Flask App.",
+      "title": "Token-Based Authentication With Flask \u2013 Real Python",
+      "type": "article",
+      "updated_time": "2018-04-11T01:24:00+0000"
+   },
+   "id": "https://realpython.com/token-based-authentication-with-flask/"
+});
