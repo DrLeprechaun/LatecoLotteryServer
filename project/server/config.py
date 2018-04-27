@@ -16,20 +16,31 @@ class BaseConfig:
     BCRYPT_LOG_ROUNDS = 13
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JOBS = [
+        #{
+            #'id': 'job1',
+            #'func': 'project.server.jobs:job1',
+            #'args': (1, 2),
+            #'trigger': 'cron',
+            #'year': '*',
+            #'month': '*',
+            #'day': '*',
+            #'hour': '14',
+            #'minute': '5',
+            #'second': '0',
+            #'trigger': 'interval',
+            #'seconds': 10
+            #'hours': 24
+        #}
         {
-            'id': 'job1',
-            'func': 'project.server.jobs:job1',
-            'args': (1, 2),
+            'id': 'lottery_5x36',
+            'func': 'project.server.jobs:lottery_5x36',
             'trigger': 'cron',
             'year': '*',
             'month': '*',
             'day': '*',
-            'hour': '14',
-            'minute': '5',
+            'hour': '19',
+            'minute': '17',
             'second': '0',
-            #'trigger': 'interval',
-            #'seconds': 10
-            #'hours': 24
         }
     ]
 
