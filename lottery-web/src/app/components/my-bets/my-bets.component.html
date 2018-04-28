@@ -101,6 +101,19 @@
         <th>Won Combination</th>
         <th>Date</th>
       </tr>
+      <!--<tr *ngFor="let d of archiveTableData" bgcolor="#FF0000">-->
+      <tr *ngFor="let d of archiveTableData">
+        <td *ngIf="d.is_win" bgcolor="#FF0000">{{ d.fake_id }}</td>
+        <td *ngIf="d.is_win" bgcolor="#FF0000">{{ d.type_name }}</td>
+        <td *ngIf="d.is_win" bgcolor="#FF0000">{{ d.combination }}</td>
+        <td *ngIf="d.is_win" bgcolor="#FF0000">{{ d.won_combination }}</td>
+        <td *ngIf="d.is_win" bgcolor="#FF0000">{{ d.date }}</td>
+        <td>{{ d.fake_id }}</td>
+        <td>{{ d.type_name }}</td>
+        <td>{{ d.combination }}</td>
+        <td>{{ d.won_combination }}</td>
+        <td>{{ d.date }}</td>
+      </tr>
     </table>
   </div>
 </div>

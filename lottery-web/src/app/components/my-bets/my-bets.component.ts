@@ -13,6 +13,8 @@ export class MyBetsComponent implements OnInit {
 
   rawData: any[] = [];
   tableData: any[] = [];
+  archiveRawData: any[] = [];
+  archiveTableData: any[] = [];
   modalId: string = "";
   modalType: string = "";
   combinationQuantity: number = 0;
@@ -30,6 +32,7 @@ export class MyBetsComponent implements OnInit {
   }
 
   loadData(): void {
+    //Active bets
     this.lottery.getBets()
     .then((res) => {
       if (res.json().status === 'success') {
@@ -125,7 +128,129 @@ export class MyBetsComponent implements OnInit {
           this.tableData.push(rowData);
         }
       }
-    })
+    });
+
+    //Archive
+    this.lottery.getBetsArchive()
+    .then((res) => {
+      if (res.json().status === 'success') {
+        console.log(res.json());
+        this.archiveTableData = [];
+        this.archiveRawData = res.json().data;
+        //Lottery 5x36
+        for (var i = 0; i < res.json().data.lottery_5x36.length; i++) {
+          let rowData = {
+            "id": res.json().data.lottery_5x36[i].id,
+            "fake_id": "00" + 10536 + res.json().data.lottery_5x36[i].id,
+            "type_name": "Lottery 5x36",
+            "type": "lottery_5x36",
+            "combination": this.processCombination(res.json().data.lottery_5x36[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.lottery_5x36[i].win_combination),
+            "is_win": res.json().data.lottery_5x36[i].is_win,
+            "date": res.json().data.lottery_5x36[i].date
+          }
+          this.archiveTableData.push(rowData);
+        }
+        //Lottery 6x45
+        for (var i = 0; i < res.json().data.lottery_6x45.length; i++) {
+          let rowData = {
+            "id": res.json().data.lottery_6x45[i].id,
+            "fake_id": "00" + 10645 + res.json().data.lottery_6x45[i].id,
+            "type_name": "Lottery 6x45",
+            "type": "lottery_6x45",
+            "combination": this.processCombination(res.json().data.lottery_6x45[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.lottery_6x45[i].win_combination),
+            "is_win": res.json().data.lottery_6x45[i].is_win,
+            "date": res.json().data.lottery_6x45[i].date
+          }
+          this.archiveTableData.push(rowData);
+        }
+        //Lottery 4x20
+        for (var i = 0; i < res.json().data.lottery_4x20.length; i++) {
+          let rowData = {
+            "id": res.json().data.lottery_4x20[i].id,
+            "fake_id": "00" + 10420 + res.json().data.lottery_4x20[i].id,
+            "type_name": "Lottery 4x20",
+            "type": "lottery_4x20",
+            "combination": this.processCombination(res.json().data.lottery_4x20[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.lottery_4x20[i].win_combination),
+            "is_win": res.json().data.lottery_4x20[i].is_win,
+            "date": res.json().data.lottery_4x20[i].date
+          }
+          this.archiveTableData.push(rowData);
+        }
+        //Lottery 7x49
+        for (var i = 0; i < res.json().data.lottery_7x49.length; i++) {
+          let rowData = {
+            "id": res.json().data.lottery_7x49[i].id,
+            "fake_id": "00" + 10749 + res.json().data.lottery_7x49[i].id,
+            "type_name": "Lottery 7x49",
+            "type": "lottery_7x49",
+            "combination": this.processCombination(res.json().data.lottery_7x49[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.lottery_7x49[i].win_combination),
+            "is_win": res.json().data.lottery_7x49[i].is_win,
+            "date": res.json().data.lottery_7x49[i].date
+          }
+          this.archiveTableData.push(rowData);
+        }
+        //Jackpot 5x36
+        for (var i = 0; i < res.json().data.jackpot_5x36.length; i++) {
+          let rowData = {
+            "id": res.json().data.jackpot_5x36[i].id,
+            "fake_id": "00" + 21536 + res.json().data.jackpot_5x36[i].id,
+            "type_name": "Jackpot 5x36",
+            "type": "jackpot_5x36",
+            "combination": this.processCombination(res.json().data.jackpot_5x36[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.jackpot_5x36[i].win_combination),
+            "is_win": res.json().data.jackpot_5x36[i].is_win,
+            "date": res.json().data.jackpot_5x36[i].date
+          }
+          this.archiveTableData.push(rowData);
+        }
+        //Jackpot 6x45
+        for (var i = 0; i < res.json().data.jackpot_6x45.length; i++) {
+          let rowData = {
+            "id": res.json().data.jackpot_6x45[i].id,
+            "fake_id": "00" + 21645 + res.json().data.jackpot_6x45[i].id,
+            "type_name": "Jackpot 6x45",
+            "type": "jackpot_6x45",
+            "combination": this.processCombination(res.json().data.jackpot_6x45[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.jackpot_6x45[i].win_combination),
+            "is_win": res.json().data.jackpot_6x45[i].is_win,
+            "date": res.json().data.jackpot_6x45[i].date
+          }
+          this.archiveTableData.push(rowData);
+        }
+        //Jackpot 4x20
+        for (var i = 0; i < res.json().data.jackpot_4x20.length; i++) {
+          let rowData = {
+            "id": res.json().data.jackpot_4x20[i].id,
+            "fake_id": "00" + 21420 + res.json().data.jackpot_4x20[i].id,
+            "type_name": "Jackpot 4x20",
+            "type": "jackpot_4x20",
+            "combination": this.processCombination(res.json().data.jackpot_4x20[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.jackpot_4x20[i].win_combination),
+            "is_win": res.json().data.jackpot_4x20[i].is_win,
+            "date": res.json().data.jackpot_4x20[i].date
+          }
+          this.archiveTableData.push(rowData);
+        }
+        //Jackpot 7x49
+        for (var i = 0; i < res.json().data.jackpot_7x49.length; i++) {
+          let rowData = {
+            "id": res.json().data.jackpot_7x49[i].id,
+            "fake_id": "00" + 21749 + res.json().data.jackpot_7x49[i].id,
+            "type_name": "Jackpot 7x49",
+            "type": "jackpot_7x49",
+            "combination": this.processCombination(res.json().data.jackpot_7x49[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.jackpot_7x49[i].win_combination),
+            "is_win": res.json().data.jackpot_7x49[i].is_win,
+            "date": res.json().data.jackpot_7x49[i].date
+          }
+          this.archiveTableData.push(rowData);
+        }
+      }
+    });
   }
 
   processCombination(combination: number[]): string {

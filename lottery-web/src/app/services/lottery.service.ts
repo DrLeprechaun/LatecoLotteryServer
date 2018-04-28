@@ -9,7 +9,8 @@ export class LotteryService {
 
   constructor(private auth: AuthService, private http: Http) { }
 
-  private BASE_URL: string = 'http://178.63.57.162:5000/logic';
+  //private BASE_URL: string = 'http://178.63.57.162:5000/logic';
+  private BASE_URL: string = 'http://5.178.87.76:5000/logic';
   private headers: Headers = new Headers({'Content-Type': 'application/json'});
 
   getTokensAmount(): Promise<any> {
@@ -45,6 +46,16 @@ export class LotteryService {
   getBets(): Promise<any> {
     let token = this.auth.getToken();
     let url: string = `${this.BASE_URL}/get_bets`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(url, {headers: headers}).toPromise();
+  }
+
+  getBetsArchive(): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/get_bets_archive`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`

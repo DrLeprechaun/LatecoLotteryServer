@@ -367,6 +367,147 @@ class GetBets(MethodView):
             }
             return make_response(jsonify(responseObject)), 401
 
+class GetBetsArchive(MethodView):
+    def get(self):
+        # get the auth token
+        auth_header = request.headers.get('Authorization')
+        if auth_header:
+            try:
+                auth_token = auth_header.split(" ")[1]
+            except IndexError:
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'Bearer token malformed.'
+                }
+                return make_response(jsonify(responseObject)), 401
+        else:
+            auth_token = ''
+        if auth_token:
+            resp = User.decode_auth_token(auth_token)
+            if not isinstance(resp, str):
+                user = User.query.filter_by(id=resp).first()
+                #lottery_5x36
+                lottery_5x36 = db.engine.execute('SELECT bets_lottery_5_36.id AS id, bets_lottery_5_36.combination AS my_combination, bets_lottery_5_36.is_win AS is_win, lottery_5_36.combination AS win_combination,  lottery_5_36.date AS date FROM bets_lottery_5_36  INNER JOIN lottery_5_36 ON lottery_5_36.id = bets_lottery_5_36.lottery WHERE bets_lottery_5_36.user_id = ' + str(user.id) + ' AND bets_lottery_5_36.is_active = false')
+                lottery_5x36_arr = []
+                for row in lottery_5x36:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    lottery_5x36_arr.append(obj)
+                #lottery_6x45
+                lottery_6x45 = db.engine.execute('SELECT bets_lottery_6_45.id AS id, bets_lottery_6_45.combination AS my_combination, bets_lottery_6_45.is_win AS is_win, lottery_6_45.combination AS win_combination,  lottery_6_45.date AS date FROM bets_lottery_6_45  INNER JOIN lottery_6_45 ON lottery_6_45.id = bets_lottery_6_45.lottery WHERE bets_lottery_6_45.user_id = ' + str(user.id) + ' AND bets_lottery_6_45.is_active = false')
+                lottery_6x45_arr = []
+                for row in lottery_6x45:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    lottery_6x45_arr.append(obj)
+                #lottery_4x20
+                lottery_4x20 = db.engine.execute('SELECT bets_lottery_4_20.id AS id, bets_lottery_4_20.combination AS my_combination, bets_lottery_4_20.is_win AS is_win, lottery_4_20.combination AS win_combination,  lottery_4_20.date AS date FROM bets_lottery_4_20  INNER JOIN lottery_4_20 ON lottery_4_20.id = bets_lottery_4_20.lottery WHERE bets_lottery_4_20.user_id = ' + str(user.id) + ' AND bets_lottery_4_20.is_active = false')
+                lottery_4x20_arr = []
+                for row in lottery_4x20:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    lottery_4x20_arr.append(obj)
+                #lottery_7x49
+                lottery_7x49 = db.engine.execute('SELECT bets_lottery_7_49.id AS id, bets_lottery_7_49.combination AS my_combination, bets_lottery_7_49.is_win AS is_win, lottery_7_49.combination AS win_combination,  lottery_7_49.date AS date FROM bets_lottery_7_49  INNER JOIN lottery_7_49 ON lottery_7_49.id = bets_lottery_7_49.lottery WHERE bets_lottery_7_49.user_id = ' + str(user.id) + ' AND bets_lottery_7_49.is_active = false')
+                lottery_7x49_arr = []
+                for row in lottery_7x49:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    lottery_7x49_arr.append(obj)
+                #jackpot_5x36
+                jackpot_5x36 = db.engine.execute('SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36  INNER JOIN jackpot_5_36 ON jackpot_5_36.id = bets_jackpot_5_36.lottery WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false')
+                jackpot_5x36_arr = []
+                for row in jackpot_5x36:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    jackpot_5x36_arr.append(obj)
+                #jackpot_6x45
+                jackpot_6x45 = db.engine.execute('SELECT bets_jackpot_6_45.id AS id, bets_jackpot_6_45.combination AS my_combination, bets_jackpot_6_45.is_win AS is_win, jackpot_6_45.combination AS win_combination,  jackpot_6_45.date AS date FROM bets_jackpot_6_45  INNER JOIN jackpot_6_45 ON jackpot_6_45.id = bets_jackpot_6_45.lottery WHERE bets_jackpot_6_45.user_id = ' + str(user.id) + ' AND bets_jackpot_6_45.is_active = false')
+                jackpot_6x45_arr = []
+                for row in jackpot_6x45:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    jackpot_6x45_arr.append(obj)
+                #jackpot_4x20
+                jackpot_4x20 = db.engine.execute('SELECT bets_jackpot_4_20.id AS id, bets_jackpot_4_20.combination AS my_combination, bets_jackpot_4_20.is_win AS is_win, jackpot_4_20.combination AS win_combination,  jackpot_4_20.date AS date FROM bets_jackpot_4_20  INNER JOIN jackpot_4_20 ON jackpot_4_20.id = bets_jackpot_4_20.lottery WHERE bets_jackpot_4_20.user_id = ' + str(user.id) + ' AND bets_jackpot_4_20.is_active = false')
+                jackpot_4x20_arr = []
+                for row in jackpot_4x20:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    jackpot_4x20_arr.append(obj)
+                #jackpot_7x49
+                jackpot_7x49 = db.engine.execute('SELECT bets_jackpot_7_49.id AS id, bets_jackpot_7_49.combination AS my_combination, bets_jackpot_7_49.is_win AS is_win, jackpot_7_49.combination AS win_combination,  jackpot_7_49.date AS date FROM bets_jackpot_7_49  INNER JOIN jackpot_7_49 ON jackpot_7_49.id = bets_jackpot_7_49.lottery WHERE bets_jackpot_7_49.user_id = ' + str(user.id) + ' AND bets_jackpot_7_49.is_active = false')
+                jackpot_7x49_arr = []
+                for row in jackpot_7x49:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    jackpot_7x49_arr.append(obj)
+                responseObject = {
+                    'status': 'success',
+                    'data': {
+                        'lottery_5x36': lottery_5x36_arr,
+                        'lottery_6x45': lottery_6x45_arr,
+                        'lottery_4x20': lottery_4x20_arr,
+                        'lottery_7x49': lottery_7x49_arr,
+                        'jackpot_5x36': jackpot_5x36_arr,
+                        'jackpot_6x45': jackpot_6x45_arr,
+                        'jackpot_4x20': jackpot_4x20_arr,
+                        'jackpot_7x49': jackpot_7x49_arr
+                    }
+                }
+                return make_response(jsonify(responseObject)), 200
+            responseObject = {
+                'status': 'fail',
+                'message': resp
+            }
+            return make_response(jsonify(responseObject)), 401
+        else:
+            responseObject = {
+                'status': 'fail',
+                'message': 'Provide a valid auth token.'
+            }
+            return make_response(jsonify(responseObject)), 401
+
 class UpdateCombination(MethodView):
     def post(self):
         auth_header = request.headers.get('Authorization')
@@ -568,6 +709,7 @@ class FillUpTokens(MethodView):
 tokens_amount_view = TokensAmount.as_view('tokens_amount')
 make_bets_view = MakeBets.as_view('make_bets')
 get_bets_view = GetBets.as_view('get_bets')
+get_bets_archive_view = GetBetsArchive.as_view('get_bets_archive')
 update_combination_view = UpdateCombination.as_view('update_combination')
 wallet_amount_view = WalletAmount.as_view('wallet_amount');
 fill_up_wallet_view = FillUpWallet.as_view('fill_up_wallet');
@@ -606,6 +748,11 @@ logic_blueprint.add_url_rule(
 logic_blueprint.add_url_rule(
     '/logic/get_bets',
     view_func=get_bets_view,
+    methods=['GET']
+)
+logic_blueprint.add_url_rule(
+    '/logic/get_bets_archive',
+    view_func=get_bets_archive_view,
     methods=['GET']
 )
 logic_blueprint.add_url_rule(

@@ -10,7 +10,8 @@ export const TOKEN_NAME: string = 'token';
 @Injectable()
 export class AuthService {
 
-  private BASE_URL: string = 'http://178.63.57.162:5000/auth';
+  //private BASE_URL: string = 'http://178.63.57.162:5000/auth';
+  private BASE_URL: string = 'http://5.178.87.76:5000/auth';
   private headers: Headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) {}
