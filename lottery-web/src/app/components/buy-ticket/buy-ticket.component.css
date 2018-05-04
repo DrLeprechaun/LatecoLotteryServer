@@ -1,0 +1,98 @@
+.btn-dark {
+  border: 1px solid #000;
+  width: 171px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+  margin: 0;
+  margin-left:5px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.border {
+  width: 535px;
+  height: 350px;
+  padding: 15px;
+}
+
+.ok {
+  cursor: pointer;
+  width: 265px;
+  height: 40px;
+  border: 1px solid #FFF;
+  text-align: center;
+  background-color: #000;
+  color: #FFF;
+  display: inline-block;
+}
+
+.ok:hover {
+  background-color: #FFF;
+  color: #000;
+  border-color: #000;
+  transition: 0.3s;
+}
+
+.ok p {
+  margin-top: 5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin:0;
+}
+
+.border ul button {
+  text-decoration: none;
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+  color: #000;
+}
+
+.border ul li button{
+  width: 70px;
+  background: #FFF;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  float: left;
+  margin: 5px;
+  margin-left: 8px;
+  -moz-column-count: 4; /* Для Firefox */
+  -webkit-column-count: 4; /* Для Safari и Chrome */
+  column-count: 4;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.border ul li button:hover {
+  color: #FFF;
+  background-color: #000;
+  transition: 0.3s;
+}
+
+.border ul li .clicked {
+  color: #FFF;
+  background-color: #000;
+}
+
+.timer {
+  margin:0;
+  padding: 0;
+  text-align: center;
+}
+
+.container {
+  margin-top: 35px;
+}
+
+#rules {
+  text-align: top;
+  align-content: stretch;
+  align-items: stretch;
+}
