@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
 import { LotteryService } from '../../services/lottery.service';
+import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
 import { MakeBets } from '../../models/make-bets';
 import {Subject} from 'rxjs/Subject';
 import {debounceTime} from 'rxjs/operator/debounceTime';
@@ -24,7 +25,12 @@ export class PrivateOfficeComponent {
   buyContent: boolean;
   aboutContent: boolean;
 
-  constructor(private auth: AuthService, private router: Router, private lottery: LotteryService, private modalService: NgbModal/*, private activeModal: NgbActiveModal*/) {}
+  constructor(private auth: AuthService,
+    private router: Router,
+    private lottery: LotteryService,
+    private modalService: NgbModal,/*, private activeModal: NgbActiveModal*/
+    private tpService: TicketsPurchaseService
+  ) {}
 
   ngOnInit(): void {
     setTimeout(() => this.staticAlertClosed = true, 20000);
@@ -266,8 +272,15 @@ export class PrivateOfficeComponent {
     }
   }
 
+  private buyTicketRedirect(type: string): void {
+    this.tpService.setLotteryType(type);
+    //console.log(this.tpService.getLotteryType());
+    this.router.navigateByUrl('/buy-ticket');
+  }
+
   logOut(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('WANNA_BUY');
   }
 
 }

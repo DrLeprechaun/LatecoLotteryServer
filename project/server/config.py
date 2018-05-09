@@ -122,6 +122,12 @@ class BaseConfig:
     ]
 
 SCHEDULER_API_ENABLED = True
+MAIL_SERVER='smtp.mail.ru'
+MAIL_PORT = 465
+MAIL_USERNAME = 'vadim.e@lateco.net'
+MAIL_PASSWORD = '1S13x111041992'
+#MAIL_USE_TLS = False
+#MAIL_USE_SSL = True
 
 
 class DevelopmentConfig(BaseConfig):

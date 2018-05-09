@@ -45,7 +45,7 @@
               <h5 class="card-title">Lottery 5x36</h5>
               <p class="card-text">
                 <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 5x36', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('lottery_5x36')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give" >Give</button></p>
             </div>
           </div>
@@ -59,7 +59,7 @@
               <h5 class="card-title">Lottery 6x45</h5>
               <p class="card-text">
                 <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 6x45', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('lottery_6x45')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give" >Give</button>
               </p>
             </div>
@@ -74,7 +74,7 @@
               <h5 class="card-title">Lottery 4x20</h5>
               <p class="card-text">
                 <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 4x20', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('lottery_4x20')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give" >Give</button>
               </p>
             </div>
@@ -89,7 +89,7 @@
               <h5 class="card-title">Lottery 7x49</h5>
               <p class="card-text">
                 <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 7x49', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('lottery_7x49')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give" >Give</button>
               </p>
             </div>
@@ -106,7 +106,7 @@
               <h5 class="card-title">Jackpot 5x36</h5>
               <p class="card-text">
                 <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_5x36')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give" >Give</button>
               </p>
             </div>
@@ -119,7 +119,7 @@
               <h5 class="card-title">Jackpot 6x45</h5>
               <p class="card-text">
                 <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_6x45')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give" >Give</button>
               </p>
             </div>
@@ -132,7 +132,7 @@
               <h5 class="card-title">Jackpot 4x20</h5>
               <p class="card-text">
                 <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x20', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_4x20')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give" >Give</button>
               </p>
             </div>
@@ -145,7 +145,7 @@
               <h5 class="card-title">Jackpot 7x49</h5>
               <p class="card-text">
                 <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 7x49', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin()">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_7x49')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give" >Give</button>
               </p>
             </div>
@@ -165,7 +165,28 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Description&hellip;</p>
+    <p><b>Prize</b></p>
+    <p>
+      The current prize pool is 1000 SJP. The more the participants, the bigger the prize fund!
+    </p>
+    <p><b>Participation & Rules</b></p>
+    <p>
+      To participate in the lottery, you need to choose {{combinationSize}} numbers from 1 to {{maxNumber}} in your lottery ticket, or select the magic wand icon to allow the random number generator to choose the numbers for you. The number of tickets that you can buy is almost unlimited. However, using automated software tools for buying tickets or filling them out is prohibited.
+      The cost of one ticket is {{ticketCost}} SJP. Your prize is transferred to your Wallet Space in SJP. Later you can transfer your funds to another online wallet or to fiat. You can get more info about it as well as about Wallet Space in section “My Tokens”.<br>
+      {{lotteryGrequencyDescription}}
+    </p>
+    <p><b>Ticket Price</b></p>
+    <p>
+      The cost of one ticket is {{ticketCost}} SJP.
+    </p>
+    <p><b>Taxes</b></p>
+    <p>
+      Fire Lotto does not act as a tax agent. The responsibility to pay taxes lies with the owner of the cryptocurrency wallet to which the winnings were transferred – Wallet Space.
+    </p>
+    <p><b>Agreement</b></p>
+    <p>
+      By participating in the lottery, you agree to the lottery rules. By purchasing the lottery tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the lottery in your country of residence.
+    </p>  
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>

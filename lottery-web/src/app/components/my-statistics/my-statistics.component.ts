@@ -14,6 +14,7 @@ export class MyStatisticsComponent implements OnInit {
 
   logOut(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('WANNA_BUY');
   }
 
 }

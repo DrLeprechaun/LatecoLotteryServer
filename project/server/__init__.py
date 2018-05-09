@@ -3,6 +3,7 @@
 import os
 
 from flask import Flask
+from flask_mail import Mail
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -13,7 +14,7 @@ from . import jobs
 #from . import lottery_schedule
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path = "/static", static_folder = "static")
 app.debug = False
 CORS(app)
 
@@ -22,6 +23,17 @@ app_settings = os.getenv(
     'project.server.config.DevelopmentConfig'
 )
 app.config.from_object(app_settings)
+
+app.config.update(dict(
+    MAIL_SERVER = 'smtp.mail.ru',
+    MAIL_PORT = 465,
+    MAIL_USE_TLS = False,
+    MAIL_USE_SSL = True,
+    MAIL_USERNAME = 'vadim.e@lateco.net',
+    MAIL_PASSWORD = '1S13x111041992',
+))
+
+mail = Mail(app)
 
 scheduler = APScheduler()
 

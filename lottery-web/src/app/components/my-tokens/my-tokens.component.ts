@@ -126,6 +126,7 @@ export class MyTokensComponent implements OnInit {
 
   logOut(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('WANNA_BUY');
   }
 
 }

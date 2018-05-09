@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LotteryService } from '../../services/lottery.service';
+import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
 
 
 @Component({
@@ -6,97 +9,181 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './buy-ticket.component.html',
   styleUrls: ['./buy-ticket.component.css']
 })
+
 export class BuyTicketComponent implements OnInit {
-  blocks = [
-    {
-      num: 1,
-      clicked: false
-    },
-    {
-      num: 2,
-      clicked: false
-    },
-    {
-      num: 3,
-      clicked: false
-    },
-    {
-      num: 4,
-      clicked: false
-    },
-    {
-      num: 5,
-      clicked: false
-    },
-    {
-      num: 6,
-      clicked: false
-    },
-    {
-      num: 7,
-      clicked: false
-    },
-    {
-      num: 8,
-      clicked: false
-    },
-    {
-      num: 9,
-      clicked: false
-    },
-    {
-      num: 10,
-      clicked: false
-    },
-    {
-      num: 11,
-      clicked: false
-    },
-    {
-      num: 12,
-      clicked: false
-    },
-    {
-      num: 13,
-      clicked: false
-    },
-    {
-      num: 14,
-      clicked: false
-    },
-    {
-      num: 15,
-      clicked: false
-    },
-    {
-      num: 16,
-      clicked: false
-    },
-    {
-      num: 17,
-      clicked: false
-    },
-    {
-      num: 18,
-      clicked: false
-    },
-    {
-      num: 19,
-      clicked: false
-    },
-    {
-      num: 20,
-      clicked: false
-    },
-    {
-      num: 21,
-      clicked: false
-    }
-  ];
 
+  maxNumber: number;
+  combinationSize: number;
+  blocks = [];
   combination: number[] = [];
+  lotteryName: string;
+  lotteryBunner: string;
+  ticketCost: number;
+  lotteryGrequencyDescription: string;
+  tableData: any[] = [];
 
-  toggle(block) {
+
+constructor(private router: Router, private lottery: LotteryService, private tpService: TicketsPurchaseService) {
+
+  console.log(this.tpService.getLotteryType());
+
+  if (this.tpService.getLotteryType() == null || this.tpService.getLotteryType() == "") {
+    this.router.navigateByUrl('/privateOffice');
+  }
+
+}
+
+  ngOnInit() {
+    switch(this.tpService.getLotteryType()) {
+       case "lottery_5x36": {
+          this.maxNumber = 36;
+          this.combinationSize = 5;
+          this.lotteryName = "Lottery 5x36";
+          this.lotteryBunner = "assets/img/5_36.png";
+          this.ticketCost = 1;
+          this.lotteryGrequencyDescription = "The lottery is held every day at 01:00 (+03 GMT).";
+          //statements;
+          break;
+       }
+       case "lottery_6x45": {
+         this.maxNumber = 45;
+         this.combinationSize = 6;
+         this.lotteryName = "Lottery 6x45";
+         this.lotteryBunner = "assets/img/6_45.png";
+         this.ticketCost = 1;
+         this.lotteryGrequencyDescription = "The lottery is held every day at 01:00 (+03 GMT).";
+          //statements;
+          break;
+       }
+       case "lottery_4x20": {
+         this.maxNumber = 20;
+         this.combinationSize = 4;
+         this.lotteryName = "Lottery 4x20";
+         this.lotteryBunner = "assets/img/4_20.png";
+         this.ticketCost = 1;
+         this.lotteryGrequencyDescription = "The lottery is held every day at 01:00 (+03 GMT).";
+          //statements;
+          break;
+       }
+       case "lottery_7x49": {
+         this.maxNumber = 49;
+         this.combinationSize = 7;
+         this.lotteryName = "Lottery 7x49";
+         this.lotteryBunner = "assets/img/7_49.png";
+         this.ticketCost = 1;
+         this.lotteryGrequencyDescription = "The lottery is held every day at 01:00 (+03 GMT).";
+          //statements;
+          break;
+       }
+       case "jackpot_5x36": {
+         this.maxNumber = 36;
+         this.combinationSize = 5;
+         this.lotteryName = "Jackpot 5x36";
+         this.lotteryBunner = "assets/img/j_5_36.png";
+         this.ticketCost = 5;
+         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
+          //statements;
+          break;
+       }
+       case "jackpot_6x45": {
+         this.maxNumber = 45;
+         this.combinationSize = 6;
+         this.lotteryName = "Jackpot 6x45";
+         this.lotteryBunner = "assets/img/j_6_45.png";
+         this.ticketCost = 5;
+         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
+          //statements;
+          break;
+       }
+       case "jackpot_4x20": {
+         this.maxNumber = 20;
+         this.combinationSize = 4;
+         this.lotteryName = "Jackpot 4x20";
+         this.lotteryBunner = "assets/img/j_4_20.png";
+         this.ticketCost = 5;
+         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
+          //statements;
+          break;
+       }
+       case "jackpot_7x49": {
+         this.maxNumber = 49;
+         this.combinationSize = 7;
+         this.lotteryName = "Jackpot 7x49";
+         this.lotteryBunner = "assets/img/j_7_49.png";
+         this.ticketCost = 5;
+         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
+          //statements;
+          break;
+       }
+       default: {
+          //statements;
+          break;
+       }
+    }
+
+    /*for (var i = 1; i < this.maxNumber+1; i++) {
+      let block = {
+        num: i,
+        clicked: false
+      }
+      this.blocks.push(block);
+    }*/
+
+    for (var i = 0; i < this.maxNumber; i++) {
+      let block = {
+        num: i+1,
+        clicked: false
+      }
+      this.blocks.push(block);
+    }
+
+    //Table
+    if (this.maxNumber == 36) {
+      let k = 0;
+      for (var i = 0; i < 6; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 6; j++) {
+          subArray.push(this.blocks[k]);
+          k++;
+        }
+        this.tableData.push(subArray);
+      }
+    } else if (this.maxNumber == 45) {
+      let k = 0;
+      for (var i = 0; i < 9; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 5; j++) {
+          subArray.push(this.blocks[k]);
+          k++;
+        }
+        this.tableData.push(subArray);
+      }
+    } else if (this.maxNumber == 20) {
+      let k = 0;
+      for (var i = 0; i < 4; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 5; j++) {
+          subArray.push(this.blocks[k]);
+          k++;
+        }
+        this.tableData.push(subArray);
+      }
+    } else if (this.maxNumber == 49) {
+      let k = 0;
+      for (var i = 0; i < 7; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 7; j++) {
+          subArray.push(this.blocks[k]);
+          k++;
+        }
+        this.tableData.push(subArray);
+      }
+    }
+
+
+  }
+
+  /*toggle(block) {
       block.clicked = !block.clicked;
   }
 
@@ -104,25 +191,73 @@ export class BuyTicketComponent implements OnInit {
     let index = 0;
 
     if (block.clicked == true) {
-      this.combination.push(block.num);
+        this.combination.push(block.num);
     } if (block.clicked == false) {
       index = this.combination.indexOf(block.num);
       this.combination.splice(index, 1);
     }
+
+    console.log(this.combination);
+  }*/
+
+  addDelete(block) {
+
+    if (block.clicked == false) {
+      if (this.combination.length < this.combinationSize) {
+        block.clicked = true;
+        this.combination.push(block.num);
+      }
+    } else {
+      block.clicked = false;
+      let index = this.combination.indexOf(block.num);
+      this.combination.splice(index, 1);
+    }
+
     console.log(this.combination);
   }
 
+  buyTickets() {
+    if (this.combination.length > this.combinationSize) {
+      alert("You've selected more than " + this.combinationSize + "  numbers");
+    } else if (this.combination.length < this.combinationSize) {
+      alert("You've selected less than " + this.combinationSize + "  numbers");
+    } else {
+      let ticket = {
+        type: this.tpService.getLotteryType(),
+        combination: this.combination
+      }
+      //console.log(ticket);
+      this.lottery.buyTickets(ticket)
+      .then((res) => {
+        console.log(res.json());
+        if (res.json().status === 'success') {
+          this.router.navigateByUrl('/my-bets');
+        } else {
+          //this.alertMessage(res.json().message);
+        }
+      },
+      (err) => {
+        console.log(err);
+      })
+    }
+
+  }
+
   checkCombination() {
-    if (this.combination.length > 6) {
-      alert("Вы выбрали больше 6 чисел");
-    } if (this.combination.length < 6) {
-      alert("Вы выбрали меньше 6 чисел");
+    if (this.combination.length > this.combinationSize) {
+      alert("You've selected more than " + this.combinationSize + "  numbers");
+    } if (this.combination.length < this.combinationSize) {
+      alert("You've selected less than " + this.combinationSize + "  numbers");
     }
   }
 
-  constructor() { }
+  selectRandom() {
+    console.log("Select random");
+  }
 
-  ngOnInit() {
+  logOut(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('WANNA_BUY');
   }
 
 }

@@ -123,4 +123,14 @@ export class LotteryService {
     return this.http.get(url, {headers: headers}).toPromise();
   }
 
+  buyTickets(ticket: any): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/buy_tickets`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, ticket, {headers: headers}).toPromise();
+  }
+
 }

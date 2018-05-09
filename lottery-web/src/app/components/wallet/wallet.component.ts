@@ -40,10 +40,6 @@ export class WalletComponent implements OnInit {
     })
   }
 
-  logOut(): void {
-    localStorage.removeItem('token');
-  }
-
   fillUp(): void {
     let amount = document.getElementById("fillUpInput") as HTMLSelectElement;
     this.lottery.fillUpWallet(+amount.value);
@@ -65,6 +61,11 @@ export class WalletComponent implements OnInit {
     this.getAmount();
     console.log(amount.value);
     amount.value = "0";
+  }
+
+  logOut(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('WANNA_BUY');
   }
 
 }

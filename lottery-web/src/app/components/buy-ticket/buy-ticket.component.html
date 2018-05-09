@@ -1,3 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand" href="#">SuperJackpot</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/privateOffice">Buy Ticket!<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="my-bets">My Bets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="my-tokens">My Tokens</a>
+        </li>
+        <!--<li class="nav-item">
+          <a class="nav-link" href="wallet">Wallet</a>
+        </li>-->
+        <li class="nav-item">
+          <a class="nav-link" href="my-statistics">Statistics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="settings">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="faq">FAQ</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+          <a class="nav-link" (click)="logOut()" href="/home">Logout</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+
 <div class="container">
   <table border="0">
     <tr>
@@ -5,7 +45,8 @@
       <ul class="nav">
         <li><button class="btn-dark active" data-toggle="tab" href="#tickets">Tickets</button></li>
         <li><button class="btn-dark" data-toggle="tab" href="#rules">Rules</button></li>
-        <li><button class="btn-dark" data-toggle="tab" href="#draw-archive">Draw Archive</button></li>
+        <li><button class="btn-dark" (click)="selectRandom()">Random</button></li>
+        <!--<li><button class="btn-dark" data-toggle="tab" href="#draw-archive">Draw Archive</button></li>-->
       </ul>
     </td>
       <td style="padding-left: 80px;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
@@ -19,99 +60,85 @@
         <div class="tab-content">
           <div class="tab-pane fade show active" id="tickets" role="tabpanel">
             <div class="border">
-            <ul>
+            <!--<ul>
               <li *ngFor="let block of blocks">
                 <button
-                  [class.clicked]="block.clicked" (click)="toggle(block)"
+                  [class.clicked]="block.clicked"
                   (click)="addDelete(block)">{{ block.num }}
                 </button>
               </li>
-            </ul>
+            </ul>-->
+
+            <table align="center">
+              <tr *ngFor="let r of tableData">
+                <td *ngFor="let block of r">
+                  <ul>
+                    <li>
+                  <button
+                    [class.clicked]="block.clicked"
+                    (click)="addDelete(block)">{{ block.num }}
+                  </button>
+                </li>
+              </ul>
+                </td>
+              </tr>
+            </table>
+
+            <!--<ul *ngFor="let r of tableData">
+              <li *ngFor="let block of r">
+                <button
+                  [class.clicked]="block.clicked"
+                  (click)="addDelete(block)">{{ block.num }}
+                </button>
+              </li>
+            </ul>-->
+
           </div>
           </div>
           <div class="tab-pane fade" id="rules">
             <div class="border" style="height:100%;">
-            <h1>The 4x20 Lottery Rules</h1>
-            <p>Numbers Matched</p>
-            <p>Prize<br />4</p>
+            <h1>{{lotteryName}} Rules</h1>
+            <p><b>Prize</b></p>
             <p>
-              Jackpot<br />3<br />
-              33% of the Prize Pool / The number of players who matched 3 numbers
+              The current prize pool is 1000 SJP. The more the participants, the bigger the prize fund!
             </p>
-            <p>2<br />34% of the Prize Pool / The number of players who matched 2 numbers</p>
-            <p>Participation<br />
-               To participate in the lottery, you need to choose 4 numbers from 1 to 20 in
-               your lottery ticket, or select the magic wand icon to allow the random number
-               generator to choose the numbers for you. The number of tickets that you can buy
-               is almost unlimited. However, using automated software tools for buying tickets
-               or filling them out is prohibited.</p>
-            <p>Ticket Purchase<br />
-               As of the date of lottery launch, the price of one ticket is approximately
-               USD $2 based on the average exchange rate to Ethereum on the day of ticket purchase.
-               The ticket price may be changed in the future.</p>
-            <p>Players pay for tickets in Ethereum using their cryptocurrency wallets.
-               This ensures that all payments are safe. Players also have to pay for gas
-               (a transaction fee for using the Ethereum network). The average amount of
-               gas the player will have to pay for buying one lottery ticket using Ethereum
-               is about GAS 170,000. The transactional costs of transferring lottery winnings
-               are covered by the organizers. Once purchased, tickets cannot be exchanged
-               or returned.</p>
-            <p>Distribution of Funds<br />
-               Funds collected from ticket sales for each drawing are distributed as follows:
-               70% goes to the Prize Pool for the current drawing; 15% is used to cover advertising,
-               marketing and legal expenses; 10% is paid in commissions to the holders of FLOT tokens;
-               5% are used to cover technical expenses (gas) for transferring lottery winnings.</p>
-            <p>Jackpot<br />
-               33% of the Prize Pool (Category 4) are always rolled over to the jackpot pool for the following drawing.
-               The jackpot built up over the previous drawings is divided between the owners of the tickets with four matching
-               numbers. If there are no such tickets, the current jackpot is rolled over to the jackpot for the following drawing.
-               The 4/20 Fire Lotto lottery has a minimum guaranteed Jackpot of USD $2,000 in terms of the average exchange rate to
-               Ethereum as of the current date. If the Jackpot won is less than the minimum guaranteed jackpot, the Reserve Fund will
-               be used to compensate the difference. After that, all the funds intended to build up the jackpot for the following
-               drawings will be first used to replenish the Reserve Fund. Initially, the Reserve Fund is funded from the amount of
-               money collected for the Jackpot as well as funds contributed by the organizers.</p>
-            <p>Prize Pool<br />
-              The Prize Pool for each drawing is calculated based on 70% of the ticket sales for that drawing.
-              It is distributed according to the following chart depending on how many numbers are matched.
-              Numbers Matched</p>
-            <p>Prize Pool Distribution<br />4<br />33%<br />3<br />33%<br />2<br />34%</p>
-            <p>In Categories 2 and 3, the sum is divided by the number of winners in the category.
-               If there are no winners, the sum is rolled over to the Jackpot pool for the next drawing.
-               This means that the amount of winnings for matching two or three numbers is calculated by the equation:<br />
-               Ticket sales for one drawing * 0.70 * 0.33 (or 0.34) / number of category winners</p>
-            <p>Frequency<br />
-               Drawings are held every 24 hours. The time of the current drawing is indicated on the lottery ticket.
-               Ticket sales end 1 hour before the drawing. After that time, any tickets purchased will be played in the
-               following drawing.
-               Payment of winnings<br />
-               After the drawing, the system automatically transfers the winnings in Ethereum to the cryptocurrency
-               wallets that were used to purchase the winning tickets. Transaction fees (gas) will be paid at the
-               expense of the lottery. It can take 30 minutes to several hours for the funds to be transferred to
-               the winning cryptocurrency wallets.</p>
-            <p>Taxes<br />Fire Lotto does not act as a tax agent. The responsibility to pay taxes lies with
-               the owner of the cryptocurrency wallet to which the winnings were transferred.</p>
-            <p>Agreement<br />By participating in the lottery, you agree to the lottery rules. By purchasing
-               the lottery tickets, you guarantee that you are 18 years of age and/or you have reached the
-               minimum age for legally participating in the lottery in your country of residence.</p>
+            <p><b>Participation & Rules</b></p>
+            <p>
+              To participate in the lottery, you need to choose {{combinationSize}} numbers from 1 to {{maxNumber}} in your lottery ticket, or select the magic wand icon to allow the random number generator to choose the numbers for you. The number of tickets that you can buy is almost unlimited. However, using automated software tools for buying tickets or filling them out is prohibited.
+              The cost of one ticket is {{ticketCost}} SJP. Your prize is transferred to your Wallet Space in SJP. Later you can transfer your funds to another online wallet or to fiat. You can get more info about it as well as about Wallet Space in section “My Tokens”.<br>
+              {{lotteryGrequencyDescription}}
+            </p>
+            <p><b>Ticket Price</b></p>
+            <p>
+              The cost of one ticket is {{ticketCost}} SJP.
+            </p>
+            <p><b>Taxes</b></p>
+            <p>
+              Fire Lotto does not act as a tax agent. The responsibility to pay taxes lies with the owner of the cryptocurrency wallet to which the winnings were transferred – Wallet Space.
+            </p>
+            <p><b>Agreement</b></p>
+            <p>
+              By participating in the lottery, you agree to the lottery rules. By purchasing the lottery tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the lottery in your country of residence.
+            </p>
           </div>
         </div>
 
-        <div class="tab-pane fade" id="draw-archive">
+        <!--<div class="tab-pane fade" id="draw-archive">
           <div class="border">
             <p>Draw Archive</p>
           </div>
-        </div>
+        </div>-->
       </div>
 
       </td>
       <td rowspan="1" style="padding-left: 80px;" valign="top">
         <div class="timer">
           <div class="card" style="width: 15rem;  margin: 0 auto; height: 22rem;">
-            <img class="card-img-top" src="assets/img/4_20.png" alt="Card image cap">
+            <img class="card-img-top" src="{{lotteryBunner}}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title" style="text-align:center;">1 754 777 SJP</h5>
               <p class="card-text">
-                <button class="btn btn-dark btn-md buy-give" style="width: 195px;">Buy 0,003 SJP</button>
+                <!--<button class="btn btn-dark btn-md buy-give" style="width: 195px;">Buy 0,003 SJP</button>-->
             </div>
           </div>
         </div>
@@ -121,7 +148,7 @@
     <tr>
       <td colspan="3">
         <div class="ok" (click)="checkCombination()"><p>+ Add Ticket</p></div>
-        <div class="ok" (click)="checkCombination()"><p>Buy Ticket</p></div>
+        <div class="ok" (click)="buyTickets()"><p>Buy Ticket</p></div>
       </td>
     </tr>
   </table>
