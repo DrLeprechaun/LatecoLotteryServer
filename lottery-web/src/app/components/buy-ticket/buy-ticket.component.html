@@ -69,7 +69,7 @@
               </li>
             </ul>-->
 
-            <table align="center">
+            <table align="center" id="numbersTable">
               <tr *ngFor="let r of tableData">
                 <td *ngFor="let block of r">
                   <ul>
@@ -148,7 +148,7 @@
     <tr>
       <td colspan="3">
         <div class="ok" (click)="checkCombination()"><p>+ Add Ticket</p></div>
-        <div class="ok" (click)="buyTickets()"><p>Buy Ticket</p></div>
+        <div id="buyButton" class="ok" (click)="buyTickets()"><p>Buy Ticket</p></div>
       </td>
     </tr>
   </table>
