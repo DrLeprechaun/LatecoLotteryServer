@@ -25,8 +25,6 @@ export class BuyTicketComponent implements OnInit {
 
 constructor(private router: Router, private lottery: LotteryService, private tpService: TicketsPurchaseService) {
 
-  console.log(this.tpService.getLotteryType());
-
   if (this.tpService.getLotteryType() == null || this.tpService.getLotteryType() == "") {
     this.router.navigateByUrl('/privateOffice');
   }
@@ -34,6 +32,9 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
 }
 
   ngOnInit() {
+
+    document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+
     switch(this.tpService.getLotteryType()) {
        case "lottery_5x36": {
           this.maxNumber = 36;
@@ -213,7 +214,12 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
       this.combination.splice(index, 1);
     }
 
-    console.log(this.combination);
+    //Save button
+    if (this.combination.length == this.combinationSize) {
+      document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
+    } else {
+      document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+    }
   }
 
   buyTickets() {
@@ -226,7 +232,6 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
         type: this.tpService.getLotteryType(),
         combination: this.combination
       }
-      //console.log(ticket);
       this.lottery.buyTickets(ticket)
       .then((res) => {
         console.log(res.json());
@@ -252,7 +257,35 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
   }
 
   selectRandom() {
-    console.log("Select random");
+    let r_comb = [];
+    while (r_comb.length < this.combinationSize) {
+      let element = this.randomInt(1, this.maxNumber);
+      if (r_comb.indexOf(element) < 0) {
+          r_comb.push(element);
+      }
+    }
+
+    for (let r of this.tableData) {
+      for (let block of r) {
+        if (r_comb.indexOf(block.num) > -1) {
+          block.clicked = true;
+        } else {
+            block.clicked = false;
+        }
+      }
+    }
+
+    this.combination = r_comb;
+
+    if (this.combination.length == this.combinationSize) {
+      document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
+    } else {
+      document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+    }
+  }
+
+  randomInt(min, max){
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   logOut(): void {
