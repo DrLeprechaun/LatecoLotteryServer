@@ -2,6 +2,7 @@
   <div class="col-md-4">
     <h1>Login</h1>
     <hr><br>
+    <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
     <form (ngSubmit)="onLogin()" novalidate>
      <div class="form-group">
        <label for="email">Email</label>

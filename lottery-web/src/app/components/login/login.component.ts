@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
 import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
+import {Subject} from 'rxjs/Subject';
+import {debounceTime} from 'rxjs/operator/debounceTime';
 
 @Component({
   selector: 'login',
@@ -12,23 +14,34 @@ import { TicketsPurchaseService } from '../../services/tickets-purchase.service'
 export class LoginComponent {
 
   user: User = new User();
+  private _alert = new Subject<string>();
+  staticAlertClosed = false;
+  errorMessage: string;
 
   constructor(private router: Router,
     private auth: AuthService,
     private tpService: TicketsPurchaseService) {}
 
-  onLogin(): void {
-    this.auth.login(this.user)
-    .then((user) => {
-      localStorage.setItem('token', user.json().auth_token);
-      //this.router.navigateByUrl('/status');
-        //this.router.navigateByUrl('/privateOffice');
-        this.router.navigateByUrl('/buy-ticket');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+    ngOnInit() {
+      setTimeout(() => this.staticAlertClosed = true, 20000);
+      this._alert.subscribe((message) => this.errorMessage = message);
+      debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
+    }
+
+    onLogin(): void {
+      this.auth.login(this.user)
+      .then((user) => {
+        localStorage.setItem('token', user.json().auth_token);
+          this.router.navigateByUrl('/buy-ticket');
+      })
+      .catch((err) => {
+        this.alertMessage(JSON.parse(err._body).message);
+      });
+    }
+
+    alertMessage(message: string) {
+      this._alert.next(message);
+    }
 
   /*onLogin(): void {
     this.auth.login(this.user)
