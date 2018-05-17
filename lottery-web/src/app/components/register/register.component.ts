@@ -16,8 +16,13 @@ export class RegisterComponent {
   private _alert = new Subject<string>();
   staticAlertClosed = false;
   errorMessage: string;
+  repeatPassword: string;
+
+
 
   constructor(private router: Router, private auth: AuthService) {}
+
+
 
   ngOnInit() {
     setTimeout(() => this.staticAlertClosed = true, 20000);
@@ -27,21 +32,28 @@ export class RegisterComponent {
   }
 
   onRegister(): void {
-    this.auth.register(this.user)
-    .then((user) => {
-      if (user.json().status == "success") {
-        localStorage.setItem('token', user.json().auth_token);
-        this.router.navigateByUrl('/privateOffice');
+    let myPassword = document.getElementById("password") as HTMLInputElement;
+    if (myPassword.value == this.repeatPassword) {
+      this.auth.register(this.user)
+      .then((user) => {
+        if (user.json().status == "success") {
+          localStorage.setItem('token', user.json().auth_token);
+          this.router.navigateByUrl('/privateOffice');
       } else {
         this.alertMessage(user.json().message);
-      }
+    }
     })
     .catch((err) => {
       console.log(err);
     });
+  } else {
+    this.alertMessage('Passwords different');
+  }
   }
 
   alertMessage(message: string) {
     this._alert.next(message);
   }
+
+
 }
