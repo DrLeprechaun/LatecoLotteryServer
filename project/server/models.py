@@ -231,6 +231,22 @@ class BetsJackpot_4_20(db.Model):
         self.is_active = is_active
         self.is_win = is_win
 
+class BetsJackpot_4_21(db.Model):
+
+    __tablename__ = 'bets_jackpot_4_21'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
 class BetsJackpot_6_45(db.Model):
 
     __tablename__ = 'bets_jackpot_6_45'
@@ -250,6 +266,54 @@ class BetsJackpot_6_45(db.Model):
 class BetsJackpot_7_49(db.Model):
 
     __tablename__ = 'bets_jackpot_7_49'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
+class BetsRapidos(db.Model):
+
+    __tablename__ = 'bets_rapidos'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
+class BetsSupers(db.Model):
+
+    __tablename__ = 'bets_supers'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
+class BetsTop3(db.Model):
+
+    __tablename__ = 'bets_top3'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, nullable=True)
