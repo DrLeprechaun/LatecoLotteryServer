@@ -57,15 +57,13 @@ class GetBank(MethodView):
         responseObject = {
             'status': 'success',
             'data': {
-                    'lottery_5x36': bank.lottery_5_36,
-                    'lottery_6x45': bank.lottery_6_45,
-                    'lottery_4x20': bank.lottery_4_20,
-                    'lottery_7x49': bank.lottery_7_49,
                     'jackpot_5x36': bank.jackpot_5_36,
                     'jackpot_6x45': bank.jackpot_6_45,
-                    'jackpot_4x20': bank.jackpot_4_20,
-                    'jackpot_7x49': bank.jackpot_4_20,
-                    'superjackpot': bank.superjackpot
+                    'jackpot_4x21': bank.jackpot_4_21,
+                    'superjackpot': bank.superjackpot,
+                    'rapidos': bank.rapidos,
+                    'supers': bank.supers,
+                    'top3': bank.top3
                 }
             }
         return make_response(jsonify(responseObject)), 200
