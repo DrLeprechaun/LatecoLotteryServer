@@ -81,8 +81,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.combinationSize = 5;
          this.lotteryName = "Jackpot 5x36";
          this.lotteryBunner = "assets/img/j_5_36.png";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
+         this.ticketCost = 5;
+         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
           //statements;
           break;
        }
@@ -91,8 +91,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.combinationSize = 6;
          this.lotteryName = "Jackpot 6x45";
          this.lotteryBunner = "assets/img/j_6_45.png";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
+         this.ticketCost = 5;
+         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
           //statements;
           break;
        }
@@ -101,18 +101,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.combinationSize = 4;
          this.lotteryName = "Jackpot 4x20";
          this.lotteryBunner = "assets/img/j_4_20.png";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
-          //statements;
-          break;
-       }
-       case "jackpot_4x21": {
-         this.maxNumber = 21;
-         this.combinationSize = 4;
-         this.lotteryName = "Jackpot 4x21";
-         this.lotteryBunner = "assets/img/j_4_21.png";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
+         this.ticketCost = 5;
+         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
           //statements;
           break;
        }
@@ -121,35 +111,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.combinationSize = 7;
          this.lotteryName = "Jackpot 7x49";
          this.lotteryBunner = "assets/img/j_7_49.png";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
-          //statements;
-          break;
-       } case "rapidos": {
-         this.maxNumber = 21;
-         this.combinationSize = 4;
-         this.lotteryName = "Rapidos";
-         this.lotteryBunner = "assets/img/rapidos.png";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "Rapidos is held every 5 minutes.";
-          //statements;
-          break;
-       } case "supers": {
-         this.maxNumber = 36;
-         this.combinationSize = 5;
-         this.lotteryName = "Rapidos";
-         this.lotteryBunner = "assets/img/supers.png";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "Supers is held every 5 minutes.";
-          //statements;
-          break;
-       } case "top3": {
-         this.maxNumber = 45;
-         this.combinationSize = 6;
-         this.lotteryName = "Top 3";
-         this.lotteryBunner = "assets/img/top3.png";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "Top 3 is held every 5 minutes.";
+         this.ticketCost = 5;
+         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
           //statements;
           break;
        }
@@ -209,16 +172,6 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     } else if (this.maxNumber == 49) {
       let k = 0;
       for (var i = 0; i < 7; i++) {
-        let subArray: number[] = [];
-        for (var j = 0; j < 7; j++) {
-          subArray.push(this.blocks[k]);
-          k++;
-        }
-        this.tableData.push(subArray);
-      }
-    } else if (this.maxNumber == 21) {
-      let k = 0;
-      for (var i = 0; i < 3; i++) {
         let subArray: number[] = [];
         for (var j = 0; j < 7; j++) {
           subArray.push(this.blocks[k]);

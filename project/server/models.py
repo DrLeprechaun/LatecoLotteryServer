@@ -231,22 +231,6 @@ class BetsJackpot_4_20(db.Model):
         self.is_active = is_active
         self.is_win = is_win
 
-class BetsJackpot_4_21(db.Model):
-
-    __tablename__ = 'bets_jackpot_4_21'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
-    combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
-
-    def __init__(self, user_id, combination, is_active, is_win):
-        self.user_id = user_id
-        self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
-
 class BetsJackpot_6_45(db.Model):
 
     __tablename__ = 'bets_jackpot_6_45'
@@ -266,54 +250,6 @@ class BetsJackpot_6_45(db.Model):
 class BetsJackpot_7_49(db.Model):
 
     __tablename__ = 'bets_jackpot_7_49'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
-    combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
-
-    def __init__(self, user_id, combination, is_active, is_win):
-        self.user_id = user_id
-        self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
-
-class BetsRapidos(db.Model):
-
-    __tablename__ = 'bets_rapidos'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
-    combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
-
-    def __init__(self, user_id, combination, is_active, is_win):
-        self.user_id = user_id
-        self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
-
-class BetsSupers(db.Model):
-
-    __tablename__ = 'bets_supers'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
-    combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
-
-    def __init__(self, user_id, combination, is_active, is_win):
-        self.user_id = user_id
-        self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
-
-class BetsTop3(db.Model):
-
-    __tablename__ = 'bets_top3'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, nullable=True)
@@ -358,19 +294,23 @@ class Bank(db.Model):
     __tablename__ = 'bank'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    lottery_5_36 = db.Column(REAL, nullable=True)
+    lottery_6_45 = db.Column(REAL, nullable=True)
+    lottery_4_20 = db.Column(REAL, nullable=True)
+    lottery_7_49 = db.Column(REAL, nullable=True)
     jackpot_5_36 = db.Column(REAL, nullable=True)
     jackpot_6_45 = db.Column(REAL, nullable=True)
-    jackpot_4_21 = db.Column(REAL, nullable=True)
+    jackpot_4_20 = db.Column(REAL, nullable=True)
+    jackpot_7_49 = db.Column(REAL, nullable=True)
     superjackpot = db.Column(REAL, nullable=True)
-    rapidos = db.Column(REAL, nullable=True)
-    supers = db.Column(REAL, nullable=True)
-    top3 = db.Column(REAL, nullable=True)
 
-    def __init__(self, jackpot_5_36, jackpot_6_45, jackpot_4_21, superjackpot, rapidos, supers, top3):
+    def __init__(self, lottery_5_36, lottery_6_45, lottery_4_20, lottery_7_49, jackpot_5_36, jackpot_6_45, jackpot_4_20, jackpot_7_49, superjackpot):
+        self.lottery_5_36 = lottery_5_36
+        self.lottery_6_45 = lottery_6_45
+        self.lottery_4_20 = lottery_4_20
+        self.lottery_7_49 = lottery_7_49
         self.jackpot_5_36 = jackpot_5_36
         self.jackpot_6_45 = jackpot_6_45
-        self.jackpot_4_21 = jackpot_4_20
+        self.jackpot_4_20 = jackpot_4_20
+        self.jackpot_7_49 = jackpot_7_49
         self.superjackpot = superjackpot
-        self.rapidos = rapidos
-        self.supers = supers
-        self.top3 = top3
