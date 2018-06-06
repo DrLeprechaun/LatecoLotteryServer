@@ -127,46 +127,6 @@ export class MyBetsComponent implements OnInit {
           }
           this.tableData.push(rowData);
         }
-        for (var i = 0; i < res.json().data.jackpot_4x21.length; i++) {
-          let rowData = {
-            "id": res.json().data.jackpot_4x21[i].id,
-            "fake_id": "00" + 21421 + res.json().data.jackpot_4x21[i].id,
-            "type_name": "Jackpot 4x21",
-            "type": "jackpot_4x21",
-            "combination": this.processCombination(res.json().data.jackpot_4x21[i].combination)
-          }
-          this.tableData.push(rowData);
-        }
-        for (var i = 0; i < res.json().data.rapidos.length; i++) {
-          let rowData = {
-            "id": res.json().data.rapidos[i].id,
-            "fake_id": "00" + 10645 + res.json().data.rapidos[i].id,
-            "type_name": "Rapidos",
-            "type": "rapidos",
-            "combination": this.processCombination(res.json().data.rapidos[i].combination)
-          }
-          this.tableData.push(rowData);
-        }
-        for (var i = 0; i < res.json().data.supers.length; i++) {
-          let rowData = {
-            "id": res.json().data.supers[i].id,
-            "fake_id": "00" + 10749 + res.json().data.supers[i].id,
-            "type_name": "Supers",
-            "type": "supers",
-            "combination": this.processCombination(res.json().data.supers[i].combination)
-          }
-          this.tableData.push(rowData);
-        }
-        for (var i = 0; i < res.json().data.top3.length; i++) {
-          let rowData = {
-            "id": res.json().data.top3[i].id,
-            "fake_id": "00" + 10536 + res.json().data.top3[i].id,
-            "type_name": "Top 3",
-            "type": "top3",
-            "combination": this.processCombination(res.json().data.top3[i].combination)
-          }
-          this.tableData.push(rowData);
-        }
       }
     });
 
@@ -289,62 +249,6 @@ export class MyBetsComponent implements OnInit {
           }
           this.archiveTableData.push(rowData);
         }
-        //Jackpot 4x21
-        for (var i = 0; i < res.json().data.jackpot_4x21.length; i++) {
-          let rowData = {
-            "id": res.json().data.jackpot_4x21[i].id,
-            "fake_id": "00" + 21421 + res.json().data.jackpot_4x21[i].id,
-            "type_name": "Jackpot 4x21",
-            "type": "jackpot_4x21",
-            "combination": this.processCombination(res.json().data.jackpot_4x21[i].my_combination),
-            "won_combination": this.processCombination(res.json().data.jackpot_4x21[i].win_combination),
-            "is_win": res.json().data.jackpot_4x21[i].is_win,
-            "date": res.json().data.jackpot_4x21[i].date
-          }
-          this.archiveTableData.push(rowData);
-        }
-        //Rapidos
-        for (var i = 0; i < res.json().data.rapidos.length; i++) {
-          let rowData = {
-            "id": res.json().data.rapidos[i].id,
-            "fake_id": "00" + 10645 + res.json().data.rapidos[i].id,
-            "type_name": "Rapidos",
-            "type": "rapidos",
-            "combination": this.processCombination(res.json().data.rapidos[i].my_combination),
-            "won_combination": this.processCombination(res.json().data.rapidos[i].win_combination),
-            "is_win": res.json().data.rapidos[i].is_win,
-            "date": res.json().data.rapidos[i].date
-          }
-          this.archiveTableData.push(rowData);
-        }
-        //Supers
-        for (var i = 0; i < res.json().data.supers.length; i++) {
-          let rowData = {
-            "id": res.json().data.supers[i].id,
-            "fake_id": "00" + 10749 + res.json().data.supers[i].id,
-            "type_name": "Supers",
-            "type": "supers",
-            "combination": this.processCombination(res.json().data.supers[i].my_combination),
-            "won_combination": this.processCombination(res.json().data.supers[i].win_combination),
-            "is_win": res.json().data.supers[i].is_win,
-            "date": res.json().data.supers[i].date
-          }
-          this.archiveTableData.push(rowData);
-        }
-        //Top 3
-        for (var i = 0; i < res.json().data.top3.length; i++) {
-          let rowData = {
-            "id": res.json().data.top3[i].id,
-            "fake_id": "00" + 10536 + res.json().data.top3[i].id,
-            "type_name": "Top 3",
-            "type": "top3",
-            "combination": this.processCombination(res.json().data.top3[i].my_combination),
-            "won_combination": this.processCombination(res.json().data.top3[i].win_combination),
-            "is_win": res.json().data.top3[i].is_win,
-            "date": res.json().data.top3[i].date
-          }
-          this.archiveTableData.push(rowData);
-        }
       }
     });
   }
@@ -409,22 +313,7 @@ export class MyBetsComponent implements OnInit {
       this.modalButtonsQuantity = 49;
       this.combinationQuantity = 7;
     }
-    if (type == "jackpot_4x21") {
-      this.modalButtonsQuantity = 21;
-      this.combinationQuantity = 4;
-    }
-    if (type == "rapidos") {
-      this.modalButtonsQuantity = 21;
-      this.combinationQuantity = 4;
-    }
-    if (type == "supers") {
-      this.modalButtonsQuantity = 36;
-      this.combinationQuantity = 5;
-    }
-    if (type == "top3") {
-      this.modalButtonsQuantity = 45;
-      this.combinationQuantity = 6;
-    }
+
     this.setModalButtonsArray(this.modalButtonsQuantity);
   }
 
@@ -486,16 +375,6 @@ export class MyBetsComponent implements OnInit {
     } else if (this.modalButtonsQuantity == 49) {
       let k = 0;
       for (var i = 0; i < 7; i++) {
-        let subArray: number[] = [];
-        for (var j = 0; j < 7; j++) {
-          subArray.push(this.modalButtonsArray[k]);
-          k++;
-        }
-        this.modalButtonsTable.push(subArray);
-      }
-    } else if (this.modalButtonsQuantity == 21) {
-      let k = 0;
-      for (var i = 0; i < 3; i++) {
         let subArray: number[] = [];
         for (var j = 0; j < 7; j++) {
           subArray.push(this.modalButtonsArray[k]);
