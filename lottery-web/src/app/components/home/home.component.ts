@@ -82,22 +82,42 @@ export class HomeComponent {
       this.maxNumber = 36;
       this.combinationSize = 5;
       this.ticketCost = 1;
-      this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
+      this.lotteryGrequencyDescription = "Jackpot is held on every day at 01:00 (+03 GMT).";
     } else if (type == "Jackpot 6x45") {
       this.maxNumber = 45;
       this.combinationSize = 6;
       this.ticketCost = 1;
-      this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
+      this.lotteryGrequencyDescription = "Jackpot is held on every day at 01:00 (+03 GMT).";
     } else if (type == "Jackpot 4x20") {
       this.maxNumber = 20;
       this.combinationSize = 4;
       this.ticketCost = 1;
       this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
+    }else if (type == "Jackpot 4x21") {
+      this.maxNumber = 21;
+      this.combinationSize = 4;
+      this.ticketCost = 1;
+      this.lotteryGrequencyDescription = "Jackpot is held on every day at 01:00 (+03 GMT).";
     } else if (type == "Jackpot 7x49") {
       this.maxNumber = 49;
       this.combinationSize = 7;
       this.ticketCost = 1;
       this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
+    } else if (type == "Rapidos") {
+      this.maxNumber = 21;
+      this.combinationSize = 4;
+      this.ticketCost = 1;
+      this.lotteryGrequencyDescription = "Rapidos is held every 5 minutes.";
+    } else if (type == "Supers") {
+      this.maxNumber = 36;
+      this.combinationSize = 5;
+      this.ticketCost = 1;
+      this.lotteryGrequencyDescription = "Supers is held every 5 minutes.";
+    } else if (type == "Top3") {
+      this.maxNumber = 45;
+      this.combinationSize = 6;
+      this.ticketCost = 1;
+      this.lotteryGrequencyDescription = "Top3 is held every 5 minutes.";
     }
 
     this.modalService.open(content).result.then((result) => {

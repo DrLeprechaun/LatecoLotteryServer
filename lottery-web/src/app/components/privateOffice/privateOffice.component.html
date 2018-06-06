@@ -45,70 +45,8 @@
 
 <div class="buyContainer">
 
-<!--<div class="ticketDiv" id="ticketContainer">
-  <div class="form-row">
-    <div class="col">
-      <label class="mr-sm-2" for="inlineFormCustomSelect">Lottery/Jackpot</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-          <option>Lottery</option>
-          <option>Jackpot</option>
-        </select>
-      </div>
-      <div class="col">
-        <label class="mr-sm-2" for="inlineFormCustomSelect">Type</label>
-        <select class="form-control" id="exampleFormControlSelect2">
-            <option>5x36</option>
-            <option>6x45</option>
-            <option>4x20</option>
-            <option>7x49</option>
-        </select>
-      </div>
-      <div class="col">
-        <label class="mr-sm-2" for="inlineFormCustomSelect">Quantity</label>
-        <input class="form-control" type="number" min ="1">
-      </div>
-  </div>
-</div>-->
 
-<!--<table class="table" id="ticketContainer">
-  <thead>
-    <tr>
-      <th scope="col" style="width: 300px">Lottery/Jackpot</th>
-      <th scope="col" style="width: 200px">Type</th>
-      <th scope="col" style="width: 100px">Quantity</th>
-      <th scope="col" ></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="col">
-        <select class="form-control" (change)="calculateCost()">
-          <option>Lottery</option>
-          <option>Jackpot</option>
-        </select>
-      </th>
-      <th scope="col">
-        <select class="form-control" (change)="calculateCost()">
-            <option>5x36</option>
-            <option>6x45</option>
-            <option>4x20</option>
-            <option>7x49</option>
-        </select>
-      </th>
-      <th scope="col">
-        <input class="form-control" type="number" value="1" (change)="calculateCost()" min ="1">
-      </th>
-      <th scope="col"></th>
-    </tr>
-  </tbody>
-</table>
-
-
-<br>
-<button type="button" class="btn btn-dark btn-right" (click)="addTicket()">Add tickets</button>
-<hr>
-<p>{{ cost }} tokens</p>-->
-<div class="row">
+<!--<div class="row">
   <div class="col">
     <div class="card" style="width: 15rem;">
       <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
@@ -116,13 +54,9 @@
         <h5 class="card-title">Lottery 5x36</h5>
         <p class="card-text">
           <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 5x36', 'about', content)">About</button>
-          <!--<button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 5x36', 'buy', content)">Buy</button>-->
           <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('lottery_5x36')">Buy</button>
           <button class="btn btn-dark btn-sm buy-give">Give</button>
         </p>
-        <!--<h5 class="card-title">Lottery 5x36</h5>
-        <p class="card-text">Description</p>
-        <input id="lottery_5x36" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -133,13 +67,9 @@
         <h5 class="card-title">Lottery 6x45</h5>
         <p class="card-text">
           <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 6x45', 'about', content)">About</button>
-          <!--<button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 6x45', 'buy', content)">Buy</button>-->
           <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('lottery_6x45')">Buy</button>
           <button class="btn btn-dark btn-sm buy-give">Give</button>
         </p>
-        <!--<h5 class="card-title">Lottery 6x45</h5>
-        <p class="card-text">Description</p>
-        <input id="lottery_6x45" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -150,13 +80,9 @@
         <h5 class="card-title">Lottery 4x20</h5>
         <p class="card-text">
           <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 4x20', 'about', content)">About</button>
-          <!--<button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 4x20', 'buy', content)">Buy</button>-->
           <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('lottery_4x20')">Buy</button>
           <button class="btn btn-dark btn-sm buy-give">Give</button>
         </p>
-        <!--<h5 class="card-title">Lottery 4x20</h5>
-        <p class="card-text">Description</p>
-        <input id="lottery_4x20" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -167,13 +93,9 @@
         <h5 class="card-title">Lottery 7x49</h5>
         <p class="card-text">
           <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 7x49', 'about', content)">About</button>
-          <!--<button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 7x49', 'buy', content)">Buy</button>-->
           <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('lottery_7x49')">Buy</button>
           <button class="btn btn-dark btn-sm buy-give">Give</button>
         </p>
-        <!--<h5 class="card-title">Lottery 7x49</h5>
-        <p class="card-text">Description</p>
-        <input id="lottery_7x49" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -189,13 +111,9 @@
         <h5 class="card-title">Jackpot 5x36</h5>
         <p class="card-text">
           <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'about', content)">About</button>
-          <!--<button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'buy', content)">Buy</button>-->
           <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_5x36')">Buy</button>
           <button class="btn btn-dark btn-sm buy-give">Give</button>
         </p>
-        <!--<h5 class="card-title">Jackpot 5x36</h5>
-        <p class="card-text">Description</p>
-        <input id="jackpot_5x36" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -206,13 +124,9 @@
         <h5 class="card-title">Jackpot 6x45</h5>
         <p class="card-text">
           <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', 'about', content)">About</button>
-          <!--<button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45','buy', content)">Buy</button>-->
           <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_6x45')">Buy</button>
           <button class="btn btn-dark btn-sm buy-give">Give</button>
         </p>
-        <!--<h5 class="card-title">Jackpot 6x45</h5>
-        <p class="card-text">Description</p>
-        <input id="jackpot_6x45" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -223,13 +137,9 @@
         <h5 class="card-title">Jackpot 4x20</h5>
         <p class="card-text">
           <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x20', 'about', content)">About</button>
-          <!--<button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x20', 'buy', content)">Buy</button>-->
           <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_4x20')">Buy</button>
           <button class="btn btn-dark btn-sm buy-give">Give</button>
         </p>
-        <!--<h5 class="card-title">Jackpot 4x20</h5>
-        <p class="card-text">Description</p>
-        <input id="jackpot_4x20" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
@@ -240,23 +150,114 @@
         <h5 class="card-title">Jackpot 7x49</h5>
         <p class="card-text">
           <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 7x49', 'about', content)">About</button>
-          <!--<button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 7x49','buy', content)">Buy</button>-->
           <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_7x49')">Buy</button>
           <button class="btn btn-dark btn-sm buy-give">Give</button>
         </p>
-        <!--<h5 class="card-title">Jackpot 7x49</h5>
-        <p class="card-text">Description</p>
-        <input id="jackpot_7x49" class="form-control" type="number" value="0" (change)="calculateCost()" min ="0">-->
       </div>
     </div>
   </div>
-</div>
+</div>->
 
 <!--<hr>
 <p class="text-right">{{cost }} tokens</p>
 <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
 <hr>
 <p class="text-right"><button type="button" (click)="buy()" class="btn btn-dark btn-lg">Buy!</button></p>-->
+
+<div id="fieldsDiv">
+  <fieldset class="scheduler-border">
+      <legend class="scheduler-border"><b>SUPER</b>JACK<b>POT&nbsp;&nbsp;&nbsp;7 000 000 $</b></legend>
+      <label class="lotteryLabel">Win multimillion jackpots ...</label>
+      <div class="row" style="padding-left: 5%;">
+      <div class="col">
+        <div class="card" style="width: 15rem;">
+          <img class="card-img-top" src="assets/img/4_21.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Jackpot 4x21</h5>
+            <p class="card-text">
+              <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x21', 'about', content)">About</button>
+              <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_4x21')">Buy</button>
+              <button class="btn btn-dark btn-sm buy-give">Give</button>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" style="width: 15rem;">
+          <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Jackpot 5x36</h5>
+            <p class="card-text">
+              <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'about', content)">About</button>
+              <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_5x36')">Buy</button>
+              <button class="btn btn-dark btn-sm buy-give">Give</button>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" style="width: 15rem;">
+          <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Jackpot 6x45</h5>
+            <p class="card-text">
+              <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', 'about', content)">About</button>
+              <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_6x45')">Buy</button>
+              <button class="btn btn-dark btn-sm buy-give">Give</button>
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </fieldset>
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">INSTANT<b>LOTTO</b></legend>
+        <label class="lotteryLabel">Win multimillion jackpots ...</label>
+        <div class="row" style="padding-left: 5%;">
+        <div class="col">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/rapidos.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title" style="margin-left: 30%">Rapidos</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Rapidos', 'about', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('rapidos')">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give">Give</button>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/supers.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title" style="margin-left: 34%">Supers</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Supers', 'about', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('supers')">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give">Give</button>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="assets/img/top3.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title" style="margin-left: 38%">Top3</h5>
+              <p class="card-text">
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Top3', 'about', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('top3')">Buy</button>
+                <button class="btn btn-dark btn-sm buy-give">Give</button>
+              </p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </fieldset>
+  </div>
+
+
 </div>
 
 
@@ -268,10 +269,30 @@
     </button>
   </div>
   <div class="modal-body" *ngIf="aboutContent">
-    <p>Description&hellip;</p>
+    <p><b>Prize</b></p>
+    <p>
+      The current prize pool is 1000 SJP. The more the participants, the bigger the prize fund!
+    </p>
+    <p><b>Participation & Rules</b></p>
+    <p>
+      To participate in the lottery, you need to choose {{combinationSize}} numbers from 1 to {{maxNumber}} in your lottery ticket, or select the magic wand icon to allow the random number generator to choose the numbers for you. The number of tickets that you can buy is almost unlimited. However, using automated software tools for buying tickets or filling them out is prohibited.
+      The cost of one ticket is {{ticketCost}} SJP. Your prize is transferred to your Wallet Space in SJP. Later you can transfer your funds to another online wallet or to fiat. You can get more info about it as well as about Wallet Space in section “My Tokens”.<br>
+      {{lotteryGrequencyDescription}}
+    </p>
+    <p><b>Ticket Price</b></p>
+    <p>
+      The cost of one ticket is {{ticketCost}} SJP.
+    </p>
+    <p><b>Taxes</b></p>
+    <p>
+      Fire Lotto does not act as a tax agent. The responsibility to pay taxes lies with the owner of the cryptocurrency wallet to which the winnings were transferred – Wallet Space.
+    </p>
+    <p><b>Agreement</b></p>
+    <p>
+      By participating in the lottery, you agree to the lottery rules. By purchasing the lottery tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the lottery in your country of residence.
+    </p>
   </div>
   <div class="modal-body" *ngIf="buyContent">
-    <!--<p>One fine body&hellip;</p>-->
     <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
     <table class="modal-table" id="buyTable">
       <tr>

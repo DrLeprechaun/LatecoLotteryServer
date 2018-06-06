@@ -24,6 +24,9 @@ export class PrivateOfficeComponent {
   modalTitle: string;
   buyContent: boolean;
   aboutContent: boolean;
+  private maxNumber: number;
+  private combinationSize: number;
+  private lotteryGrequencyDescription: string;
 
   constructor(private auth: AuthService,
     private router: Router,
@@ -241,14 +244,43 @@ export class PrivateOfficeComponent {
     if (reason == "about") {
       this.aboutContent = true;
       this.buyContent = false;
+      if (title== "Jackpot 5x36") {
+        this.maxNumber = 36;
+        this.combinationSize = 5;
+        this.lotteryGrequencyDescription = "Jackpot is held on every day at 01:00 (+03 GMT).";
+      } else if (title == "Jackpot 6x45") {
+        this.maxNumber = 45;
+        this.combinationSize = 6;
+        this.lotteryGrequencyDescription = "Jackpot is held on every day at 01:00 (+03 GMT).";
+      } else if (title == "Jackpot 4x20") {
+        this.maxNumber = 20;
+        this.combinationSize = 4;
+        this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
+      }else if (title == "Jackpot 4x21") {
+        this.maxNumber = 21;
+        this.combinationSize = 4;
+        this.lotteryGrequencyDescription = "Jackpot is held on every day at 01:00 (+03 GMT).";
+      } else if (title == "Jackpot 7x49") {
+        this.maxNumber = 49;
+        this.combinationSize = 7;
+        this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 03:00 (+03 GMT).";
+      } else if (title == "Rapidos") {
+        this.maxNumber = 21;
+        this.combinationSize = 4;
+        this.lotteryGrequencyDescription = "Rapidos is held every 5 minutes.";
+      } else if (title == "Supers") {
+        this.maxNumber = 36;
+        this.combinationSize = 5;
+        this.lotteryGrequencyDescription = "Supers is held every 5 minutes.";
+      } else if (title == "Top3") {
+        this.maxNumber = 45;
+        this.combinationSize = 6;
+        this.lotteryGrequencyDescription = "Top3 is held every 5 minutes.";
+      }
     } else if (reason == "buy") {
       this.aboutContent = false;
       this.buyContent = true;
-      if (this.modalTitle == "Lottery 5x36" || this.modalTitle == "Lottery 6x45" || this.modalTitle == "Lottery 4x20" || this.modalTitle == "Lottery 7x49") {
-        this.cost = 1;
-      } else if (this.modalTitle == "Jackpot 5x36" || this.modalTitle == "Jackpot 6x45" || this.modalTitle == "Jackpot 4x20" || this.modalTitle == "Jackpot 7x49") {
-        this.cost = 5;
-      }
+      this.cost = 1;
     }
     //this.modalService.open(content).result.then((result) => {
     this.modalReference.result.then((result) => {
@@ -257,6 +289,7 @@ export class PrivateOfficeComponent {
       //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
 
   private getDismissReason(reason: any): string {
     this.modalTitle = "";
