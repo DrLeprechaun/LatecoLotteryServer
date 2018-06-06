@@ -1,5 +1,5 @@
 <div class="header">
-  <table style="margin-left: 100px;">
+  <table>
     <tr>
       <td><img src="assets/img/logo_small.png" alt="logo"></td>
       <td style="padding-top: 5px;"><h2><b>UPER</b>JACK<b>POT</b></h2></td>
@@ -137,120 +137,9 @@
         </td>
       </tr>-->
       <tr>
-        <td></td>
-        <fieldset class="scheduler-border">
-            <legend class="scheduler-border"><b>SUPER</b>JACK<b>POT&nbsp;&nbsp;&nbsp;7 000 000 $</b></legend>
-            <label class="lotteryLabel">Win multimillion jackpots ...</label>
-            <div class="control-group">
-              <td class="lottery-cell">
-                <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/4_21.png" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Jackpot 4x21</h5>
-                    <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x20', content)">About</button>
-                      <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_4x20')">Buy</button>
-                      <button class="btn btn-dark btn-sm buy-give" >Give</button>
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td class="lottery-cell">
-                <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Jackpot 5x36</h5>
-                    <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', content)">About</button>
-                      <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_5x36')">Buy</button>
-                      <button class="btn btn-dark btn-sm buy-give" >Give</button>
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td class="lottery-cell">
-                <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Jackpot 6x45</h5>
-                    <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', content)">About</button>
-                      <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_6x45')">Buy</button>
-                      <button class="btn btn-dark btn-sm buy-give" >Give</button>
-                    </p>
-                  </div>
-                </div>
-              </td>
-            </div>
-        </fieldset>
       </tr>
-
-      <tr>
-        <td></td>
-        <fieldset class="scheduler-border">
-            <legend class="scheduler-border">INSTANT<b>LOTTO</b></legend>
-            <label class="lotteryLabel">Win every 5 minutes ...</label>
-            <div class="control-group">
-              <td class="lottery-cell">
-                <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/rapidos.png" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Rapidos</h5>
-                    <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Rapidos', content)">About</button>
-                      <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('rapidos')">Buy</button>
-                      <button class="btn btn-dark btn-sm buy-give" >Give</button>
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td class="lottery-cell">
-                <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/supers.png" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Supers</h5>
-                    <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Supers', content)">About</button>
-                      <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('supers')">Buy</button>
-                      <button class="btn btn-dark btn-sm buy-give" >Give</button>
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td class="lottery-cell">
-                <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/top3.png" alt="Card image cap">
-                  <div class="card-body">
-                    <h5 class="card-title">Top3</h5>
-                    <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Top3', content)">About</button>
-                      <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('top3')">Buy</button>
-                      <button class="btn btn-dark btn-sm buy-give" >Give</button>
-                    </p>
-                  </div>
-                </div>
-              </td>
-            </div>
-        </fieldset>
-      </tr>
-
     </table>
 </div>
-
-
-<!--<fieldset class="scheduler-border">
-    <legend class="scheduler-border">Start Time</legend>
-    <div class="control-group">
-        <label class="control-label input-label" for="startTime">Start :</label>
-        <div class="controls bootstrap-timepicker">
-            <input type="text" class="datetime" type="text" id="startTime" name="startTime" placeholder="Start Time" />
-            <i class="icon-time"></i>
-        </div>
-    </div>
-</fieldset>-->
-
-
-
 
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">

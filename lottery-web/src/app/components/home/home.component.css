@@ -60,32 +60,6 @@ p {
   margin-left: 2px;
 }
 
-/*h5 {
-  margin-left: 20px;
-}*/
-
-fieldset.scheduler-border {
-    border: 1px groove #ddd !important;
-    padding: 0 1.4em 1.4em 1.4em !important;
-    margin: 0 0 1.5em 0 !important;
-    color: black;
-    -webkit-box-shadow:  0px 0px 0px 0px #000;
-            box-shadow:  0px 0px 0px 0px #000;
-}
-
-legend.scheduler-border {
-        font-size: 2.5em !important;
-        /*font-weight: bold !important;*/
-        text-align: left !important;
-        width:auto;
-        padding:0 10px;
-        border-bottom:none;
-        color: black;
-}
-
-.lotteryLabel {
-  font-size: 2em !important;
-  margin-left: 15px;
-  color: black;
-  font-weight: 100;
+h5 {
+  margin-left: 40px;
 }

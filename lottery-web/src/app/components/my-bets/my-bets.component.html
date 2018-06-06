@@ -41,11 +41,10 @@
   <img src="assets/img/title_banner.png" id="titleBanner">
 </div>
 
-<div id="betsTable">
 <nav style="margin-top: 20px;">
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link betTab active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Current</a>
-    <a class="nav-item nav-link betTab" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Archive</a>
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Current</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Archive</a>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -62,7 +61,7 @@
         <td>{{ d.fake_id }}</td>
         <td>{{ d.type_name }}</td>
         <td>{{ d.combination }}</td>
-        <td align="center"><button type="button" class="btn btn-dark" (click)="open(d.id, d.fake_id, d.type, d.type_name, content)">Reset Combination</button></td>
+        <td><button type="button" class="btn btn-dark" (click)="open(d.id, d.fake_id, d.type, d.type_name, content)">Reset Combination</button></td>
       </tr>
     </table>
 
@@ -117,5 +116,4 @@
       </tr>
     </table>
   </div>
-</div>
 </div>
