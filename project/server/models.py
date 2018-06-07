@@ -135,9 +135,89 @@ class LotteryTokens(db.Model):
         self.user_id = user_id
         self.amount = amount
 
+class BetsLottery_5_36(db.Model):
+
+    __tablename__ = 'bets_lottery_5_36'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
+class BetsLottery_4_20(db.Model):
+
+    __tablename__ = 'bets_lottery_4_20'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
+class BetsLottery_6_45(db.Model):
+
+    __tablename__ = 'bets_lottery_6_45'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
+class BetsLottery_7_49(db.Model):
+
+    __tablename__ = 'bets_lottery_7_49'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
 class BetsJackpot_5_36(db.Model):
 
     __tablename__ = 'bets_jackpot_5_36'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
+class BetsJackpot_4_20(db.Model):
+
+    __tablename__ = 'bets_jackpot_4_20'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, nullable=True)
@@ -213,9 +293,14 @@ class Bank(db.Model):
 
     __tablename__ = 'bank'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)    
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    lottery_5_36 = db.Column(REAL, nullable=True)
+    lottery_6_45 = db.Column(REAL, nullable=True)
+    lottery_4_20 = db.Column(REAL, nullable=True)
+    lottery_7_49 = db.Column(REAL, nullable=True)
     jackpot_5_36 = db.Column(REAL, nullable=True)
-    jackpot_6_45 = db.Column(REAL, nullable=True)    
+    jackpot_6_45 = db.Column(REAL, nullable=True)
+    jackpot_4_20 = db.Column(REAL, nullable=True)
     jackpot_7_49 = db.Column(REAL, nullable=True)
     superjackpot = db.Column(REAL, nullable=True)
 
