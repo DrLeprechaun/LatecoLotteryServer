@@ -167,9 +167,41 @@ class BetsJackpot_6_45(db.Model):
         self.is_active = is_active
         self.is_win = is_win
 
-class BetsJackpot_7_49(db.Model):
+class BetsJackpot_4_21(db.Model):
 
-    __tablename__ = 'bets_jackpot_7_49'
+    __tablename__ = 'bets_jackpot_4_21'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
+class BetsSupers(db.Model):
+
+    __tablename__ = 'bets_supers'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
+class BetsTop3(db.Model):
+
+    __tablename__ = 'bets_top3'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, nullable=True)
@@ -194,34 +226,25 @@ class Wallets(db.Model):
     def __init__(self, user_id, amount):
         self.user_id = user_id
         self.amount = amount
-'''
-class Lottery_5_36(db.Model):
 
-    __tablename__ = 'lottery_5_36'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    combination = db.Column(ARRAY(db.Integer), nullable=True)
-    win_tikets = db.Column(ARRAY(db.Integer), nullable=True)
-    date = db.Column(db.DateTime, nullable=False)
-
-    def __init__(self, combination, win_tikets, date):
-        self.combination = combination
-        self.win_tikets = win_tikets
-        self.date = date
-'''
 class Bank(db.Model):
 
     __tablename__ = 'bank'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)    
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     jackpot_5_36 = db.Column(REAL, nullable=True)
-    jackpot_6_45 = db.Column(REAL, nullable=True)   
-    jackpot_7_49 = db.Column(REAL, nullable=True)
+    jackpot_6_45 = db.Column(REAL, nullable=True)
+    jackpot_4_21 = db.Column(REAL, nullable=True)
     superjackpot = db.Column(REAL, nullable=True)
+    rapidos = db.Column(REAL, nullable=True)
+    supers = db.Column(REAL, nullable=True)
+    top3 = db.Column(REAL, nullable=True)
 
-    def __init__(self, jackpot_5_36, jackpot_6_45, jackpot_7_49, superjackpot):
-       
+    def __init__(self, jackpot_5_36, jackpot_6_45, jackpot_4_21, superjackpot, rapidos, supers, top3):
         self.jackpot_5_36 = jackpot_5_36
-        self.jackpot_6_45 = jackpot_6_45        
-        self.jackpot_7_49 = jackpot_7_49
+        self.jackpot_6_45 = jackpot_6_45
+        self.jackpot_4_21 = jackpot_4_20
         self.superjackpot = superjackpot
+        self.rapidos = rapidos
+        self.supers = supers
+        self.top3 = top3

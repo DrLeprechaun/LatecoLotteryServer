@@ -56,11 +56,14 @@ class GetBank(MethodView):
         bank = Bank.query.one()
         responseObject = {
             'status': 'success',
-            'data': {                    
+            'data': {
                     'jackpot_5x36': bank.jackpot_5_36,
-                    'jackpot_6x45': bank.jackpot_6_45,                    
-                    'jackpot_7x49': bank.jackpot_7_49,
-                    'superjackpot': bank.superjackpot
+                    'jackpot_6x45': bank.jackpot_6_45,
+                    'jackpot_4x21': bank.jackpot_4_21,
+                    'superjackpot': bank.superjackpot,
+                    'rapidos': bank.rapidos,
+                    'supers': bank.supers,
+                    'top3': bank.top3
                 }
             }
         return make_response(jsonify(responseObject)), 200
@@ -172,23 +175,38 @@ class MakeBets(MethodView):
                 user = User.query.filter_by(id=resp).first()
                 lotteryTokens = LotteryTokens.query.filter_by(user_id=user.id).first()
                 #count amount
-                am = 0;                
+                am = 0;
                 for i in range(0, post_data.get('j_5x36')):
-                    am = am + 5
+                    am = am + 1
                 for i in range(0, post_data.get('j_6x45')):
-                    am = am + 5                
-                for i in range(0, post_data.get('j_7x49')):
-                    am = am + 5
-                if (am <= lotteryTokens.amount):                    
+                    am = am + 1
+                for i in range(0, post_data.get('j_4x21')):
+                    am = am + 1
+                for i in range(0, post_data.get('rapidos')):
+                    am = am + 1
+                for i in range(0, post_data.get('supers')):
+                    am = am + 1
+                for i in range(0, post_data.get('top3')):
+                    am = am + 1
+                if (am <= lotteryTokens.amount):
                     for i in range(0, post_data.get('j_5x36')):
                         jackpot_5_36 = BetsJackpot_5_36(user.id, None, True, False)
                         db.session.add(jackpot_5_36)
                     for i in range(0, post_data.get('j_6x45')):
                         jackpot_6_45 = BetsJackpot_6_45(user.id, None, True, False)
-                        db.session.add(jackpot_6_45)                   
-                    for i in range(0, post_data.get('j_7x49')):
-                        jackpot_7_49 = BetsJackpot_7_49(user.id, None, True, False)
-                        db.session.add(jackpot_7_49)
+                        db.session.add(jackpot_6_45)
+                    for i in range(0, post_data.get('j_4x21')):
+                        jackpot_4_21 = BetsJackpot_4_21(user.id, None, True, False)
+                        db.session.add(jackpot_4_21)
+                    for i in range(0, post_data.get('rapidos')):
+                        rapidos = BetsRapidos(user.id, None, True, False)
+                        db.session.add(rapidos)
+                    for i in range(0, post_data.get('supers')):
+                        supers = BetsSupers(user.id, None, True, False)
+                        db.session.add(supers)
+                    for i in range(0, post_data.get('top3')):
+                        top3 = BetsTop3(user.id, None, True, False)
+                        db.session.add(top3)
                     lotteryTokens.amount = lotteryTokens.amount - am
                     db.session.commit()
                     #db.flush()
@@ -232,7 +250,7 @@ class GetBets(MethodView):
         if auth_token:
             resp = User.decode_auth_token(auth_token)
             if not isinstance(resp, str):
-                user = User.query.filter_by(id=resp).first()                
+                user = User.query.filter_by(id=resp).first()
                 #jackpot_5x36
                 jackpot_5x36 = db.engine.execute('SELECT * FROM bets_jackpot_5_36 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
                 jackpot_5x36_arr = []
@@ -252,23 +270,57 @@ class GetBets(MethodView):
                         'combination': row.combination,
                         'is_win': row.is_win
                     }
-                    jackpot_6x45_arr.append(obj)                
-                #jackpot_7x49
-                jackpot_7x49 = db.engine.execute('SELECT * FROM bets_jackpot_7_49 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
-                jackpot_7x49_arr = []
-                for row in jackpot_7x49:
+                    jackpot_6x45_arr.append(obj)
+                #jackpot_4x21
+                jackpot_4x21 = db.engine.execute('SELECT * FROM bets_jackpot_4_21 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                jackpot_4x21_arr = []
+                for row in jackpot_4x21:
                     obj = {
                         'id': row.id,
                         'combination': row.combination,
                         'is_win': row.is_win
                     }
-                    jackpot_7x49_arr.append(obj)
+                    jackpot_4x20_arr.append(obj)
+                #rapidos
+                rapidos = db.engine.execute('SELECT * FROM bets_rapidos WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                rapidos_arr = []
+                for row in rapidos:
+                    obj = {
+                        'id': row.id,
+                        'combination': row.combination,
+                        'is_win': row.is_win
+                    }
+                    rapidos_arr.append(obj)
+                #supers
+                supers = db.engine.execute('SELECT * FROM bets_supers WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                supers_arr = []
+                for row in supers:
+                    obj = {
+                        'id': row.id,
+                        'combination': row.combination,
+                        'is_win': row.is_win
+                    }
+                    supers_arr.append(obj)
+                #top3
+                top3 = db.engine.execute('SELECT * FROM bets_top3 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                top3_arr = []
+                for row in top3:
+                    obj = {
+                        'id': row.id,
+                        'combination': row.combination,
+                        'is_win': row.is_win
+                    }
+                    top3_arr.append(obj)
                 responseObject = {
                     'status': 'success',
-                    'data': {                        
+                    'data': {
                         'jackpot_5x36': jackpot_5x36_arr,
-                        'jackpot_6x45': jackpot_6x45_arr,                       
-                        'jackpot_7x49': jackpot_7x49_arr
+                        'jackpot_6x45': jackpot_6x45_arr,
+                        'jackpot_4x21': jackpot_4x21_arr,
+                        'jackpot_7x49': jackpot_7x49_arr,
+                        'rapidos': rapidos_arr,
+                        'supers': supers_arr,
+                        'top3': top3_arr
                     }
                 }
                 return make_response(jsonify(responseObject)), 200
@@ -302,7 +354,7 @@ class GetBetsArchive(MethodView):
         if auth_token:
             resp = User.decode_auth_token(auth_token)
             if not isinstance(resp, str):
-                user = User.query.filter_by(id=resp).first()               
+                user = User.query.filter_by(id=resp).first()
                 #jackpot_5x36
                 jackpot_5x36 = db.engine.execute('SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36  INNER JOIN jackpot_5_36 ON jackpot_5_36.id = bets_jackpot_5_36.lottery WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false')
                 jackpot_5x36_arr = []
@@ -326,11 +378,11 @@ class GetBetsArchive(MethodView):
                         'win_combination': row.win_combination,
                         'date': row.date
                     }
-                    jackpot_6x45_arr.append(obj)               
-                #jackpot_7x49
-                jackpot_7x49 = db.engine.execute('SELECT bets_jackpot_7_49.id AS id, bets_jackpot_7_49.combination AS my_combination, bets_jackpot_7_49.is_win AS is_win, jackpot_7_49.combination AS win_combination,  jackpot_7_49.date AS date FROM bets_jackpot_7_49  INNER JOIN jackpot_7_49 ON jackpot_7_49.id = bets_jackpot_7_49.lottery WHERE bets_jackpot_7_49.user_id = ' + str(user.id) + ' AND bets_jackpot_7_49.is_active = false')
-                jackpot_7x49_arr = []
-                for row in jackpot_7x49:
+                    jackpot_6x45_arr.append(obj)
+                #jackpot_4x21
+                jackpot_4x21 = db.engine.execute('SELECT bets_jackpot_4_21.id AS id, bets_jackpot_4_21.combination AS my_combination, bets_jackpot_4_21.is_win AS is_win, jackpot_4_21.combination AS win_combination,  jackpot_4_21.date AS date FROM bets_jackpot_4_21  INNER JOIN jackpot_4_21 ON jackpot_4_21.id = bets_jackpot_4_21.lottery WHERE bets_jackpot_4_21.user_id = ' + str(user.id) + ' AND bets_jackpot_4_21.is_active = false')
+                jackpot_4x21_arr = []
+                for row in jackpot_4x21:
                     obj = {
                         'id': row.id,
                         'my_combination': row.my_combination,
@@ -338,13 +390,53 @@ class GetBetsArchive(MethodView):
                         'win_combination': row.win_combination,
                         'date': row.date
                     }
-                    jackpot_7x49_arr.append(obj)
+                    jackpot_4x21_arr.append(obj)
+                #rapidos
+                rapidos = db.engine.execute('SELECT bets_rapidos.id AS id, bets_rapidos.combination AS my_combination, bets_rapidos.is_win AS is_win, rapidos.combination AS win_combination,  rapidos.date AS date FROM bets_rapidos INNER JOIN rapidos ON rapidos.id = bets_rapidos.lottery WHERE bets_rapidos.user_id = ' + str(user.id) + ' AND bets_rapidos.is_active = false')
+                rapidos_arr = []
+                for row in rapidos:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    rapidos_arr.append(obj)
+                #supers
+                supers = db.engine.execute('SELECT bets_supers.id AS id, bets_supers.combination AS my_combination, bets_supers.is_win AS is_win, supers.combination AS win_combination,  supers.date AS date FROM bets_supers INNER JOIN supers ON supers.id = bets_supers.lottery WHERE bets_supers.user_id = ' + str(user.id) + ' AND bets_supers.is_active = false')
+                supers_arr = []
+                for row in supers:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    supers_arr.append(obj)
+                #top3
+                top3 = db.engine.execute('SELECT bets_top3.id AS id, bets_top3.combination AS my_combination, bets_top3.is_win AS is_win, top3.combination AS win_combination,  top3.date AS date FROM bets_top3 INNER JOIN top3 ON top3.id = bets_top3.lottery WHERE bets_top3.user_id = ' + str(user.id) + ' AND bets_top3.is_active = false')
+                top3_arr = []
+                for row in top3:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date
+                    }
+                    top3_arr.append(obj)
                 responseObject = {
                     'status': 'success',
-                    'data': {                        
+                    'data': {
                         'jackpot_5x36': jackpot_5x36_arr,
-                        'jackpot_6x45': jackpot_6x45_arr,                        
-                        'jackpot_7x49': jackpot_7x49_arr
+                        'jackpot_6x45': jackpot_6x45_arr,
+                        'jackpot_4x21': jackpot_4x21_arr,
+                        'jackpot_7x49': jackpot_7x49_arr,
+                        'rapidos': rapidos_arr,
+                        'supers': supers_arr,
+                        'top3': top3_arr
                     }
                 }
                 return make_response(jsonify(responseObject)), 200
@@ -379,15 +471,27 @@ class UpdateCombination(MethodView):
         if auth_token:
             resp = User.decode_auth_token(auth_token)
             if not isinstance(resp, str):
-                user = User.query.filter_by(id=resp).first()              
+                user = User.query.filter_by(id=resp).first()
                 if (post_data['type'] == "jackpot_5x36"):
                     lottery = BetsJackpot_5_36.query.filter_by(id=post_data['id']).first()
                     lottery.combination = post_data['combination']
                 if (post_data['type'] == "jackpot_6x45"):
                     lottery = BetsJackpot_6_45.query.filter_by(id=post_data['id']).first()
-                    lottery.combination = post_data['combination']                
+                    lottery.combination = post_data['combination']
                 if (post_data['type'] == "jackpot_7x49"):
                     lottery = BetsJackpot_7_49.query.filter_by(id=post_data['id']).first()
+                    lottery.combination = post_data['combination']
+                if (post_data['type'] == "jackpot_4x21"):
+                    lottery = BetsJackpot_4_21.query.filter_by(id=post_data['id']).first()
+                    lottery.combination = post_data['combination']
+                if (post_data['type'] == "rapidos"):
+                    lottery = BetsRapidos.query.filter_by(id=post_data['id']).first()
+                    lottery.combination = post_data['combination']
+                if (post_data['type'] == "supers"):
+                    lottery = BetsSupers.query.filter_by(id=post_data['id']).first()
+                    lottery.combination = post_data['combination']
+                if (post_data['type'] == "top3"):
+                    lottery = BetsTop3.query.filter_by(id=post_data['id']).first()
                     lottery.combination = post_data['combination']
                 #db.flush()
                 db.session.commit()
@@ -406,7 +510,6 @@ class UpdateCombination(MethodView):
                 'message': 'Provide a valid auth token.'
             }
             return make_response(jsonify(responseObject)), 401
-
 
 class BuyTickets(MethodView):
     def post(self):
@@ -427,15 +530,27 @@ class BuyTickets(MethodView):
         if auth_token:
             resp = User.decode_auth_token(auth_token)
             if not isinstance(resp, str):
-                user = User.query.filter_by(id=resp).first()               
+                user = User.query.filter_by(id=resp).first()
                 if (post_data['type'] == "jackpot_5x36"):
                     newBet = BetsJackpot_5_36(user.id, post_data['combination'], True, False)
                     db.session.add(newBet)
                 if (post_data['type'] == "jackpot_6x45"):
                     newBet = BetsJackpot_6_45(user.id, post_data['combination'], True, False)
-                    db.session.add(newBet)                
+                    db.session.add(newBet)
                 if (post_data['type'] == "jackpot_7x49"):
                     newBet = BetsJackpot_7_49(user.id, post_data['combination'], True, False)
+                    db.session.add(newBet)
+                if (post_data['type'] == "jackpot_4x21"):
+                    newBet = BetsJackpot_4_21(user.id, post_data['combination'], True, False)
+                    db.session.add(newBet)
+                if (post_data['type'] == "rapidos"):
+                    newBet = BetsRapidos(user.id, post_data['combination'], True, False)
+                    db.session.add(newBet)
+                if (post_data['type'] == "supers"):
+                    newBet = BetsSupers(user.id, post_data['combination'], True, False)
+                    db.session.add(newBet)
+                if (post_data['type'] == "top3"):
+                    newBet = BetsTop3(user.id, post_data['combination'], True, False)
                     db.session.add(newBet)
                 #db.flush()
                 db.session.commit()
@@ -739,7 +854,7 @@ class BuyTickets(MethodView):
                                         <td class="container">
                                           <div class="content">
 
-                                            <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+                                            <span class="preheader">You've get a SUPERJACKPOT LOTTERY ticket!</span>
                                             <table class="main">
 
                                               <tr>
@@ -816,7 +931,6 @@ class BuyTickets(MethodView):
                 'message': 'Provide a valid auth token.'
             }
             return make_response(jsonify(responseObject)), 401
-
 
 class FillUpWallet(MethodView):
     def post(self):
