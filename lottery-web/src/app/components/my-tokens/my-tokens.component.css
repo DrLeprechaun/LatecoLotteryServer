@@ -13,3 +13,14 @@ input {
 #walletContainer table tr td button {
   width: 100px;
 }
+
+button {
+  border-radius: 0;
+  background-color: #000;
+  border: 1px solid #000;
+}
+
+button:hover {
+  background-color: #fff;
+  color: #000;
+}
