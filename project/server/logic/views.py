@@ -317,7 +317,6 @@ class GetBets(MethodView):
                         'jackpot_5x36': jackpot_5x36_arr,
                         'jackpot_6x45': jackpot_6x45_arr,
                         'jackpot_4x21': jackpot_4x21_arr,
-                        'jackpot_7x49': jackpot_7x49_arr,
                         'rapidos': rapidos_arr,
                         'supers': supers_arr,
                         'top3': top3_arr
@@ -433,7 +432,6 @@ class GetBetsArchive(MethodView):
                         'jackpot_5x36': jackpot_5x36_arr,
                         'jackpot_6x45': jackpot_6x45_arr,
                         'jackpot_4x21': jackpot_4x21_arr,
-                        'jackpot_7x49': jackpot_7x49_arr,
                         'rapidos': rapidos_arr,
                         'supers': supers_arr,
                         'top3': top3_arr
@@ -477,9 +475,6 @@ class UpdateCombination(MethodView):
                     lottery.combination = post_data['combination']
                 if (post_data['type'] == "jackpot_6x45"):
                     lottery = BetsJackpot_6_45.query.filter_by(id=post_data['id']).first()
-                    lottery.combination = post_data['combination']
-                if (post_data['type'] == "jackpot_7x49"):
-                    lottery = BetsJackpot_7_49.query.filter_by(id=post_data['id']).first()
                     lottery.combination = post_data['combination']
                 if (post_data['type'] == "jackpot_4x21"):
                     lottery = BetsJackpot_4_21.query.filter_by(id=post_data['id']).first()
@@ -536,9 +531,6 @@ class BuyTickets(MethodView):
                     db.session.add(newBet)
                 if (post_data['type'] == "jackpot_6x45"):
                     newBet = BetsJackpot_6_45(user.id, post_data['combination'], True, False)
-                    db.session.add(newBet)
-                if (post_data['type'] == "jackpot_7x49"):
-                    newBet = BetsJackpot_7_49(user.id, post_data['combination'], True, False)
                     db.session.add(newBet)
                 if (post_data['type'] == "jackpot_4x21"):
                     newBet = BetsJackpot_4_21(user.id, post_data['combination'], True, False)
