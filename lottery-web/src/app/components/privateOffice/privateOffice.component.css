@@ -61,3 +61,30 @@ legend.scheduler-border {
   margin-left: 10%;
   margin-right: 10%;
 }
+
+button {
+  border-radius: 0;
+  background-color: #000;
+  border: 1px solid #000;
+}
+
+button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.card {
+  overflow: hidden;
+}
+
+.card-img-top {
+ -moz-transition: all 1s ease-out;
+ -o-transition: all 1s ease-out;
+ -webkit-transition: all 1s ease-out;
+ }
+
+.card-img-top:hover{
+ -webkit-transform: scale(1.1);
+ -moz-transform: scale(1.1);
+ -o-transform: scale(1.1);
+ }
