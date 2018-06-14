@@ -27,6 +27,7 @@ export class PrivateOfficeComponent {
   private maxNumber: number;
   private combinationSize: number;
   private lotteryGrequencyDescription: string;
+  private superjackpot_value: 0;
 
   constructor(private auth: AuthService,
     private router: Router,
@@ -36,6 +37,20 @@ export class PrivateOfficeComponent {
   ) {}
 
   ngOnInit(): void {
+    this.lottery.getBank()
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        console.log(res.json().data);
+        this.superjackpot_value = res.json().data.superjackpot;
+      } else {
+        console.log(res.json().message);
+      }
+    },
+    (err) => {
+      console.log(err);
+    })
+
     setTimeout(() => this.staticAlertClosed = true, 20000);
 
     this._alert.subscribe((message) => this.errorMessage = message);

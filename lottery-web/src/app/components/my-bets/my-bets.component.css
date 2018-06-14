@@ -274,12 +274,14 @@
 
 a.betTab.active {
   background-color: #212529;
+  /*background-color: black;*/
   /*font-weight: bold;*/
   color: white;
 }
 
 a.betTab {
   /*font-weight: bold;*/
+  background-color: #c0c0c0;
   color: #212529;
   width: 50%;
   text-align: center;

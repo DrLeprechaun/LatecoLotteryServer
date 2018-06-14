@@ -34,8 +34,8 @@ button {
 .cube {
   width: 100px;
   height: 100px;
-  margin-left: 75%;
-  margin-top: 40px;
+  margin-left: 85%;
+  margin-top: 5%;
   position: absolute;
   transform-origin: 50% 50% -50px;
   transform-style: preserve-3d;
@@ -90,17 +90,6 @@ button {
     transform: rotateY(270deg);
   }
   100% {
-    transform: rotateX(360deg);
+    transform: rotateX(90deg);
   }
-}
-
-button {
-  border-radius: 0;
-  background-color: #000;
-  border: 1px solid #000;
-}
-
-button:hover {
-  background-color: #fff;
-  color: #000;
 }

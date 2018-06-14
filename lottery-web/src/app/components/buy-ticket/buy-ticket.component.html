@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="#">SuperJackpot</a>
+    <a class="navbar-brand" routerLink="#">SuperJackpot</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,30 +8,30 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/privateOffice">Buy Ticket!<span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/privateOffice">Buy Ticket!<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="my-bets">My Bets</a>
+          <a class="nav-link" routerLink="/my-bets">My Bets</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="my-tokens">My Tokens</a>
+          <a class="nav-link" routerLink="/my-tokens">My Tokens</a>
         </li>
         <!--<li class="nav-item">
           <a class="nav-link" href="wallet">Wallet</a>
         </li>-->
         <li class="nav-item">
-          <a class="nav-link" href="my-statistics">Statistics</a>
+          <a class="nav-link" routerLink="/my-statistics">Statistics</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="settings">Settings</a>
+          <a class="nav-link" routerLink="/settings">Settings</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="faq">FAQ</a>
+          <a class="nav-link" routerLink="/faq">FAQ</a>
         </li>
       </ul>
       <ul class="navbar-nav navbar-right">
         <li class="nav-item">
-          <a class="nav-link" (click)="logOut()" href="/home">Logout</a>
+          <a class="nav-link" (click)="logOut()" routerLink="/home">Logout</a>
         </li>
       </ul>
     </div>
@@ -39,7 +39,7 @@
 
 
 <div class="container">
-  <table border="0">
+  <table border="0" style="margin-bottom: 50px;">
     <tr>
       <td colspan="3">
       <ul class="nav">
@@ -136,7 +136,7 @@
           <div class="card" style="width: 15rem;  margin: 0 auto; height: 22rem;">
             <img class="card-img-top" src="{{lotteryBunner}}" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title" style="text-align:center;">1 754 777 SJP</h5>
+              <h5 class="card-title" style="text-align:center;">1 754 777 <img src="assets/img/logo_small.png" alt="logo" style="width: 25px;"></h5>
               <p class="card-text">
                 <!--<button class="btn btn-dark btn-md buy-give" style="width: 195px;">Buy 0,003 SJP</button>-->
             </div>

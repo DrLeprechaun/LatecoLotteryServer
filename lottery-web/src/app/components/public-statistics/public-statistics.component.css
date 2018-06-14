@@ -21,3 +21,30 @@ p {
 #navbar {
   margin-top: 40px;
 }
+
+.container {
+  margin-left: 10px;
+}
+
+.header {
+  margin-top: 20px;
+}
+
+.header img {
+  width: 39px;
+  height: 34px;
+}
+
+.page-content td {
+  vertical-align: top;
+  padding: 20px;
+}
+
+.banner-cell {
+  /*padding-top: 25px;*/
+  /*padding-left: 25px;*/
+}
+
+#titleBanner {
+  width: 50rem;
+}

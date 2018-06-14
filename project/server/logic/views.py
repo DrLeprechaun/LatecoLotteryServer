@@ -280,7 +280,7 @@ class GetBets(MethodView):
                         'combination': row.combination,
                         'is_win': row.is_win
                     }
-                    jackpot_4x20_arr.append(obj)
+                    jackpot_4x21_arr.append(obj)
                 #rapidos
                 rapidos = db.engine.execute('SELECT * FROM bets_rapidos WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
                 rapidos_arr = []
@@ -544,6 +544,8 @@ class BuyTickets(MethodView):
                 if (post_data['type'] == "top3"):
                     newBet = BetsTop3(user.id, post_data['combination'], True, False)
                     db.session.add(newBet)
+                bank = Bank.query.first()
+                bank.superjackpot += 1
                 #db.flush()
                 db.session.commit()
                 msg = Message("SuperJackpot Lottery", sender = "vadim.e@lateco.net", recipients=[user.email])

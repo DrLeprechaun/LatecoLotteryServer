@@ -183,6 +183,22 @@ class BetsJackpot_4_21(db.Model):
         self.is_active = is_active
         self.is_win = is_win
 
+class BetsRapidos(db.Model):
+
+    __tablename__ = 'bets_rapidos'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+
 class BetsSupers(db.Model):
 
     __tablename__ = 'bets_supers'

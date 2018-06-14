@@ -1,6 +1,7 @@
 <div class="header">
-  <table style="margin-left: 100px;">
+  <table style="margin-left: 50px;">
     <tr>
+      <td><img src="assets/img/logo_small.png" alt="logo"></td>
       <td style="padding-top: 5px;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
     </tr>
   </table>
@@ -10,145 +11,78 @@
   <table class="page-content">
     <tr>
       <td>
-  <!--<div class="row">
-    <div class="col">-->
         <div id="navbar">
-        <p><a href="/login" style="color: grey">Home</a></p>
-        <p><a href="/login">Log in</a></p>
-        <p><a href="/register">Registration</a></p>
-        <p><a href="/about">Rules</a></p>
-        <p><a href="/public-statistics">Statistics</a></p>
-        <!--<p><a href="/status">Status</a></p>-->
+        <p><a routerLink="/login" style="color: grey">Home</a></p>
+        <p><a routerLink="/login">Log in</a></p>
+        <p><a routerLink="/register">Registration</a></p>
+        <p><a routerLink="/about">Rules</a></p>
+        <p><a routerLink="/public-statistics">Statistics</a></p>
         </div>
     </td>
     <td class="banner-cell" colspan="3">
-        <div>
+        <!--<div>
           <img src="assets/img/title_banner.png" id="titleBanner">
+        </div>-->
+        <!--<div class="slider-holder">
+          <span id="slider-image-1"></span>
+          <span id="slider-image-2"></span>
+          <div class="image-holder">
+              <img src="assets/img/bannermega_1.jpg" class="slider-image" />
+              <img src="assets/img/bannermega_3.jpg" class="slider-image" />
+          </div>
+          <div class="button-holder">
+              <a href="#slider-image-1" class="slider-change"></a>
+              <a href="#slider-image-2" class="slider-change"></a>
+          </div>
+      </div>-->
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="assets/img/bannermega_1.jpg" alt="First slide">
+            <div class="carousel-caption d-none d-md-block banner-text ">
+              <p>{{superjackpot_value}} SJP</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="assets/img/bannermega_3.jpg" alt="Second slide">
+            <div class="carousel-caption d-none d-md-block banner-text ">
+              <p>{{superjackpot_value}} SJP</p>
+            </div>
+          </div>
         </div>
+      </div>
+    </td>
+    <td>
+      <div class="cube">
+        <div class="side" id="side-1"><img style="width: inherit;" src="assets/img/4_21.png"></div>
+        <div class="side" id="side-2"><img style="width: inherit;" src="assets/img/j_6_45.png"></div>
+        <div class="side" id="side-3"><img style="width: inherit;" src="assets/img/5_36.png"></div>
+        <div class="side" id="side-4"><img style="width: inherit;" src="assets/img/rapidos.png"></div>
+        <div class="side" id="side-5"><img style="width: inherit;" src="assets/img/top3.png"></div>
+        <div class="side" id="side-6"><img style="width: inherit;" src="assets/img/supers.png"></div>
+      </div>
     </td>
   </tr>
-  <!--<tr>
-      <td class="lottery-cell" align="center">
-          <div class="card" style="width: 15rem;  margin: 0 auto;">
-            <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Lottery 5x36</h5>
-              <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 5x36', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('lottery_5x36')">Buy</button>
-                <button class="btn btn-dark btn-sm buy-give" >Give</button></p>
-            </div>
-          </div>
-        </td>
-        <td class="lottery-cell" align="center">
-          <div class="card" style="width: 15rem; margin: 0 auto;">
-            <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Lottery 6x45</h5>
-              <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 6x45', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('lottery_6x45')">Buy</button>
-                <button class="btn btn-dark btn-sm buy-give" >Give</button>
-              </p>
-            </div>
-          </div>
-        </td>
-        <td class="lottery-cell">
-          <div class="card" style="width: 15rem;  margin: 0 auto;">
-            <img class="card-img-top" src="assets/img/4_20.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Lottery 4x20</h5>
-              <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 4x20', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('lottery_4x20')">Buy</button>
-                <button class="btn btn-dark btn-sm buy-give" >Give</button>
-              </p>
-            </div>
-          </div>
-        </td>
-        <td class="lottery-cell">
-          <div class="card" style="width: 15rem;  margin: 0 auto;">
-            <img class="card-img-top" src="assets/img/7_49.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Lottery 7x49</h5>
-              <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 7x49', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('lottery_7x49')">Buy</button>
-                <button class="btn btn-dark btn-sm buy-give" >Give</button>
-              </p>
-            </div>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td class="lottery-cell">
-          <div class="card" style="width: 15rem;  margin: 0 auto;">
-            <img class="card-img-top" src="assets/img/j_5_36.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Jackpot 5x36</h5>
-              <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_5x36')">Buy</button>
-                <button class="btn btn-dark btn-sm buy-give" >Give</button>
-              </p>
-            </div>
-          </div>
-        </td>
-        <td class="lottery-cell">
-          <div class="card" style="width: 15rem;  margin: 0 auto;">
-            <img class="card-img-top" src="assets/img/j_6_45.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Jackpot 6x45</h5>
-              <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_6x45')">Buy</button>
-                <button class="btn btn-dark btn-sm buy-give" >Give</button>
-              </p>
-            </div>
-          </div>
-        </td>
-        <td class="lottery-cell">
-          <div class="card" style="width: 15rem;  margin: 0 auto;">
-            <img class="card-img-top" src="assets/img/j_4_20.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Jackpot 4x20</h5>
-              <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x20', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_4x20')">Buy</button>
-                <button class="btn btn-dark btn-sm buy-give" >Give</button>
-              </p>
-            </div>
-          </div>
-        </td>
-        <td class="lottery-cell">
-          <div class="card" style="width: 15rem;  margin: 0 auto;">
-            <img class="card-img-top" src="assets/img/j_7_49.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Jackpot 7x49</h5>
-              <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 7x49', content)">About</button>
-                <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_7x49')">Buy</button>
-                <button class="btn btn-dark btn-sm buy-give" >Give</button>
-              </p>
-            </div>
-          </div>
-        </td>
-      </tr>-->
       <tr>
         <td></td>
         <fieldset class="scheduler-border">
-            <legend class="scheduler-border"><b>SUPER</b>JACK<b>POT&nbsp;&nbsp;&nbsp;7 000 000 $</b></legend>
+            <legend class="scheduler-border"><b>SUPER</b>JACK<b>POT&nbsp;&nbsp;&nbsp;{{superjackpot_value}} SJP</b></legend>
             <label class="lotteryLabel">Win multimillion jackpots ...</label>
             <div class="control-group">
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/4_21.png" alt="Card image cap">
+                  <a (click)="goLogin('jackpot_4x21')" style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/4_21.png" alt="Card image cap">
+                  </a>
                   <div class="card-body">
-                    <!--<h5 class="card-title">Jackpot 4x21</h5>-->
+                    <h5 class="card-title">Jackpot 4x21</h5>
                     <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x20', content)">About</button>
-                      <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_4x20')">Buy</button>
+                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x21', content)">Rules</button>
+                      <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_4x21')">Buy</button>
                       <button class="btn btn-dark btn-sm buy-give" >Give</button>
                     </p>
                   </div>
@@ -156,11 +90,13 @@
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
+                  <a (click)="goLogin('jackpot_5x36')" style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
+                    </a>
                   <div class="card-body">
-                    <!--<h5 class="card-title">Jackpot 5x36</h5>-->
+                      <h5 class="card-title">Jackpot 5x36</h5>
                     <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', content)">About</button>
+                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', content)">Rules</button>
                       <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_5x36')">Buy</button>
                       <button class="btn btn-dark btn-sm buy-give" >Give</button>
                     </p>
@@ -169,11 +105,13 @@
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
+                  <a (click)="goLogin('jackpot_6x45')" style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
+                  </a>
                   <div class="card-body">
-                    <!--<h5 class="card-title">Jackpot 6x45</h5>-->
+                      <h5 class="card-title">Jackpot 6x45</h5>
                     <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', content)">About</button>
+                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', content)">Rules</button>
                       <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('jackpot_6x45')">Buy</button>
                       <button class="btn btn-dark btn-sm buy-give" >Give</button>
                     </p>
@@ -192,11 +130,13 @@
             <div class="control-group">
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/rapidos.png" alt="Card image cap">
+                  <a (click)="goLogin('rapidos')" style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/rapidos.png" alt="Card image cap">
+                  </a>
                   <div class="card-body">
-                    <!--<h5 class="card-title">Rapidos</h5>-->
+                    <h5 class="card-title">Rapidos</h5>
                     <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Rapidos', content)">About</button>
+                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Rapidos', content)">Rules</button>
                       <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('rapidos')">Buy</button>
                       <button class="btn btn-dark btn-sm buy-give" >Give</button>
                     </p>
@@ -205,11 +145,13 @@
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/supers.png" alt="Card image cap">
+                  <a (click)="goLogin('supers')" style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/supers.png" alt="Card image cap">
+                  </a>
                   <div class="card-body">
-                    <!--<h5 class="card-title">Supers</h5>-->
+                    <h5 class="card-title">Supers</h5>
                     <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Supers', content)">About</button>
+                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Supers', content)">Rules</button>
                       <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('supers')">Buy</button>
                       <button class="btn btn-dark btn-sm buy-give" >Give</button>
                     </p>
@@ -218,11 +160,13 @@
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <img class="card-img-top" src="assets/img/top3.png" alt="Card image cap">
+                  <a (click)="goLogin('top3')" style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/top3.png" alt="Card image cap">
+                  </a>
                   <div class="card-body">
-                  <!--<h5 class="card-title">Top3</h5>-->
+                    <h5 class="card-title">Top3</h5>
                     <p class="card-text">
-                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Top3', content)">About</button>
+                      <button class="btn btn-dark btn-sm buy-give" (click)="open('Top3', content)">Rules</button>
                       <button class="btn btn-dark btn-sm buy-give" (click)="goLogin('top3')">Buy</button>
                       <button class="btn btn-dark btn-sm buy-give" >Give</button>
                     </p>

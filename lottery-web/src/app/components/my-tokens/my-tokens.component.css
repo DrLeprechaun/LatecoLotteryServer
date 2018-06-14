@@ -1,5 +1,8 @@
 #tokensContainer {
   margin-top: 50px;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 100px;
 }
 
 input {
@@ -12,15 +15,4 @@ input {
 
 #walletContainer table tr td button {
   width: 100px;
-}
-
-button {
-  border-radius: 0;
-  background-color: #000;
-  border: 1px solid #000;
-}
-
-button:hover {
-  background-color: #fff;
-  color: #000;
 }

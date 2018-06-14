@@ -19,6 +19,7 @@ export class HomeComponent {
   private combinationSize: number;
   private ticketCost: number;
   private lotteryGrequencyDescription: string;
+  private superjackpot_value: 0;
 
   constructor(private router: Router,
     private lottery: LotteryService,
@@ -32,6 +33,7 @@ export class HomeComponent {
       console.log(res.json());
       if (res.json().status === 'success') {
         console.log(res.json().data);
+        this.superjackpot_value = res.json().data.superjackpot;
       } else {
         console.log(res.json().message);
       }

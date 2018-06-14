@@ -2,7 +2,7 @@
 <a (click)="logOut()" href="/home">LogOut</a>-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="#">SuperJackpot</a>
+    <a class="navbar-brand" routerLink="#">SuperJackpot</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,161 +10,43 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/privateOffice">Buy Ticket!<span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/privateOffice">Buy Ticket!<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="my-bets">My Bets</a>
+          <a class="nav-link" routerLink="/my-bets">My Bets</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="my-tokens">My Tokens</a>
+          <a class="nav-link" routerLink="/my-tokens">My Tokens</a>
         </li>
         <!--<li class="nav-item">
           <a class="nav-link" href="wallet">Wallet</a>
         </li>-->
         <li class="nav-item">
-          <a class="nav-link" href="my-statistics">Statistics</a>
+          <a class="nav-link" routerLink="/my-statistics">Statistics</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="settings">Settings</a>
+          <a class="nav-link" routerLink="/settings">Settings</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="faq">FAQ</a>
+          <a class="nav-link" routerLink="/faq">FAQ</a>
         </li>
       </ul>
       <ul class="navbar-nav navbar-right">
         <li class="nav-item">
-          <a class="nav-link" (click)="logOut()" href="/home">Logout</a>
+          <a class="nav-link" (click)="logOut()" routerLink="/home">Logout</a>
         </li>
       </ul>
     </div>
 </nav>
 
-<div align="center" style="margin-top: 20px;">
+<!--<div align="center" style="margin-top: 20px;">
   <img src="assets/img/title_banner.png" id="titleBanner">
-</div>
+</div>-->
 
 <div class="buyContainer">
 
 
-<!--<div class="row">
-  <div class="col">
-    <div class="card" style="width: 15rem;">
-      <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Lottery 5x36</h5>
-        <p class="card-text">
-          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 5x36', 'about', content)">About</button>
-          <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('lottery_5x36')">Buy</button>
-          <button class="btn btn-dark btn-sm buy-give">Give</button>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 15rem;">
-      <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Lottery 6x45</h5>
-        <p class="card-text">
-          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 6x45', 'about', content)">About</button>
-          <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('lottery_6x45')">Buy</button>
-          <button class="btn btn-dark btn-sm buy-give">Give</button>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 15rem;">
-      <img class="card-img-top" src="assets/img/4_20.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Lottery 4x20</h5>
-        <p class="card-text">
-          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 4x20', 'about', content)">About</button>
-          <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('lottery_4x20')">Buy</button>
-          <button class="btn btn-dark btn-sm buy-give">Give</button>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 15rem;">
-      <img class="card-img-top" src="assets/img/7_49.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Lottery 7x49</h5>
-        <p class="card-text">
-          <button class="btn btn-dark btn-sm buy-give" (click)="open('Lottery 7x49', 'about', content)">About</button>
-          <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('lottery_7x49')">Buy</button>
-          <button class="btn btn-dark btn-sm buy-give">Give</button>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<br>
-
-<div class="row">
-  <div class="col">
-    <div class="card" style="width: 15rem;">
-      <img class="card-img-top" src="assets/img/j_5_36.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Jackpot 5x36</h5>
-        <p class="card-text">
-          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'about', content)">About</button>
-          <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_5x36')">Buy</button>
-          <button class="btn btn-dark btn-sm buy-give">Give</button>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 15rem;">
-      <img class="card-img-top" src="assets/img/j_6_45.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Jackpot 6x45</h5>
-        <p class="card-text">
-          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', 'about', content)">About</button>
-          <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_6x45')">Buy</button>
-          <button class="btn btn-dark btn-sm buy-give">Give</button>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 15rem;">
-      <img class="card-img-top" src="assets/img/j_4_20.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Jackpot 4x20</h5>
-        <p class="card-text">
-          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x20', 'about', content)">About</button>
-          <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_4x20')">Buy</button>
-          <button class="btn btn-dark btn-sm buy-give">Give</button>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 15rem;">
-      <img class="card-img-top" src="assets/img/j_7_49.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Jackpot 7x49</h5>
-        <p class="card-text">
-          <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 7x49', 'about', content)">About</button>
-          <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_7x49')">Buy</button>
-          <button class="btn btn-dark btn-sm buy-give">Give</button>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>->
-
-<!--<hr>
-<p class="text-right">{{cost }} tokens</p>
-<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
-<hr>
-<p class="text-right"><button type="button" (click)="buy()" class="btn btn-dark btn-lg">Buy!</button></p>-->
-
-<div id="fieldsDiv">
+<!--<div id="fieldsDiv">
   <fieldset class="scheduler-border">
       <legend class="scheduler-border"><b>SUPER</b>JACK<b>POT&nbsp;&nbsp;&nbsp;7 000 000 $</b></legend>
       <label class="lotteryLabel">Win multimillion jackpots ...</label>
@@ -173,9 +55,9 @@
         <div class="card" style="width: 15rem;">
           <img class="card-img-top" src="assets/img/4_21.png" alt="Card image cap">
           <div class="card-body">
-            <!--<h5 class="card-title">Jackpot 4x21</h5>-->
+            <h5 class="card-title">Jackpot 4x21</h5>
             <p class="card-text">
-              <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x21', 'about', content)">About</button>
+              <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x21', 'about', content)">Rules</button>
               <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_4x21')">Buy</button>
               <button class="btn btn-dark btn-sm buy-give">Give</button>
             </p>
@@ -186,9 +68,9 @@
         <div class="card" style="width: 15rem;">
           <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
           <div class="card-body">
-            <!--<h5 class="card-title">Jackpot 5x36</h5>-->
+            <h5 class="card-title">Jackpot 5x36</h5>
             <p class="card-text">
-              <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'about', content)">About</button>
+              <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'about', content)">Rules</button>
               <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_5x36')">Buy</button>
               <button class="btn btn-dark btn-sm buy-give">Give</button>
             </p>
@@ -199,9 +81,9 @@
         <div class="card" style="width: 15rem;">
           <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
           <div class="card-body">
-            <!--<h5 class="card-title">Jackpot 6x45</h5>-->
+            <h5 class="card-title">Jackpot 6x45</h5>
             <p class="card-text">
-              <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', 'about', content)">About</button>
+              <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', 'about', content)">Rules</button>
               <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_6x45')">Buy</button>
               <button class="btn btn-dark btn-sm buy-give">Give</button>
             </p>
@@ -218,9 +100,9 @@
           <div class="card" style="width: 15rem;">
             <img class="card-img-top" src="assets/img/rapidos.png" alt="Card image cap">
             <div class="card-body">
-              <!--<h5 class="card-title" style="margin-left: 30%">Rapidos</h5>-->
+              <h5 class="card-title" style="margin-left: 30%">Rapidos</h5>
               <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Rapidos', 'about', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Rapidos', 'about', content)">Rules</button>
                 <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('rapidos')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give">Give</button>
               </p>
@@ -231,9 +113,9 @@
           <div class="card" style="width: 15rem;">
             <img class="card-img-top" src="assets/img/supers.png" alt="Card image cap">
             <div class="card-body">
-              <!--<h5 class="card-title" style="margin-left: 34%">Supers</h5>-->
+              <h5 class="card-title" style="margin-left: 34%">Supers</h5>
               <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Supers', 'about', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Supers', 'about', content)">Rules</button>
                 <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('supers')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give">Give</button>
               </p>
@@ -244,9 +126,9 @@
           <div class="card" style="width: 15rem;">
             <img class="card-img-top" src="assets/img/top3.png" alt="Card image cap">
             <div class="card-body">
-              <!--<h5 class="card-title" style="margin-left: 38%">Top3</h5>-->
+              <h5 class="card-title" style="margin-left: 38%">Top3</h5>
               <p class="card-text">
-                <button class="btn btn-dark btn-sm buy-give" (click)="open('Top3', 'about', content)">About</button>
+                <button class="btn btn-dark btn-sm buy-give" (click)="open('Top3', 'about', content)">Rules</button>
                 <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('top3')">Buy</button>
                 <button class="btn btn-dark btn-sm buy-give">Give</button>
               </p>
@@ -255,6 +137,156 @@
         </div>
         </div>
       </fieldset>
+  </div>-->
+
+  <div class="container">
+    <table class="page-content">
+      <tr>
+      <td class="banner-cell" colspan="3">
+          <!--<div>
+            <img src="assets/img/title_banner.png" id="titleBanner">
+          </div>-->
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="assets/img/bannermega_1.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block banner-text ">
+                  <p>{{superjackpot_value}} SJP</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="assets/img/bannermega_3.jpg" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block banner-text ">
+                  <p>{{superjackpot_value}} SJP</p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </td>
+      <td>
+        <div class="cube">
+          <div class="side" id="side-1"><img style="width: inherit;" src="assets/img/4_21.png"></div>
+          <div class="side" id="side-2"><img style="width: inherit;" src="assets/img/j_6_45.png"></div>
+          <div class="side" id="side-3"><img style="width: inherit;" src="assets/img/5_36.png"></div>
+          <div class="side" id="side-4"><img style="width: inherit;" src="assets/img/rapidos.png"></div>
+          <div class="side" id="side-5"><img style="width: inherit;" src="assets/img/top3.png"></div>
+          <div class="side" id="side-6"><img style="width: inherit;" src="assets/img/supers.png"></div>
+        </div>
+      </td>
+    </tr>
+        <tr>
+          <fieldset class="scheduler-border">
+              <legend class="scheduler-border"><b>SUPER</b>JACK<b>POT&nbsp;&nbsp;&nbsp;{{superjackpot_value}} SJP</b></legend>
+              <label class="lotteryLabel">Win multimillion jackpots ...</label>
+              <div class="control-group">
+                <td class="lottery-cell">
+                  <div class="card" style="width: 15rem;  margin: 0 auto;">
+                    <a (click)="buyTicketRedirect('jackpot_4x21')" style="cursor: pointer;">
+                      <img class="card-img-top" src="assets/img/4_21.png" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Jackpot 4x21</h5>
+                      <p class="card-text">
+                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x21', 'about', content)">Rules</button>
+                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_4x21')">Buy</button>
+                        <button class="btn btn-dark btn-sm buy-give">Give</button>
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td class="lottery-cell">
+                  <div class="card" style="width: 15rem;  margin: 0 auto;">
+                    <a (click)="buyTicketRedirect('jackpot_5x36')" style="cursor: pointer;">
+                      <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Jackpot 5x36</h5>
+                      <p class="card-text">
+                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'about', content)">Rules</button>
+                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_5x36')">Buy</button>
+                        <button class="btn btn-dark btn-sm buy-give">Give</button>
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td class="lottery-cell">
+                  <div class="card" style="width: 15rem;  margin: 0 auto;">
+                    <a (click)="buyTicketRedirect('jackpot_6x45')" style="cursor: pointer;">
+                      <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Jackpot 6x45</h5>
+                      <p class="card-text">
+                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', 'about', content)">Rules</button>
+                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_6x45')">Buy</button>
+                        <button class="btn btn-dark btn-sm buy-give">Give</button>
+                      </p>
+                    </div>
+                  </div>
+                </td>
+              </div>
+          </fieldset>
+        </tr>
+
+        <tr>
+          <fieldset class="scheduler-border">
+              <legend class="scheduler-border">INSTANT<b>LOTTO</b></legend>
+              <label class="lotteryLabel">Win every 5 minutes ...</label>
+              <div class="control-group">
+                <td class="lottery-cell">
+                  <div class="card" style="width: 15rem;  margin: 0 auto;">
+                    <a (click)="buyTicketRedirect('rapidos')" style="cursor: pointer;">
+                      <img class="card-img-top" src="assets/img/rapidos.png" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Rapidos</h5>
+                      <p class="card-text">
+                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Rapidos', 'about', content)">Rules</button>
+                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('rapidos')">Buy</button>
+                        <button class="btn btn-dark btn-sm buy-give">Give</button>
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td class="lottery-cell">
+                  <div class="card" style="width: 15rem;  margin: 0 auto;">
+                    <a (click)="buyTicketRedirect('supers')" style="cursor: pointer;">
+                      <img class="card-img-top" src="assets/img/supers.png" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Supers</h5>
+                      <p class="card-text">
+                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Supers', 'about', content)">Rules</button>
+                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('supers')">Buy</button>
+                        <button class="btn btn-dark btn-sm buy-give">Give</button>
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td class="lottery-cell">
+                  <div class="card" style="width: 15rem;  margin: 0 auto;">
+                    <a (click)="buyTicketRedirect('top3')" style="cursor: pointer;">
+                      <img class="card-img-top" src="assets/img/top3.png" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                      <h5 class="card-title">Top3</h5>
+                      <p class="card-text">
+                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Top3', 'about', content)">Rules</button>
+                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('top3')">Buy</button>
+                        <button class="btn btn-dark btn-sm buy-give">Give</button>
+                      </p>
+                    </div>
+                  </div>
+                </td>
+              </div>
+          </fieldset>
+        </tr>
+
+      </table>
   </div>
 
 
