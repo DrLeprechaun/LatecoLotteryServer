@@ -1,5 +1,9 @@
 .header {
   margin-top: 20px;
+  position: fixed;
+  /*overflow-y: scroll;*/
+  margin-bottom: 50px;
+  z-index: 10;
 }
 
 .header img {
@@ -7,9 +11,21 @@
   height: 34px;
 }
 
+.page-content {
+  /*width: 50%;
+  position: fixed;*/
+  /*display: table;*/
+  width: 80%;
+  /*border-color: red;
+  border: 5px solid red;*/
+  table-layout: auto;
+
+}
+
 .page-content td {
   vertical-align: top;
   padding: 20px;
+  /*display: table-cell;*/
 }
 
 .banner-cell {
@@ -52,7 +68,9 @@ p {
 }
 
 #navbar {
-  margin-top: 20px;
+  /*margin-top: 20px;*/
+  position: fixed;
+  z-index: 10;
 }
 
 .buy-give {
@@ -67,7 +85,8 @@ p {
 fieldset.scheduler-border {
     border: 1px groove #000 !important;
     padding: 0 1.4em 1.4em 1.4em !important;
-    margin: 0 0 1.5em 0 !important;
+    /*margin: 0 0 1.5em 0 !important;*/
+    margin: 1em 1em 1.5em 1em !important;
     color: black;
     -webkit-box-shadow:  0px 0px 0px 0px #000;
             box-shadow:  0px 0px 0px 0px #000;
@@ -155,6 +174,12 @@ legend.scheduler-border {
 
 .container {
   margin-left: 10px;
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  align: center;
+  position: absolute;
 }
 
 
