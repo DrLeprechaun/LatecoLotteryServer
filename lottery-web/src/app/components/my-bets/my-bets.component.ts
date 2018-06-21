@@ -195,6 +195,12 @@ export class MyBetsComponent implements OnInit {
           }
           this.archiveTableData.push(rowData);
         }
+        //Sorting
+        for (var i = 0; i < this.archiveTableData.length / 2; i++) {
+          var temp = this.archiveTableData[i];
+          this.archiveTableData[i] = this.archiveTableData[this.archiveTableData.length - 1 - i];
+          this.archiveTableData[this.archiveTableData.length - 1 - i] = temp;
+        }
       }
     });
   }

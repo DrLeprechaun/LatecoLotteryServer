@@ -169,12 +169,12 @@
       </td>
       <td>
         <div class="cube">
-          <div class="side" id="side-1"><img style="width: inherit;" src="assets/img/4_21.png"></div>
-          <div class="side" id="side-2"><img style="width: inherit;" src="assets/img/j_6_45.png"></div>
-          <div class="side" id="side-3"><img style="width: inherit;" src="assets/img/5_36.png"></div>
-          <div class="side" id="side-4"><img style="width: inherit;" src="assets/img/rapidos.png"></div>
-          <div class="side" id="side-5"><img style="width: inherit;" src="assets/img/top3.png"></div>
-          <div class="side" id="side-6"><img style="width: inherit;" src="assets/img/supers.png"></div>
+          <div class="side" id="side-1"><img style="width: inherit;" src="assets/img/4_21_small.jpg"></div>
+          <div class="side" id="side-2"><img style="width: inherit;" src="assets/img/6_45_small.jpg"></div>
+          <div class="side" id="side-3"><img style="width: inherit;" src="assets/img/5_36_small.jpg"></div>
+          <div class="side" id="side-4"><img style="width: inherit;" src="assets/img/rapidos_small.jpg"></div>
+          <div class="side" id="side-5"><img style="width: inherit;" src="assets/img/top3_small.jpg"></div>
+          <div class="side" id="side-6"><img style="width: inherit;" src="assets/img/supers_small.jpg"></div>
         </div>
       </td>
     </tr>
@@ -188,13 +188,20 @@
                     <a (click)="buyTicketRedirect('jackpot_4x21')" style="cursor: pointer;">
                       <img class="card-img-top" src="assets/img/4_21.png" alt="Card image cap">
                     </a>
-                    <div class="card-body">
+                    <!--<div class="card-body">
                       <h5 class="card-title">Jackpot 4x21</h5>
                       <p class="card-text">
                         <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x21', 'about', content)">Rules</button>
                         <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_4x21')">Buy</button>
                         <button class="btn btn-dark btn-sm buy-give">Give</button>
                       </p>
+                    </div>-->
+                    <div class="lotteryTitle">JACK<b>POT</b> 6x45</div>
+                    <div class="lotteryFunds">1000 SJP</div>
+                    <div class="buttonSector">
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 6x45', content)">Rules</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('jackpot_6x45')">Buy</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
                     </div>
                   </div>
                 </td>
@@ -203,14 +210,21 @@
                     <a (click)="buyTicketRedirect('jackpot_5x36')" style="cursor: pointer;">
                       <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
                     </a>
-                    <div class="card-body">
+                    <!--<div class="card-body">
                       <h5 class="card-title">Jackpot 5x36</h5>
                       <p class="card-text">
                         <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'about', content)">Rules</button>
                         <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_5x36')">Buy</button>
                         <button class="btn btn-dark btn-sm buy-give">Give</button>
                       </p>
-                    </div>
+                    </div>-->
+                    <div class="lotteryTitle">JACK<b>POT</b> 5x36</div>
+                    <div class="lotteryFunds">1000 SJP</div>
+                    <div class="buttonSector">
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 5x36', content)">Rules</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('jackpot_5x36')">Buy</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                  </div>
                   </div>
                 </td>
                 <td class="lottery-cell">
@@ -218,13 +232,20 @@
                     <a (click)="buyTicketRedirect('jackpot_6x45')" style="cursor: pointer;">
                       <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
                     </a>
-                    <div class="card-body">
+                    <!--<div class="card-body">
                       <h5 class="card-title">Jackpot 6x45</h5>
                       <p class="card-text">
                         <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', 'about', content)">Rules</button>
                         <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_6x45')">Buy</button>
                         <button class="btn btn-dark btn-sm buy-give">Give</button>
                       </p>
+                    </div>-->
+                    <div class="lotteryTitle">JACK<b>POT</b> 6x45</div>
+                    <div class="lotteryFunds">1000 SJP</div>
+                    <div class="buttonSector">
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 6x45', content)">Rules</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('jackpot_6x45')">Buy</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
                     </div>
                   </div>
                 </td>
@@ -242,14 +263,21 @@
                     <a (click)="buyTicketRedirect('rapidos')" style="cursor: pointer;">
                       <img class="card-img-top" src="assets/img/rapidos.png" alt="Card image cap">
                     </a>
-                    <div class="card-body">
+                    <!--<div class="card-body">
                       <h5 class="card-title">Rapidos</h5>
                       <p class="card-text">
                         <button class="btn btn-dark btn-sm buy-give" (click)="open('Rapidos', 'about', content)">Rules</button>
                         <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('rapidos')">Buy</button>
                         <button class="btn btn-dark btn-sm buy-give">Give</button>
                       </p>
-                    </div>
+                    </div>-->
+                    <div class="lotteryTitle">RAPI<b>DOS</b></div>
+                    <div class="lotteryFunds">1000 SJP</div>
+                    <div class="buttonSector">
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="open('Rapidos', content)">Rules</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('rapidos')">Buy</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                  </div>
                   </div>
                 </td>
                 <td class="lottery-cell">
@@ -257,14 +285,21 @@
                     <a (click)="buyTicketRedirect('supers')" style="cursor: pointer;">
                       <img class="card-img-top" src="assets/img/supers.png" alt="Card image cap">
                     </a>
-                    <div class="card-body">
+                    <!--<div class="card-body">
                       <h5 class="card-title">Supers</h5>
                       <p class="card-text">
                         <button class="btn btn-dark btn-sm buy-give" (click)="open('Supers', 'about', content)">Rules</button>
                         <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('supers')">Buy</button>
                         <button class="btn btn-dark btn-sm buy-give">Give</button>
                       </p>
-                    </div>
+                    </div>-->
+                    <div class="lotteryTitle">SUPER<b>S</b> 4x21</div>
+                    <div class="lotteryFunds">1000 SJP</div>
+                    <div class="buttonSector">
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="open('Supers', content)">Rules</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('supers')">Buy</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                  </div>
                   </div>
                 </td>
                 <td class="lottery-cell">
@@ -272,13 +307,20 @@
                     <a (click)="buyTicketRedirect('top3')" style="cursor: pointer;">
                       <img class="card-img-top" src="assets/img/top3.png" alt="Card image cap">
                     </a>
-                    <div class="card-body">
+                    <!--<div class="card-body">
                       <h5 class="card-title">Top3</h5>
                       <p class="card-text">
                         <button class="btn btn-dark btn-sm buy-give" (click)="open('Top3', 'about', content)">Rules</button>
                         <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('top3')">Buy</button>
                         <button class="btn btn-dark btn-sm buy-give">Give</button>
                       </p>
+                    </div>-->
+                    <div class="lotteryTitle">TOP<b>3</b></div>
+                    <div class="lotteryFunds">1000 SJP</div>
+                    <div class="buttonSector">
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="open('Top3', content)">Rules</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('top3')">Buy</button></div>
+                      <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
                     </div>
                   </div>
                 </td>
