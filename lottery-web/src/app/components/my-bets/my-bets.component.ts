@@ -24,6 +24,7 @@ export class MyBetsComponent implements OnInit {
   editableCombination: number[] = [];
   lotteryType: string = "";
   editedRecordId: number;
+  private superjackpot_value: 0;
 
   constructor(private lottery: LotteryService, private modalService: NgbModal) { }
 
@@ -32,6 +33,19 @@ export class MyBetsComponent implements OnInit {
   }
 
   loadData(): void {
+    this.lottery.getBank()
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        console.log(res.json().data);
+        this.superjackpot_value = res.json().data.superjackpot;
+      } else {
+        console.log(res.json().message);
+      }
+    },
+    (err) => {
+      console.log(err);
+    })
     //Active bets
     this.lottery.getBets()
     .then((res) => {
@@ -195,12 +209,6 @@ export class MyBetsComponent implements OnInit {
           }
           this.archiveTableData.push(rowData);
         }
-        //Sorting
-        for (var i = 0; i < this.archiveTableData.length / 2; i++) {
-          var temp = this.archiveTableData[i];
-          this.archiveTableData[i] = this.archiveTableData[this.archiveTableData.length - 1 - i];
-          this.archiveTableData[this.archiveTableData.length - 1 - i] = temp;
-        }
       }
     });
   }
@@ -253,6 +261,14 @@ export class MyBetsComponent implements OnInit {
       this.modalButtonsQuantity = 21;
       this.combinationQuantity = 4;
     }
+    if (type == "jackpot_5x36") {
+      this.modalButtonsQuantity = 36;
+      this.combinationQuantity = 5;
+    }
+    if (type == "jackpot_6x45") {
+      this.modalButtonsQuantity = 45;
+      this.combinationQuantity = 6;
+    }
     if (type == "rapidos") {
       this.modalButtonsQuantity = 21;
       this.combinationQuantity = 4;
@@ -266,6 +282,7 @@ export class MyBetsComponent implements OnInit {
       this.combinationQuantity = 6;
     }
     this.setModalButtonsArray(this.modalButtonsQuantity);
+    console.log(type);
   }
 
   private setModalButtonsArray(max: number): void {

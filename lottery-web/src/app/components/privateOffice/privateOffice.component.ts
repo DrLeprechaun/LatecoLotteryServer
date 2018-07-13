@@ -28,6 +28,12 @@ export class PrivateOfficeComponent {
   private combinationSize: number;
   private lotteryGrequencyDescription: string;
   private superjackpot_value: 0;
+  private jackpot_5_36_value: 0;
+  private jackpot_6_45_value: 0;
+  private jackpot_4_21_value: 0;
+  private supers_value: 0;
+  private top3_value: 0;
+  private rapidos_value: 0;
 
   constructor(private auth: AuthService,
     private router: Router,
@@ -43,6 +49,12 @@ export class PrivateOfficeComponent {
       if (res.json().status === 'success') {
         console.log(res.json().data);
         this.superjackpot_value = res.json().data.superjackpot;
+        this.jackpot_5_36_value = res.json().data.jackpot_5x36;
+        this.jackpot_6_45_value = res.json().data.jackpot_6x45;
+        this.jackpot_4_21_value = res.json().data.jackpot_4x21;
+        this.rapidos_value = res.json().data.rapidos;
+        this.top3_value = res.json().data.top3;
+        this.supers_value = res.json().data.supers;
       } else {
         console.log(res.json().message);
       }
