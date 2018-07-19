@@ -37,7 +37,8 @@
 .button-black {
 
     font-family: 'PT Sans', arial, serif;
-    color:#ffffff;
+    /*color:#ffffff;*/
+    color: black;
     text-align:center;
     vertical-align: middle;
     font-size:17px;
@@ -45,22 +46,24 @@
 
     padding:5px;
 
-    text-shadow: /* Simulating Text Stroke */
+    /*text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    1px 1px 0 #000;
+    1px 1px 0 #000;*/
 
-    border: 1px solid rgba(0,0,0,0.5);
+    /*border: 1px solid rgba(0,0,0,0.5);*/
+    border: 1px solid rgba(0,0,0,0.7);
     border-bottom: 3px solid rgba(0,0,0,0.5);
 
     /*border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;*/
 
-    background: rgba(0,0,0,0.25);
+    /*background: rgba(0,0,0,0.25);*/
+    background: rgba(255,255,255,1);
 
-    box-shadow:
+    /*box-shadow:
     0 2px 8px rgba(0,0,0,0.5),
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
@@ -86,7 +89,7 @@
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
     inset 0 10px 20px rgba(255,255,255,0.25),
-    inset 0 -15px 30px rgba(0,0,0,1);
+    inset 0 -15px 30px rgba(0,0,0,1);*/
 
 }
 
@@ -147,35 +150,40 @@
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;*/
 
-    background: rgba(255,0,0,0.25);
+    /*background: rgba(255,0,0,0.25);*/
+    background: rgba(0,0,0,0.25);
 
     box-shadow:
     0 2px 8px rgba(0,0,0,0.5),
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
     inset 0 10px 20px rgba(255,255,255,0.25),
-    inset 0 -15px 30px rgba(255,0,0,1);
+    /*inset 0 -15px 30px rgba(255,0,0,1);*/
+    inset 0 -15px 30px rgba(0,0,0,1);
 
     -o-box-shadow:
     0 2px 8px rgba(0,0,0,0.5),
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
     inset 0 10px 20px rgba(255,255,255,0.25),
-    inset 0 -15px 30px rgba(255,0,0,1);
+    /*inset 0 -15px 30px rgba(255,0,0,1);*/
+    inset 0 -15px 30px rgba(0,0,0,1);
 
     -webkit-box-shadow:
     0 2px 8px rgba(0,0,0,0.5),
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
     inset 0 10px 20px rgba(255,255,255,0.25),
-    inset 0 -15px 30px rgba(255,0,0,1);
+    /*inset 0 -15px 30px rgba(255,0,0,1);*/
+    inset 0 -15px 30px rgba(0,0,0,1);
 
     -moz-box-shadow:
     0 2px 8px rgba(0,0,0,0.5),
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
     inset 0 10px 20px rgba(255,255,255,0.25),
-    inset 0 -15px 30px rgba(255,0,0,1);
+    /*inset 0 -15px 30px rgba(255,0,0,1);*/
+    inset 0 -15px 30px rgba(0,0,0,1);
 
 }
 
@@ -186,28 +194,32 @@
   inset 0 1px rgba(255,255,255,0.3),
   inset 0 10px rgba(255,255,255,0.2),
   inset 0 10px 20px rgba(255,255,255,0.25),
-  inset 0 -15px 30px rgba(255,0,0,0.3);
+  /*inset 0 -15px 30px rgba(255,0,0,0.3);*/
+  inset 0 -15px 30px rgba(0,0,0,0.3);
 
   -o-box-shadow:
   0 2px 8px rgba(0,0,0,0.5),
   inset 0 1px rgba(255,255,255,0.3),
   inset 0 10px rgba(255,255,255,0.2),
   inset 0 10px 20px rgba(255,255,255,0.25),
-  inset 0 -15px 30px rgba(255,0,0,0.3);
+  /*inset 0 -15px 30px rgba(255,0,0,0.3);*/
+  inset 0 -15px 30px rgba(0,0,0,0.3);
 
   -webkit-box-shadow:
   0 2px 8px rgba(0,0,0,0.5),
   inset 0 1px rgba(255,255,255,0.3),
   inset 0 10px rgba(255,255,255,0.2),
   inset 0 10px 20px rgba(255,255,255,0.25),
-  inset 0 -15px 30px rgba(255,0,0,0.3);
+  /*inset 0 -15px 30px rgba(255,0,0,0.3);*/
+  inset 0 -15px 30px rgba(0,0,0,0.3);
 
   -moz-box-shadow:
   0 2px 8px rgba(0,0,0,0.5),
   inset 0 1px rgba(255,255,255,0.3),
   inset 0 10px rgba(255,255,255,0.2),
   inset 0 10px 20px rgba(255,255,255,0.25),
-  inset 0 -15px 30px rgba(255,0,0,0.3);
+  /*inset 0 -15px 30px rgba(255,0,0,0.3);*/
+  inset 0 -15px 30px rgba(0,0,0,0.3);
 
 }
 

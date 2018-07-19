@@ -98,7 +98,7 @@
   <table style="margin-left: 50px;">
     <tr>
       <td><img src="assets/img/logo_small.png" alt="logo"></td>
-      <td style="padding-top: 5px;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
+      <td style="padding-top: 5px; color=black;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
     </tr>
   </table>
 </div>
@@ -116,8 +116,8 @@
           <p><a (click)="logOut()" routerLink="/home">Logout</a></p>
         </div>
     </td>
-    <td class="banner-cell"  align="center" style="padding-top: 10%;">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="879px;">
+    <td class="banner-cell"  align="center" width="100%" style="padding-top: 10%;">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 887px;">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -152,7 +152,7 @@
       <tr>
         <td style="width: 100%"></td>
             <div class="control-group">
-              <div style="width: 887px">
+              <div>
 
 
                 <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>

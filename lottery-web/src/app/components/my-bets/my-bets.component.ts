@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LotteryService } from '../../services/lottery.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { CombinationUpdate } from '../../models/combination-update';
+import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
 
 
 @Component({
@@ -26,10 +27,11 @@ export class MyBetsComponent implements OnInit {
   editedRecordId: number;
   private superjackpot_value: 0;
 
-  constructor(private lottery: LotteryService, private modalService: NgbModal) { }
+  constructor(private lottery: LotteryService, private modalService: NgbModal, private tpService: TicketsPurchaseService) { }
 
   ngOnInit() {
     this.loadData();
+    /*console.log(JSON.parse(this.tpService.getNewBets()));*/
   }
 
   loadData(): void {
@@ -60,7 +62,8 @@ export class MyBetsComponent implements OnInit {
             "fake_id": "00" + 21536 + res.json().data.jackpot_5x36[i].id,
             "type_name": "Jackpot 5x36",
             "type": "jackpot_5x36",
-            "combination": this.processCombination(res.json().data.jackpot_5x36[i].combination)
+            "combination": this.processCombination(res.json().data.jackpot_5x36[i].combination),
+            "is_new": this.checkNewBet("jackpot_5x36", res.json().data.jackpot_5x36[i].combination)
           }
           this.tableData.push(rowData);
         }
@@ -71,7 +74,8 @@ export class MyBetsComponent implements OnInit {
             "fake_id": "00" + 21645 + res.json().data.jackpot_6x45[i].id,
             "type_name": "Jackpot 6x45",
             "type": "jackpot_6x45",
-            "combination": this.processCombination(res.json().data.jackpot_6x45[i].combination)
+            "combination": this.processCombination(res.json().data.jackpot_6x45[i].combination),
+            "is_new": this.checkNewBet("jackpot_6x45", res.json().data.jackpot_6x45[i].combination)
           }
           this.tableData.push(rowData);
         }
@@ -81,7 +85,8 @@ export class MyBetsComponent implements OnInit {
             "fake_id": "00" + 21421 + res.json().data.jackpot_4x21[i].id,
             "type_name": "Jackpot 4x21",
             "type": "jackpot_4x21",
-            "combination": this.processCombination(res.json().data.jackpot_4x21[i].combination)
+            "combination": this.processCombination(res.json().data.jackpot_4x21[i].combination),
+            "is_new": this.checkNewBet("jackpot_4x21", res.json().data.jackpot_4x21[i].combination)
           }
           this.tableData.push(rowData);
         }
@@ -91,7 +96,8 @@ export class MyBetsComponent implements OnInit {
             "fake_id": "00" + 10645 + res.json().data.rapidos[i].id,
             "type_name": "Rapidos",
             "type": "rapidos",
-            "combination": this.processCombination(res.json().data.rapidos[i].combination)
+            "combination": this.processCombination(res.json().data.rapidos[i].combination),
+            "is_new": this.checkNewBet("rapidos", res.json().data.rapidos[i].combination)
           }
           this.tableData.push(rowData);
         }
@@ -101,7 +107,8 @@ export class MyBetsComponent implements OnInit {
             "fake_id": "00" + 10749 + res.json().data.supers[i].id,
             "type_name": "Supers",
             "type": "supers",
-            "combination": this.processCombination(res.json().data.supers[i].combination)
+            "combination": this.processCombination(res.json().data.supers[i].combination),
+            "is_new": this.checkNewBet("supers", res.json().data.supers[i].combination)
           }
           this.tableData.push(rowData);
         }
@@ -111,7 +118,8 @@ export class MyBetsComponent implements OnInit {
             "fake_id": "00" + 10536 + res.json().data.top3[i].id,
             "type_name": "Top 3",
             "type": "top3",
-            "combination": this.processCombination(res.json().data.top3[i].combination)
+            "combination": this.processCombination(res.json().data.top3[i].combination),
+            "is_new": this.checkNewBet("top3", res.json().data.top3[i].combination)
           }
           this.tableData.push(rowData);
         }
@@ -211,6 +219,33 @@ export class MyBetsComponent implements OnInit {
         }
       }
     });
+    /*this.tpService.removeNewBets();*/
+  }
+
+  checkNewBet(t: string, combination: any) {
+    var result = false;
+
+    if (this.tpService.getNewBets() != null) {
+      var newBets = JSON.parse(this.tpService.getNewBets());
+      if (t == newBets.type) {
+        for (var i = 0; i < newBets.combinations.length; i++) {
+          if (combination.length == newBets.combinations[i].length) {
+            var compFlag = false;
+            for (var j = 0; j < combination.length; j++) {
+              if (combination[j] != newBets.combinations[i][j]) {
+                compFlag = true;
+              }
+            }
+            //result = !compFlag;
+            if (!compFlag) {
+              result = true;
+            }
+          }
+        }
+      }
+    }
+
+    return result;
   }
 
   processCombination(combination: number[]): string {

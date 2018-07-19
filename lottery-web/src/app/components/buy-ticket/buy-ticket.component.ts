@@ -16,12 +16,14 @@ export class BuyTicketComponent implements OnInit {
   combinationSize: number;
   blocks = [];
   combination: number[] = [];
+  combinations: any[] = [];
   lotteryName: string;
   lotteryBunner: string;
   ticketCost: number;
   lotteryGrequencyDescription: string;
   backgroundImage: string;
   tableData: any[] = [];
+  tickets: any[] = [];
   private superjackpot_value: 0;
   private jackpot_5_36_value: 0;
   private jackpot_6_45_value: 0;
@@ -242,15 +244,16 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
       this.blocks.push(block);
     }*/
 
-    for (var i = 0; i < this.maxNumber; i++) {
+    /*for (var i = 0; i < this.maxNumber; i++) {
       let block = {
         num: i+1,
         clicked: false
       }
       this.blocks.push(block);
-    }
+    }*/
 
     //Table
+    /*var numberTable = [];
     if (this.maxNumber == 36) {
       let k = 0;
       for (var i = 0; i < 6; i++) {
@@ -259,7 +262,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
           subArray.push(this.blocks[k]);
           k++;
         }
-        this.tableData.push(subArray);
+        numberTable.push(subArray);
       }
     } else if (this.maxNumber == 45) {
       let k = 0;
@@ -269,7 +272,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
           subArray.push(this.blocks[k]);
           k++;
         }
-        this.tableData.push(subArray);
+        numberTable.push(subArray);
       }
     } else if (this.maxNumber == 20) {
       let k = 0;
@@ -279,7 +282,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
           subArray.push(this.blocks[k]);
           k++;
         }
-        this.tableData.push(subArray);
+        numberTable.push(subArray);
       }
     } else if (this.maxNumber == 49) {
       let k = 0;
@@ -289,7 +292,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
           subArray.push(this.blocks[k]);
           k++;
         }
-        this.tableData.push(subArray);
+        numberTable.push(subArray);
       }
     } else if (this.maxNumber == 21) {
       let k = 0;
@@ -299,10 +302,14 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
           subArray.push(this.blocks[k]);
           k++;
         }
-        this.tableData.push(subArray);
+        numberTable.push(subArray);
       }
     }
+    this.tickets.push(numberTable);*/
+    var newCombination = [];
+    this.combinations.push(newCombination);
 
+    this.addTicketToTable();
 
   }
 
@@ -323,9 +330,75 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     console.log(this.combination);
   }*/
 
-  addDelete(block) {
+  addTicketToTable() {
+    var blocks = [];
 
-    if (block.clicked == false) {
+    for (var i = 0; i < this.maxNumber; i++) {
+      let block = {
+        num: i+1,
+        clicked: false
+      }
+      blocks.push(block);
+    }
+
+    var numberTable = [];
+    if (this.maxNumber == 36) {
+      let k = 0;
+      for (var i = 0; i < 6; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 6; j++) {
+          subArray.push(blocks[k]);
+          k++;
+        }
+        numberTable.push(subArray);
+      }
+    } else if (this.maxNumber == 45) {
+      let k = 0;
+      for (var i = 0; i < 9; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 5; j++) {
+          subArray.push(blocks[k]);
+          k++;
+        }
+        numberTable.push(subArray);
+      }
+    } else if (this.maxNumber == 20) {
+      let k = 0;
+      for (var i = 0; i < 4; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 5; j++) {
+          subArray.push(blocks[k]);
+          k++;
+        }
+        numberTable.push(subArray);
+      }
+    } else if (this.maxNumber == 49) {
+      let k = 0;
+      for (var i = 0; i < 7; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 7; j++) {
+          subArray.push(blocks[k]);
+          k++;
+        }
+        numberTable.push(subArray);
+      }
+    } else if (this.maxNumber == 21) {
+      let k = 0;
+      for (var i = 0; i < 3; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 7; j++) {
+          subArray.push(blocks[k]);
+          k++;
+        }
+        numberTable.push(subArray);
+      }
+    }
+    this.tickets.push(numberTable);
+  }
+
+  addDelete(block, i: number) {
+
+    /*if (block.clicked == false) {
       if (this.combination.length < this.combinationSize) {
         block.clicked = true;
         this.combination.push(block.num);
@@ -334,18 +407,49 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
       block.clicked = false;
       let index = this.combination.indexOf(block.num);
       this.combination.splice(index, 1);
+    }*/
+
+    if (block.clicked == false) {
+      if (this.combinations[i].length < this.combinationSize) {
+        block.clicked = true;
+        this.combinations[i].push(block.num);
+      }
+    } else {
+      block.clicked = false;
+      let index = this.combinations[i].indexOf(block.num);
+      this.combinations[i].splice(index, 1);
     }
 
     //Save button
-    if (this.combination.length == this.combinationSize) {
+    /*if (this.combination.length == this.combinationSize) {
+      document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
+    } else {
+      document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+    }*/
+
+    let flag = false;
+    for (var i = 0; i < this.combinations.length; i++) {
+      if (this.combinations[i].length != this.combinationSize) {
+        flag = true;
+      }
+    }
+
+    if (!flag) {
       document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
     } else {
       document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
     }
+
+  }
+
+  removeTicket(index: number){
+    this.combinations.splice(index, 1);
+    this.tickets.splice(index, 1);
   }
 
   buyTickets() {
-    if (this.combination.length > this.combinationSize) {
+
+    /*if (this.combination.length > this.combinationSize) {
       alert("You've selected more than " + this.combinationSize + "  numbers");
     } else if (this.combination.length < this.combinationSize) {
       alert("You've selected less than " + this.combinationSize + "  numbers");
@@ -354,19 +458,37 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
         type: this.tpService.getLotteryType(),
         combination: this.combination
       }
+
       this.lottery.buyTickets(ticket)
       .then((res) => {
         console.log(res.json());
         if (res.json().status === 'success') {
           this.router.navigateByUrl('/my-bets');
         } else {
-          //this.alertMessage(res.json().message);
         }
       },
       (err) => {
         console.log(err);
       })
+    }*/
+
+    let tickets = {
+      type: this.tpService.getLotteryType(),
+      combinations: this.combinations
     }
+
+    this.lottery.buyTickets(tickets)
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        this.tpService.setNewBets(tickets);
+        this.router.navigateByUrl('/my-bets');
+      } else {
+      }
+    },
+    (err) => {
+      console.log(err);
+    })
 
   }
 
@@ -379,7 +501,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
   }
 
   selectRandom() {
-    let r_comb = [];
+    /*let r_comb = [];
     while (r_comb.length < this.combinationSize) {
       let element = this.randomInt(1, this.maxNumber);
       if (r_comb.indexOf(element) < 0) {
@@ -403,11 +525,52 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
       document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
     } else {
       document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+    }*/
+
+    for (i = 0; i < this.tickets.length; i++) {
+      let r_comb = [];
+      while (r_comb.length < this.combinationSize) {
+        let element = this.randomInt(1, this.maxNumber);
+        if (r_comb.indexOf(element) < 0) {
+            r_comb.push(element);
+        }
+      }
+
+      for (var j = 0; j < this.tickets[i].length; j++) {
+        for (let block of this.tickets[i][j]) {
+          if (r_comb.indexOf(block.num) > -1) {
+            block.clicked = true;
+          } else {
+              block.clicked = false;
+          }
+        }
+      }
+
+      this.combinations[i] = r_comb;
+    }
+
+    let flag = false;
+    for (var i = 0; i < this.combinations.length; i++) {
+      if (this.combinations[i].length != this.combinationSize) {
+        flag = true;
+      }
+    }
+
+    if (!flag) {
+      document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
+    } else {
+      document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
     }
   }
 
   randomInt(min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  addTicket() {
+    this.addTicketToTable();
+    var newCombination = [];
+    this.combinations.push(newCombination);
   }
 
   logOut(): void {
