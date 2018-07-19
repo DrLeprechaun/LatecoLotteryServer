@@ -482,6 +482,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
       console.log(res.json());
       if (res.json().status === 'success') {
         this.tpService.setNewBets(tickets);
+        this.tpService.setLotteryType("");
         this.router.navigateByUrl('/my-bets');
       } else {
       }
