@@ -141,3 +141,13 @@ ul {
   align-content: stretch;
   align-items: stretch;
 }
+
+.nav > li > button.active, .nav > li > button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+#random-button:hover {
+  color: #000;
+  background-color: #FFF;
+}
