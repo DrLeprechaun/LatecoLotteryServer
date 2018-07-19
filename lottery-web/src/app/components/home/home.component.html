@@ -2,7 +2,7 @@
   <table style="margin-left: 50px;">
     <tr>
       <td><img src="assets/img/logo_small.png" alt="logo"></td>
-      <td style="padding-top: 5px;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
+      <td style="padding-top: 5px; color=black;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
     </tr>
   </table>
 </div>
@@ -87,7 +87,7 @@
                     </p>
                   </div>-->
                   <div class="lotteryTitle">JACK<b>POT</b> 4x21</div>
-                  <div class="lotteryFunds">1000 SJP</div>
+                  <div class="lotteryFunds">{{jackpot_4_21_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 4x21', content)">Rules</button></div>
                     <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('jackpot_4x21')">Buy</button></div>
@@ -109,7 +109,7 @@
                     </p>
                   </div>-->
                   <div class="lotteryTitle">JACK<b>POT</b> 5x36</div>
-                  <div class="lotteryFunds">1000 SJP</div>
+                  <div class="lotteryFunds">{{jackpot_5_36_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 5x36', content)">Rules</button></div>
                     <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('jackpot_5x36')">Buy</button></div>
@@ -131,7 +131,7 @@
                     </p>
                   </div>-->
                   <div class="lotteryTitle">JACK<b>POT</b> 6x45</div>
-                  <div class="lotteryFunds">1000 SJP</div>
+                  <div class="lotteryFunds">{{jackpot_6_45_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 6x45', content)">Rules</button></div>
                     <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('jackpot_6x45')">Buy</button></div>
@@ -155,7 +155,7 @@
                     <img class="card-img-top" src="assets/img/rapidos.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">RAPI<b>DOS</b></div>
-                  <div class="lotteryFunds">1000 SJP</div>
+                  <div class="lotteryFunds">{{rapidos_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Rapidos', content)">Rules</button></div>
                     <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('rapidos')">Buy</button></div>
@@ -176,8 +176,8 @@
                   <a (click)="goLogin('supers')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/supers.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle">SUPER<b>S</b> 4x21</div>
-                  <div class="lotteryFunds">1000 SJP</div>
+                  <div class="lotteryTitle">SUPER<b>S</b></div>
+                  <div class="lotteryFunds">{{supers_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Supers', content)">Rules</button></div>
                     <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('supers')">Buy</button></div>
@@ -199,7 +199,7 @@
                     <img class="card-img-top" src="assets/img/top3.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">TOP<b>3</b></div>
-                  <div class="lotteryFunds">1000 SJP</div>
+                  <div class="lotteryFunds">{{top3_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Top3', content)">Rules</button></div>
                     <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('top3')">Buy</button></div>

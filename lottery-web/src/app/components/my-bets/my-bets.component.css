@@ -37,7 +37,8 @@
 .button-black {
 
     font-family: 'PT Sans', arial, serif;
-    color:#ffffff;
+    /*color:#ffffff;*/
+    color: black;
     text-align:center;
     vertical-align: middle;
     font-size:17px;
@@ -45,22 +46,24 @@
 
     padding:5px;
 
-    text-shadow: /* Simulating Text Stroke */
+    /*text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    1px 1px 0 #000;
+    1px 1px 0 #000;*/
 
-    border: 1px solid rgba(0,0,0,0.5);
+    /*border: 1px solid rgba(0,0,0,0.5);*/
+    border: 1px solid rgba(0,0,0,0.7);
     border-bottom: 3px solid rgba(0,0,0,0.5);
 
     /*border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;*/
 
-    background: rgba(0,0,0,0.25);
+    /*background: rgba(0,0,0,0.25);*/
+    background: rgba(255,255,255,1);
 
-    box-shadow:
+    /*box-shadow:
     0 2px 8px rgba(0,0,0,0.5),
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
@@ -86,7 +89,7 @@
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
     inset 0 10px 20px rgba(255,255,255,0.25),
-    inset 0 -15px 30px rgba(0,0,0,1);
+    inset 0 -15px 30px rgba(0,0,0,1);*/
 
 }
 
@@ -147,35 +150,40 @@
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;*/
 
-    background: rgba(255,0,0,0.25);
+    /*background: rgba(255,0,0,0.25);*/
+    background: rgba(0,0,0,0.25);
 
     box-shadow:
     0 2px 8px rgba(0,0,0,0.5),
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
     inset 0 10px 20px rgba(255,255,255,0.25),
-    inset 0 -15px 30px rgba(255,0,0,1);
+    /*inset 0 -15px 30px rgba(255,0,0,1);*/
+    inset 0 -15px 30px rgba(0,0,0,1);
 
     -o-box-shadow:
     0 2px 8px rgba(0,0,0,0.5),
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
     inset 0 10px 20px rgba(255,255,255,0.25),
-    inset 0 -15px 30px rgba(255,0,0,1);
+    /*inset 0 -15px 30px rgba(255,0,0,1);*/
+    inset 0 -15px 30px rgba(0,0,0,1);
 
     -webkit-box-shadow:
     0 2px 8px rgba(0,0,0,0.5),
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
     inset 0 10px 20px rgba(255,255,255,0.25),
-    inset 0 -15px 30px rgba(255,0,0,1);
+    /*inset 0 -15px 30px rgba(255,0,0,1);*/
+    inset 0 -15px 30px rgba(0,0,0,1);
 
     -moz-box-shadow:
     0 2px 8px rgba(0,0,0,0.5),
     inset 0 1px rgba(255,255,255,0.3),
     inset 0 10px rgba(255,255,255,0.2),
     inset 0 10px 20px rgba(255,255,255,0.25),
-    inset 0 -15px 30px rgba(255,0,0,1);
+    /*inset 0 -15px 30px rgba(255,0,0,1);*/
+    inset 0 -15px 30px rgba(0,0,0,1);
 
 }
 
@@ -186,28 +194,32 @@
   inset 0 1px rgba(255,255,255,0.3),
   inset 0 10px rgba(255,255,255,0.2),
   inset 0 10px 20px rgba(255,255,255,0.25),
-  inset 0 -15px 30px rgba(255,0,0,0.3);
+  /*inset 0 -15px 30px rgba(255,0,0,0.3);*/
+  inset 0 -15px 30px rgba(0,0,0,0.3);
 
   -o-box-shadow:
   0 2px 8px rgba(0,0,0,0.5),
   inset 0 1px rgba(255,255,255,0.3),
   inset 0 10px rgba(255,255,255,0.2),
   inset 0 10px 20px rgba(255,255,255,0.25),
-  inset 0 -15px 30px rgba(255,0,0,0.3);
+  /*inset 0 -15px 30px rgba(255,0,0,0.3);*/
+  inset 0 -15px 30px rgba(0,0,0,0.3);
 
   -webkit-box-shadow:
   0 2px 8px rgba(0,0,0,0.5),
   inset 0 1px rgba(255,255,255,0.3),
   inset 0 10px rgba(255,255,255,0.2),
   inset 0 10px 20px rgba(255,255,255,0.25),
-  inset 0 -15px 30px rgba(255,0,0,0.3);
+  /*inset 0 -15px 30px rgba(255,0,0,0.3);*/
+  inset 0 -15px 30px rgba(0,0,0,0.3);
 
   -moz-box-shadow:
   0 2px 8px rgba(0,0,0,0.5),
   inset 0 1px rgba(255,255,255,0.3),
   inset 0 10px rgba(255,255,255,0.2),
   inset 0 10px 20px rgba(255,255,255,0.25),
-  inset 0 -15px 30px rgba(255,0,0,0.3);
+  /*inset 0 -15px 30px rgba(255,0,0,0.3);*/
+  inset 0 -15px 30px rgba(0,0,0,0.3);
 
 }
 
@@ -267,8 +279,8 @@
 }*/
 
 #betsTable {
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 2%;
+  margin-right: 2%;
   margin-bottom: 40px;
 }
 
@@ -289,4 +301,331 @@ a.betTab {
 
 .table {
   margin-top: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.header {
+  margin-top: 20px;
+  position: fixed;
+  margin-bottom: 50px;
+  z-index: 10;
+}
+
+.header img {
+  width: 39px;
+  height: 34px;
+}
+
+.page-content {
+  width: 80%;
+  table-layout: auto;
+}
+
+.page-content td {
+  vertical-align: top;
+  padding: 20px;
+}
+
+
+.lottery-cell {
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  font-size: 13pt;
+  text-shadow: 1px 1px 8px #ffffff;
+  /*font-family: Arial, Helvetica, sans-serif;*/
+}
+
+a:hover {
+  color: grey;
+}
+
+a:active {
+  color: grey;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+#navbar {
+  position: fixed;
+  z-index: 10;
+}
+
+.buy-give {
+  width: 60px;
+  margin-left: 2px;
+}
+
+fieldset.scheduler-border {
+    border: 1px groove #000 !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    /*margin: 0 0 1.5em 0 !important;*/
+    margin: 1em 1em 1.5em 1em !important;
+    color: black;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+        font-size: 2.5em !important;
+        /*font-weight: bold !important;*/
+        text-align: left !important;
+        width:auto;
+        padding:0 10px;
+        border-bottom:none;
+        color: black;
+}
+
+.lotteryLabel {
+  font-size: 2em !important;
+  margin-left: 15px;
+  color: black;
+  font-weight: 100;
+}
+
+.cube {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform-origin: 50% 50% -50px;
+  transform-style: preserve-3d;
+  animation: rotation 18s cubic-bezier(0.15,1,0.15,1) infinite;
+}
+
+.side {
+  width: inherit;
+  height: inherit;
+  background: rgba(0,0,0,.3);
+  position: absolute;
+  color: #fff;
+  text-align: center;
+  font-size: 180%;
+  box-shadow: 0 0 8px rgba(0,0,0,.5);
+  transform-origin: 50% 50% -50px;
+  backface-visibility: hidden;
+  cursor: pointer;
+}
+
+
+#side-2 {
+  transform: rotateY(90deg);
+}
+
+#side-3 {
+  transform: rotateY(-90deg);
+}
+
+#side-4 {
+  transform: rotateX(90deg);
+}
+
+#side-5 {
+  transform: rotateX(-90deg);
+}
+
+#side-6 {
+  transform: rotateY(180deg);
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotateY(0);
+  }
+  25% {
+    transform: rotateY(90deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  75% {
+    transform: rotateY(270deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+
+.container {
+  margin-left: 10px;
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  align: center;
+  position: absolute;
+}
+
+
+.slider-holder
+{
+    width: 800px;
+    height: 240px;
+    background-color: yellow;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.image-holder
+{
+    width: 2400px;
+    background-color: red;
+    height: 240px;
+    clear: both;
+    position: relative;
+
+    -webkit-transition: left 2s;
+    -moz-transition: left 2s;
+    -o-transition: left 2s;
+    transition: left 2s;
+}
+
+.slider-image
+{
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    width: 800px;
+}
+
+#slider-image-1:target ~ .image-holder
+{
+    left: 0px;
+}
+
+#slider-image-2:target ~ .image-holder
+{
+    left: -800px;
+}
+
+#slider-image-3:target ~ .image-holder
+{
+    left: -1600px;
+}
+
+.button-holder
+{
+    position: relative;
+    top: -20px;
+}
+
+.slider-change
+{
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 5px;
+    background-color: brown;
+}
+
+.banner-text {
+  height: 170px;
+  font-size: 3.5em !important;
+  font-weight: 100;
+  padding-left: 10%;
+}
+
+.card {
+  position: relative;
+  border: 0px solid #333;
+  margin: 2%;
+  overflow: hidden;
+  /*width: 540px;*/
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.card-img-top {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.card:hover img {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-transition: transform 0.5s ease-in-out;
+}
+
+.buttonSector {
+  z-index: 9;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.buttonDiv {
+  display: inline-block;
+  width: 30%;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 5%;
+}
+
+.lotteryButton {
+  cursor: pointer;
+  /*width: 265px;*/
+  width: 100%;
+  height: 40px;
+  border: 1px solid #FFF;
+  text-align: center;
+  background-color: #000;
+  color: #FFF;
+  display: inline-block;
+  z-index: 9;
+}
+
+.lotteryButton:hover {
+  background-color: #FFF;
+  color: #000;
+  border-color: #000;
+  transition: 0.3s;
+}
+
+.lotteryButton p {
+  margin-top: 5px;
+}
+
+.lotteryTitle {
+  z-index: 9;
+  position: absolute;
+  top: 55%;
+  width: 100%;
+  font-size: 20pt;
+}
+
+.lotteryFunds {
+  color: #333333;
+  z-index: 9;
+  position: absolute;
+  top: 68%;
+  width: 100%;
+  font-size: 17pt;
 }

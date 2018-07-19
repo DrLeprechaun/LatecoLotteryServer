@@ -526,34 +526,50 @@ class BuyTickets(MethodView):
             resp = User.decode_auth_token(auth_token)
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
-                if (post_data['type'] == "jackpot_5x36"):
-                    newBet = BetsJackpot_5_36(user.id, post_data['combination'], True, False)
-                    db.session.add(newBet)
-                if (post_data['type'] == "jackpot_6x45"):
-                    newBet = BetsJackpot_6_45(user.id, post_data['combination'], True, False)
-                    db.session.add(newBet)
-                if (post_data['type'] == "jackpot_4x21"):
-                    newBet = BetsJackpot_4_21(user.id, post_data['combination'], True, False)
-                    db.session.add(newBet)
-                if (post_data['type'] == "rapidos"):
-                    newBet = BetsRapidos(user.id, post_data['combination'], True, False)
-                    db.session.add(newBet)
-                if (post_data['type'] == "supers"):
-                    newBet = BetsSupers(user.id, post_data['combination'], True, False)
-                    db.session.add(newBet)
-                if (post_data['type'] == "top3"):
-                    newBet = BetsTop3(user.id, post_data['combination'], True, False)
-                    db.session.add(newBet)
                 bank = Bank.query.first()
+                if (post_data['type'] == "jackpot_5x36"):
+                	for c in post_data['combinations']:
+                		newBet = BetsJackpot_5_36(user.id, c, True, False)
+                		db.session.add(newBet)
+                		bank.jackpot_5_36 += 1
+                    #newBet = BetsJackpot_5_36(user.id, post_data['combination'], True, False)
+                    #db.session.add(newBet)
+                    #bank.jackpot_5_36 += 1
+                if (post_data['type'] == "jackpot_6x45"):
+                	for c in post_data['combinations']:
+                		newBet = BetsJackpot_6_45(user.id, c, True, False)
+                		db.session.add(newBet)
+                		bank.jackpot_6_45 += 1
+                if (post_data['type'] == "jackpot_4x21"):
+                	for c in post_data['combinations']:
+                		newBet = BetsJackpot_4_21(user.id, c, True, False)
+                		db.session.add(newBet)
+                		bank.jackpot_4_21 += 1
+                if (post_data['type'] == "rapidos"):
+                	for c in post_data['combinations']:
+                		newBet = BetsRapidos(user.id, c, True, False)
+                		db.session.add(newBet)
+                		bank.rapidos += 1
+                if (post_data['type'] == "supers"):
+                	for c in post_data['combinations']:
+                		newBet = BetsSupers(user.id, c, True, False)
+                		db.session.add(newBet)
+                		bank.supers += 1
+                if (post_data['type'] == "top3"):
+                	for c in post_data['combinations']:
+                		newBet = BetsTop3(user.id, c, True, False)
+                		db.session.add(newBet)
+                		bank.top3 += 1
                 bank.superjackpot += 1
                 #db.flush()
                 db.session.commit()
                 msg = Message("SuperJackpot Lottery", sender = "vadim.e@lateco.net", recipients=[user.email])
                 #msg.html = "<h1>Superjackpot</h1>"
-                comb_html = ""
-                for i in post_data['combination']:
-                    comb_html += "<li><button>" + str(i) + "</button></li>"
-                msg.html = """<html>
+                for c in post_data['combinations']:
+                	comb_html = ""
+                	for i in c:
+                		comb_html += "<li><button>" + str(i) + "</button></li>"
+                	msg.html = """<html>
                                   <head>
                                     <meta name="viewport" content="width=device-width" />
                                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -905,11 +921,11 @@ class BuyTickets(MethodView):
                                       </tr>
                                     </table>
                                   </body>
-                                </html>"""
-                try:
-                    mail.send(msg)
-                except:
-                    print("Email hasn't been sent")
+                                </html>""" 
+                	try:
+                		mail.send(msg)
+                	except:
+                		print("Email hasn't been sent")
                 responseObject = {
                     'status': 'success'
                 }
