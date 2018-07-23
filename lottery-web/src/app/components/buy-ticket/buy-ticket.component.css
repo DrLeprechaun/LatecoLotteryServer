@@ -11,6 +11,11 @@
 
 h2 {
   margin-bottom: 10px;
+  color: black;
+}
+
+h4 {
+  color: black;
 }
 
 .border {
@@ -201,8 +206,6 @@ ul {
   align-items: stretch;
 }
 
-<<<<<<< HEAD
-=======
 .header {
   margin-top: 20px;
   position: fixed;
@@ -210,7 +213,6 @@ ul {
   z-index: 10;
 }
 
->>>>>>> parent of b17b8fd... Cowntdown, raffles
 .header img {
   width: 39px;
   height: 34px;
@@ -431,6 +433,7 @@ p {
   width: 100%;
   font-size: 20pt;
   text-transform: uppercase;
+  color: black;
 }
 
 .lotteryFunds {
@@ -440,6 +443,7 @@ p {
   top: 68%;
   width: 100%;
   font-size: 17pt;
+  color: black;
 }
 
 .top-panel-button {
@@ -469,13 +473,6 @@ p {
   border: 1px solid #FFF;
   background-color: #000;
   color: #FFF;
-<<<<<<< HEAD
-  
-.nav > li > button.active, .nav > li > button:hover {
-    background-color: #fff;
-    color: #000;
-=======
->>>>>>> parent of b17b8fd... Cowntdown, raffles
 }
 
 .btn-dark.top-panel-button.active.show {
