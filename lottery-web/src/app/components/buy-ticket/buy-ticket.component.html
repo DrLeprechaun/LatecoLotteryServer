@@ -1,4 +1,4 @@
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <a class="navbar-brand" routerLink="#">SuperJackpot</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,6 +16,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/my-tokens">My Tokens</a>
         </li>
+        <!--<li class="nav-item">
+          <a class="nav-link" href="wallet">Wallet</a>
+        </li>-->
         <li class="nav-item">
           <a class="nav-link" routerLink="/my-statistics">Statistics</a>
         </li>
@@ -42,7 +45,8 @@
       <ul class="nav">
         <li><button class="btn-dark active" data-toggle="tab" href="#tickets">Tickets</button></li>
         <li><button class="btn-dark" data-toggle="tab" href="#rules">Rules</button></li>
-        <li><button class="btn-dark" (click)="selectRandom()">Random</button></li>
+        <li><button class="btn-dark" id="random-button" (click)="selectRandom()">Random</button></li>
+        <!--<li><button class="btn-dark" data-toggle="tab" href="#draw-archive">Draw Archive</button></li>-->
       </ul>
     </td>
       <td style="padding-left: 80px;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
@@ -51,9 +55,19 @@
     <tr>
       <td colspan="3">
 
+        <!--TAB CONTENT-->
+
         <div class="tab-content">
           <div class="tab-pane fade show active" id="tickets" role="tabpanel">
             <div class="border">
+            <!--<ul>
+              <li *ngFor="let block of blocks">
+                <button
+                  [class.clicked]="block.clicked"
+                  (click)="addDelete(block)">{{ block.num }}
+                </button>
+              </li>
+            </ul>-->
 
             <table align="center" id="numbersTable">
               <tr *ngFor="let r of tableData">
@@ -69,6 +83,15 @@
                 </td>
               </tr>
             </table>
+
+            <!--<ul *ngFor="let r of tableData">
+              <li *ngFor="let block of r">
+                <button
+                  [class.clicked]="block.clicked"
+                  (click)="addDelete(block)">{{ block.num }}
+                </button>
+              </li>
+            </ul>-->
 
           </div>
           </div>
@@ -100,6 +123,11 @@
           </div>
         </div>
 
+        <!--<div class="tab-pane fade" id="draw-archive">
+          <div class="border">
+            <p>Draw Archive</p>
+          </div>
+        </div>-->
       </div>
 
       </td>
@@ -110,6 +138,7 @@
             <div class="card-body">
               <h5 class="card-title" style="text-align:center;">1 754 777 <img src="assets/img/logo_small.png" alt="logo" style="width: 25px;"></h5>
               <p class="card-text">
+                <!--<button class="btn btn-dark btn-md buy-give" style="width: 195px;">Buy 0,003 SJP</button>-->
             </div>
           </div>
         </div>
@@ -122,6 +151,7 @@
         <div id="buyButton" class="ok" (click)="buyTickets()"><p>Buy Ticket</p></div>
       </td>
     </tr>
+<<<<<<< HEAD
   </table>-->
 
 <img src="{{backgroundImage}}" style="position: fixed; width: 100%; height: 100%">
@@ -130,7 +160,7 @@
     <table style="margin-left: 50px;">
       <tr>
         <td><img src="assets/img/logo_small.png" alt="logo"></td>
-        <td style="padding-top: 5px; color: black;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
+        <td style="padding-top: 5px;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
       </tr>
     </table>
   </div>
@@ -155,7 +185,10 @@
                   <li><button class="btn-dark top-panel-button" (click)="selectRandom()">Random</button></li>
                 </ul>
               </td>
-                <td align="center" style="padding-left: 80px;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
+                <td align="center" style="padding-left: 80px;">
+                  <h2><b>SUPER</b>JACK<b>POT</b></h2>
+                  <h4>{{cd}}</h4>
+                </td>
               </tr>
 
               <tr>
@@ -181,7 +214,13 @@
                         </tr>
                       </table>
                     </div>
-                    <div class="ok" (click)="removeTicket(i)" style="margin-bottom: 5px;"><p>- Remove </p></div>
+                    <div>
+                      <div class="ok" style="width: 207px; margin-bottom: 5px;"><p>Raffles: {{raffles[i]}}</p></div>
+                      <div class="ok" (click)="addRaffle(i)" style="width: 207px; margin-bottom: 5px;"><p>+</p></div>
+                      <div class="ok" (click)="removeRaffle(i)" style="width: 207px; margin-bottom: 5px;"><p>-</p></div>
+                    </div>
+                    <div class="ok" (click)="removeTicket(i)" style="margin-bottom: 5px;"><p>- Remove Ticket</p></div>
+                    <hr>
                   </div>
 
                     </div>
@@ -221,7 +260,8 @@
                     <div class="card" style="width: 15rem;  margin: 0 auto; ">
                       <img class="card-img-top" src="{{lotteryBunner}}" alt="Card image cap">
                       <div class="lotteryTitle">{{lotteryName}}</div>
-                      <div class="lotteryFunds">{{lotteryFunds}} SJP</div>
+                      <!--<div class="lotteryFunds">{{lotteryFunds}} SJP</div>-->
+                      <div class="lotteryFunds">{{lotteryFunds}} <img style="width:24px;" src="assets/img/logo_small.png" alt="logo"></div>
                       <div class="buttonSector">
                         <div id="buyButton" class="ok" (click)="buyTickets()"><p>Buy Tickets</p></div>
                       </div>
@@ -249,3 +289,6 @@
               </tr>
             </table>
           </div>
+=======
+  </table>
+>>>>>>> decbaa94575125dc5c99dbd2175fca4d5dcd7701
