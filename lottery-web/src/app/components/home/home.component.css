@@ -117,7 +117,7 @@ legend.scheduler-border {
   position: absolute;
   transform-origin: 50% 50% -50px;
   transform-style: preserve-3d;
-  animation: rotation 43s cubic-bezier(0.15,1,0.15,1) infinite;
+  animation: rotation 18s cubic-bezier(0.15,1,0.15,1) infinite;
 }
 
 .side {
@@ -157,37 +157,19 @@ legend.scheduler-border {
 
 @keyframes rotation {
   0% {
-    transform: rotateX(90deg);
+    transform: rotateY(0);
   }
-  10% {
-    transform: rotateX(0deg);
-  }
-  20% {
-    transform: rotateX(-90deg);
-  }
-  30% {
-    transform: rotateX(0deg);
-  }
-  40% {
+  25% {
     transform: rotateY(90deg);
   }
   50% {
     transform: rotateY(180deg);
   }
-  60% {
+  75% {
     transform: rotateY(270deg);
   }
-  70% {
-    transform: rotateY(360deg);
-  }
-  80% {
-    transform: rotateX(-90deg);
-  }
-  90% {
-    transform: rotateX(0deg);
-  }
   100% {
-    transform: rotateX(90deg);
+    transform: rotateX(360deg);
   }
 }
 

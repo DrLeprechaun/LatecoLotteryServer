@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <a class="navbar-brand" routerLink="#">SuperJackpot</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,9 +16,6 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/my-tokens">My Tokens</a>
         </li>
-        <!--<li class="nav-item">
-          <a class="nav-link" href="wallet">Wallet</a>
-        </li>-->
         <li class="nav-item">
           <a class="nav-link" routerLink="/my-statistics">Statistics</a>
         </li>
@@ -45,8 +42,7 @@
       <ul class="nav">
         <li><button class="btn-dark active" data-toggle="tab" href="#tickets">Tickets</button></li>
         <li><button class="btn-dark" data-toggle="tab" href="#rules">Rules</button></li>
-        <li><button class="btn-dark" id="random-button" (click)="selectRandom()">Random</button></li>
-        <!--<li><button class="btn-dark" data-toggle="tab" href="#draw-archive">Draw Archive</button></li>-->
+        <li><button class="btn-dark" (click)="selectRandom()">Random</button></li>
       </ul>
     </td>
       <td style="padding-left: 80px;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
@@ -55,19 +51,9 @@
     <tr>
       <td colspan="3">
 
-        <!--TAB CONTENT-->
-
         <div class="tab-content">
           <div class="tab-pane fade show active" id="tickets" role="tabpanel">
             <div class="border">
-            <!--<ul>
-              <li *ngFor="let block of blocks">
-                <button
-                  [class.clicked]="block.clicked"
-                  (click)="addDelete(block)">{{ block.num }}
-                </button>
-              </li>
-            </ul>-->
 
             <table align="center" id="numbersTable">
               <tr *ngFor="let r of tableData">
@@ -83,15 +69,6 @@
                 </td>
               </tr>
             </table>
-
-            <!--<ul *ngFor="let r of tableData">
-              <li *ngFor="let block of r">
-                <button
-                  [class.clicked]="block.clicked"
-                  (click)="addDelete(block)">{{ block.num }}
-                </button>
-              </li>
-            </ul>-->
 
           </div>
           </div>
@@ -123,11 +100,6 @@
           </div>
         </div>
 
-        <!--<div class="tab-pane fade" id="draw-archive">
-          <div class="border">
-            <p>Draw Archive</p>
-          </div>
-        </div>-->
       </div>
 
       </td>
@@ -138,7 +110,6 @@
             <div class="card-body">
               <h5 class="card-title" style="text-align:center;">1 754 777 <img src="assets/img/logo_small.png" alt="logo" style="width: 25px;"></h5>
               <p class="card-text">
-                <!--<button class="btn btn-dark btn-md buy-give" style="width: 195px;">Buy 0,003 SJP</button>-->
             </div>
           </div>
         </div>
@@ -151,4 +122,134 @@
         <div id="buyButton" class="ok" (click)="buyTickets()"><p>Buy Ticket</p></div>
       </td>
     </tr>
+<<<<<<< HEAD
   </table>
+=======
+  </table>-->
+
+<img src="{{backgroundImage}}" style="position: fixed; width: 100%; height: 100%">
+
+  <div class="header">
+    <table style="margin-left: 50px;">
+      <tr>
+        <td><img src="assets/img/logo_small.png" alt="logo"></td>
+        <td style="padding-top: 5px; color: black;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
+      </tr>
+    </table>
+  </div>
+
+          <div id="navbar">
+            <p><a routerLink="/privateOffice">Buy Ticket</a></p>
+            <p><a routerLink="/my-bets">My Bets</a></p>
+            <p><a routerLink="/my-tokens">My Tokens</a></p>
+            <p><a routerLink="/my-statistics">Statistics</a></p>
+            <p><a routerLink="/settings">Settings</a></p>
+            <p><a routerLink="/faq">FAQ</a></p>
+            <p><a (click)="logOut()" routerLink="/home">Logout</a></p>
+          </div>
+
+          <div class="container" align="center">
+            <table border="0" style="margin-bottom: 50px; table-layout: auto; width: 100%;" width="100%">
+              <tr>
+                <td colspan="3" align="center" width="100%">
+                <ul class="nav">
+                  <li><button class="btn-dark top-panel-button" data-toggle="tab" href="#tickets">Tickets</button></li>
+                  <li><button class="btn-dark top-panel-button" data-toggle="tab" href="#rules">Rules</button></li>
+                  <li><button class="btn-dark top-panel-button" (click)="selectRandom()">Random</button></li>
+                </ul>
+              </td>
+                <td align="center" style="padding-left: 80px;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="3" align="center">
+
+                  <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tickets" role="tabpanel">
+
+                      <div *ngFor="let t of tickets; let i = index">
+                      <div class="border">
+                      <table align="center" id="numbersTable">
+                        <tr *ngFor="let r of tickets[i]">
+                          <td *ngFor="let block of r">
+                            <ul>
+                              <li>
+                            <button
+                              [class.clicked]="block.clicked"
+                              (click)="addDelete(block, i)">{{ block.num }}
+                            </button>
+                          </li>
+                        </ul>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="ok" (click)="removeTicket(i)" style="margin-bottom: 5px;"><p>- Remove </p></div>
+                  </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="rules">
+                      <div class="border" style="height:100%;">
+                      <h1>{{lotteryName}} Rules</h1>
+                      <p><b>Prize</b></p>
+                      <p>
+                        The current prize pool is 1000 SJP. The more the participants, the bigger the prize fund!
+                      </p>
+                      <p><b>Participation & Rules</b></p>
+                      <p>
+                        To participate in the lottery, you need to choose {{combinationSize}} numbers from 1 to {{maxNumber}} in your lottery ticket, or select the magic wand icon to allow the random number generator to choose the numbers for you. The number of tickets that you can buy is almost unlimited. However, using automated software tools for buying tickets or filling them out is prohibited.
+                        The cost of one ticket is {{ticketCost}} SJP. Your prize is transferred to your Wallet Space in SJP. Later you can transfer your funds to another online wallet or to fiat. You can get more info about it as well as about Wallet Space in section “My Tokens”.<br>
+                        {{lotteryGrequencyDescription}}
+                      </p>
+                      <p><b>Ticket Price</b></p>
+                      <p>
+                        The cost of one ticket is {{ticketCost}} SJP.
+                      </p>
+                      <p><b>Taxes</b></p>
+                      <p>
+                        Fire Lotto does not act as a tax agent. The responsibility to pay taxes lies with the owner of the cryptocurrency wallet to which the winnings were transferred – Wallet Space.
+                      </p>
+                      <p><b>Agreement</b></p>
+                      <p>
+                        By participating in the lottery, you agree to the lottery rules. By purchasing the lottery tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the lottery in your country of residence.
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+
+                </td>
+                <td rowspan="1" style="padding-left: 80px;" valign="top" align="center">
+                  <div class="timer">
+                    <div class="card" style="width: 15rem;  margin: 0 auto; ">
+                      <img class="card-img-top" src="{{lotteryBunner}}" alt="Card image cap">
+                      <div class="lotteryTitle">{{lotteryName}}</div>
+                      <div class="lotteryFunds">{{lotteryFunds}} SJP</div>
+                      <div class="buttonSector">
+                        <div id="buyButton" class="ok" (click)="buyTickets()"><p>Buy Tickets</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+
+                <td style="vertical-align: top; padding-left: 5%;">
+                  <div class="cube">
+                    <div class="side" id="side-1" ><img style="width: inherit;" src="assets/img/4_21_small.jpg"></div>
+                    <div class="side" id="side-2" ><img style="width: inherit;" src="assets/img/6_45_small.jpg"></div>
+                    <div class="side" id="side-3" ><img style="width: inherit;" src="assets/img/5_36_small.jpg"></div>
+                    <div class="side" id="side-4" ><img style="width: inherit;" src="assets/img/rapidos_small.jpg"></div>
+                    <div class="side" id="side-5" ><img style="width: inherit;" src="assets/img/top3_small.jpg"></div>
+                    <div class="side" id="side-6" ><img style="width: inherit;" src="assets/img/supers_small.jpg"></div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="3" align="center">
+                  <div class="ok" (click)="addTicket()"><p>+ Add Ticket</p></div>
+                  <!--<div id="buyButton" class="ok" (click)="buyTickets()"><p>Buy Ticket</p></div>-->
+                </td>
+              </tr>
+            </table>
+          </div>
+>>>>>>> parent of b17b8fd... Cowntdown, raffles
