@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LotteryService } from '../../services/lottery.service';
 import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
-//import {debounceTime} from 'rxjs/operator/debounceTime';
 
 
 @Component({
@@ -25,7 +24,6 @@ export class BuyTicketComponent implements OnInit {
   backgroundImage: string;
   tableData: any[] = [];
   tickets: any[] = [];
-  raffles: number[] = [];
   private superjackpot_value: 0;
   private jackpot_5_36_value: 0;
   private jackpot_6_45_value: 0;
@@ -34,7 +32,6 @@ export class BuyTicketComponent implements OnInit {
   private top3_value: 0;
   private rapidos_value: 0;
   lotteryFunds: 0;
-  cd: string;
 
 
 constructor(private router: Router, private lottery: LotteryService, private tpService: TicketsPurchaseService) {
@@ -46,12 +43,6 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
 }
 
   ngOnInit() {
-
-    //this.countDown();
-
-    setInterval(() => {
-      this.countDown();
-    }, 1000);
 
     this.lottery.getBank()
     .then((res) => {
@@ -243,6 +234,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
           break;
        }
     }
+    console.log(this.lotteryFunds);
 
     /*for (var i = 1; i < this.maxNumber+1; i++) {
       let block = {
@@ -318,8 +310,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     this.combinations.push(newCombination);
 
     this.addTicketToTable();
-    this.raffles.push(1);
-    console.log(this.raffles);
+
   }
 
   /*toggle(block) {
@@ -451,20 +442,9 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
 
   }
 
-  addRaffle(i: number) {
-    this.raffles[i] = this.raffles[i] + 1;
-  }
-
-  removeRaffle(i: number) {
-    if (this.raffles[i] > 1) {
-      this.raffles[i] = this.raffles[i] - 1;
-    }
-  }
-
   removeTicket(index: number){
     this.combinations.splice(index, 1);
     this.tickets.splice(index, 1);
-    this.raffles.splice(index, 1);
   }
 
   buyTickets() {
@@ -592,65 +572,6 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     this.addTicketToTable();
     var newCombination = [];
     this.combinations.push(newCombination);
-    this.raffles.push(1);
-  }
-
-  countDown() {
-
-    var countDownDate = this.getCountDownDate();
-    var now = new Date().getTime();
-
-     var distance = countDownDate - now;
-     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-     this.cd = hours + "h "+ minutes + "m " + seconds + "s ";
-  }
-
-  getCountDownDate() {
-    if (this.lotteryName == "Jackpot 5x36" || this.lotteryName == "Jackpot 4x21" || this.lotteryName == "Jackpot 6x45") {
-      var today = new Date();
-      var tomorrow = new Date();
-      tomorrow.setDate(today.getDate()+1);
-      tomorrow.setHours(1);
-      tomorrow.setMinutes(0);
-      tomorrow.setSeconds(0);
-      return  tomorrow.getTime();
-    } else if (this.lotteryName == "Top 3" || this.lotteryName == "Rapidos" || this.lotteryName == "Supers") {
-      var now = new Date();
-      var cd = new Date();
-      if (now.getMinutes() < 5) {
-        cd.setMinutes(5);
-      } else if (now.getMinutes() >= 5 && now.getMinutes() < 10) {
-        cd.setMinutes(10);
-      } else if (now.getMinutes() >= 10 && now.getMinutes() < 15) {
-        cd.setMinutes(15);
-      } else if (now.getMinutes() >= 15 && now.getMinutes() < 20) {
-        cd.setMinutes(20);
-      } else if (now.getMinutes() >= 20 && now.getMinutes() < 25) {
-        cd.setMinutes(25);
-      } else if (now.getMinutes() >= 25 && now.getMinutes() < 30) {
-        cd.setMinutes(30);
-      } else if (now.getMinutes() >= 30 && now.getMinutes() < 35) {
-        cd.setMinutes(35);
-      } else if (now.getMinutes() >= 35 && now.getMinutes() < 40) {
-        cd.setMinutes(40);
-      } else if (now.getMinutes() >= 40 && now.getMinutes() < 45) {
-        cd.setMinutes(45);
-      } else if (now.getMinutes() >= 45 && now.getMinutes() < 50) {
-        cd.setMinutes(50);
-      } else if (now.getMinutes() >= 50 && now.getMinutes() < 55) {
-        cd.setMinutes(55);
-      } else if (now.getMinutes() >= 55) {
-        tomorrow.setDate(today.getDate()+1);
-        cd.setHours(today.getHours()+1);
-        cd.setMinutes(0);
-      }
-      cd.setSeconds(0);
-      return cd.getTime();
-    }
   }
 
   logOut(): void {

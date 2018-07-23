@@ -11,11 +11,6 @@
 
 h2 {
   margin-bottom: 10px;
-  color: black;
-}
-
-h4 {
-  color: black;
 }
 
 .border {
@@ -145,14 +140,6 @@ ul {
   text-align: top;
   align-content: stretch;
   align-items: stretch;
-}
-
-<<<<<<< HEAD
-.header {
-  margin-top: 20px;
-  position: fixed;
-  margin-bottom: 50px;
-  z-index: 10;
 }
 
 .header img {
@@ -415,11 +402,10 @@ p {
   border: 1px solid #FFF;
   background-color: #000;
   color: #FFF;
-=======
+  
 .nav > li > button.active, .nav > li > button:hover {
     background-color: #fff;
     color: #000;
->>>>>>> decbaa94575125dc5c99dbd2175fca4d5dcd7701
 }
 
 #random-button:hover {
