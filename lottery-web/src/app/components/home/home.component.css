@@ -1,3 +1,11 @@
+/**{
+  color: black;
+}*/
+
+/*.table-dark td {
+   text-align: center;
+}*/
+
 .header {
   margin-top: 20px;
   position: fixed;
@@ -355,4 +363,8 @@ legend.scheduler-border {
   top: 68%;
   width: 100%;
   font-size: 17pt;
+}
+
+a h2:hover {
+  color: black;
 }

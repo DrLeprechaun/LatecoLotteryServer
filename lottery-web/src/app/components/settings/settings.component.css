@@ -20,6 +20,10 @@
   padding: 20px;
 }
 
+a h2:hover {
+  color: black;
+}
+
 
 .lottery-cell {
   text-align: center;

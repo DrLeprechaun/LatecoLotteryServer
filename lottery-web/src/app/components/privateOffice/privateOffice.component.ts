@@ -22,8 +22,8 @@ export class PrivateOfficeComponent {
   staticAlertClosed = false;
   errorMessage: string;
   modalTitle: string;
-  buyContent: boolean;
-  aboutContent: boolean;
+  //buyContent: boolean;
+  //aboutContent: boolean;
   private maxNumber: number;
   private combinationSize: number;
   private lotteryGrequencyDescription: string;
@@ -31,9 +31,10 @@ export class PrivateOfficeComponent {
   private jackpot_5_36_value: 0;
   private jackpot_6_45_value: 0;
   private jackpot_4_21_value: 0;
-  private supers_value: 0;
-  private top3_value: 0;
+  private two_numbers_value: 0;
+  private prize_jackpot_value: 0;
   private rapidos_value: 0;
+  private lottery_description: number = 0;
 
   constructor(private auth: AuthService,
     private router: Router,
@@ -53,8 +54,8 @@ export class PrivateOfficeComponent {
         this.jackpot_6_45_value = res.json().data.jackpot_6x45;
         this.jackpot_4_21_value = res.json().data.jackpot_4x21;
         this.rapidos_value = res.json().data.rapidos;
-        this.top3_value = res.json().data.top3;
-        this.supers_value = res.json().data.supers;
+        this.two_numbers_value = res.json().data.two_numbers;
+        this.prize_jackpot_value = res.json().data.prize_jackpot;
       } else {
         console.log(res.json().message);
       }
@@ -269,16 +270,18 @@ export class PrivateOfficeComponent {
     this.modalTitle = title;
     this.modalReference = this.modalService.open(content);
     if (reason == "about") {
-      this.aboutContent = true;
-      this.buyContent = false;
+      /*this.aboutContent = true;
+      this.buyContent = false;*/
       if (title== "Jackpot 5x36") {
         this.maxNumber = 36;
         this.combinationSize = 5;
         this.lotteryGrequencyDescription = "Jackpot is held on every day at 01:00 (+03 GMT).";
+        this. lottery_description = 2;
       } else if (title == "Jackpot 6x45") {
         this.maxNumber = 45;
         this.combinationSize = 6;
         this.lotteryGrequencyDescription = "Jackpot is held on every day at 01:00 (+03 GMT).";
+        this. lottery_description = 3;
       } else if (title == "Jackpot 4x20") {
         this.maxNumber = 20;
         this.combinationSize = 4;
@@ -287,6 +290,7 @@ export class PrivateOfficeComponent {
         this.maxNumber = 21;
         this.combinationSize = 4;
         this.lotteryGrequencyDescription = "Jackpot is held on every day at 01:00 (+03 GMT).";
+        this. lottery_description = 1;
       } else if (title == "Jackpot 7x49") {
         this.maxNumber = 49;
         this.combinationSize = 7;
@@ -295,18 +299,21 @@ export class PrivateOfficeComponent {
         this.maxNumber = 21;
         this.combinationSize = 4;
         this.lotteryGrequencyDescription = "Rapidos is held every 5 minutes.";
-      } else if (title == "Supers") {
+        this. lottery_description = 4;
+      } else if (title == "Two Numbers") {
         this.maxNumber = 36;
         this.combinationSize = 5;
         this.lotteryGrequencyDescription = "Supers is held every 5 minutes.";
-      } else if (title == "Top3") {
+        this. lottery_description = 5;
+      } else if (title == "Prize&Jackpot") {
         this.maxNumber = 45;
         this.combinationSize = 6;
         this.lotteryGrequencyDescription = "Top3 is held every 5 minutes.";
+        this. lottery_description = 6;
       }
     } else if (reason == "buy") {
-      this.aboutContent = false;
-      this.buyContent = true;
+      /*this.aboutContent = false;
+      this.buyContent = true;*/
       this.cost = 1;
     }
     //this.modalService.open(content).result.then((result) => {
@@ -334,7 +341,6 @@ export class PrivateOfficeComponent {
 
   private buyTicketRedirect(type: string): void {
     this.tpService.setLotteryType(type);
-    //console.log(this.tpService.getLotteryType());
     this.router.navigateByUrl('/buy-ticket');
   }
 

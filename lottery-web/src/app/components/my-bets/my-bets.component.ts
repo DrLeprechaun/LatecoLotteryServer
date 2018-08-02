@@ -3,6 +3,7 @@ import { LotteryService } from '../../services/lottery.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { CombinationUpdate } from '../../models/combination-update';
 import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class MyBetsComponent implements OnInit {
   editedRecordId: number;
   private superjackpot_value: 0;
 
-  constructor(private lottery: LotteryService, private modalService: NgbModal, private tpService: TicketsPurchaseService) { }
+  constructor(private router: Router, private lottery: LotteryService, private modalService: NgbModal, private tpService: TicketsPurchaseService) { }
 
   ngOnInit() {
     this.loadData();
@@ -37,9 +38,9 @@ export class MyBetsComponent implements OnInit {
   loadData(): void {
     this.lottery.getBank()
     .then((res) => {
-      console.log(res.json());
+      //console.log(res.json());
       if (res.json().status === 'success') {
-        console.log(res.json().data);
+        //console.log(res.json().data);
         this.superjackpot_value = res.json().data.superjackpot;
       } else {
         console.log(res.json().message);
@@ -63,7 +64,8 @@ export class MyBetsComponent implements OnInit {
             "type_name": "Jackpot 5x36",
             "type": "jackpot_5x36",
             "combination": this.processCombination(res.json().data.jackpot_5x36[i].combination),
-            "is_new": this.checkNewBet("jackpot_5x36", res.json().data.jackpot_5x36[i].combination)
+            "is_new": this.checkNewBet("jackpot_5x36", res.json().data.jackpot_5x36[i].combination),
+            "date": new Date(res.json().data.jackpot_5x36[i].date)
           }
           this.tableData.push(rowData);
         }
@@ -75,10 +77,12 @@ export class MyBetsComponent implements OnInit {
             "type_name": "Jackpot 6x45",
             "type": "jackpot_6x45",
             "combination": this.processCombination(res.json().data.jackpot_6x45[i].combination),
-            "is_new": this.checkNewBet("jackpot_6x45", res.json().data.jackpot_6x45[i].combination)
+            "is_new": this.checkNewBet("jackpot_6x45", res.json().data.jackpot_6x45[i].combination),
+            "date": new Date(res.json().data.jackpot_6x45[i].date)
           }
           this.tableData.push(rowData);
         }
+        //Jackpot 4x21
         for (var i = 0; i < res.json().data.jackpot_4x21.length; i++) {
           let rowData = {
             "id": res.json().data.jackpot_4x21[i].id,
@@ -86,10 +90,12 @@ export class MyBetsComponent implements OnInit {
             "type_name": "Jackpot 4x21",
             "type": "jackpot_4x21",
             "combination": this.processCombination(res.json().data.jackpot_4x21[i].combination),
-            "is_new": this.checkNewBet("jackpot_4x21", res.json().data.jackpot_4x21[i].combination)
+            "is_new": this.checkNewBet("jackpot_4x21", res.json().data.jackpot_4x21[i].combination),
+            "date": new Date(res.json().data.jackpot_4x21[i].date)
           }
           this.tableData.push(rowData);
         }
+        //Rapidos
         for (var i = 0; i < res.json().data.rapidos.length; i++) {
           let rowData = {
             "id": res.json().data.rapidos[i].id,
@@ -97,32 +103,38 @@ export class MyBetsComponent implements OnInit {
             "type_name": "Rapidos",
             "type": "rapidos",
             "combination": this.processCombination(res.json().data.rapidos[i].combination),
-            "is_new": this.checkNewBet("rapidos", res.json().data.rapidos[i].combination)
+            "is_new": this.checkNewBet("rapidos", res.json().data.rapidos[i].combination),
+            "date": new Date(res.json().data.rapidos[i].date)
           }
           this.tableData.push(rowData);
         }
-        for (var i = 0; i < res.json().data.supers.length; i++) {
+        //Two Numbers
+        for (var i = 0; i < res.json().data.two_numbers.length; i++) {
           let rowData = {
-            "id": res.json().data.supers[i].id,
-            "fake_id": "00" + 10749 + res.json().data.supers[i].id,
-            "type_name": "Supers",
-            "type": "supers",
-            "combination": this.processCombination(res.json().data.supers[i].combination),
-            "is_new": this.checkNewBet("supers", res.json().data.supers[i].combination)
+            "id": res.json().data.two_numbers[i].id,
+            "fake_id": "00" + 10749 + res.json().data.two_numbers[i].id,
+            "type_name": "Two Numbers",
+            "type": "two_numbers",
+            "combination": this.processCombination(res.json().data.two_numbers[i].combination),
+            "is_new": this.checkNewBet("two_numbers", res.json().data.two_numbers[i].combination),
+            "date": new Date(res.json().data.two_numbers[i].date)
           }
           this.tableData.push(rowData);
         }
-        for (var i = 0; i < res.json().data.top3.length; i++) {
+        //Prize&Jackpot
+        for (var i = 0; i < res.json().data.prize_jackpot.length; i++) {
           let rowData = {
-            "id": res.json().data.top3[i].id,
-            "fake_id": "00" + 10536 + res.json().data.top3[i].id,
-            "type_name": "Top 3",
-            "type": "top3",
-            "combination": this.processCombination(res.json().data.top3[i].combination),
-            "is_new": this.checkNewBet("top3", res.json().data.top3[i].combination)
+            "id": res.json().data.prize_jackpot[i].id,
+            "fake_id": "00" + 10536 + res.json().data.prize_jackpot[i].id,
+            "type_name": "Prize&Jackpot",
+            "type": "prize_jackpot",
+            "combination": this.processCombination(res.json().data.prize_jackpot[i].combination),
+            "is_new": this.checkNewBet("prize_jackpot", res.json().data.prize_jackpot[i].combination),
+            "date": new Date(res.json().data.prize_jackpot[i].date)
           }
           this.tableData.push(rowData);
         }
+        this.tableData = this.sortAndFormatBetArray(this.tableData);
       }
     });
 
@@ -143,7 +155,7 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.jackpot_5x36[i].my_combination),
             "won_combination": this.processCombination(res.json().data.jackpot_5x36[i].win_combination),
             "is_win": res.json().data.jackpot_5x36[i].is_win,
-            "date": res.json().data.jackpot_5x36[i].date
+            "date": new Date(res.json().data.jackpot_5x36[i].date)
           }
           this.archiveTableData.push(rowData);
         }
@@ -157,7 +169,7 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.jackpot_6x45[i].my_combination),
             "won_combination": this.processCombination(res.json().data.jackpot_6x45[i].win_combination),
             "is_win": res.json().data.jackpot_6x45[i].is_win,
-            "date": res.json().data.jackpot_6x45[i].date
+            "date": new Date(res.json().data.jackpot_6x45[i].date)
           }
           this.archiveTableData.push(rowData);
         }
@@ -171,7 +183,7 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.jackpot_4x21[i].my_combination),
             "won_combination": this.processCombination(res.json().data.jackpot_4x21[i].win_combination),
             "is_win": res.json().data.jackpot_4x21[i].is_win,
-            "date": res.json().data.jackpot_4x21[i].date
+            "date": new Date(res.json().data.jackpot_4x21[i].date)
           }
           this.archiveTableData.push(rowData);
         }
@@ -185,41 +197,58 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.rapidos[i].my_combination),
             "won_combination": this.processCombination(res.json().data.rapidos[i].win_combination),
             "is_win": res.json().data.rapidos[i].is_win,
-            "date": res.json().data.rapidos[i].date
+            "date": new Date(res.json().data.rapidos[i].date)
           }
           this.archiveTableData.push(rowData);
         }
-        //Supers
-        for (var i = 0; i < res.json().data.supers.length; i++) {
+        //Two Numbers
+        for (var i = 0; i < res.json().data.two_numbers.length; i++) {
           let rowData = {
-            "id": res.json().data.supers[i].id,
-            "fake_id": "00" + 10749 + res.json().data.supers[i].id,
-            "type_name": "Supers",
-            "type": "supers",
-            "combination": this.processCombination(res.json().data.supers[i].my_combination),
-            "won_combination": this.processCombination(res.json().data.supers[i].win_combination),
-            "is_win": res.json().data.supers[i].is_win,
-            "date": res.json().data.supers[i].date
+            "id": res.json().data.two_numbers[i].id,
+            "fake_id": "00" + 10749 + res.json().data.two_numbers[i].id,
+            "type_name": "Two Numbers",
+            "type": "two_numbers",
+            "combination": this.processCombination(res.json().data.two_numbers[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.two_numbers[i].win_combination),
+            "is_win": res.json().data.two_numbers[i].is_win,
+            "date": new Date(res.json().data.two_numbers[i].date)
           }
           this.archiveTableData.push(rowData);
         }
-        //Top 3
-        for (var i = 0; i < res.json().data.top3.length; i++) {
+        //Prize&Jackpot
+        for (var i = 0; i < res.json().data.prize_jackpot.length; i++) {
           let rowData = {
-            "id": res.json().data.top3[i].id,
-            "fake_id": "00" + 10536 + res.json().data.top3[i].id,
-            "type_name": "Top 3",
-            "type": "top3",
-            "combination": this.processCombination(res.json().data.top3[i].my_combination),
-            "won_combination": this.processCombination(res.json().data.top3[i].win_combination),
-            "is_win": res.json().data.top3[i].is_win,
-            "date": res.json().data.top3[i].date
+            "id": res.json().data.prize_jackpot[i].id,
+            "fake_id": "00" + 10536 + res.json().data.prize_jackpot[i].id,
+            "type_name": "Prize&Jackpot",
+            "type": "prize_jackpot",
+            "combination": this.processCombination(res.json().data.prize_jackpot[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.prize_jackpot[i].win_combination),
+            "is_win": res.json().data.prize_jackpot[i].is_win,
+            "date": new Date(res.json().data.prize_jackpot[i].date)
           }
           this.archiveTableData.push(rowData);
         }
+        this.archiveTableData = this.sortAndFormatBetArray(this.archiveTableData);
       }
     });
     /*this.tpService.removeNewBets();*/
+  }
+
+  sortAndFormatBetArray(arr: any) {
+    //sort
+    var sortedArray = [];
+    sortedArray = arr;
+    sortedArray.sort(function(a, b){return b.date - a.date});
+    //date to local
+    var nowLocal = new Date();
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    for (var i = 0; i < sortedArray.length; i++) {
+      sortedArray[i].date = sortedArray[i].date.setHours(sortedArray[i].date.getHours()-3) - (nowLocal.getTimezoneOffset() * 60000)
+      sortedArray[i].date = new Date(sortedArray[i].date);
+      sortedArray[i].date = monthNames[sortedArray[i].date.getMonth()] + " " + sortedArray[i].date.getDate() + ", " + sortedArray[i].date.getFullYear() + ", " + ('0' + sortedArray[i].date.getHours()).slice(-2) + ":" + ('0' + sortedArray[i].date.getMinutes()).slice(-2) + ":" + ('0' + sortedArray[i].date.getSeconds()).slice(-2);
+    }
+    return sortedArray;
   }
 
   checkNewBet(t: string, combination: any) {
@@ -305,16 +334,16 @@ export class MyBetsComponent implements OnInit {
       this.combinationQuantity = 6;
     }
     if (type == "rapidos") {
-      this.modalButtonsQuantity = 21;
-      this.combinationQuantity = 4;
+      this.modalButtonsQuantity = 20;
+      this.combinationQuantity = 8;
     }
-    if (type == "supers") {
-      this.modalButtonsQuantity = 36;
-      this.combinationQuantity = 5;
+    if (type == "two_numbers") {
+      this.modalButtonsQuantity = 100;
+      this.combinationQuantity = 2;
     }
-    if (type == "top3") {
-      this.modalButtonsQuantity = 45;
-      this.combinationQuantity = 6;
+    if (type == "prize_jackpot") {
+      this.modalButtonsQuantity = 24;
+      this.combinationQuantity = 12;
     }
     this.setModalButtonsArray(this.modalButtonsQuantity);
     console.log(type);
@@ -395,6 +424,26 @@ export class MyBetsComponent implements OnInit {
         }
         this.modalButtonsTable.push(subArray);
       }
+    } else if (this.modalButtonsQuantity == 100) {
+      let k = 0;
+      for (var i = 0; i < 10; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 10; j++) {
+          subArray.push(this.modalButtonsArray[k]);
+          k++;
+        }
+        this.modalButtonsTable.push(subArray);
+      }
+    } else if (this.modalButtonsQuantity == 24) {
+      let k = 0;
+      for (var i = 0; i < 6; i++) {
+        let subArray: number[] = [];
+        for (var j = 0; j < 4; j++) {
+          subArray.push(this.modalButtonsArray[k]);
+          k++;
+        }
+        this.modalButtonsTable.push(subArray);
+      }
     }
   }
 
@@ -460,6 +509,11 @@ export class MyBetsComponent implements OnInit {
     this.modalButtonsQuantity = 0;
     this.modalButtonsArray = [];
     this.modalButtonsTable = [];
+  }
+
+  private buyTicketRedirect(type: string): void {
+    this.tpService.setLotteryType(type);
+    this.router.navigateByUrl('/buy-ticket');
   }
 
   logOut(): void {

@@ -1,10 +1,11 @@
 <div class="header">
-  <table style="margin-left: 50px;">
+  <table style="margin-left: 20px;">
     <tr>
       <td><img src="assets/img/logo_small.png" alt="logo"></td>
-      <td style="padding-top: 5px; color=black;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
+      <td style="padding-top: 5px;"><a routerLink="/#"><h2 style="cursor: pointer; color=black;"><b>SUPER</b>JACK<b>POT</b></h2></a></td>
     </tr>
   </table>
+  <p style="font-size: 1em; padding-top: 0px; padding-left: 20px;">BLOCKCHAIN LOTTERY</p>
 </div>
 
 <!--<div class="container">-->
@@ -12,7 +13,7 @@
     <tr>
       <td width="50px;" style="padding-top: 10%;">
         <div id="navbar">
-          <p><a routerLink="/login" style="color: grey">Home</a></p>
+          <p><a routerLink="/home" style="color: grey">Home</a></p>
           <p><a routerLink="/login">Log in</a></p>
           <p><a routerLink="/register">Registration</a></p>
           <p><a routerLink="/about">Rules</a></p>
@@ -62,8 +63,8 @@
         <div class="side" id="side-2" (click)="goLogin('jackpot_6x45')"><img style="width: inherit;" src="assets/img/6_45_small.jpg"></div>
         <div class="side" id="side-3" (click)="goLogin('jackpot_5x36')"><img style="width: inherit;" src="assets/img/5_36_small.jpg"></div>
         <div class="side" id="side-4" (click)="goLogin('rapidos')"><img style="width: inherit;" src="assets/img/rapidos_small.jpg"></div>
-        <div class="side" id="side-5" (click)="goLogin('top3')"><img style="width: inherit;" src="assets/img/top3_small.jpg"></div>
-        <div class="side" id="side-6" (click)="goLogin('supers')"><img style="width: inherit;" src="assets/img/supers_small.jpg"></div>
+        <div class="side" id="side-5" (click)="goLogin('two_numbers')"><img style="width: inherit;" src="assets/img/two_numbers_small.jpg"></div>
+        <div class="side" id="side-6" (click)="goLogin('prize_jackpot')"><img style="width: inherit;" src="assets/img/prize_jackpot_small.jpg"></div>
       </div>
     </td>
   </tr>
@@ -147,7 +148,7 @@
         <td></td>
         <fieldset class="scheduler-border">
             <legend class="scheduler-border">INSTANT<b>LOTTO</b></legend>
-            <label class="lotteryLabel">Win every 5 minutes ...</label>
+            <label class="lotteryLabel">These are the fastest lotteries. Ways to win - a great many. You can become a Winner, even if you do not guess a single number. You decide how to participate, how many numbers to note, and, of course, how much You want to win.<br/>The choice is Yours!</label>
             <div class="control-group">
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
@@ -173,14 +174,14 @@
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a (click)="goLogin('supers')" style="cursor: pointer;">
-                    <img class="card-img-top" src="assets/img/supers.jpg" alt="Card image cap">
+                  <a (click)="goLogin('two_numbers')" style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/two_numbers.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle">SUPER<b>S</b></div>
-                  <div class="lotteryFunds">{{supers_value}} SJP</div>
+                  <div class="lotteryTitle">TWO <b>NUMBERS</b></div>
+                  <div class="lotteryFunds">{{two_numbers_value}} SJP</div>
                   <div class="buttonSector">
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="open('Supers', content)">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('supers')">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="open('Two Numbers', content)">Rules</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('two_numbers')">Buy</button></div>
                     <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
                   </div>
                   <!--<div class="card-body">
@@ -195,15 +196,15 @@
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a (click)="goLogin('top3')" style="cursor: pointer;">
-                    <img class="card-img-top" src="assets/img/top3.jpg" alt="Card image cap">
+                  <a (click)="goLogin('prize_jackpot')" style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/prize_jackpot.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle">TOP<b>3</b></div>
-                  <div class="lotteryFunds">{{top3_value}} SJP</div>
+                  <div class="lotteryTitle">PRIZE&<b>JACKPOT</b></div>
+                  <div class="lotteryFunds">{{prize_jackpot_value}} SJP</div>
                   <div class="buttonSector">
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="open('Top3', content)">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('top3')">Buy</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="open('Prize&Jackpot', content)">Rules</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="goLogin('prize_jackpot')">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton">Give</button></div>
                   </div>
                   <!--<div class="card-body">
                     <h5 class="card-title">Top3</h5>
@@ -213,6 +214,58 @@
                       <button class="btn btn-dark btn-sm buy-give" >Give</button>
                     </p>
                   </div>-->
+                </div>
+              </td>
+            </div>
+        </fieldset>
+      </tr>
+
+      <tr>
+        <td></td>
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">SKRATCH <b>LOTTERIES</b></legend>
+            <label class="lotteryLabel"></label>
+            <div class="control-group">
+              <td class="lottery-cell">
+                <div class="card" style="width: 15rem;  margin: 0 auto;">
+                  <a style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/33.jpg" alt="Card image cap">
+                  </a>
+                  <div class="lotteryTitle"><b>33</b></div>
+                  <div class="lotteryFunds">33 SJP</div>
+                  <div class="buttonSector">
+                    <div class="buttonDiv"><button class="lotteryButton">Rules</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                  </div>
+                </div>
+              </td>
+              <td class="lottery-cell">
+                <div class="card" style="width: 15rem;  margin: 0 auto;">
+                  <a style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/100000CASH.jpg" alt="Card image cap">
+                  </a>
+                  <div class="lotteryTitle">100'000 <b>CASH</b></div>
+                  <div class="lotteryFunds">1 000 SJP</div>
+                  <div class="buttonSector">
+                    <div class="buttonDiv"><button class="lotteryButton">Rules</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                  </div>
+                </div>
+              </td>
+              <td class="lottery-cell">
+                <div class="card" style="width: 15rem;  margin: 0 auto;">
+                  <a style="cursor: pointer;">
+                    <img class="card-img-top" src="assets/img/top3.jpg" alt="Card image cap">
+                  </a>
+                  <div class="lotteryTitle"><b>777</b></div>
+                  <div class="lotteryFunds">777 SJP</div>
+                  <div class="buttonSector">
+                    <div class="buttonDiv"><button class="lotteryButton">Rules</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton">Give</button></div>
+                  </div>
                 </div>
               </td>
             </div>
@@ -244,7 +297,8 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+
+  <!--<div class="modal-body">
     <p><b>Prize</b></p>
     <p>
       The current prize pool is 1000 SJP. The more the participants, the bigger the prize fund!
@@ -267,7 +321,324 @@
     <p>
       By participating in the lottery, you agree to the lottery rules. By purchasing the lottery tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the lottery in your country of residence.
     </p>
+  </div>-->
+
+  <div class="modal-body" *ngIf="lottery_description == 1">
+    <p>The 4x21 SJP Lottery has a minimum guaranteed Jackpot of {{jackpot_4_21_value}} SJP.</p>
+    <hr/>
+    <p><b>Time</b></p>
+    <p>Drawings are held daily, at 02:00, 05:00, 08:00, 11:00, 14:00, 17:00, 20:00 and 23:00 GMT. The time of the current drawing is indicated on the Lottery ticket. Ticket sales end 15 minutes before the drawing. After that time, any tickets purchased will be played in the following drawing.
+    <hr/>
+    <p><b>Participation & Rules</b></p>
+    <p>To participate in the Lottery, you need to choose 4 numbers from 1 to 21 in your Lottery ticket, or select the Random icon to allow the random number generator to choose the numbers for you. The number of tickets that you can buy is almost unlimited. However, using automated software tools for buying tickets or filling them out is prohibited. The cost of one ticket is 1 SJP. Your Prize will be automatically transferred to your SJP Wallet in SJP. Later you can transfer your funds to another online wallet or to fiat. You can get more info about it as well as about SJP Wallet in section “My Tokens”.
+      <hr/>
+    <p><b>Distribution of Funds</b></p>
+    The price of one ticket  -  1 SJP
+    Funds collected from ticket sales for each drawing are distributed as follows:
+    21% of the Prize pool is always transferred to the SuperJackpot Prize Fund.
+    SuperJackpot is played on the 21st of each month at 21:21 GMT.
+    70% goes to the Prize pool for the current drawing:<br/>
+    The distribution of the Prize pool by the number of guessed numbers<br/>
+    2 - 32% of the Prize Pool / The number of Players who matched 2 numbers<br/>
+    3	- 33% of the Prize Pool / The number of Players who matched 3 numbers<br/>
+    4	- 35% of the Prize Pool – Jackpot<br/>
+    9% are used to cover technical and operating expenses.<hr/>
+    <p><b>Jackpot</b></p>
+    35% of the Prize pool (Category 4) are always rolled over to the Jackpot for the following drawing. The Jackpot built up over the previous drawings is divided between the  Owners of the tickets with 4 matching numbers. If there are no such tickets, the current Jackpot is rolled over to the Jackpot for the following drawing. In category 2, 3 the winning amount is divided by the number of Winners in this category. If there are no Winners, then the Prize pool of these categories also goes to the Jackpot of the following drawing.<hr/>
+    <p><b>Casting</b></p>
+    The translation of the drawing is conducted on the site SUPERJACKPOT.ONLINE<hr/>
+    <p><b>Taxes</b></p>
+    SJP Lotto does not act as a tax agent. The responsibility to pay taxes lies with the Owner of the cryptocurrency wallet to which the winnings were transferred – SJP Wallet.<hr/>
+    <p><b>Agreement</b></p>
+    By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
   </div>
+
+<div class="modal-body" *ngIf="lottery_description == 2">
+  <p>The 5x36 SJP Lottery has a minimum guaranteed Jackpot of {{jackpot_5_36_value}} SJP.</p>
+  <hr/>
+  <p><b>Time</b></p>
+  Drawings are held daily, at 04:00, 10:00, 16:00 and 22:00 GMT.
+  The time of the current drawing is indicated on the Lottery ticket. Ticket sales end 15 minutes before the drawing. After that time, any tickets purchased will be played in the following drawing.
+  <hr/>
+  <p><b>Participation & Rules</b></p>
+  To participate in the Lottery, you need to choose 5 numbers from 1 to 36 in your Lottery ticket, or select the Random icon to allow the random number generator to choose the numbers for you. The number of tickets that you can buy is almost unlimited. However, using automated software tools for buying tickets or filling them out is prohibited. The cost of one ticket is 1 SJP. Your Prize will be automatically transferred to your SJP Wallet in SJP. Later you can transfer your funds to another online wallet or to fiat. You can get more info about it as well as about SJP Wallet in section “My Tokens”.
+  <hr/>
+  <p><b>Distribution of Funds</b></p>
+  The price of one ticket  -  2 SJP
+  Funds collected from ticket sales for each drawing are distributed as follows:
+  21% of the Prize pool is always transferred to the SuperJackpot Prize Fund.
+  SuperJackpot is played on the 21st of each month at 21:21 GMT.
+  70% goes to the Prize pool for the current drawing:
+  There are four winning categories in the Lottery: two with fixed winnings and two with accumulated Jackpot.<br/>
+  2 - 2 SJP / The number of Players who matched 2 numbers <br/>
+  3	- 20 SJP / The number of Players who matched 3 numbers<br/>
+  4	- 50% / The number of Players who matched 4 numbers	<br/>
+  5 - 50% / Jackpot<br/>
+  First, fixed winnings are calculated for 2 and 3 guessed numbers. After that, the rest of the Prize pool is divided equally between the categories 4 and 5  (Jackpot). If there were no Winners in these two categories, then the Prize pools of these categories will be transferred to the next draw Jackpot Prize pool.
+  9% are used to cover technical and operating expenses.
+  <hr/>
+  <p><b>Casting</b></p>
+  The translation of the drawing is conducted on the site SUPERJACKPOT.ONLINE
+  <hr/>
+  <p><b>Taxes</b></p>
+  SJP Lotto does not act as a tax agent. The responsibility to pay taxes lies with the Owner of the cryptocurrency wallet to which the winnings were transferred – SJP Wallet.
+  <hr/>
+  <p><b>Agreement</b></p>
+  By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
+</div>
+
+<div class="modal-body" *ngIf="lottery_description == 3">
+  <p>The 6x45 SJP Lottery has a minimum guaranteed Jackpot of {{jackpot_6_45_value}} SJP.</p>
+  <hr/>
+  <p><b>Time</b></p>
+  Drawings are held daily, at 09:00 and 21:00 GMT.
+  The time of the current drawing is indicated on the Lottery ticket. Ticket sales end 15 minutes before the drawing. After that time, any tickets purchased will be played in the following drawing.
+  <hr/>
+  <p><b>Participation & Rules</b></p>
+  To participate in the Lottery, you need to choose 6 numbers from 1 to 45 in your Lottery ticket, or select the Random icon to allow the random number generator to choose the numbers for you. The number of tickets that you can buy is almost unlimited. However, using automated software tools for buying tickets or filling them out is prohibited. The cost of one ticket is 1 SJP. Your Prize will be automatically transferred to your SJP Wallet in SJP. Later you can transfer your funds to another online wallet or to fiat. You can get more info about it as well as about SJP Wallet in section “My Tokens”.
+  <hr/>
+  <p><b>Distribution of Funds</b></p>
+  The price of one ticket  -  3 SJP
+  Funds collected from ticket sales for each drawing are distributed as follows:
+  21% of the Prize pool is always transferred to the SuperJackpot Prize Fund.
+  SuperJackpot is played on the 21st of each month at 21:21 GMT.
+  70% goes to the Prize pool for the current drawing:
+  Win combinations in which in one field 2, 3, 4, 5 or 6 numbers from 45 coincide with winning numbers.
+  Those participants who guessed the 2 numbers receive 3 SJP each. The remaining Prize pool is distributed in the following percentage:<br/>
+  3	- 24% of the Prize Pool / The number of Players who matched 3 numbers<br/>
+  4	- 14% of the Prize Pool / The number of Players who matched 4 numbers<br/>
+  5	- 26% of the Prize Pool / The number of Players who matched 5 numbers	<br/>
+  6	- 36% of the Prize Pool – Jackpot<br/>
+  Guessing 6 numbers, You get a Jackpot! The Jackpot is accumulated. Therefore, if no one guesses 6 numbers in the current draw, the accumulated amount goes to the next draw Jackpot Prize pool. In category 3, 4, 5 the winning amount is divided by the number of Winners in this category. If there are no Winners in any of these categories, then the Prize pool of these categories also goes to the Jackpot of the following drawing.
+  9% are used to cover technical and operating expenses.
+  <hr/>
+  <p><b>Casting</b></p>
+  The translation of the drawing is conducted on the site SUPERJACKPOT.ONLINE
+  <hr/>
+  <p><b>Taxes</b></p>
+  SJP Lotto does not act as a tax agent. The responsibility to pay taxes lies with the Owner of the cryptocurrency wallet to which the winnings were transferred – SJP Wallet.
+  <hr/>
+  <p><b>Agreement</b></p>
+  By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
+  </div>
+
+<div class="modal-body" *ngIf="lottery_description == 4">
+  Lottery with an increased prize fund, which is 91% of each ticket purchased.<br/>
+  The Rapidos Lottery has a minimum guaranteed Jackpot of {{rapidos_value}} SJP and to win a Jackpot, you just need to guess 8 numbers out of 20 in the first part of the field and one number in four - in the second part.
+  <hr/>
+  <p><b>Time</b></p>
+  Drawings are held every 15 minutes. The time of the current drawing is indicated on the Lottery ticket. Ticket sales end 1 minute before the drawing.
+  The price of one ticket  -  1 SJP
+  <hr/>
+  <p><b>How to play</b></p>
+  In a ticket - only one playing field, consisting of two parts (the first and second).<br/>
+  • You need to choose 8 non-repeating numbers from 1 to 20 in the first part of the playing field and one number from 1 to 4 - in the second part.<br/>
+  • By ticking Random icon in the ticket, you choose auto-complete: in this case a random combination of numbers will be chosen.<br/>
+  • To participate in several runs, specify their number in a special column.<br/>
+  • After selecting the numbers, go to the payment. Either continue to choose tickets. Then pay all together.<br/>
+  When the ticket is issued - You are among the contenders for the victory. Congratulations!<br/>
+  <hr/>
+  <p><b>What can be won?</b></p>
+
+  In Rapid SJP there are 9 categories of winnings.<br/>
+  All winnings, except for the Jackpot, are fixed. The minimum winnings are 1 SJP.<br/>
+
+<table class="table table-dark">
+  <thead>
+    <tr colspan="3">
+      <th>You can win in Rapidos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Guessed the numbers in the first part of the field</td>
+      <td>Guessed the numbers in the second part of the field</td>
+      <td>You win</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>1</td>
+      <td>Jackpot</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0</td>
+      <td>1 000 SJP</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>1</td>
+      <td>150 SJP</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0</td>
+      <td>50 SJP</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>1</td>
+      <td>30 SJP</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0</td>
+      <td>10 SJP</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1</td>
+      <td>5 SJP</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0</td>
+      <td>2 SJP</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>1</td>
+      <td>1 SJP</td>
+    </tr>
+  </tbody>
+</table>
+The Jackpot is received by the one who guessed 8 numbers in the first part of the field and one number in the second. The minimum guaranteed Jackpot is 2100 SJP. It is accumulative. Therefore, if no one guesses the combination of the draw in the current draw, the accumulated amount goes to the next draw.
+<hr/>
+<p><b>Casting</b></p>
+The translation of the drawing is conducted on the site SUPERJACKPOT.ONLINE
+<hr/>
+<p><b>Taxes</b></p>
+SJP Lotto does not act as a tax agent. The responsibility to pay taxes lies with the Owner of the cryptocurrency wallet to which the winnings were transferred – SJP Wallet.
+<hr/>
+<p><b>Agreement</b></p>
+By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
+</div>
+
+<div class="modal-body" *ngIf="lottery_description == 5">
+  Lottery with an increased prize fund, which is 91% of each ticket purchased.<br/>
+The Two Numbers  Lottery is one of the most simple and popular Lotteries in the world since ancient times.
+<hr/>
+<p><b>Time</b></p>
+Drawings are held every 15 minutes. The time of the current drawing is indicated on the Lottery ticket. Ticket sales end 1 minute before the drawing.
+The price of one ticket  -  2 SJP
+<hr/>
+<p><b>How to play</b></p>
+In a ticket - only one playing field, consisting of two parts (the first and second). <br/>
+• You need to choose 1 numbers from 1 to 100 in the first part of the playing field and one number from 1 to 8 - in the second part.<br/>
+• To participate in several runs, specify their number in a special column.<br/>
+• After selecting the numbers, go to the payment. Either continue to choose tickets. Then pay all together.<br/>
+When the ticket is issued - You are among the contenders for the victory. Congratulations!<br/>
+<hr/>
+<p><b>What can be won?</b></p>
+The Jackpot is received by the one who guessed one number in the first part of the field and one number in the second.
+<table class="table table-dark">
+  <thead>
+    <tr colspan="3">
+      <th>You can win in Two Numbers Lottery</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Guessed the numbers in the first part of the field</td>
+      <td>Guessed the numbers in the second part of the field</td>
+      <td>You win</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>Jackpot</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>150 SJP</td>
+    </tr>
+  </tbody>
+</table>
+First, fixed winnings are calculated for 1 guessed number. After that, the rest of the Prize pool transferees to Jackpot and distributes equally among the Winners. The Jackpot is accumulative. Therefore, if there were no Winners in these two categories, then the Prize pool will be transferred to the next draw Jackpot Prize pool.
+<hr/>
+<p><b>Casting</b></p>
+The translation of the drawing is conducted on the site SUPERJACKPOT.ONLINE
+<hr/>
+<p><b>Taxes</b></p>
+SJP Lotto does not act as a tax agent. The responsibility to pay taxes lies with the Owner of the cryptocurrency wallet to which the winnings were transferred – SJP Wallet.
+<hr/>
+<p><b>Agreement</b></p>
+By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
+</div>
+
+<div class="modal-body" *ngIf="lottery_description == 6">
+Lottery with an increased prize fund, which is 91% of each ticket purchased.
+The 24/12 SJP Lottery has a minimum guaranteed Jackpot of {{prize_jackpot_value }} SJP and  this is the only lottery where you can win a Jackpot without guessing a single number. Also the Jackpot is received by those who guess 12 numbers from 24.
+<p><b>Time</b></p>
+Drawings are held every 15 minutes. The time of the current drawing is indicated on the Lottery ticket. Ticket sales end 1 minute before the drawing.
+The price of one ticket  -  1 SJP
+<hr/>
+<p><b>How to play</b></p>
+The ticket Prize&Jackpot Lottery consists of one field with numbers from 1 to 24. <br/>
+• Select 12 non-repeating numbers from 1 to 24.<br/>
+• By ticking Random icon in the ticket, you choose auto-complete: in this case a random combination of numbers will be chosen.<br/>
+• To participate in several runs, specify their number in a special column.<br/>
+• After selecting the numbers, go to the payment. Either continue to choose tickets. Then pay all together.<br/>
+When the ticket is issued - You are among the contenders for the victory. Congratulations!
+<hr/>
+<p><b>How to increase the chances?</b></p>
+The chance of winning the lottery is regarded as one to 4.5. This is one of the highest figures among lotteries.
+<p>Now multiply the winnings! To do this, select the multiplier (maximum - 100).
+It will multiply all your winnings, except for the Jackpot.</p>
+<p>Also you can choose the number of runs in which your ticket will participate. The maximum number of runs is 100.</p>
+<hr/>
+<p><b>What can be won?</b></p>
+Winners are considered to be combinations in which 0, 1, 2, 3, 4, 8, 9, 10, 11 or 12 numbers coincide with the numbers in the draw. All winnings, except for the Prize and the Jackpot, are fixed. The minimum winnings are 2 SJP.
+
+<table class="table table-dark">
+  <thead>
+    <tr colspan="2">
+      <th>You can win in Prize&Jackpot Lottery</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Guessed the numbers</td>
+      <td>You win</td>
+    </tr>
+    <tr>
+      <td>0 or 12 guessed numbers</td>
+      <td>50% of the Prize pool / Jackpot</td>
+    </tr>
+    <tr>
+      <td>1 or 11 guessed numbers</td>
+      <td>50% of the Prize pool / Prize</td>
+    </tr>
+    <tr>
+      <td>2 or 10 guessed numbers</td>
+      <td>25 SJP</td>
+    </tr>
+    <tr>
+      <td>3 or 9 guessed numbers</td>
+      <td>5 SJP</td>
+    </tr>
+    <tr>
+      <td>4 or 8 guessed numbers</td>
+      <td>2 SJP</td>
+    </tr>
+  </tbody>
+  <tr colspan="2">
+    <td>Combinations in which 5, 6 and 7 numbers have coincided, do not win.</td>
+  </tr>
+</table>
+The minimum guaranteed Jackpot is 2100 SJP. It is accumulative. First, fixed winnings are calculated. After that, the rest of the Prize pool is divided equally between the categories Prize and Jackpot. If there were no Winners in these two categories, then the Prize pools of these categories will be transferred to the next draw Jackpot Prize pool.
+<hr/>
+<p><b>Casting</b></p>
+The translation of the drawing is conducted on the site SUPERJACKPOT.ONLINE
+<hr/>
+<p><b>Taxes</b></p>
+SJP Lotto does not act as a tax agent. The responsibility to pay taxes lies with the Owner of the cryptocurrency wallet to which the winnings were transferred – SJP Wallet.
+<hr/>
+<p><b>Agreement</b></p>
+By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
+</div>
+
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
   </div>

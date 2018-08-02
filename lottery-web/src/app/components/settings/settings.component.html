@@ -1,51 +1,11 @@
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-    <a class="navbar-brand" routerLink="#">SuperJackpot</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/privateOffice">Buy Ticket!<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/my-bets">My Bets</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/my-tokens">My Tokens</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/my-statistics">Statistics</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/settings">Settings</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/faq">FAQ</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav navbar-right">
-        <li class="nav-item">
-          <a class="nav-link" (click)="logOut()" routerLink="/home">Logout</a>
-        </li>
-      </ul>
-    </div>
-</nav>
-
-<div align="center" style="margin-top: 20px;">
-  <img src="assets/img/title_banner.png" id="titleBanner">
-</div>-->
-
-
 <div class="header">
-  <table style="margin-left: 50px;">
+  <table style="margin-left: 20px;">
     <tr>
       <td><img src="assets/img/logo_small.png" alt="logo"></td>
-      <td style="padding-top: 5px; color=black;"><h2><b>SUPER</b>JACK<b>POT</b></h2></td>
+      <td style="padding-top: 5px; color=black;"><a routerLink="/privateOffice"><h2 style="cursor: pointer;"><b>SUPER</b>JACK<b>POT</b></h2></a></td>
     </tr>
   </table>
+  <p style="font-size: 1em; padding-top: 0px; padding-left: 20px;">BLOCKCHAIN LOTTERY</p>
 </div>
 
   <table class="page-content">
@@ -89,8 +49,8 @@
         <div class="side" id="side-2" (click)="buyTicketRedirect('jackpot_6x45')"><img style="width: inherit;" src="assets/img/6_45_small.jpg"></div>
         <div class="side" id="side-3" (click)="buyTicketRedirect('jackpot_5x36')"><img style="width: inherit;" src="assets/img/5_36_small.jpg"></div>
         <div class="side" id="side-4" (click)="buyTicketRedirect('rapidos')"><img style="width: inherit;" src="assets/img/rapidos_small.jpg"></div>
-        <div class="side" id="side-5" (click)="buyTicketRedirect('top3')"><img style="width: inherit;" src="assets/img/top3_small.jpg"></div>
-        <div class="side" id="side-6" (click)="buyTicketRedirect('supers')"><img style="width: inherit;" src="assets/img/supers_small.jpg"></div>
+        <div class="side" id="side-5" (click)="buyTicketRedirect('two_numbers')"><img style="width: inherit;" src="assets/img/two_numbers_small.jpg"></div>
+        <div class="side" id="side-6" (click)="buyTicketRedirect('prize_jackpot')"><img style="width: inherit;" src="assets/img/prize_jackpot_small.jpg"></div>
       </div>
     </td>
   </tr>

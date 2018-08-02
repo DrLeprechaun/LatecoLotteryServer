@@ -3,6 +3,8 @@ import { LotteryService } from '../../services/lottery.service';
 import {Subject} from 'rxjs/Subject';
 import {debounceTime} from 'rxjs/operator/debounceTime';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-tokens',
@@ -21,7 +23,7 @@ export class MyTokensComponent implements OnInit {
   walletErrorMessage: string;
   private superjackpot_value: 0;
 
-  constructor(private lottery: LotteryService, private modalService: NgbModal) { }
+  constructor(private lottery: LotteryService, private router: Router, private modalService: NgbModal, private tpService: TicketsPurchaseService) { }
 
   ngOnInit() {
 
@@ -138,6 +140,11 @@ export class MyTokensComponent implements OnInit {
         this.walletAmount = res.json().data.amount;
       }
     })
+  }
+
+  private buyTicketRedirect(type: string): void {
+    this.tpService.setLotteryType(type);
+    this.router.navigateByUrl('/buy-ticket');
   }
 
   logOut(): void {

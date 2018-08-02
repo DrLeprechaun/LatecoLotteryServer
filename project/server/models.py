@@ -144,12 +144,14 @@ class BetsJackpot_5_36(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+    made_on = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, user_id, combination, is_active, is_win):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
+        self.made_on = datetime.datetime.now()
 
 class BetsJackpot_6_45(db.Model):
 
@@ -160,12 +162,14 @@ class BetsJackpot_6_45(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+    made_on = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, user_id, combination, is_active, is_win):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
+        self.made_on = datetime.datetime.now()
 
 class BetsJackpot_4_21(db.Model):
 
@@ -176,12 +180,14 @@ class BetsJackpot_4_21(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+    made_on = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, user_id, combination, is_active, is_win):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
+        self.made_on = datetime.datetime.now()
 
 class BetsRapidos(db.Model):
 
@@ -192,12 +198,14 @@ class BetsRapidos(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+    made_on = db.Column(db.DateTime, nullable=False)
 
     def __init__(self, user_id, combination, is_active, is_win):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
+        self.made_on = datetime.datetime.now()
 
 class BetsSupers(db.Model):
 
@@ -231,6 +239,42 @@ class BetsTop3(db.Model):
         self.is_active = is_active
         self.is_win = is_win
 
+class BetsTwoNumbers(db.Model):
+
+    __tablename__ = 'bets_two_numbers'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+    made_on = db.Column(db.DateTime, nullable=False)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+        self.made_on = datetime.datetime.now()
+
+class BetsPrizeJackpot(db.Model):
+
+    __tablename__ = 'bets_prize_jackpot'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+    made_on = db.Column(db.DateTime, nullable=False)
+
+    def __init__(self, user_id, combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.is_active = is_active
+        self.is_win = is_win
+        self.made_on = datetime.datetime.now()
+
 class Wallets(db.Model):
 
     __tablename__ = 'wallets'
@@ -255,8 +299,10 @@ class Bank(db.Model):
     rapidos = db.Column(REAL, nullable=True)
     supers = db.Column(REAL, nullable=True)
     top3 = db.Column(REAL, nullable=True)
+    two_numbers = db.Column(REAL, nullable=True)
+    prize_jackpot = db.Column(REAL, nullable=True)
 
-    def __init__(self, jackpot_5_36, jackpot_6_45, jackpot_4_21, superjackpot, rapidos, supers, top3):
+    def __init__(self, jackpot_5_36, jackpot_6_45, jackpot_4_21, superjackpot, rapidos, supers, top3, two_numbers, prize_jackpot):
         self.jackpot_5_36 = jackpot_5_36
         self.jackpot_6_45 = jackpot_6_45
         self.jackpot_4_21 = jackpot_4_20
@@ -264,3 +310,5 @@ class Bank(db.Model):
         self.rapidos = rapidos
         self.supers = supers
         self.top3 = top3
+        self.two_numbers = two_numbers
+        self.prize_jackpot = prize_jackpot
