@@ -42,8 +42,19 @@ export class BuyTicketComponent implements OnInit {
 
 constructor(private router: Router, private lottery: LotteryService, private tpService: TicketsPurchaseService) {
 
-  if (this.tpService.getLotteryType() == null || this.tpService.getLotteryType() == "") {
-    this.router.navigateByUrl('/privateOffice');
+  const lotteryTypes = ["jackpot_4x21", "jackpot_5x36", "jackpot_6x45", "rapidos", "two_numbers", "prize_jackpot"];
+  const scratchTypes = ["777", "100CASH", "33"];
+
+  //if (this.tpService.getLotteryType() == null || this.tpService.getLotteryType() == "" || lotteryTypes.indexOf(this.tpService.getLotteryType()) == -1) {
+  if (this.tpService.getLotteryType() == null || lotteryTypes.indexOf(this.tpService.getLotteryType()) == -1) {
+    if (scratchTypes.indexOf(this.tpService.getLotteryType()) != -1) {
+      this.router.navigateByUrl('/scratch');
+    } else {
+      this.router.navigateByUrl('/privateOffice');
+    }
+
+  } else {
+
   }
 
 }
@@ -266,7 +277,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
 
     this.addTicketToTable();
     this.raffles.push(1);
-    console.log(this.raffles);
+
+    window.scrollTo(0, 0);
   }
 
   addTicketToTable() {
@@ -495,50 +507,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
   }
 
   getCountDownDate() {
-    /*if (this.lotteryName == "Jackpot 5x36" || this.lotteryName == "Jackpot 4x21" || this.lotteryName == "Jackpot 6x45") {
-      var today = new Date();
-      var tomorrow = new Date();
-      tomorrow.setDate(today.getDate()+1);
-      tomorrow.setHours(1);
-      tomorrow.setMinutes(0);
-      tomorrow.setSeconds(0);
-      return  tomorrow.getTime();
-    } else if (this.lotteryName == "Top 3" || this.lotteryName == "Rapidos" || this.lotteryName == "Supers") {
-      var now = new Date();
-      var cd = new Date();
-      if (now.getMinutes() < 5) {
-        cd.setMinutes(5);
-      } else if (now.getMinutes() >= 5 && now.getMinutes() < 10) {
-        cd.setMinutes(10);
-      } else if (now.getMinutes() >= 10 && now.getMinutes() < 15) {
-        cd.setMinutes(15);
-      } else if (now.getMinutes() >= 15 && now.getMinutes() < 20) {
-        cd.setMinutes(20);
-      } else if (now.getMinutes() >= 20 && now.getMinutes() < 25) {
-        cd.setMinutes(25);
-      } else if (now.getMinutes() >= 25 && now.getMinutes() < 30) {
-        cd.setMinutes(30);
-      } else if (now.getMinutes() >= 30 && now.getMinutes() < 35) {
-        cd.setMinutes(35);
-      } else if (now.getMinutes() >= 35 && now.getMinutes() < 40) {
-        cd.setMinutes(40);
-      } else if (now.getMinutes() >= 40 && now.getMinutes() < 45) {
-        cd.setMinutes(45);
-      } else if (now.getMinutes() >= 45 && now.getMinutes() < 50) {
-        cd.setMinutes(50);
-      } else if (now.getMinutes() >= 50 && now.getMinutes() < 55) {
-        cd.setMinutes(55);
-      } else if (now.getMinutes() >= 55) {
-        tomorrow.setDate(today.getDate()+1);
-        cd.setHours(today.getHours()+1);
-        cd.setMinutes(0);
-      }
-      cd.setSeconds(0);
-      return cd.getTime();
-    }*/
     var nowLocal = new Date();
-    //var nowLocal = now.getTime() + (now.getTimezoneOffset() * 60000);
-    //var nowUtc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
     var now = new Date(nowLocal.getTime() + (nowLocal.getTimezoneOffset() * 60000));
     var cd = new Date(nowLocal.getTime() + (nowLocal.getTimezoneOffset() * 60000));
     if (this.lotteryName == "Jackpot 4x21") {
@@ -613,9 +582,11 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
         cd.setMinutes(35);
       } else if (now.getMinutes() < 35 && now.getMinutes() >= 50) {
         cd.setMinutes(50);
-      }  else if (now.getMinutes() >= 50) {
+      } else if (now.getMinutes() >= 50 && now.getMinutes() < 0) {
         cd.setMinutes(5);
         cd.setHours(now.getHours()+1);
+      } else if (now.getMinutes() >= 0 && now.getMinutes() < 5) {
+        cd.setMinutes(5);
       }
       cd.setSeconds(0);
     } else if (this.lotteryName == "Prize&Jackpot") {
@@ -627,13 +598,28 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
         cd.setMinutes(40);
       } else if (now.getMinutes() < 55 && now.getMinutes() >= 40) {
         cd.setMinutes(55);
-      }  else if (now.getMinutes() >= 55) {
+      } else if (now.getMinutes() >= 55 && now.getMinutes() < 0) {
         cd.setMinutes(10);
         cd.setHours(now.getHours()+1);
+      } else if (now.getMinutes() >= 0 && now.getMinutes() < 10) {
+        cd.setMinutes(10);
       }
       cd.setSeconds(0);
     }
     return cd.getTime();
+  }
+
+  private buyTicketRedirect(type: string): void {
+    this.tpService.setLotteryType(type);
+    location.reload();
+  }
+
+  private removeButtonFlag(): boolean {
+    if (this.tickets.length > 1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   logOut(): void {

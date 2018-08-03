@@ -1,244 +1,3 @@
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-    <a class="navbar-brand" routerLink="#">SuperJackpot</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/privateOffice">Buy Ticket!<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/my-bets">My Bets</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/my-tokens">My Tokens</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/my-statistics">Statistics</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/settings">Settings</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/faq">FAQ</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav navbar-right">
-        <li class="nav-item">
-          <a class="nav-link" (click)="logOut()" routerLink="/home">Logout</a>
-        </li>
-      </ul>
-    </div>
-</nav>
-
-<div class="buyContainer">
-
-
-  <div class="container">
-    <table class="page-content">
-      <tr>
-      <td class="banner-cell" colspan="3">
-          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img class="d-block w-100" src="assets/img/bannermega_1.jpg" alt="First slide">
-                <div class="carousel-caption d-none d-md-block banner-text ">
-                  <p>{{superjackpot_value}} SJP</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="assets/img/bannermega_3.jpg" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block banner-text ">
-                  <p>{{superjackpot_value}} SJP</p>
-                </div>
-              </div>
-            </div>
-          </div>
-      </td>
-      <td>
-        <div class="cube">
-          <div class="side" id="side-1"><img style="width: inherit;" src="assets/img/4_21.png"></div>
-          <div class="side" id="side-2"><img style="width: inherit;" src="assets/img/j_6_45.png"></div>
-          <div class="side" id="side-3"><img style="width: inherit;" src="assets/img/5_36.png"></div>
-          <div class="side" id="side-4"><img style="width: inherit;" src="assets/img/rapidos.png"></div>
-          <div class="side" id="side-5"><img style="width: inherit;" src="assets/img/top3.png"></div>
-          <div class="side" id="side-6"><img style="width: inherit;" src="assets/img/supers.png"></div>
-        </div>
-      </td>
-    </tr>
-        <tr>
-          <fieldset class="scheduler-border">
-              <legend class="scheduler-border"><b>SUPER</b>JACK<b>POT&nbsp;&nbsp;&nbsp;{{superjackpot_value}} SJP</b></legend>
-              <label class="lotteryLabel">Win multimillion jackpots ...</label>
-              <div class="control-group">
-                <td class="lottery-cell">
-                  <div class="card" style="width: 15rem;  margin: 0 auto;">
-                    <a (click)="buyTicketRedirect('jackpot_4x21')" style="cursor: pointer;">
-                      <img class="card-img-top" src="assets/img/4_21.png" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                      <h5 class="card-title">Jackpot 4x21</h5>
-                      <p class="card-text">
-                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 4x21', 'about', content)">Rules</button>
-                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_4x21')">Buy</button>
-                        <button class="btn btn-dark btn-sm buy-give">Give</button>
-                      </p>
-                    </div>
-                  </div>
-                </td>
-                <td class="lottery-cell">
-                  <div class="card" style="width: 15rem;  margin: 0 auto;">
-                    <a (click)="buyTicketRedirect('jackpot_5x36')" style="cursor: pointer;">
-                      <img class="card-img-top" src="assets/img/5_36.png" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                      <h5 class="card-title">Jackpot 5x36</h5>
-                      <p class="card-text">
-                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 5x36', 'about', content)">Rules</button>
-                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_5x36')">Buy</button>
-                        <button class="btn btn-dark btn-sm buy-give">Give</button>
-                      </p>
-                    </div>
-                  </div>
-                </td>
-                <td class="lottery-cell">
-                  <div class="card" style="width: 15rem;  margin: 0 auto;">
-                    <a (click)="buyTicketRedirect('jackpot_6x45')" style="cursor: pointer;">
-                      <img class="card-img-top" src="assets/img/6_45.png" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                      <h5 class="card-title">Jackpot 6x45</h5>
-                      <p class="card-text">
-                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Jackpot 6x45', 'about', content)">Rules</button>
-                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('jackpot_6x45')">Buy</button>
-                        <button class="btn btn-dark btn-sm buy-give">Give</button>
-                      </p>
-                    </div>
-                  </div>
-                </td>
-              </div>
-          </fieldset>
-        </tr>
-
-        <tr>
-          <fieldset class="scheduler-border">
-              <legend class="scheduler-border">INSTANT<b>LOTTO</b></legend>
-              <label class="lotteryLabel">Win every 5 minutes ...</label>
-              <div class="control-group">
-                <td class="lottery-cell">
-                  <div class="card" style="width: 15rem;  margin: 0 auto;">
-                    <a (click)="buyTicketRedirect('rapidos')" style="cursor: pointer;">
-                      <img class="card-img-top" src="assets/img/rapidos.png" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                      <h5 class="card-title">Rapidos</h5>
-                      <p class="card-text">
-                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Rapidos', 'about', content)">Rules</button>
-                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('rapidos')">Buy</button>
-                        <button class="btn btn-dark btn-sm buy-give">Give</button>
-                      </p>
-                    </div>
-                  </div>
-                </td>
-                <td class="lottery-cell">
-                  <div class="card" style="width: 15rem;  margin: 0 auto;">
-                    <a (click)="buyTicketRedirect('supers')" style="cursor: pointer;">
-                      <img class="card-img-top" src="assets/img/supers.png" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                      <h5 class="card-title">Supers</h5>
-                      <p class="card-text">
-                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Supers', 'about', content)">Rules</button>
-                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('supers')">Buy</button>
-                        <button class="btn btn-dark btn-sm buy-give">Give</button>
-                      </p>
-                    </div>
-                  </div>
-                </td>
-                <td class="lottery-cell">
-                  <div class="card" style="width: 15rem;  margin: 0 auto;">
-                    <a (click)="buyTicketRedirect('top3')" style="cursor: pointer;">
-                      <img class="card-img-top" src="assets/img/top3.png" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                      <h5 class="card-title">Top3</h5>
-                      <p class="card-text">
-                        <button class="btn btn-dark btn-sm buy-give" (click)="open('Top3', 'about', content)">Rules</button>
-                        <button class="btn btn-dark btn-sm buy-give" (click)="buyTicketRedirect('top3')">Buy</button>
-                        <button class="btn btn-dark btn-sm buy-give">Give</button>
-                      </p>
-                    </div>
-                  </div>
-                </td>
-              </div>
-          </fieldset>
-        </tr>
-
-      </table>
-  </div>
-
-
-</div>
-
-
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">{{ modalTitle }}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body" *ngIf="aboutContent">
-    <p><b>Prize</b></p>
-    <p>
-      The current prize pool is 1000 SJP. The more the participants, the bigger the prize fund!
-    </p>
-    <p><b>Participation & Rules</b></p>
-    <p>
-      To participate in the lottery, you need to choose {{combinationSize}} numbers from 1 to {{maxNumber}} in your lottery ticket, or select the magic wand icon to allow the random number generator to choose the numbers for you. The number of tickets that you can buy is almost unlimited. However, using automated software tools for buying tickets or filling them out is prohibited.
-      The cost of one ticket is {{ticketCost}} SJP. Your prize is transferred to your Wallet Space in SJP. Later you can transfer your funds to another online wallet or to fiat. You can get more info about it as well as about Wallet Space in section “My Tokens”.<br>
-      {{lotteryGrequencyDescription}}
-    </p>
-    <p><b>Ticket Price</b></p>
-    <p>
-      The cost of one ticket is {{ticketCost}} SJP.
-    </p>
-    <p><b>Taxes</b></p>
-    <p>
-      Fire Lotto does not act as a tax agent. The responsibility to pay taxes lies with the owner of the cryptocurrency wallet to which the winnings were transferred – Wallet Space.
-    </p>
-    <p><b>Agreement</b></p>
-    <p>
-      By participating in the lottery, you agree to the lottery rules. By purchasing the lottery tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the lottery in your country of residence.
-    </p>
-  </div>
-  <div class="modal-body" *ngIf="buyContent">
-    <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
-    <table class="modal-table" id="buyTable">
-      <tr>
-        <td>
-          <input id="ticketInput" class="form-control" type="number" value="1" (change)="calculateTicketCost()" min ="1" max="10">
-        </td>
-        <td>
-          <p>{{cost }} tokens</p>
-        </td>
-        <td>
-          <button type="button" (click)="buyTicket()" class="btn btn-dark">Buy!</button>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-  </div>
-</ng-template>-->
 
 <div class="header">
   <table style="margin-left: 20px;">
@@ -264,11 +23,11 @@
         </div>
     </td>
     <td class="banner-cell" colspan="3" align="center" style="padding-top: 10%;">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 887px;">
+        <!--<ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        </ol>
+        </ol>-->
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img class="d-block w-100" src="assets/img/bannermega_1.jpg" alt="First slide">
@@ -276,12 +35,12 @@
               <p>{{superjackpot_value}} SJP</p>
             </div>
           </div>
-          <div class="carousel-item">
+          <!--<div class="carousel-item">
             <img class="d-block w-100" src="assets/img/bannermega_3.jpg" alt="Second slide">
             <div class="carousel-caption d-none d-md-block banner-text ">
               <p>{{superjackpot_value}} SJP</p>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </td>
@@ -308,6 +67,7 @@
                     <img class="card-img-top" src="assets/img/4_21.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">JACK<b>POT</b> 4x21</div>
+                  <div class="lotteryCounter">{{jackpot_4_21_counter}}</div>
                   <div class="lotteryFunds">{{jackpot_4_21_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 4x21', 'about', content)">Rules</button></div>
@@ -322,6 +82,7 @@
                     <img class="card-img-top" src="assets/img/5_36.jpg" alt="Card image cap">
                     </a>
                   <div class="lotteryTitle">JACK<b>POT</b> 5x36</div>
+                  <div class="lotteryCounter">{{jackpot_5_36_counter}}</div>
                   <div class="lotteryFunds">{{jackpot_5_36_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 5x36', 'about', content)">Rules</button></div>
@@ -336,6 +97,7 @@
                     <img class="card-img-top" src="assets/img/6_45.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">JACK<b>POT</b> 6x45</div>
+                  <div class="lotteryCounter">{{jackpot_6_45_counter}}</div>
                   <div class="lotteryFunds">{{jackpot_6_45_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 6x45', 'about', content)">Rules</button></div>
@@ -352,7 +114,7 @@
         <td></td>
         <fieldset class="scheduler-border">
             <legend class="scheduler-border">INSTANT<b>LOTTO</b></legend>
-            <label class="lotteryLabel">These are the fastest lotteries. Ways to win - a great many. You can become a Winner, even if you do not guess a single number. You decide how to participate, how many numbers to note, and, of course, how much You want to win.<br/>The choice is Yours!</label>
+            <label class="lotteryLabel2">These are the fastest lotteries. Ways to win - a great many. You can become a Winner, even if you do not guess a single number. You decide how to participate, how many numbers to note, and, of course, how much You want to win.<br/>The choice is Yours!</label>
             <div class="control-group">
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
@@ -360,6 +122,7 @@
                     <img class="card-img-top" src="assets/img/rapidos.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">RAPI<b>DOS</b></div>
+                  <div class="lotteryCounter">{{rapidos_counter}}</div>
                   <div class="lotteryFunds">{{rapidos_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Rapidos', 'about', content)">Rules</button></div>
@@ -374,6 +137,7 @@
                     <img class="card-img-top" src="assets/img/supers.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">TWO <b>NUMBERS</b></div>
+                  <div class="lotteryCounter">{{two_numbers_counter}}</div>
                   <div class="lotteryFunds">{{two_numbers_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Two Numbers', 'about', content)">Rules</button></div>
@@ -388,6 +152,7 @@
                     <img class="card-img-top" src="assets/img/prize_jackpot.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">PRIZE&<b>JACKPOT</b></div>
+                  <div class="lotteryCounter">{{prize_jackpot_counter}}</div>
                   <div class="lotteryFunds">{{prize_jackpot_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Prize&Jackpot', 'about', content)">Rules</button></div>
@@ -403,7 +168,7 @@
       <tr>
         <td></td>
         <fieldset class="scheduler-border">
-            <legend class="scheduler-border">SKRATCH <b>LOTTERIES</b></legend>
+            <legend class="scheduler-border">SCRATCH <b>LOTTERIES</b></legend>
             <label class="lotteryLabel"></label>
             <div class="control-group">
               <td class="lottery-cell">
@@ -412,10 +177,11 @@
                     <img class="card-img-top" src="assets/img/33.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle"><b>33</b></div>
+                  <div class="lotteryCounter">Any Time</div>
                   <div class="lotteryFunds">33 SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton">Buy</button></div>
+                    <div class="buttonDiv"><button (click)="buyScratch('33')" class="lotteryButton">Buy</button></div>
                     <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
                   </div>
                 </div>
@@ -426,10 +192,11 @@
                     <img class="card-img-top" src="assets/img/100000CASH.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">100'000 <b>CASH</b></div>
+                  <div class="lotteryCounter">Any Time</div>
                   <div class="lotteryFunds">1 000 SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton">Buy</button></div>
+                    <div class="buttonDiv"><button (click)="buyScratch('100CASH')" class="lotteryButton">Buy</button></div>
                     <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
                   </div>
                 </div>
@@ -440,10 +207,11 @@
                     <img class="card-img-top" src="assets/img/top3.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle"><b>777</b></div>
+                  <div class="lotteryCounter">Any Time</div>
                   <div class="lotteryFunds">777 SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton">Buy</button></div>
+                    <div class="buttonDiv"><button (click)="buyScratch('777')" class="lotteryButton">Buy</button></div>
                     <div class="buttonDiv"><button class="lotteryButton">Give</button></div>
                   </div>
                 </div>
@@ -463,49 +231,9 @@
         </button>
       </div>
 
-      <!--<div class="modal-body" *ngIf="aboutContent">
-        <p><b>Prize</b></p>
-        <p>
-          The current prize pool is 1000 SJP. The more the participants, the bigger the prize fund!
-        </p>
-        <p><b>Participation & Rules</b></p>
-        <p>
-          To participate in the lottery, you need to choose {{combinationSize}} numbers from 1 to {{maxNumber}} in your lottery ticket, or select the magic wand icon to allow the random number generator to choose the numbers for you. The number of tickets that you can buy is almost unlimited. However, using automated software tools for buying tickets or filling them out is prohibited.
-          The cost of one ticket is {{ticketCost}} SJP. Your prize is transferred to your Wallet Space in SJP. Later you can transfer your funds to another online wallet or to fiat. You can get more info about it as well as about Wallet Space in section “My Tokens”.<br>
-          {{lotteryGrequencyDescription}}
-        </p>
-        <p><b>Ticket Price</b></p>
-        <p>
-          The cost of one ticket is {{ticketCost}} SJP.
-        </p>
-        <p><b>Taxes</b></p>
-        <p>
-          Fire Lotto does not act as a tax agent. The responsibility to pay taxes lies with the owner of the cryptocurrency wallet to which the winnings were transferred – Wallet Space.
-        </p>
-        <p><b>Agreement</b></p>
-        <p>
-          By participating in the lottery, you agree to the lottery rules. By purchasing the lottery tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the lottery in your country of residence.
-        </p>
-      </div>-->
 
-      <!--<div class="modal-body" *ngIf="buyContent">
-        <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
-        <table class="modal-table" id="buyTable">
-          <tr>
-            <td>
-              <input id="ticketInput" class="form-control" type="number" value="1" (change)="calculateTicketCost()" min ="1" max="10">
-            </td>
-            <td>
-              <p>{{cost }} tokens</p>
-            </td>
-            <td>
-              <button type="button" (click)="buyTicket()" class="btn btn-dark">Buy!</button>
-            </td>
-          </tr>
-        </table>
-      </div>-->
-
-      <div class="modal-body" *ngIf="lottery_description == 1">
+      <div class="modal-body">
+        <div *ngIf="lottery_description == 1">
         <p>The 4x21 SJP Lottery has a minimum guaranteed Jackpot of {{jackpot_4_21_value}} SJP.</p>
         <hr/>
         <p><b>Time</b></p>
@@ -535,7 +263,7 @@
         By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
       </div>
 
-    <div class="modal-body" *ngIf="lottery_description == 2">
+    <div *ngIf="lottery_description == 2">
       <p>The 5x36 SJP Lottery has a minimum guaranteed Jackpot of {{jackpot_5_36_value}} SJP.</p>
       <hr/>
       <p><b>Time</b></p>
@@ -569,7 +297,7 @@
       By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
     </div>
 
-    <div class="modal-body" *ngIf="lottery_description == 3">
+    <div  *ngIf="lottery_description == 3">
       <p>The 6x45 SJP Lottery has a minimum guaranteed Jackpot of {{jackpot_6_45_value}} SJP.</p>
       <hr/>
       <p><b>Time</b></p>
@@ -604,7 +332,7 @@
       By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
       </div>
 
-    <div class="modal-body" *ngIf="lottery_description == 4">
+    <div *ngIf="lottery_description == 4">
       Lottery with an increased prize fund, which is 91% of each ticket purchased.<br/>
       The Rapidos Lottery has a minimum guaranteed Jackpot of {{rapidos_value}} SJP and to win a Jackpot, you just need to guess 8 numbers out of 20 in the first part of the field and one number in four - in the second part.
       <hr/>
@@ -696,7 +424,7 @@
     By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
     </div>
 
-    <div class="modal-body" *ngIf="lottery_description == 5">
+    <div *ngIf="lottery_description == 5">
       Lottery with an increased prize fund, which is 91% of each ticket purchased.<br/>
     The Two Numbers  Lottery is one of the most simple and popular Lotteries in the world since ancient times.
     <hr/>
@@ -749,7 +477,7 @@
     By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
     </div>
 
-    <div class="modal-body" *ngIf="lottery_description == 6">
+    <div *ngIf="lottery_description == 6">
     Lottery with an increased prize fund, which is 91% of each ticket purchased.
     The 24/12 SJP Lottery has a minimum guaranteed Jackpot of {{prize_jackpot_value }} SJP and  this is the only lottery where you can win a Jackpot without guessing a single number. Also the Jackpot is received by those who guess 12 numbers from 24.
     <p><b>Time</b></p>
@@ -820,6 +548,60 @@
     <p><b>Agreement</b></p>
     By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By purchasing the SJP Lotteries tickets, you guarantee that you are 18 years of age and/or you have reached the minimum age for legally participating in the Lottery in your country of residence.
     </div>
+    <hr>
+    <p>Upon registering on SUPERJACKPOT lottery portal, you will be prompted to connect your SUPERJACKPOT account to the WalletSpace wallet; connect it at once if you have one already or start with creating your WalletSpace account and then connect your new wallet with the lottery service.</p>
+    <p>Your funds and gambling tokens are managed in «My Tokens» section.  Here you can access the following features:<br/>
+       <span style="margin-left: 10px;">•	Available tokens count data</span><br/>
+       <span style="margin-left: 10px;">•	Lottery tokens purchase</span><br/>
+       <span style="margin-left: 10px;">•	Current WalletSpace balance</span><br/>
+       <span style="margin-left: 10px;">•	WalletSpace balance top up</span><br/>
+       <span style="margin-left: 10px;">•	WalletSpace funds withdrawal to other accounts</span><br/>
+       <span style="margin-left: 10px;">•	Market data on SJP exchange rates against other major crypto and fiat currencies (USD, EUR, GBP, BTC, ETH and others)</span><br/>
+       <span style="margin-left: 10px;">•	Other WalletSpace features</span></p>
+      <p>The prize is transferred to winner’s WalletSpace account automatically.<p>
+      <p><i><u>Note:</u> Tokens are purchased for SJP cryptocurrency with an exchange rate of 1:1.</i></p>
+      <p><i><u>Note:</u> Please be aware that the lottery service owners are only responsible for Gambling Tokens level. Service owners do not take any responsibility for cryptocurrencry and fiat transactions.</i></p>
+      <p><i><u>Note:</u> SJP is purchased at Wallet Space with an exchange rate of 1 SJP:1 GBP. </i></p>
+      <p>To play the lottery, you will have to buy at least one ticket. Tickets are purchased for gambling tokens. Tokens are bought for SJP cryptocurrency at 1:1 exchange rate, with SJP coming from  your WalletSpace account. Use WalletSpace account tools (which are also available right from the lottery service portal) to top up wallet balance with your debit card and convert it to SJP.</p>
+      <p>Should you win, the payoff will be automatically transferred to your WalletSpace account in SJP. Winner has several options for managing funds:<br/>
+      <span style="margin-left: 10px;">a.	Transfer funds to a digital wallet with crypto support (Wirex, SpectroCoin) and order a debit card issued by the wallet provider.</span><br/>
+      <span style="margin-left: 10px;">b.	Use the exchange feature of your WalletSpace account to convert the funds to one of available crypto or fiat currencies. </span><br/>
+      <span style="margin-left: 10px;">c.	Convert WalletSpace funds using third party exchange services. Transaction time depends on the service, but usually does not exceed 30 minutes.</span></p>
+      <p>You can withdraw your WalletSpace money to your bank account and cash out at ATM or your bank branch.  If you chose to get a pre-paid debit card issued by certain digital wallet providers (such as Wirex, SpectroCoin), you may withdraw your cash only at ATMs (might not be available in certain countries).</p>
+      <p><i><u>Note:</u> All steps until cash withdrawal are performed online. Transaction speed is determined by specific services availability and load, but usually operations happen immediately.</i></p>
+      <h5>How to withdraw winnings to a bank account</h5>
+      <table class="table-dark">
+        <thead>
+          <tr>
+            <th>Approach</th>
+            <th>Algorithm of actions</th>
+            <th>Comments, restrictions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>WalletSpace SJP conversion + funds transfer to the bank account</td>
+            <td>1.	Exchange SJP to fiat of choice<br/>2.	Transfer funds from WalletSpace to your debit card<br/>3.	Withdraw cash from ATM or in your bank branch(optional)</td>
+            <td>Exchange and transfer operations are performed with  WalletSpace account tools.</td>
+          </tr>
+          <tr>
+            <td>WalletSpace SJP conversion + funds transfer to Wirex or SpectroCoin account</td>
+            <td>1.	Exchange SJP to any currency supported by Wirex or SpectroCoin <br/>2.	Withdraw cash from ATM (optional)</td>
+            <td>•	Not all cryptocurrencies are currently supported by Wirex and SpectroCoin <br/> •	Due to ambiguous legal status of cryptocurrencies in some countries, there might be troubles with ordering or using Wirex or SpectroCoin debit cards.</td>
+          </tr>
+          <tr>
+            <td>WalletSpace SJP conversion + funds transfer to Wirex or SpectroCoin account + bank account transfer</td>
+            <td>1.	Exchange SJP to any currency supported by Wirex or SpectroCoin <br/>2.	Transfer funds to a bank debit card 3.	Withdraw cash from ATM or in your bank branch (optional)</td>
+            <td>•	Not all cryptocurrencies are currently supported by Wirex and SpectroCoin <br/>•	Due to ambiguous legal status of cryptocurrencies in some countries, there might be difficulties ordering or using Wirex or SpectroCoin debit cards</td>
+          </tr>
+          <tr>
+            <td>SJP conversion with third party exchange services </td>
+            <td>Conversion process is specific for each exchange service, but generally  looks like this:  <br/>	 1.	Funds are transferred to exchange service wallet.<br/> 2.	Funds are transferred back to WalletSpace account in the currency of choice.</td>
+            <td>•	Transaction time depends on the service, but usually doesn’t take more than 30 minutes<br/> •	Refund policy mostly depends on the integrity of service.<br/> •	Some exchange services may have better currency conversion rates.</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
 
 
       <div class="modal-footer">
