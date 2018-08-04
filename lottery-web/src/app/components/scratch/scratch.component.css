@@ -534,9 +534,6 @@ a h2:hover {
   color: black;
 }
 
-#ballsContainer {
-  background-color: white;
-}
 
 .btn-shake:hover {
     /* Start the shake animation and make the animation last for 0.5 seconds */
@@ -570,4 +567,34 @@ a h2:hover {
 
 #rules {
   background-color: white;
+}
+
+
+
+#ballsContainer {
+  background-color: white;
+  height: 300px;
+}
+
+
+#ballsTable {
+  padding: 30%;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.ball {
+  position: relative;
+  cursor: pointer;
+}
+
+.hidden-number {
+  opacity: 0;
+  position: absolute;
+  font-size: 30pt;
+  top: 73%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
 }

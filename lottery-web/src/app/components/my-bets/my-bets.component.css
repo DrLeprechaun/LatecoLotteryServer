@@ -587,3 +587,25 @@ legend.scheduler-border {
 a h2:hover {
   color: black;
 }
+
+#ballsTable {
+  padding: 30%;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.ball {
+  position: relative;
+  cursor: pointer;
+}
+
+.hidden-number {
+  opacity: 0;
+  position: absolute;
+  font-size: 30pt;
+  top: 73%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}

@@ -27,6 +27,11 @@ export class MyBetsComponent implements OnInit {
   lotteryType: string = "";
   editedRecordId: number;
   private superjackpot_value: 0;
+  private scratchFlag: boolean;
+  scratchBalls: number;
+  scratchBunner: string;
+  scratchArray: number[] = [];
+  checkUpdateScratch: number[] = [];
 
   constructor(private router: Router, private lottery: LotteryService, private modalService: NgbModal, private tpService: TicketsPurchaseService) { }
 
@@ -65,7 +70,8 @@ export class MyBetsComponent implements OnInit {
             "type": "jackpot_5x36",
             "combination": this.processCombination(res.json().data.jackpot_5x36[i].combination),
             "is_new": this.checkNewBet("jackpot_5x36", res.json().data.jackpot_5x36[i].combination),
-            "date": new Date(res.json().data.jackpot_5x36[i].date)
+            "date": new Date(res.json().data.jackpot_5x36[i].date),
+            "scratch": false
           }
           this.tableData.push(rowData);
         }
@@ -78,7 +84,8 @@ export class MyBetsComponent implements OnInit {
             "type": "jackpot_6x45",
             "combination": this.processCombination(res.json().data.jackpot_6x45[i].combination),
             "is_new": this.checkNewBet("jackpot_6x45", res.json().data.jackpot_6x45[i].combination),
-            "date": new Date(res.json().data.jackpot_6x45[i].date)
+            "date": new Date(res.json().data.jackpot_6x45[i].date),
+            "scratch": false
           }
           this.tableData.push(rowData);
         }
@@ -91,7 +98,8 @@ export class MyBetsComponent implements OnInit {
             "type": "jackpot_4x21",
             "combination": this.processCombination(res.json().data.jackpot_4x21[i].combination),
             "is_new": this.checkNewBet("jackpot_4x21", res.json().data.jackpot_4x21[i].combination),
-            "date": new Date(res.json().data.jackpot_4x21[i].date)
+            "date": new Date(res.json().data.jackpot_4x21[i].date),
+            "scratch": false
           }
           this.tableData.push(rowData);
         }
@@ -104,7 +112,8 @@ export class MyBetsComponent implements OnInit {
             "type": "rapidos",
             "combination": this.processCombination(res.json().data.rapidos[i].combination),
             "is_new": this.checkNewBet("rapidos", res.json().data.rapidos[i].combination),
-            "date": new Date(res.json().data.rapidos[i].date)
+            "date": new Date(res.json().data.rapidos[i].date),
+            "scratch": false
           }
           this.tableData.push(rowData);
         }
@@ -117,7 +126,8 @@ export class MyBetsComponent implements OnInit {
             "type": "two_numbers",
             "combination": this.processCombination(res.json().data.two_numbers[i].combination),
             "is_new": this.checkNewBet("two_numbers", res.json().data.two_numbers[i].combination),
-            "date": new Date(res.json().data.two_numbers[i].date)
+            "date": new Date(res.json().data.two_numbers[i].date),
+            "scratch": false
           }
           this.tableData.push(rowData);
         }
@@ -130,7 +140,50 @@ export class MyBetsComponent implements OnInit {
             "type": "prize_jackpot",
             "combination": this.processCombination(res.json().data.prize_jackpot[i].combination),
             "is_new": this.checkNewBet("prize_jackpot", res.json().data.prize_jackpot[i].combination),
-            "date": new Date(res.json().data.prize_jackpot[i].date)
+            "date": new Date(res.json().data.prize_jackpot[i].date),
+            "scratch": false
+          }
+          this.tableData.push(rowData);
+        }
+        //777
+        for (var i = 0; i < res.json().data.bets_777.length; i++) {
+          let rowData = {
+            "id": res.json().data.bets_777[i].id,
+            "fake_id": "00" + 777283 + res.json().data.bets_777[i].id,
+            "type_name": "777",
+            "type": "777",
+            "combination": res.json().data.bets_777[i].combination,
+            "is_new": false,
+            "date": new Date(res.json().data.bets_777[i].date),
+            "scratch": true
+          }
+          this.tableData.push(rowData);
+        }
+        //33
+        for (var i = 0; i < res.json().data.bets_33.length; i++) {
+          let rowData = {
+            "id": res.json().data.bets_33[i].id,
+            "fake_id": "00" + 337283 + res.json().data.bets_33[i].id,
+            "type_name": "33",
+            "type": "33",
+            "combination": res.json().data.bets_33[i].combination,
+            "is_new": false,
+            "date": new Date(res.json().data.bets_33[i].date),
+            "scratch": true
+          }
+          this.tableData.push(rowData);
+        }
+        //100 000 CASH
+        for (var i = 0; i < res.json().data.bets_100.length; i++) {
+          let rowData = {
+            "id": res.json().data.bets_100[i].id,
+            "fake_id": "00" + 100083 + res.json().data.bets_100[i].id,
+            "type_name": "100`000 CASH",
+            "type": "100CASH",
+            "combination": res.json().data.bets_100[i].combination,
+            "is_new": false,
+            "date": new Date(res.json().data.bets_100[i].date),
+            "scratch": true
           }
           this.tableData.push(rowData);
         }
@@ -229,6 +282,48 @@ export class MyBetsComponent implements OnInit {
           }
           this.archiveTableData.push(rowData);
         }
+        //777
+        for (var i = 0; i < res.json().data.bets_777.length; i++) {
+          let rowData = {
+            "id": res.json().data.bets_777[i].id,
+            "fake_id": "00" + 77283 + res.json().data.bets_777[i].id,
+            "type_name": "777",
+            "type": "777",
+            "combination": this.processCombination(res.json().data.bets_777[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.bets_777[i].win_combination),
+            "is_win": res.json().data.bets_777[i].is_win,
+            "date": new Date(res.json().data.bets_777[i].date)
+          }
+          this.archiveTableData.push(rowData);
+        }
+        //33
+        for (var i = 0; i < res.json().data.bets_33.length; i++) {
+          let rowData = {
+            "id": res.json().data.bets_33[i].id,
+            "fake_id": "00" + 33283 + res.json().data.bets_33[i].id,
+            "type_name": "33",
+            "type": "33",
+            "combination": this.processCombination(res.json().data.bets_33[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.bets_33[i].win_combination),
+            "is_win": res.json().data.bets_33[i].is_win,
+            "date": new Date(res.json().data.bets_33[i].date)
+          }
+          this.archiveTableData.push(rowData);
+        }
+        //100 000 Cash
+        for (var i = 0; i < res.json().data.bets_100.length; i++) {
+          let rowData = {
+            "id": res.json().data.bets_100[i].id,
+            "fake_id": "00" + 10079 + res.json().data.bets_100[i].id,
+            "type_name": "100`000 CASH",
+            "type": "100CASH",
+            "combination": this.processCombination(res.json().data.bets_100[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.bets_100[i].win_combination),
+            "is_win": res.json().data.bets_100[i].is_win,
+            "date": new Date(res.json().data.bets_100[i].date)
+          }
+          this.archiveTableData.push(rowData);
+        }
         this.archiveTableData = this.sortAndFormatBetArray(this.archiveTableData);
       }
     });
@@ -297,27 +392,100 @@ export class MyBetsComponent implements OnInit {
     });
   }*/
 
-  open(id, fake_id, type, type_name, content) {
+  open(id, fake_id, type, type_name, content, scratch: boolean) {
 
-    this.editableCombination = [];
-    for (var i = 0; i < this.rawData[type].length; i++){
-      if (this.rawData[type][i].id == id) {
-        this.editableCombination = this.rawData[type][i].combination;
-        break;
-      }
-    }
-
-    this.defineModalButtons(type);
     this.modalId = fake_id;
     this.modalType = type_name;
     this.lotteryType = type;
     this.editedRecordId = id;
-    this.modalService.open(content).result.then((result) => {
-      //this.closeResult = `Closed with: ${result}`;
-      this.updateCombination();
-    }, (reason) => {
-      //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+
+    if (!scratch) {
+
+      this.scratchFlag = false;
+
+      this.editableCombination = [];
+      for (var i = 0; i < this.rawData[type].length; i++){
+        if (this.rawData[type][i].id == id) {
+          this.editableCombination = this.rawData[type][i].combination;
+          break;
+        }
+      }
+
+      this.defineModalButtons(type);
+      this.modalService.open(content).result.then((result) => {
+        //this.closeResult = `Closed with: ${result}`;
+        this.updateCombination();
+      }, (reason) => {
+        //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    } else {
+
+      this.scratchFlag = true;
+      this.checkUpdateScratch = [];
+
+      if (type == "777") {
+        this.scratchBalls = 3;
+        this.scratchBunner = "assets/img/top3.jpg";
+      } else if (type == "33") {
+        this.scratchBalls = 6;
+        this.scratchBunner = "assets/img/33.jpg";
+      } else if (type == "100CASH") {
+        this.scratchBalls = 5;
+        this.scratchBunner = "assets/img/100000CASH.jpg";
+      }
+
+      this.scratchArray = [];
+      for (var i = 0; i < this.tableData.length; i++) {
+        //this.scratchArray.push(i);
+        if (id == this.tableData[i].id && type == this.tableData[i].type) {
+          this.scratchArray = this.tableData[i].combination;
+        }
+      }
+
+
+      this.modalService.open(content).result.then((result) => {
+        //this.closeResult = `Closed with: ${result}`;
+        //console.log("Scratch");
+        if (this.checkUpdateScratch.length == this.scratchBalls) {
+          this.lottery.updateScratch(id, type)
+          .then((res) => {
+            console.log(res.json());
+            if (res.json().status === 'success') {
+              this.loadData();
+            }
+          },
+          (err) => {
+            console.log(err);
+          })
+        }
+      }, (reason) => {
+        //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+  }
+
+  private scratchBall(i: number) {
+
+      var ball = document.getElementById("ball_" + i);
+      ball.style.opacity = "0";
+      let theLoop: (k: number) => void = (k: number) => {
+          setTimeout(() => {
+              this.fadeImg(ball);
+              if (--k) {
+                  theLoop(k);
+              }
+          }, 10);
+      };
+
+      theLoop(100);
+
+      if (this.checkUpdateScratch.indexOf(i) == -1) {
+        this.checkUpdateScratch.push(i);
+      }
+  }
+
+  private fadeImg(obj: any) {
+    obj.style.opacity = String(+obj.style.opacity + 0.01);
   }
 
   defineModalButtons(type: string): void {
@@ -514,6 +682,10 @@ export class MyBetsComponent implements OnInit {
   private buyTicketRedirect(type: string): void {
     this.tpService.setLotteryType(type);
     this.router.navigateByUrl('/buy-ticket');
+  }
+
+  private scratch() {
+
   }
 
   logOut(): void {

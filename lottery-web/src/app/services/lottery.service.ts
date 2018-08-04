@@ -133,4 +133,34 @@ export class LotteryService {
     return this.http.post(url, ticket, {headers: headers}).toPromise();
   }
 
+  scratchNow(balls: number, tickets: number): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/scratch_now`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, {balls: balls, tickets: tickets}, {headers: headers}).toPromise();
+  }
+
+  buyScratch(balls: number, tickets: number): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/buy_scratch`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, {balls: balls, tickets: tickets}, {headers: headers}).toPromise();
+  }
+
+  updateScratch(id: number, type: string): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/update_scratch`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, {id: id, type: type}, {headers: headers}).toPromise();
+  }
+
 }

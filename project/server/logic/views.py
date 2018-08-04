@@ -317,6 +317,39 @@ class GetBets(MethodView):
                         'date': row.made_on
                     }
                     prize_jackpot_arr.append(obj)
+                #777
+                bets_777 = db.engine.execute('SELECT * FROM bets_777 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                bets_777_arr = []
+                for row in bets_777:
+                    obj = {
+                        'id': row.id,
+                        'combination': row.combination,
+                        'is_win': row.is_win,
+                        'date': row.made_on
+                    }
+                    bets_777_arr.append(obj)
+                #33
+                bets_33 = db.engine.execute('SELECT * FROM bets_33 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                bets_33_arr = []
+                for row in bets_33:
+                    obj = {
+                        'id': row.id,
+                        'combination': row.combination,
+                        'is_win': row.is_win,
+                        'date': row.made_on
+                    }
+                    bets_33_arr.append(obj)
+                #777
+                bets_100 = db.engine.execute('SELECT * FROM bets_100_cash WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                bets_100_arr = []
+                for row in bets_100:
+                    obj = {
+                        'id': row.id,
+                        'combination': row.combination,
+                        'is_win': row.is_win,
+                        'date': row.made_on
+                    }
+                    bets_100_arr.append(obj)
                 responseObject = {
                     'status': 'success',
                     'data': {
@@ -325,7 +358,10 @@ class GetBets(MethodView):
                         'jackpot_4x21': jackpot_4x21_arr,
                         'rapidos': rapidos_arr,
                         'two_numbers': two_numbers_arr,
-                        'prize_jackpot': prize_jackpot_arr
+                        'prize_jackpot': prize_jackpot_arr,
+                        'bets_777': bets_777_arr,
+                        'bets_33': bets_33_arr,
+                        'bets_100': bets_100_arr
                     }
                 }
                 return make_response(jsonify(responseObject)), 200
@@ -432,6 +468,42 @@ class GetBetsArchive(MethodView):
                         'date': row.date.isoformat()
                     }
                     prize_jackpot_arr.append(obj)
+                #777
+                bets_777 = db.engine.execute('SELECT bets_777.id AS id, bets_777.combination AS my_combination, bets_777.is_win AS is_win, bets_777.win_combination AS win_combination, bets_777.made_on AS date FROM bets_777 WHERE bets_777.user_id = ' + str(user.id) + ' AND bets_777.is_active = false')
+                bets_777_arr = []
+                for row in bets_777:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date.isoformat()
+                    }
+                    bets_777_arr.append(obj)
+                #33
+                bets_33 = db.engine.execute('SELECT bets_33.id AS id, bets_33.combination AS my_combination, bets_33.is_win AS is_win, bets_33.win_combination AS win_combination,  bets_33.made_on AS date FROM bets_33 WHERE bets_33.user_id = ' + str(user.id) + ' AND bets_33.is_active = false')
+                bets_33_arr = []
+                for row in bets_33:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date.isoformat()
+                    }
+                    bets_33_arr.append(obj)
+                #100cash
+                bets_100 = db.engine.execute('SELECT bets_100_cash.id AS id, bets_100_cash.combination AS my_combination, bets_100_cash.is_win AS is_win, bets_100_cash.win_combination AS win_combination,  bets_100_cash.made_on AS date FROM bets_100_cash WHERE bets_100_cash.user_id = ' + str(user.id) + ' AND bets_100_cash.is_active = false')
+                bets_100_arr = []
+                for row in bets_100:
+                    obj = {
+                        'id': row.id,
+                        'my_combination': row.my_combination,
+                        'is_win': row.is_win,
+                        'win_combination': row.win_combination,
+                        'date': row.date.isoformat()
+                    }
+                    bets_100_arr.append(obj)
                 responseObject = {
                     'status': 'success',
                     'data': {
@@ -440,7 +512,10 @@ class GetBetsArchive(MethodView):
                         'jackpot_4x21': jackpot_4x21_arr,
                         'rapidos': rapidos_arr,
                         'two_numbers': two_numbers_arr,
-                        'prize_jackpot': prize_jackpot_arr
+                        'prize_jackpot': prize_jackpot_arr,
+                        'bets_777': bets_777_arr,
+                        'bets_33': bets_33_arr,
+                        'bets_100': bets_100_arr
                     }
                 }
                 return make_response(jsonify(responseObject)), 200
@@ -1081,6 +1156,154 @@ class FillUpTokens(MethodView):
             }
             return make_response(jsonify(responseObject)), 401
 
+class ScratchNow(MethodView):
+    def post(self):
+        auth_header = request.headers.get('Authorization')
+        post_data = request.get_json()
+        if auth_header:
+            try:
+                auth_token = auth_header.split(" ")[1]
+            except IndexError:
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'Bearer token malformed.'
+                }
+                return make_response(jsonify(responseObject)), 401
+        else:
+            auth_token = ''
+        if auth_token:
+            resp = User.decode_auth_token(auth_token)
+            if not isinstance(resp, str):
+                user = User.query.filter_by(id=resp).first()
+                resp_arr = []
+                win_combination = GetRandomArray(0, 9, post_data.get('balls'))
+                for i in range(0, post_data.get('tickets')):
+                    ticket_arr = GetRandomArray(0, 9, post_data.get('balls'))
+                    resp_arr.append(ticket_arr)
+                    if post_data.get('balls') == 3:
+                        bet_777 = Bets777(user.id, ticket_arr, win_combination, False, CompareArrays(ticket_arr, win_combination))
+                        db.session.add(bet_777)
+                    if post_data.get('balls') == 5:
+                        bet_100cash = Bets100Cash(user.id, ticket_arr, win_combination, False, CompareArrays(ticket_arr, win_combination))
+                        db.session.add(bet_100cash)
+                    if post_data.get('balls') == 6:
+                        bet_33 = Bets33(user.id, ticket_arr, win_combination, False, CompareArrays(ticket_arr, win_combination))
+                        db.session.add(bet_33)
+                    db.session.commit()
+                    #db.flush()
+                    responseObject = {
+                        'status': 'success',
+                        'tickets': resp_arr
+                    }
+                return make_response(jsonify(responseObject)), 200
+            responseObject = {
+                'status': 'fail',
+                'message': resp
+            }
+            return make_response(jsonify(responseObject)), 401
+        else:
+            responseObject = {
+                'status': 'fail',
+                'message': 'Provide a valid auth token.'
+            }
+            return make_response(jsonify(responseObject)), 401
+
+class BuyScratch(MethodView):
+    def post(self):
+        auth_header = request.headers.get('Authorization')
+        post_data = request.get_json()
+        if auth_header:
+            try:
+                auth_token = auth_header.split(" ")[1]
+            except IndexError:
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'Bearer token malformed.'
+                }
+                return make_response(jsonify(responseObject)), 401
+        else:
+            auth_token = ''
+        if auth_token:
+            resp = User.decode_auth_token(auth_token)
+            if not isinstance(resp, str):
+                user = User.query.filter_by(id=resp).first()
+                win_combination = GetRandomArray(0, 9, post_data.get('balls'))
+                for i in range(0, post_data.get('tickets')):
+                    ticket_arr = GetRandomArray(0, 9, post_data.get('balls'))
+                    if post_data.get('balls') == 3:
+                        bet_777 = Bets777(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
+                        db.session.add(bet_777)
+                    if post_data.get('balls') == 5:
+                        bet_100cash = Bets100Cash(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
+                        db.session.add(bet_100cash)
+                    if post_data.get('balls') == 6:
+                        bet_33 = Bets33(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
+                        db.session.add(bet_33)
+                    db.session.commit()
+                    #db.flush()
+                    responseObject = {
+                        'status': 'success'
+                    }
+                return make_response(jsonify(responseObject)), 200
+            responseObject = {
+                'status': 'fail',
+                'message': resp
+            }
+            return make_response(jsonify(responseObject)), 401
+        else:
+            responseObject = {
+                'status': 'fail',
+                'message': 'Provide a valid auth token.'
+            }
+            return make_response(jsonify(responseObject)), 401
+
+class UpdateScratch(MethodView):
+    def post(self):
+        auth_header = request.headers.get('Authorization')
+        post_data = request.get_json()
+        print(post_data)
+        if auth_header:
+            try:
+                auth_token = auth_header.split(" ")[1]
+            except IndexError:
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'Bearer token malformed.'
+                }
+                return make_response(jsonify(responseObject)), 401
+        else:
+            auth_token = ''
+        if auth_token:
+            resp = User.decode_auth_token(auth_token)
+            if not isinstance(resp, str):
+                user = User.query.filter_by(id=resp).first()
+                if (post_data['type'] == "777"):
+                    lottery = Bets777.query.filter_by(id=post_data['id']).first()
+                    lottery.is_active = False
+                if (post_data['type'] == "33"):
+                    lottery = Bets33.query.filter_by(id=post_data['id']).first()
+                    lottery.is_active = False
+                if (post_data['type'] == "100CASH"):
+                    lottery = Bets100Cash.query.filter_by(id=post_data['id']).first()
+                    lottery.is_active = False
+                #db.flush()
+                db.session.commit()
+                responseObject = {
+                    'status': 'success'
+                }
+                return make_response(jsonify(responseObject)), 200
+            responseObject = {
+                'status': 'fail',
+                'message': resp
+            }
+            return make_response(jsonify(responseObject)), 401
+        else:
+            responseObject = {
+                'status': 'fail',
+                'message': 'Provide a valid auth token.'
+            }
+            return make_response(jsonify(responseObject)), 401
+
 
 # define the API resources
 tokens_amount_view = TokensAmount.as_view('tokens_amount')
@@ -1096,6 +1319,9 @@ fill_up_tokens_view = FillUpTokens.as_view('fill_up_tokens');
 get_superjackpot_view = GetSuperjackpot.as_view('get_superjackpot');
 get_bank_view = GetBank.as_view('get_bank');
 get_combination_test_view = GetCominationTest.as_view('get_combination_test');
+scratch_now_view = ScratchNow.as_view('scratch_now');
+buy_scratch_view = BuyScratch.as_view('buy_scratch');
+update_scratch_view = UpdateScratch.as_view('update_scratch');
 
 # add Rules for API Endpoints
 logic_blueprint.add_url_rule(
@@ -1161,5 +1387,20 @@ logic_blueprint.add_url_rule(
 logic_blueprint.add_url_rule(
     '/logic/fill_up_tokens',
     view_func=fill_up_tokens_view,
+    methods=['POST']
+)
+logic_blueprint.add_url_rule(
+    '/logic/scratch_now',
+    view_func=scratch_now_view,
+    methods=['POST']
+)
+logic_blueprint.add_url_rule(
+    '/logic/buy_scratch',
+    view_func=buy_scratch_view,
+    methods=['POST']
+)
+logic_blueprint.add_url_rule(
+    '/logic/update_scratch',
+    view_func=update_scratch_view,
     methods=['POST']
 )
