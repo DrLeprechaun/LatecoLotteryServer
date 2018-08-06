@@ -5,7 +5,8 @@ from flask_apscheduler import APScheduler
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 #postgres_local_base = 'postgresql://postgres:@localhost:5432/'
-postgres_local_base = 'postgresql://postgres:latecO20112017@localhost/'
+#postgres_local_base = 'postgresql://postgres:latecO20112017@localhost/'
+postgres_local_base = 'postgresql://postgres:postgres@localhost/'
 database_name = 'lottery'
 
 
@@ -110,7 +111,7 @@ MAIL_PASSWORD = '1S13x111041992'
 
 class DevelopmentConfig(BaseConfig):
     """Development configuration."""
-    DEBUG = False
+    DEBUG = True
     BCRYPT_LOG_ROUNDS = 4
     SQLALCHEMY_DATABASE_URI = postgres_local_base + database_name
 

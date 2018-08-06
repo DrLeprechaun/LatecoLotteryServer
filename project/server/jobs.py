@@ -8,21 +8,25 @@ from sqlalchemy.dialects.postgresql import ARRAY
 from random import randint
 import datetime
 
+#from .config import postgres_local_base, database_name
+from project.server.config import postgres_local_base, database_name
+
 #from project.server.models import *
 
 def connect():
-    '''Returns a connection and a metadata object'''
-    # We connect with the help of the PostgreSQL URL
-    # postgresql://federer:grandestslam@localhost:5432/tennis
-    url = 'postgresql://postgres:latecO20112017@localhost/lottery'
+	'''Returns a connection and a metadata object'''
+	# We connect with the help of the PostgreSQL URL
+	# postgresql://federer:grandestslam@localhost:5432/tennis
+	#url = 'postgresql://postgres:latecO20112017@localhost/lottery'
+	url = postgres_local_base + database_name
 
-    # The return value of create_engine() is our connection object
-    con = sqlalchemy.create_engine(url, client_encoding='utf8')
+	# The return value of create_engine() is our connection object
+	con = sqlalchemy.create_engine(url, client_encoding='utf8')
 
-    # We then bind the connection to MetaData()
-    meta = sqlalchemy.MetaData(bind=con, reflect=True)
+	# We then bind the connection to MetaData()
+	meta = sqlalchemy.MetaData(bind=con, reflect=True)
 
-    return con, meta
+	return con, meta
 
 con, meta = connect()
 
@@ -89,7 +93,41 @@ def lottery_5x36():
 			#print(c)
 '''
 
+def lottery(lottery_name):
+	# win combination
+	win_combination = GetRandomArray(1, 36, 5)
+
+	#jackpot_5x36 = meta.tables['jackpot_5_36']
+	#bets = meta.tables['bets_jackpot_5_36']
+	jackpot = meta.tables[lottery_name]
+	name_bets = 'bets_' + lottery_name
+	bets = meta.tables[name_bets]
+	winners = []
+	# Fill "Random tickets"
+	clause = bets.select("is_active = true")
+	for row in con.execute(clause):
+		if (row['combination'] is None or len(row['combination']) == 0):
+			con.execute("UPDATE " + name_bets + " SET combination=" + FormatArray(
+				GetRandomArray(1, 36, 5)) + "WHERE id = " + str(row['id']))
+	# Check combinations
+	for row in con.execute(clause):
+		if (CompareArrays(row['combination'], win_combination)):
+			con.execute("UPDATE" +  name_bets + " SET is_win = true WHERE id = " + str(row['id']))
+			winners.append(row['id'])
+	# Insert Lottery
+	con.execute("INSERT INTO " + lottery_name + "(combination, win_tickets, date) VALUES (" + FormatArray(
+		win_combination) + ", " + FormatArray(winners) + ", current_timestamp);")
+	cv = con.execute("SELECT last_value FROM " + lottery_name + "_id_seq AS cv;")
+	lottery_id = str(cv.fetchone()['last_value'])
+	# Close tickets
+	for row in con.execute(clause):
+		con.execute(
+			"UPDATE " + name_bets + " SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+
+
 def jackpot_5x36():
+	lottery('jackpot_5_36')
+	'''
 	#win combination
 	win_combination = GetRandomArray(1, 36, 5)
 	jackpot_5x36 = meta.tables['jackpot_5_36']
@@ -112,9 +150,11 @@ def jackpot_5x36():
 	#Close tickets
 	for row in con.execute(clause):
 		con.execute("UPDATE bets_jackpot_5_36 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
-
+'''
 
 def jackpot_6x45():
+	lottery('jackpot_6_45')
+	'''
 	#win combination
 	win_combination = GetRandomArray(1, 45, 6)
 	jackpot_5x36 = meta.tables['jackpot_6_45']
@@ -137,9 +177,11 @@ def jackpot_6x45():
 	#Close tickets
 	for row in con.execute(clause):
 		con.execute("UPDATE bets_jackpot_6_45 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
-
+'''
 
 def jackpot_4x21():
+	lottery('jackpot_4_21')
+	'''
 	#win combination
 	win_combination = GetRandomArray(1, 21, 4)
 	jackpot_4x21 = meta.tables['jackpot_4_21']
@@ -162,9 +204,11 @@ def jackpot_4x21():
 	#Close tickets
 	for row in con.execute(clause):
 		con.execute("UPDATE bets_jackpot_4_21 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
-
+'''
 
 def rapidos():
+	lottery('rapidos')
+	'''
 	#win combination
 	win_combination = GetRandomArray(1, 21, 4)
 	rapidos = meta.tables['rapidos']
@@ -187,9 +231,12 @@ def rapidos():
 	#Close tickets
 	for row in con.execute(clause):
 		con.execute("UPDATE bets_rapidos SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+'''
 
 
 def supers():
+	lottery('supers')
+	'''
 	#win combination
 	win_combination = GetRandomArray(1, 36, 5)
 	rapidos = meta.tables['supers']
@@ -212,9 +259,11 @@ def supers():
 	#Close tickets
 	for row in con.execute(clause):
 		con.execute("UPDATE bets_supers SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
-
+'''
 
 def top3():
+	lottery('top3')
+	'''
 	#win combination
 	win_combination = GetRandomArray(1, 45, 6)
 	rapidos = meta.tables['top3']
@@ -237,11 +286,16 @@ def top3():
 	#Close tickets
 	for row in con.execute(clause):
 		con.execute("UPDATE bets_top3 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
-
+'''
 
 def print_date_time():
 	print ("Server " + time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
 
 def print_hello():
 	print("Hello")
+
+print('nothing')
+lottery('jackpot_4_21')
+#jackpot_4x21()
+print('nothing')
 

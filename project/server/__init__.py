@@ -15,7 +15,7 @@ from . import jobs
 
 
 app = Flask(__name__, static_url_path = "/static", static_folder = "static")
-app.debug = False
+app.debug = True
 CORS(app)
 
 app_settings = os.getenv(

@@ -2,7 +2,8 @@
 
 import time
 import atexit
-from . import jobs
+#from . import jobs
+from project.server import jobs
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger

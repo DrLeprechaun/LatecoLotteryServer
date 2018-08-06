@@ -510,7 +510,7 @@ class BuyTickets(MethodView):
     def post(self):
         auth_header = request.headers.get('Authorization')
         post_data = request.get_json()
-        print(post_data)
+        #print(post_data)
         if auth_header:
             try:
                 auth_token = auth_header.split(" ")[1]
@@ -541,10 +541,10 @@ class BuyTickets(MethodView):
                 		db.session.add(newBet)
                 		bank.jackpot_6_45 += 1
                 if (post_data['type'] == "jackpot_4x21"):
-                	for c in post_data['combinations']:
-                		newBet = BetsJackpot_4_21(user.id, c, True, False)
-                		db.session.add(newBet)
-                		bank.jackpot_4_21 += 1
+                    for c in post_data['combinations']:
+                        newBet = BetsJackpot_4_21(user.id, c, True, False)
+                        db.session.add(newBet)
+                        bank.jackpot_4_21 += 1
                 if (post_data['type'] == "rapidos"):
                 	for c in post_data['combinations']:
                 		newBet = BetsRapidos(user.id, c, True, False)
@@ -565,11 +565,22 @@ class BuyTickets(MethodView):
                 db.session.commit()
                 msg = Message("SuperJackpot Lottery", sender = "vadim.e@lateco.net", recipients=[user.email])
                 #msg.html = "<h1>Superjackpot</h1>"
+
+                # create list of combinations
+                comb_html = ""
                 for c in post_data['combinations']:
-                	comb_html = ""
-                	for i in c:
-                		comb_html += "<li><button>" + str(i) + "</button></li>"
-                	msg.html = """<html>
+                    for i in c:
+                        comb_html += "<li><button>" + str(i) + "</button></li>"
+                    comb_html += '<br><br><br>'
+
+                # Return combination/combinations based on amount tickets
+                if len(post_data['combinations']) > 1:
+                    comb_str = 'combinations'
+                else:
+                    comb_str = 'combination'
+
+                # Purchased tickets in html response
+                msg.html = """<html>
                                   <head>
                                     <meta name="viewport" content="width=device-width" />
                                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -882,7 +893,7 @@ class BuyTickets(MethodView):
                                                                 <table border="0" cellpadding="0" cellspacing="0">
                                                                   <tbody>
                                                                     <tr>
-                                                                      <td> <a href="http://5.178.87.76:4200" target="_blank" class="buy" style="padding-top: 8px;">Buy Another Ticket!</a> </td>
+                                                                      <td> <a href="http://localhost:4200" target="_blank" class="buy" style="padding-top: 8px;">Buy Another Ticket!</a> </td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -890,7 +901,7 @@ class BuyTickets(MethodView):
                                                             </tr>
                                                           </tbody>
                                                         </table>
-                                                        <p>Your choosed combination is:</p>
+                                                        <p>Your choosed """ + comb_str + """ is:</p>
                                                         <ul>""" + comb_html + """</ul>
                                                       </td>
                                                       <td></td>
@@ -922,10 +933,10 @@ class BuyTickets(MethodView):
                                     </table>
                                   </body>
                                 </html>""" 
-                	try:
-                		mail.send(msg)
-                	except:
-                		print("Email hasn't been sent")
+                try:
+                    mail.send(msg)
+                except:
+                    print("Email hasn't been sent")
                 responseObject = {
                     'status': 'success'
                 }
@@ -938,7 +949,7 @@ class BuyTickets(MethodView):
         else:
             responseObject = {
                 'status': 'fail',
-                'message': 'Provide a valid auth token.'
+                'message': 'Provide a valid auth token1.'
             }
             return make_response(jsonify(responseObject)), 401
 
