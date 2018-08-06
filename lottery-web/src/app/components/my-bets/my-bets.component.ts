@@ -28,7 +28,6 @@ export class MyBetsComponent implements OnInit {
   editedRecordId: number;
   private superjackpot_value: 0;
   private scratchFlag: boolean;
-  scratchBalls: number;
   scratchBunner: string;
   scratchArray: number[] = [];
   checkUpdateScratch: number[] = [];
@@ -159,16 +158,16 @@ export class MyBetsComponent implements OnInit {
           }
           this.tableData.push(rowData);
         }
-        //33
-        for (var i = 0; i < res.json().data.bets_33.length; i++) {
+        //Fruity
+        for (var i = 0; i < res.json().data.bets_fruity.length; i++) {
           let rowData = {
-            "id": res.json().data.bets_33[i].id,
-            "fake_id": "00" + 337283 + res.json().data.bets_33[i].id,
-            "type_name": "33",
-            "type": "33",
-            "combination": res.json().data.bets_33[i].combination,
+            "id": res.json().data.bets_fruity[i].id,
+            "fake_id": "00" + 337283 + res.json().data.bets_fruity[i].id,
+            "type_name": "Fruity",
+            "type": "fruity",
+            "combination": res.json().data.bets_fruity[i].combination,
             "is_new": false,
-            "date": new Date(res.json().data.bets_33[i].date),
+            "date": new Date(res.json().data.bets_fruity[i].date),
             "scratch": true
           }
           this.tableData.push(rowData);
@@ -296,17 +295,17 @@ export class MyBetsComponent implements OnInit {
           }
           this.archiveTableData.push(rowData);
         }
-        //33
-        for (var i = 0; i < res.json().data.bets_33.length; i++) {
+        //Fruity
+        for (var i = 0; i < res.json().data.bets_fruity.length; i++) {
           let rowData = {
-            "id": res.json().data.bets_33[i].id,
-            "fake_id": "00" + 33283 + res.json().data.bets_33[i].id,
-            "type_name": "33",
-            "type": "33",
-            "combination": this.processCombination(res.json().data.bets_33[i].my_combination),
-            "won_combination": this.processCombination(res.json().data.bets_33[i].win_combination),
-            "is_win": res.json().data.bets_33[i].is_win,
-            "date": new Date(res.json().data.bets_33[i].date)
+            "id": res.json().data.bets_fruity[i].id,
+            "fake_id": "00" + 33283 + res.json().data.bets_fruity[i].id,
+            "type_name": "Fruity",
+            "type": "fruity",
+            "combination": this.processCombination(res.json().data.bets_fruity[i].my_combination),
+            "won_combination": this.processCombination(res.json().data.bets_fruity[i].win_combination),
+            "is_win": res.json().data.bets_fruity[i].is_win,
+            "date": new Date(res.json().data.bets_fruity[i].date)
           }
           this.archiveTableData.push(rowData);
         }
@@ -424,13 +423,13 @@ export class MyBetsComponent implements OnInit {
       this.checkUpdateScratch = [];
 
       if (type == "777") {
-        this.scratchBalls = 3;
+        //this.scratchBalls = 3;
         this.scratchBunner = "assets/img/top3.jpg";
       } else if (type == "33") {
-        this.scratchBalls = 6;
+        //this.scratchBalls = 6;
         this.scratchBunner = "assets/img/33.jpg";
       } else if (type == "100CASH") {
-        this.scratchBalls = 5;
+        //this.scratchBalls = 5;
         this.scratchBunner = "assets/img/100000CASH.jpg";
       }
 
@@ -446,7 +445,7 @@ export class MyBetsComponent implements OnInit {
       this.modalService.open(content).result.then((result) => {
         //this.closeResult = `Closed with: ${result}`;
         //console.log("Scratch");
-        if (this.checkUpdateScratch.length == this.scratchBalls) {
+        if (this.checkUpdateScratch.length == 9) {
           this.lottery.updateScratch(id, type)
           .then((res) => {
             console.log(res.json());

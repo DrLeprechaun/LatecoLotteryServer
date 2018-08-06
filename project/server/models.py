@@ -353,6 +353,26 @@ class Bets33(db.Model):
         self.is_win = is_win
         self.made_on = datetime.datetime.now()
 
+class BetsFruity(db.Model):
+
+    __tablename__ = 'bets_fruity'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=True)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    win_combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_active = db.Column(db.Boolean)
+    is_win = db.Column(db.Boolean)
+    made_on = db.Column(db.DateTime, nullable=False)
+
+    def __init__(self, user_id, combination, win_combination, is_active, is_win):
+        self.user_id = user_id
+        self.combination = combination
+        self.win_combination = win_combination
+        self.is_active = is_active
+        self.is_win = is_win
+        self.made_on = datetime.datetime.now()
+
 class Bets100Cash(db.Model):
 
     __tablename__ = 'bets_100_cash'

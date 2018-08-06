@@ -442,9 +442,12 @@ export class PrivateOfficeComponent {
         cd.setMinutes(20);
       } else if (now.getMinutes() < 35 && now.getMinutes() >= 20) {
         cd.setMinutes(35);
-      } else if (now.getMinutes() < 35 && now.getMinutes() >= 50) {
+      } else if (now.getMinutes() < 50 && now.getMinutes() >= 35) {
         cd.setMinutes(50);
       } else if (now.getMinutes() >= 50 && now.getMinutes() < 0) {
+        cd.setMinutes(5);
+        cd.setHours(now.getHours()+1);
+      } else if (now.getMinutes() == 59) {
         cd.setMinutes(5);
         cd.setHours(now.getHours()+1);
       } else if (now.getMinutes() >= 0 && now.getMinutes() < 5) {
@@ -460,7 +463,10 @@ export class PrivateOfficeComponent {
         cd.setMinutes(40);
       } else if (now.getMinutes() < 55 && now.getMinutes() >= 40) {
         cd.setMinutes(55);
-      } else if (now.getMinutes() >= 55 && now.getMinutes() < 0) {
+      } else if (now.getMinutes() >= 55 && now.getMinutes() < 59) {
+        cd.setMinutes(10);
+        cd.setHours(now.getHours()+1);
+      } else if (now.getMinutes() == 59) {
         cd.setMinutes(10);
         cd.setHours(now.getHours()+1);
       } else if (now.getMinutes() >= 0 && now.getMinutes() < 10) {

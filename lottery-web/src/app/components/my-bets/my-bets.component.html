@@ -284,11 +284,71 @@
 
                     <div class="modal-body" *ngIf="scratchFlag">
                       <table id="ballsTable" cellpadding="5">
-                        <tr>
+                        <!--<tr>
                           <td *ngFor="let n of scratchArray; let j = index" align="center">
                             <div class="ball" (click)="scratchBall(j)">
                               <img class="card-img-top" src="{{scratchBunner}}" >
                               <div id="ball_{{j}}" class="hidden-number">{{n}}</div>
+                            </div>
+                          </td>
+                        </tr>-->
+                        <tr>
+                          <td>
+                            <div class="ball" (click)="scratchBall(0)">
+                              <img class="card-img-top" src="{{scratchBunner}}" >
+                              <div id="ball_0" class="hidden-number">{{scratchArray[0]}}</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="ball" (click)="scratchBall(1)">
+                              <img class="card-img-top" src="{{scratchBunner}}" >
+                              <div id="ball_1" class="hidden-number">{{scratchArray[1]}}</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="ball" (click)="scratchBall(2)">
+                              <img class="card-img-top" src="{{scratchBunner}}" >
+                              <div id="ball_2" class="hidden-number">{{scratchArray[2]}}</div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="ball" (click)="scratchBall(3)">
+                              <img class="card-img-top" src="{{scratchBunner}}" >
+                              <div id="ball_3" class="hidden-number">{{scratchArray[3]}}</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="ball" (click)="scratchBall(4)">
+                              <img class="card-img-top" src="{{scratchBunner}}" >
+                              <div id="ball_4" class="hidden-number">{{scratchArray[4]}}</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="ball" (click)="scratchBall(5)">
+                              <img class="card-img-top" src="{{scratchBunner}}" >
+                              <div id="ball_5" class="hidden-number">{{scratchArray[5]}}</div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="ball" (click)="scratchBall(6)">
+                              <img class="card-img-top" src="{{scratchBunner}}" >
+                              <div id="ball_6" class="hidden-number">{{scratchArray[6]}}</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="ball" (click)="scratchBall(7)">
+                              <img class="card-img-top" src="{{scratchBunner}}" >
+                              <div id="ball_7" class="hidden-number">{{scratchArray[7]}}</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="ball" (click)="scratchBall(8)">
+                              <img class="card-img-top" src="{{scratchBunner}}" >
+                              <div id="ball_8" class="hidden-number">{{scratchArray[8]}}</div>
                             </div>
                           </td>
                         </tr>

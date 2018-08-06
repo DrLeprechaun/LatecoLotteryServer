@@ -15,7 +15,6 @@ export class ScratchComponent implements OnInit {
   private lotteryFunds: number;
   private lotteryBunner: string;
   private tickets: any[] = [];
-  private ballsNumber: number;
   private fakeBallsArray: number[] = [];
   private scratchNowFlag: boolean = false;
 
@@ -27,28 +26,25 @@ export class ScratchComponent implements OnInit {
       this.lotteryFunds = 777;
       this.lotteryName = "777";
       this.lotteryBunner = "assets/img/top3.jpg";
-      this.ballsNumber = 3;
     } else if (this.tpService.getScratchType() == "100CASH") {
       this.backgroundImage = "assets/img/b_4_21.jpg";
       this.lotteryFunds = 100;
       this.lotteryName = "100'000 CASH";
       this.lotteryBunner = "assets/img/100000CASH.jpg";
-      this.ballsNumber = 5;
-    } else if (this.tpService.getScratchType() == "33") {
+    } else if (this.tpService.getScratchType() == "fruity") {
       this.backgroundImage = "assets/img/b_rapidos.jpg";
-      this.lotteryFunds = 33;
-      this.lotteryName = "33";
+      this.lotteryFunds = 333;
+      this.lotteryName = "Fruity";
       this.lotteryBunner = "assets/img/33.jpg";
-      this.ballsNumber = 6;
     }
-    for (var i = 0; i < this.ballsNumber; i++) {
+    for (var i = 0; i < 9; i++) {
       this.fakeBallsArray.push(i);
     }
     this.addTicket();
   }
 
   private buyTickets() {
-    this.lottery.buyScratch(this.ballsNumber, this.tickets.length)
+    this.lottery.buyScratch(this.tpService.getScratchType(), this.tickets.length)
     .then((res) => {
       if (res.json().status === 'success') {
         //this.tpService.setNewBets(tickets);
@@ -64,7 +60,7 @@ export class ScratchComponent implements OnInit {
 
   private scratchNow() {
     //this.scratchNowFlag = true;
-    this.lottery.scratchNow(this.ballsNumber, this.tickets.length)
+    this.lottery.scratchNow(this.tpService.getScratchType(), this.tickets.length)
     .then((res) => {
       console.log(res.json());
       if (res.json().status === 'success') {

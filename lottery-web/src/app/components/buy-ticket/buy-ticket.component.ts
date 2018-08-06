@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LotteryService } from '../../services/lottery.service';
 import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
-//import {debounceTime} from 'rxjs/operator/debounceTime';
 
 
 @Component({
@@ -479,6 +478,43 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
       document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
     }
   }
+
+
+  chooseForMe(i: number) {
+
+      let r_comb = [];
+      while (r_comb.length < this.combinationSize) {
+        let element = this.randomInt(1, this.maxNumber);
+        if (r_comb.indexOf(element) < 0) {
+            r_comb.push(element);
+        }
+      }
+
+      for (var j = 0; j < this.tickets[i].length; j++) {
+        for (let block of this.tickets[i][j]) {
+          if (r_comb.indexOf(block.num) > -1) {
+            block.clicked = true;
+          } else {
+              block.clicked = false;
+          }
+        }
+      }
+
+    this.combinations[i] = r_comb;
+
+    let flag = false;
+      if (this.combinations[i].length != this.combinationSize) {
+        flag = true;
+      }
+
+
+    if (!flag) {
+      document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
+    } else {
+      document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+    }
+  }
+
 
   randomInt(min, max){
     return Math.floor(Math.random() * (max - min + 1)) + min;

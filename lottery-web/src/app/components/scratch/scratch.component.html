@@ -42,7 +42,7 @@
                     <div class="tab-pane fade show active" id="tickets" role="tabpanel">
                       <div *ngFor="let t of tickets; let i = index">
                         <div class="border" id="ballsContainer">
-                          <table id="ballsTable" cellpadding="5">
+                          <!--<table id="ballsTable" cellpadding="5">
                             <tr>
                               <td *ngFor="let n of fakeBallsArray; let j = index" align="center">
                                 <div class="ball" (click)="scratchCard(i, j)">
@@ -51,12 +51,71 @@
                                 </div>
                               </td>
                             </tr>
+                          </table>-->
+                          <table id="ballsTable" cellpadding="5">
+                            <tr>
+                              <td>
+                                <div class="ball" (click)="scratchCard(i, 0)">
+                                  <img class="card-img-top" src="{{lotteryBunner}}" >
+                                  <div *ngIf="scratchNowFlag" id="ball_{{i}}_0" class="hidden-number">{{tickets[i][0]}}</div>
+                                </div>
+                              </td>
+                              <td>
+                                <div class="ball" (click)="scratchCard(i, 1)">
+                                  <img class="card-img-top" src="{{lotteryBunner}}" >
+                                  <div *ngIf="scratchNowFlag" id="ball_{{i}}_1" class="hidden-number">{{tickets[i][1]}}</div>
+                                </div>
+                              </td>
+                              <td>
+                                <div class="ball" (click)="scratchCard(i, 2)">
+                                  <img class="card-img-top" src="{{lotteryBunner}}" >
+                                  <div *ngIf="scratchNowFlag" id="ball_{{i}}_2" class="hidden-number">{{tickets[i][2]}}</div>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="ball" (click)="scratchCard(i, 3)">
+                                  <img class="card-img-top" src="{{lotteryBunner}}" >
+                                  <div *ngIf="scratchNowFlag" id="ball_{{i}}_3" class="hidden-number">{{tickets[i][3]}}</div>
+                                </div>
+                              </td>
+                              <td>
+                                <div class="ball" (click)="scratchCard(i, 4)">
+                                  <img class="card-img-top" src="{{lotteryBunner}}" >
+                                  <div *ngIf="scratchNowFlag" id="ball_{{i}}_4" class="hidden-number">{{tickets[i][4]}}</div>
+                                </div>
+                              </td>
+                              <td>
+                                <div class="ball" (click)="scratchCard(i, 5)">
+                                  <img class="card-img-top" src="{{lotteryBunner}}" >
+                                  <div *ngIf="scratchNowFlag" id="ball_{{i}}_5" class="hidden-number">{{tickets[i][5]}}</div>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <div class="ball" (click)="scratchCard(i, 6)">
+                                  <img class="card-img-top" src="{{lotteryBunner}}" >
+                                  <div *ngIf="scratchNowFlag" id="ball_{{i}}_6" class="hidden-number">{{tickets[i][6]}}</div>
+                                </div>
+                              </td>
+                              <td>
+                                <div class="ball" (click)="scratchCard(i, 7)">
+                                  <img class="card-img-top" src="{{lotteryBunner}}" >
+                                  <div *ngIf="scratchNowFlag" id="ball_{{i}}_7" class="hidden-number">{{tickets[i][7]}}</div>
+                                </div>
+                              </td>
+                              <td>
+                                <div class="ball" (click)="scratchCard(i, 8)">
+                                  <img class="card-img-top" src="{{lotteryBunner}}" >
+                                  <div *ngIf="scratchNowFlag" id="ball_{{i}}_8" class="hidden-number">{{tickets[i][8]}}</div>
+                                </div>
+                              </td>
+                            </tr>
                           </table>
+
                         </div>
-                        <!--<div class="border" id="ballsContainer">
-                          <div *ngFor="let n of fakeBallsArray" class="ball">
-                          </div>
-                        </div>-->
                         <div *ngIf="removeButtonFlag() && !scratchNowFlag" class="ok" (click)="removeTicket(i)" style="margin-bottom: 5px;"><p>- Remove Ticket</p></div>
                       </div>
                     </div>

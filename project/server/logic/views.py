@@ -328,17 +328,17 @@ class GetBets(MethodView):
                         'date': row.made_on
                     }
                     bets_777_arr.append(obj)
-                #33
-                bets_33 = db.engine.execute('SELECT * FROM bets_33 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
-                bets_33_arr = []
-                for row in bets_33:
+                #fruity
+                bets_fruity = db.engine.execute('SELECT * FROM bets_fruity WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                bets_fruity_arr = []
+                for row in bets_fruity:
                     obj = {
                         'id': row.id,
                         'combination': row.combination,
                         'is_win': row.is_win,
                         'date': row.made_on
                     }
-                    bets_33_arr.append(obj)
+                    bets_fruity_arr.append(obj)
                 #777
                 bets_100 = db.engine.execute('SELECT * FROM bets_100_cash WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
                 bets_100_arr = []
@@ -360,7 +360,7 @@ class GetBets(MethodView):
                         'two_numbers': two_numbers_arr,
                         'prize_jackpot': prize_jackpot_arr,
                         'bets_777': bets_777_arr,
-                        'bets_33': bets_33_arr,
+                        'bets_fruity': bets_fruity_arr,
                         'bets_100': bets_100_arr
                     }
                 }
@@ -480,10 +480,10 @@ class GetBetsArchive(MethodView):
                         'date': row.date.isoformat()
                     }
                     bets_777_arr.append(obj)
-                #33
-                bets_33 = db.engine.execute('SELECT bets_33.id AS id, bets_33.combination AS my_combination, bets_33.is_win AS is_win, bets_33.win_combination AS win_combination,  bets_33.made_on AS date FROM bets_33 WHERE bets_33.user_id = ' + str(user.id) + ' AND bets_33.is_active = false')
-                bets_33_arr = []
-                for row in bets_33:
+                #fruity
+                bets_fruity = db.engine.execute('SELECT bets_fruity.id AS id, bets_fruity.combination AS my_combination, bets_fruity.is_win AS is_win, bets_fruity.win_combination AS win_combination,  bets_fruity.made_on AS date FROM bets_fruity WHERE bets_fruity.user_id = ' + str(user.id) + ' AND bets_fruity.is_active = false')
+                bets_fruity_arr = []
+                for row in bets_fruity:
                     obj = {
                         'id': row.id,
                         'my_combination': row.my_combination,
@@ -491,7 +491,7 @@ class GetBetsArchive(MethodView):
                         'win_combination': row.win_combination,
                         'date': row.date.isoformat()
                     }
-                    bets_33_arr.append(obj)
+                    bets_fruity_arr.append(obj)
                 #100cash
                 bets_100 = db.engine.execute('SELECT bets_100_cash.id AS id, bets_100_cash.combination AS my_combination, bets_100_cash.is_win AS is_win, bets_100_cash.win_combination AS win_combination,  bets_100_cash.made_on AS date FROM bets_100_cash WHERE bets_100_cash.user_id = ' + str(user.id) + ' AND bets_100_cash.is_active = false')
                 bets_100_arr = []
@@ -514,7 +514,7 @@ class GetBetsArchive(MethodView):
                         'two_numbers': two_numbers_arr,
                         'prize_jackpot': prize_jackpot_arr,
                         'bets_777': bets_777_arr,
-                        'bets_33': bets_33_arr,
+                        'bets_fruity': bets_fruity_arr,
                         'bets_100': bets_100_arr
                     }
                 }
@@ -1176,19 +1176,19 @@ class ScratchNow(MethodView):
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
                 resp_arr = []
-                win_combination = GetRandomArray(0, 9, post_data.get('balls'))
+                win_combination = GetRandomArray(0, 9, 9)
                 for i in range(0, post_data.get('tickets')):
-                    ticket_arr = GetRandomArray(0, 9, post_data.get('balls'))
+                    ticket_arr = GetRandomArray(0, 9, 9)
                     resp_arr.append(ticket_arr)
-                    if post_data.get('balls') == 3:
+                    if post_data.get('type') == '777':
                         bet_777 = Bets777(user.id, ticket_arr, win_combination, False, CompareArrays(ticket_arr, win_combination))
                         db.session.add(bet_777)
-                    if post_data.get('balls') == 5:
+                    if post_data.get('type') == '100CASH':
                         bet_100cash = Bets100Cash(user.id, ticket_arr, win_combination, False, CompareArrays(ticket_arr, win_combination))
                         db.session.add(bet_100cash)
-                    if post_data.get('balls') == 6:
-                        bet_33 = Bets33(user.id, ticket_arr, win_combination, False, CompareArrays(ticket_arr, win_combination))
-                        db.session.add(bet_33)
+                    if post_data.get('type') == 'fruity':
+                        bet_fruity = BetsFruity(user.id, ticket_arr, win_combination, False, CompareArrays(ticket_arr, win_combination))
+                        db.session.add(bet_fruity)
                     db.session.commit()
                     #db.flush()
                     responseObject = {
@@ -1227,18 +1227,18 @@ class BuyScratch(MethodView):
             resp = User.decode_auth_token(auth_token)
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
-                win_combination = GetRandomArray(0, 9, post_data.get('balls'))
+                win_combination = GetRandomArray(0, 9, 9)
                 for i in range(0, post_data.get('tickets')):
-                    ticket_arr = GetRandomArray(0, 9, post_data.get('balls'))
-                    if post_data.get('balls') == 3:
+                    ticket_arr = GetRandomArray(0, 9, 9)
+                    if post_data.get('type') == '777':
                         bet_777 = Bets777(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
                         db.session.add(bet_777)
-                    if post_data.get('balls') == 5:
+                    if post_data.get('type') == '100CASH':
                         bet_100cash = Bets100Cash(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
                         db.session.add(bet_100cash)
-                    if post_data.get('balls') == 6:
-                        bet_33 = Bets33(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
-                        db.session.add(bet_33)
+                    if post_data.get('type') == 'fruity':
+                        bet_fruity = BetsFruity(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
+                        db.session.add(bet_fruity)
                     db.session.commit()
                     #db.flush()
                     responseObject = {
@@ -1280,8 +1280,8 @@ class UpdateScratch(MethodView):
                 if (post_data['type'] == "777"):
                     lottery = Bets777.query.filter_by(id=post_data['id']).first()
                     lottery.is_active = False
-                if (post_data['type'] == "33"):
-                    lottery = Bets33.query.filter_by(id=post_data['id']).first()
+                if (post_data['type'] == "fruity"):
+                    lottery = BetsFruity.query.filter_by(id=post_data['id']).first()
                     lottery.is_active = False
                 if (post_data['type'] == "100CASH"):
                     lottery = Bets100Cash.query.filter_by(id=post_data['id']).first()
