@@ -163,4 +163,11 @@ export class LotteryService {
     return this.http.post(url, {id: id, type: type}, {headers: headers}).toPromise();
   }
 
+  /*getImage(): Promise<any> {
+    let headers: Headers = new Headers({
+      'Content-Type': 'image/jpeg'
+    });
+    return this.http.get(window.location.host + '/assets/img/33.jpg', {headers: headers}).toPromise();
+  }*/
+
 }

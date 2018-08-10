@@ -32,6 +32,10 @@ export class MyBetsComponent implements OnInit {
   scratchArray: number[] = [];
   checkUpdateScratch: number[] = [];
 
+  private cnv: HTMLCanvasElement;
+  private ctx: any;
+  private brushRadius: number = 20;
+
   constructor(private router: Router, private lottery: LotteryService, private modalService: NgbModal, private tpService: TicketsPurchaseService) { }
 
   ngOnInit() {
@@ -425,7 +429,7 @@ export class MyBetsComponent implements OnInit {
       if (type == "777") {
         //this.scratchBalls = 3;
         this.scratchBunner = "assets/img/top3.jpg";
-      } else if (type == "33") {
+      } else if (type == "fruity") {
         //this.scratchBalls = 6;
         this.scratchBunner = "assets/img/33.jpg";
       } else if (type == "100CASH") {
@@ -463,7 +467,7 @@ export class MyBetsComponent implements OnInit {
     }
   }
 
-  private scratchBall(i: number) {
+  /*private scratchBall(i: number) {
 
       var ball = document.getElementById("ball_" + i);
       ball.style.opacity = "0";
@@ -478,6 +482,16 @@ export class MyBetsComponent implements OnInit {
 
       theLoop(100);
 
+      if (this.checkUpdateScratch.indexOf(i) == -1) {
+        this.checkUpdateScratch.push(i);
+      }
+  }*/
+
+  private setBall(i: number) {
+      this.cnv = <HTMLCanvasElement> document.getElementById("scractBall_" + i);
+      this.ctx = this.cnv.getContext('2d');
+      var ball = document.getElementById("ball_" + i);
+      ball.style.opacity = "100";
       if (this.checkUpdateScratch.indexOf(i) == -1) {
         this.checkUpdateScratch.push(i);
       }
@@ -690,6 +704,56 @@ export class MyBetsComponent implements OnInit {
   logOut(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('WANNA_BUY');
+  }
+
+  private detectLeftButton(event) {
+      if ('buttons' in event) {
+          return event.buttons === 1;
+      } else if ('which' in event) {
+          return event.which === 1;
+      } else {
+          return event.button === 1;
+      }
+  }
+
+  private getBrushPos(xRef, yRef) {
+  	var rect = this.cnv.getBoundingClientRect();
+      return {
+  	  x: Math.floor((xRef-rect.left)/(rect.right-rect.left)*this.cnv.width),
+  	  y: Math.floor((yRef-rect.top)/(rect.bottom-rect.top)*this.cnv.height)
+      };
+  }
+
+  private drawDot(mouseX,mouseY){
+  	this.ctx.beginPath();
+      this.ctx.arc(mouseX, mouseY, this.brushRadius, 0, 2*Math.PI, true);
+      this.ctx.fillStyle = '#000';
+      this.ctx.globalCompositeOperation = "destination-out";
+      this.ctx.fill();
+  }
+
+  private mouseMove(e: MouseEvent) {
+
+    if (this.cnv != null) {
+      var brushPos = this.getBrushPos(e.clientX, e.clientY);
+
+      var leftBut = this.detectLeftButton(e);
+
+        if (leftBut == true) {
+          this.drawDot(brushPos.x, brushPos.y);
+      }
+    }
+  }
+
+  private drawCover(i: number) {
+      var ball = <HTMLCanvasElement> document.getElementById("scractBall_" + i);
+      var ctx = ball.getContext('2d');
+      var gradient = ctx.createLinearGradient(0, 0, 145, 196);
+      gradient.addColorStop(0, 'cyan');
+      gradient.addColorStop(0.5, 'orange');
+      gradient.addColorStop(1, 'violet');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0,0,ball.width,ball.height);
   }
 
 }
