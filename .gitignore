@@ -2,3 +2,4 @@
 venv/
 test.py
 commit_preparation/
+**/*pycache*/
