@@ -122,24 +122,27 @@ def lottery(lottery_name):
 	# Close tickets
 	for row in con.execute(clause):
 		# get last value in lottery column
-		#last_lottery = (con.execute
-		#				("Select lottery from " + name_bets + " WHERE id = " + str(row['id']))).fetchall()[0].values()[0]
-		#lottery = str(last_lottery) + ',' + str(lottery_id)
-		### need to rewrite code for saving history of lottery ofr ticket
-		con.execute(
-			"UPDATE " + name_bets + " SET lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		last_lottery = (con.execute
+						("Select lottery from " + name_bets + " WHERE id = " + str(row['id']))).fetchall()[0].values()[0]
+		#if last_lottery[0] == None or not last_lottery:
+		if not last_lottery:
+			con.execute(
+				"UPDATE " + name_bets + " SET lottery='{" + lottery_id + "}' WHERE id = " + str(row['id']))
+		else:
+			con.execute(
+				"UPDATE " + name_bets + " SET lottery=lottery || '{" + lottery_id + "}' WHERE id = " + str(row['id']))
+
 		select_bets = con.execute(
 			"Select amount_bets from " + name_bets + " WHERE id = " + str(row['id']))
 		amount_bets = int((select_bets.fetchone()).values()[0])
-		if amount_bets > 1:
-			con.execute(
-				"UPDATE " + name_bets + " SET amount_bets = " + str(amount_bets-1) + " WHERE id = " + str(
-					row['id']))
-		elif amount_bets == 1:
+
+		# Decrease amount of available lotteries for ticket
+		con.execute(
+			"UPDATE " + name_bets + " SET amount_bets = " + str(amount_bets - 1) + " WHERE id = " + str(
+				row['id']))
+		if amount_bets == 1:
 			con.execute(
 				"UPDATE " + name_bets + " SET is_active = false WHERE id = " + str(row['id']))
-		else:
-			print('ticket is illigable')
 
 
 def jackpot_5x36():
@@ -311,8 +314,7 @@ def print_date_time():
 def print_hello():
 	print("Hello")
 
-print('nothing')
-lottery('jackpot_4_21')
 #jackpot_4x21()
-print('nothing')
+#jackpot_5x36()
+
 

@@ -10,6 +10,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 
 scheduler = BackgroundScheduler()
 scheduler.start()
+print(jobs.print_hello())
 scheduler.add_job(
     func=jobs.print_date_time,
     trigger=IntervalTrigger(seconds=5),
@@ -21,6 +22,12 @@ scheduler.add_job(
     trigger=IntervalTrigger(seconds=5),
     id='print_hello',
     name='print_hello',
+    replace_existing=True)
+scheduler.add_job(
+    func=jobs.jackpot_5x36,
+    trigger=IntervalTrigger(seconds=5),
+    id='jackpot_5x36',
+    name='jackpot_5x36',
     replace_existing=True)
 # Shut down the scheduler when exiting the app
 atexit.register(lambda: scheduler.shutdown())

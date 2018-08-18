@@ -10,7 +10,7 @@ export class LotteryService {
   constructor(private auth: AuthService, private http: Http) { }
 
   //private BASE_URL: string = 'http://178.63.57.162:5000/logic';
-  private BASE_URL: string = 'http://localhost:5000/logic';
+  private BASE_URL: string = 'http://5.178.87.76:5000/logic';
   private headers: Headers = new Headers({'Content-Type': 'application/json'});
 
   getTokensAmount(): Promise<any> {

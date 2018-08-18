@@ -354,8 +354,47 @@ class GetBetsArchive(MethodView):
             resp = User.decode_auth_token(auth_token)
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
+                jackpot_list = ['jackpot_4_21', 'jackpot_5_36', 'jackpot_6_45', 'supers', 'rapidos', 'top3']
+                jackpot_dict = {}
+                for jackpot in jackpot_list:
+                    jackpot_sql_result = db.engine.execute(
+                            'With bets as (Select id, combination, is_win, unnest(lottery) AS lottery from bets_' +
+                            jackpot + ' where user_id = ' + str(user.id) + ' AND is_active = false) '
+                            'select bets.id as id, bets.combination as my_combination, bets.is_win as is_win, '
+                            'jackpot.combination as win_combination,jackpot.date as date from ' + jackpot +
+                            ' as jackpot join bets on bets.lottery = jackpot.id;')
+                    jackpot_arr = []
+                    #print(jackpot)
+                    for row in jackpot_sql_result:
+                        #print(row)
+                        obj = {
+                            'id': row.id,
+                            'my_combination': row.my_combination,
+                            'is_win': row.is_win,
+                            'win_combination': row.win_combination,
+                            'date': row.date
+                        }
+                        jackpot_arr.append(obj)
+                    #print(jackpot)
+
+                    jackpot_key_list = jackpot.split('jackpot_')
+                    #print(jackpot_key_list)
+                    #print(len(jackpot_key_list))
+                    if len(jackpot_key_list) > 1:
+                        jackpot_key = 'jackpot_' + jackpot.split('jackpot_')[1].replace('_', 'x')
+                        print(jackpot)
+                        print(jackpot.split('jackpot_')[0])
+                    else:
+                        jackpot_key = jackpot
+                    jackpot_dict [jackpot_key] = jackpot_arr
                 #jackpot_5x36
-                jackpot_5x36 = db.engine.execute('SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36  INNER JOIN jackpot_5_36 ON jackpot_5_36.id = bets_jackpot_5_36.lottery WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false')
+                '''
+                jackpot_5x36 = db.engine.execute(
+                    'SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, '
+                    'bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  '
+                    'jackpot_5_36.date AS date FROM bets_jackpot_5_36  INNER JOIN jackpot_5_36 ON '
+                    'jackpot_5_36.id = bets_jackpot_5_36.lottery WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + 
+                    ' AND bets_jackpot_5_36.is_active = false')
                 jackpot_5x36_arr = []
                 for row in jackpot_5x36:
                     obj = {
@@ -367,7 +406,13 @@ class GetBetsArchive(MethodView):
                     }
                     jackpot_5x36_arr.append(obj)
                 #jackpot_6x45
-                jackpot_6x45 = db.engine.execute('SELECT bets_jackpot_6_45.id AS id, bets_jackpot_6_45.combination AS my_combination, bets_jackpot_6_45.is_win AS is_win, jackpot_6_45.combination AS win_combination,  jackpot_6_45.date AS date FROM bets_jackpot_6_45  INNER JOIN jackpot_6_45 ON jackpot_6_45.id = bets_jackpot_6_45.lottery WHERE bets_jackpot_6_45.user_id = ' + str(user.id) + ' AND bets_jackpot_6_45.is_active = false')
+                jackpot_6x45 = db.engine.execute('SELECT bets_jackpot_6_45.id AS id, bets_jackpot_6_45.combination '
+                                                 'AS my_combination, bets_jackpot_6_45.is_win AS is_win, '
+                                                 'jackpot_6_45.combination AS win_combination,  '
+                                                 'jackpot_6_45.date AS date FROM bets_jackpot_6_45  '
+                                                 'INNER JOIN jackpot_6_45 ON jackpot_6_45.id = bets_jackpot_6_45.lottery '
+                                                 'WHERE bets_jackpot_6_45.user_id = ' + str(user.id) +
+                                                 ' AND bets_jackpot_6_45.is_active = false')
                 jackpot_6x45_arr = []
                 for row in jackpot_6x45:
                     obj = {
@@ -426,6 +471,8 @@ class GetBetsArchive(MethodView):
                         'date': row.date
                     }
                     top3_arr.append(obj)
+
+
                 responseObject = {
                     'status': 'success',
                     'data': {
@@ -436,6 +483,11 @@ class GetBetsArchive(MethodView):
                         'supers': supers_arr,
                         'top3': top3_arr
                     }
+                }
+'''
+                responseObject = {
+                    'status': 'success',
+                    'data': jackpot_dict
                 }
                 return make_response(jsonify(responseObject)), 200
             responseObject = {
@@ -470,6 +522,21 @@ class UpdateCombination(MethodView):
             resp = User.decode_auth_token(auth_token)
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
+
+                # get class name of bets
+                classbetsname = ("Bets" + (post_data['type']).title()).replace("X", "_")
+                print(classbetsname)
+                classbets = globals()[classbetsname]
+
+                # Get tickets informaion
+                lottery = classbets.query.filter_by(id=post_data['id']).first()
+                # Check if ticket was played before
+                if not lottery.lottery:
+                    lottery.combination = post_data['combination']
+
+                #getattr(project.server.models, BetsJackpot_5_36)
+                #lottery = BetsJackpot_5_36.query.filter_by(id=post_data['id']).first()
+                '''
                 if (post_data['type'] == "jackpot_5x36"):
                     lottery = BetsJackpot_5_36.query.filter_by(id=post_data['id']).first()
                     lottery.combination = post_data['combination']
@@ -477,8 +544,11 @@ class UpdateCombination(MethodView):
                     lottery = BetsJackpot_6_45.query.filter_by(id=post_data['id']).first()
                     lottery.combination = post_data['combination']
                 if (post_data['type'] == "jackpot_4x21"):
+                    #if BetsJackpot_4_21.query.filter_by(id=post_data['id']).first()
                     lottery = BetsJackpot_4_21.query.filter_by(id=post_data['id']).first()
-                    lottery.combination = post_data['combination']
+                    # Check if ticket was played before
+                    if lottery.lottery[0][0] == None:
+                        lottery.combination = post_data['combination']
                 if (post_data['type'] == "rapidos"):
                     lottery = BetsRapidos.query.filter_by(id=post_data['id']).first()
                     lottery.combination = post_data['combination']
@@ -488,6 +558,7 @@ class UpdateCombination(MethodView):
                 if (post_data['type'] == "top3"):
                     lottery = BetsTop3.query.filter_by(id=post_data['id']).first()
                     lottery.combination = post_data['combination']
+                '''
                 #db.flush()
                 db.session.commit()
                 responseObject = {
@@ -542,7 +613,7 @@ class BuyTickets(MethodView):
                 		bank.jackpot_6_45 += 1
                 if (post_data['type'] == "jackpot_4x21"):
                     for c in post_data['combinations']:
-                        newBet = BetsJackpot_4_21(user.id, c, True, False)
+                        newBet = BetsJackpot_4_21(user.id, c, True, False,)
                         db.session.add(newBet)
                         bank.jackpot_4_21 += 1
                 if (post_data['type'] == "rapidos"):
@@ -893,7 +964,7 @@ class BuyTickets(MethodView):
                                                                 <table border="0" cellpadding="0" cellspacing="0">
                                                                   <tbody>
                                                                     <tr>
-                                                                      <td> <a href="http://localhost:4200" target="_blank" class="buy" style="padding-top: 8px;">Buy Another Ticket!</a> </td>
+                                                                      <td> <a href="http://5.178.87.7:4200" target="_blank" class="buy" style="padding-top: 8px;">Buy Another Ticket!</a> </td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>

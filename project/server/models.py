@@ -144,6 +144,7 @@ class BetsJackpot_5_36(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
 
     def __init__(self, user_id, combination, is_active, is_win):
         self.user_id = user_id
@@ -160,6 +161,7 @@ class BetsJackpot_6_45(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
 
     def __init__(self, user_id, combination, is_active, is_win):
         self.user_id = user_id
@@ -176,12 +178,14 @@ class BetsJackpot_4_21(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
 
     def __init__(self, user_id, combination, is_active, is_win):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
+
 
 class BetsRapidos(db.Model):
 
@@ -192,6 +196,7 @@ class BetsRapidos(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
 
     def __init__(self, user_id, combination, is_active, is_win):
         self.user_id = user_id
@@ -208,6 +213,7 @@ class BetsSupers(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
 
     def __init__(self, user_id, combination, is_active, is_win):
         self.user_id = user_id
@@ -224,6 +230,7 @@ class BetsTop3(db.Model):
     combination = db.Column(ARRAY(db.Integer), nullable=True)
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
 
     def __init__(self, user_id, combination, is_active, is_win):
         self.user_id = user_id
@@ -259,7 +266,7 @@ class Bank(db.Model):
     def __init__(self, jackpot_5_36, jackpot_6_45, jackpot_4_21, superjackpot, rapidos, supers, top3):
         self.jackpot_5_36 = jackpot_5_36
         self.jackpot_6_45 = jackpot_6_45
-        self.jackpot_4_21 = jackpot_4_20
+        self.jackpot_4_21 = jackpot_4_21
         self.superjackpot = superjackpot
         self.rapidos = rapidos
         self.supers = supers
