@@ -354,19 +354,22 @@ class GetBetsArchive(MethodView):
             resp = User.decode_auth_token(auth_token)
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
+                # Create a list of lotteries
                 jackpot_list = ['jackpot_4_21', 'jackpot_5_36', 'jackpot_6_45', 'supers', 'rapidos', 'top3']
+
+                # Create an empty dict for output
                 jackpot_dict = {}
                 for jackpot in jackpot_list:
+                    #Get bets for lottery
                     jackpot_sql_result = db.engine.execute(
                             'With bets as (Select id, combination, is_win, unnest(lottery) AS lottery from bets_' +
                             jackpot + ' where user_id = ' + str(user.id) + ' AND is_active = false) '
                             'select bets.id as id, bets.combination as my_combination, bets.is_win as is_win, '
                             'jackpot.combination as win_combination,jackpot.date as date from ' + jackpot +
                             ' as jackpot join bets on bets.lottery = jackpot.id;')
+
                     jackpot_arr = []
-                    #print(jackpot)
                     for row in jackpot_sql_result:
-                        #print(row)
                         obj = {
                             'id': row.id,
                             'my_combination': row.my_combination,
@@ -375,18 +378,15 @@ class GetBetsArchive(MethodView):
                             'date': row.date
                         }
                         jackpot_arr.append(obj)
-                    #print(jackpot)
 
+                    # Get a dictionary key
                     jackpot_key_list = jackpot.split('jackpot_')
-                    #print(jackpot_key_list)
-                    #print(len(jackpot_key_list))
                     if len(jackpot_key_list) > 1:
                         jackpot_key = 'jackpot_' + jackpot.split('jackpot_')[1].replace('_', 'x')
-                        print(jackpot)
-                        print(jackpot.split('jackpot_')[0])
                     else:
                         jackpot_key = jackpot
-                    jackpot_dict [jackpot_key] = jackpot_arr
+                    jackpot_dict[jackpot_key] = jackpot_arr
+
                 #jackpot_5x36
                 '''
                 jackpot_5x36 = db.engine.execute(
