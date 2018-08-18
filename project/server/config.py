@@ -4,9 +4,7 @@ import os
 from flask_apscheduler import APScheduler
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-#postgres_local_base = 'postgresql://postgres:@localhost:5432/'
 postgres_local_base = 'postgresql://postgres:latecO20112017@localhost/'
-#postgres_local_base = 'postgresql://postgres:latecO20112017@localhost/'
 database_name = 'lottery'
 
 
