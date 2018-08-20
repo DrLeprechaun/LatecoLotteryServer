@@ -133,4 +133,41 @@ export class LotteryService {
     return this.http.post(url, ticket, {headers: headers}).toPromise();
   }
 
+  scratchNow(type: string, tickets: number): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/scratch_now`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, {type: type, tickets: tickets}, {headers: headers}).toPromise();
+  }
+
+  buyScratch(type: string, tickets: number): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/buy_scratch`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, {type: type, tickets: tickets}, {headers: headers}).toPromise();
+  }
+
+  updateScratch(id: number, type: string): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/update_scratch`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, {id: id, type: type}, {headers: headers}).toPromise();
+  }
+
+  /*getImage(): Promise<any> {
+    let headers: Headers = new Headers({
+      'Content-Type': 'image/jpeg'
+    });
+    return this.http.get(window.location.host + '/assets/img/33.jpg', {headers: headers}).toPromise();
+  }*/
+
 }

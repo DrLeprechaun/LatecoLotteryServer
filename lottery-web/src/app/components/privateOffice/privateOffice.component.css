@@ -307,6 +307,13 @@ legend.scheduler-border {
   font-weight: 100;
 }
 
+.lotteryLabel2 {
+  font-size: 1em !important;
+  margin-left: 15px;
+  color: black;
+  font-weight: 100;
+}
+
 .cube {
   width: 100px;
   height: 100px;
@@ -521,16 +528,28 @@ legend.scheduler-border {
 .lotteryTitle {
   z-index: 9;
   position: absolute;
-  top: 55%;
+  top: 53%;
   width: 100%;
   font-size: 20pt;
+}
+
+.lotteryCounter {
+  z-index: 9;
+  position: absolute;
+  top: 62%;
+  width: 100%;
+  font-size: 15pt;
 }
 
 .lotteryFunds {
   color: #333333;
   z-index: 9;
   position: absolute;
-  top: 68%;
+  top: 70%;
   width: 100%;
   font-size: 17pt;
+}
+
+a h2:hover {
+  color: black;
 }

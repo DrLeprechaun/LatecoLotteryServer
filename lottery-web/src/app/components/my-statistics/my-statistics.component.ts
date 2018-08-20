@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LotteryService } from '../../services/lottery.service';
+import { Router } from '@angular/router';
+import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
 
 @Component({
   selector: 'app-my-statistics',
@@ -10,7 +12,7 @@ export class MyStatisticsComponent implements OnInit {
 
   private superjackpot_value: 0;
 
-  constructor(private lottery: LotteryService) { }
+  constructor(private lottery: LotteryService,  private router: Router, private tpService: TicketsPurchaseService) { }
 
   ngOnInit() {
     this.lottery.getBank()
@@ -26,6 +28,11 @@ export class MyStatisticsComponent implements OnInit {
     (err) => {
       console.log(err);
     })
+  }
+
+  private buyTicketRedirect(type: string): void {
+    this.tpService.setLotteryType(type);
+    this.router.navigateByUrl('/buy-ticket');
   }
 
   logOut(): void {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LotteryService } from '../../services/lottery.service';
 import {Subject} from 'rxjs/Subject';
 import {debounceTime} from 'rxjs/operator/debounceTime';
+import { Router } from '@angular/router';
+import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
 
 @Component({
   selector: 'app-wallet',
@@ -15,7 +17,7 @@ export class WalletComponent implements OnInit {
   staticAlertClosed = false;
   errorMessage: string
 
-  constructor(private lottery: LotteryService) { }
+  constructor(private lottery: LotteryService, private router: Router, private tpService: TicketsPurchaseService) { }
 
   ngOnInit() {
     this.getAmount();
@@ -61,6 +63,11 @@ export class WalletComponent implements OnInit {
     this.getAmount();
     console.log(amount.value);
     amount.value = "0";
+  }
+
+  private buyTicketRedirect(type: string): void {
+    this.tpService.setLotteryType(type);
+    this.router.navigateByUrl('/buy-ticket');
   }
 
   logOut(): void {

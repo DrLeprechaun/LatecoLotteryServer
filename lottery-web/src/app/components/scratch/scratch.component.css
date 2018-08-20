@@ -534,9 +534,6 @@ a h2:hover {
   color: black;
 }
 
-#ballsContainer {
-  background-color: white;
-}
 
 .btn-shake:hover {
     /* Start the shake animation and make the animation last for 0.5 seconds */
@@ -570,4 +567,116 @@ a h2:hover {
 
 #rules {
   background-color: white;
+}
+
+
+
+#ballsContainer {
+  background-color: white;
+  height: 830px;
+}
+
+
+#ballsTable {
+  padding: 30%;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.ball {
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.hidden-number {
+  opacity: 0;
+  position: absolute;
+  font-size: 30pt;
+  top: 73%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+.ball-number {
+  opacity: 0;
+  position: absolute;
+  font-size: 30pt;
+  top: 50%;
+  left: 40%;
+  font-weight: bold;
+  color: black;
+  font-size: 5em;
+  z-index: 3;
+}
+
+.cnv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+.ballImage {
+  z-index: 1;
+  opacity: 0;
+}
+
+
+
+
+
+
+/*h1 {
+  width:100%; text-align:center;
+}
+
+.cell {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.cell canvas {
+	vertical-align: middle;
+}
+
+.canthumb {
+	border: 0px solid #222;
+}
+#main {
+    margin:0 auto;
+  width:600px;
+  margin:0; padding:0;
+}
+
+#maincanvas {
+	border: 0px solid #222;
+	cursor: pointer;
+  margin:0 auto;
+}*/
+
+
+
+#bridge {
+	display: block;
+	margin: 0 auto;
+  /*background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/calgary-bridge-1943.jpg');
+	background-image: -webkit-image-set(url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/calgary-bridge-1943.jpg') 1x, url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/calgary-bridge-1943-2x.jpg') 2x );*/
+	background-size: cover;
+	/*width: 100%;
+	max-width: 750px;*/
+	height: auto;
+  cursor: pointer;
+  /*cursor:  crosshair;
+  cursor: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/circular-cursor.png) 53 53, crosshair;*/
+}
+#bridgeContainer {
+  text-align: center;
+  font-family: Avenir, sans-serif;
+}
+#bridgeContainer figcaption {
+  margin-top: 2rem;
 }

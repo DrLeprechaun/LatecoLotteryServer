@@ -333,3 +333,7 @@ legend.scheduler-border {
   width: 100%;
   font-size: 17pt;
 }
+
+a h2:hover {
+  color: black;
+}
