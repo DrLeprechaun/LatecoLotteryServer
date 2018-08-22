@@ -145,13 +145,17 @@ class BetsJackpot_5_36(db.Model):
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
+    amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win):
+    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
         self.made_on = datetime.datetime.now()
+        self.lottery = lottery
+        self.amount_bets = amount_bets
 
 class BetsJackpot_6_45(db.Model):
 
@@ -163,13 +167,17 @@ class BetsJackpot_6_45(db.Model):
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
+    amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win):
+    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
         self.made_on = datetime.datetime.now()
+        self.lottery = lottery
+        self.amount_bets = amount_bets
 
 class BetsJackpot_4_21(db.Model):
 
@@ -181,13 +189,17 @@ class BetsJackpot_4_21(db.Model):
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
+    amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win):
+    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
         self.made_on = datetime.datetime.now()
+        self.lottery = lottery
+        self.amount_bets = amount_bets
 
 class BetsRapidos(db.Model):
 
@@ -199,45 +211,17 @@ class BetsRapidos(db.Model):
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
+    amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win):
+    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
         self.made_on = datetime.datetime.now()
-
-class BetsSupers(db.Model):
-
-    __tablename__ = 'bets_supers'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
-    combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
-
-    def __init__(self, user_id, combination, is_active, is_win):
-        self.user_id = user_id
-        self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
-
-class BetsTop3(db.Model):
-
-    __tablename__ = 'bets_top3'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
-    combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
-
-    def __init__(self, user_id, combination, is_active, is_win):
-        self.user_id = user_id
-        self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
+        self.lottery = lottery
+        self.amount_bets = amount_bets
 
 class BetsTwoNumbers(db.Model):
 
@@ -249,13 +233,17 @@ class BetsTwoNumbers(db.Model):
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
+    amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win):
+    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
         self.made_on = datetime.datetime.now()
+        self.lottery = lottery
+        self.amount_bets = amount_bets
 
 class BetsPrizeJackpot(db.Model):
 
@@ -267,13 +255,17 @@ class BetsPrizeJackpot(db.Model):
     is_active = db.Column(db.Boolean)
     is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
+    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
+    amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win):
+    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
         self.user_id = user_id
         self.combination = combination
         self.is_active = is_active
         self.is_win = is_win
         self.made_on = datetime.datetime.now()
+        self.lottery = lottery
+        self.amount_bets = amount_bets
 
 class Wallets(db.Model):
 

@@ -412,16 +412,30 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
 
   buyTickets() {
 
-    let tickets = {
+    var t_arr = [];
+    for (var i = 0; i < this.combinations.length; i++) {
+      var ticket = {
+        combination: this.combinations[i],
+        raffles: this.raffles[i]
+      }
+      t_arr.push(ticket);
+    }
+
+    let new_bets = {
       type: this.tpService.getLotteryType(),
       combinations: this.combinations
+    }
+
+    let tickets = {
+      type: this.tpService.getLotteryType(),
+      tickets: t_arr
     }
 
     this.lottery.buyTickets(tickets)
     .then((res) => {
       console.log(res.json());
       if (res.json().status === 'success') {
-        this.tpService.setNewBets(tickets);
+        this.tpService.setNewBets(new_bets);
         this.tpService.setLotteryType("");
         this.router.navigateByUrl('/my-bets');
       } else {
@@ -502,11 +516,17 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
 
     this.combinations[i] = r_comb;
 
-    let flag = false;
+    /*let flag = false;
       if (this.combinations[i].length != this.combinationSize) {
         flag = true;
-      }
+      }*/
 
+    let flag = false;
+    for (var k = 0; k < this.combinations.length; k++) {
+      if (this.combinations[k].length != this.combinationSize) {
+        flag = true;
+      }
+    }
 
     if (!flag) {
       document.getElementById("buyButton").setAttribute("style", "visibility: visible;");

@@ -398,6 +398,7 @@ class GetBetsArchive(MethodView):
                 user = User.query.filter_by(id=resp).first()
                 #jackpot_5x36
                 jackpot_5x36 = db.engine.execute('SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36  INNER JOIN jackpot_5_36 ON jackpot_5_36.id = bets_jackpot_5_36.lottery WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false')
+                #jackpot_5x36 = db.engine.execute('SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36, jackpot_5_36 WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false AND jackpot_5_36.id = ANY(bets_jackpot_5_36.lottery) AND lottery IS NOT NULL')
                 jackpot_5x36_arr = []
                 for row in jackpot_5x36:
                     obj = {
@@ -410,6 +411,7 @@ class GetBetsArchive(MethodView):
                     jackpot_5x36_arr.append(obj)
                 #jackpot_6x45
                 jackpot_6x45 = db.engine.execute('SELECT bets_jackpot_6_45.id AS id, bets_jackpot_6_45.combination AS my_combination, bets_jackpot_6_45.is_win AS is_win, jackpot_6_45.combination AS win_combination,  jackpot_6_45.date AS date FROM bets_jackpot_6_45  INNER JOIN jackpot_6_45 ON jackpot_6_45.id = bets_jackpot_6_45.lottery WHERE bets_jackpot_6_45.user_id = ' + str(user.id) + ' AND bets_jackpot_6_45.is_active = false')
+                #jackpot_6x45 = db.engine.execute('SELECT bets_jackpot_6_45.id AS id, bets_jackpot_6_45.combination AS my_combination, bets_jackpot_6_45.is_win AS is_win, jackpot_6_45.combination AS win_combination,  jackpot_6_45.date AS date FROM bets_jackpot_6_45, jackpot_6_45 WHERE bets_jackpot_6_45.user_id = ' + str(user.id) + ' AND bets_jackpot_6_45.is_active = false AND jackpot_6_45.id=ANY(bets_jackpot_6_45.lottery) AND lottery IS NOT NULL')
                 jackpot_6x45_arr = []
                 for row in jackpot_6x45:
                     obj = {
@@ -422,6 +424,7 @@ class GetBetsArchive(MethodView):
                     jackpot_6x45_arr.append(obj)
                 #jackpot_4x21
                 jackpot_4x21 = db.engine.execute('SELECT bets_jackpot_4_21.id AS id, bets_jackpot_4_21.combination AS my_combination, bets_jackpot_4_21.is_win AS is_win, jackpot_4_21.combination AS win_combination,  jackpot_4_21.date AS date FROM bets_jackpot_4_21  INNER JOIN jackpot_4_21 ON jackpot_4_21.id = bets_jackpot_4_21.lottery WHERE bets_jackpot_4_21.user_id = ' + str(user.id) + ' AND bets_jackpot_4_21.is_active = false')
+                #jackpot_4x21 = db.engine.execute('SELECT bets_jackpot_4_21.id AS id, bets_jackpot_4_21.combination AS my_combination, bets_jackpot_4_21.is_win AS is_win, jackpot_4_21.combination AS win_combination,  jackpot_4_21.date AS date FROM bets_jackpot_4_21, jackpot_4_21 WHERE bets_jackpot_4_21.user_id = ' + str(user.id) + ' AND bets_jackpot_4_21.is_active = false AND jackpot_4_21.id=ANY(bets_jackpot_4_21.lottery) AND lottery IS NOT NULL')
                 jackpot_4x21_arr = []
                 for row in jackpot_4x21:
                     obj = {
@@ -434,6 +437,7 @@ class GetBetsArchive(MethodView):
                     jackpot_4x21_arr.append(obj)
                 #rapidos
                 rapidos = db.engine.execute('SELECT bets_rapidos.id AS id, bets_rapidos.combination AS my_combination, bets_rapidos.is_win AS is_win, rapidos.combination AS win_combination,  rapidos.date AS date FROM bets_rapidos INNER JOIN rapidos ON rapidos.id = bets_rapidos.lottery WHERE bets_rapidos.user_id = ' + str(user.id) + ' AND bets_rapidos.is_active = false')
+                #rapidos = db.engine.execute('SELECT bets_rapidos.id AS id, bets_rapidos.combination AS my_combination, bets_rapidos.is_win AS is_win, rapidos.combination AS win_combination,  rapidos.date AS date FROM bets_rapidos, rapidos WHERE bets_rapidos.user_id = ' + str(user.id) + ' AND bets_rapidos.is_active = false AND rapidos.id=ANY(bets_rapidos.lottery) AND lottery IS NOT NULL')
                 rapidos_arr = []
                 for row in rapidos:
                     obj = {
@@ -446,6 +450,7 @@ class GetBetsArchive(MethodView):
                     rapidos_arr.append(obj)
                 #two_numbers
                 two_numbers = db.engine.execute('SELECT bets_two_numbers.id AS id, bets_two_numbers.combination AS my_combination, bets_two_numbers.is_win AS is_win, two_numbers.combination AS win_combination,  two_numbers.date AS date FROM bets_two_numbers INNER JOIN two_numbers ON two_numbers.id = bets_two_numbers.lottery WHERE bets_two_numbers.user_id = ' + str(user.id) + ' AND bets_two_numbers.is_active = false')
+                #jackpot_two_numbers = db.engine.execute('SELECT bets_two_numbers.id AS id, bets_two_numbers.combination AS my_combination, bets_two_numbers.is_win AS is_win, two_numbers.combination AS win_combination, two_numbers.date AS date FROM bets_two_numbers, two_numbers WHERE bets_two_numbers.user_id = ' + str(user.id) + ' AND bets_two_numbers.is_active = false AND two_numbers.id=ANY(bets_two_numbers.lottery) AND lottery IS NOT NULL')
                 two_numbers_arr = []
                 for row in two_numbers:
                     obj = {
@@ -458,6 +463,7 @@ class GetBetsArchive(MethodView):
                     two_numbers_arr.append(obj)
                 #prize_jackpot
                 prize_jackpot = db.engine.execute('SELECT bets_prize_jackpot.id AS id, bets_prize_jackpot.combination AS my_combination, bets_prize_jackpot.is_win AS is_win, prize_jackpot.combination AS win_combination,  prize_jackpot.date AS date FROM bets_prize_jackpot INNER JOIN prize_jackpot ON prize_jackpot.id = bets_prize_jackpot.lottery WHERE bets_prize_jackpot.user_id = ' + str(user.id) + ' AND bets_prize_jackpot.is_active = false')
+                #jackpot_prize_jackpot = db.engine.execute('SELECT bets_prize_jackpot.id AS id, bets_prize_jackpot.combination AS my_combination, bets_prize_jackpot.is_win AS is_win, prize_jackpot.combination AS win_combination,  prize_jackpot.date AS date FROM bets_prize_jackpot, prize_jackpot WHERE bets_prize_jackpot.user_id = ' + str(user.id) + ' AND bets_prize_jackpot.is_active = false AND prize_jackpot.id=ANY(bets_prize_jackpot.lottery) AND lottery IS NOT NULL')
                 prize_jackpot_arr = []
                 for row in prize_jackpot:
                     obj = {
@@ -591,7 +597,7 @@ class BuyTickets(MethodView):
     def post(self):
         auth_header = request.headers.get('Authorization')
         post_data = request.get_json()
-        print(post_data)
+        #print(post_data)
         if auth_header:
             try:
                 auth_token = auth_header.split(" ")[1]
@@ -609,48 +615,56 @@ class BuyTickets(MethodView):
                 user = User.query.filter_by(id=resp).first()
                 bank = Bank.query.first()
                 if (post_data['type'] == "jackpot_5x36"):
-                	for c in post_data['combinations']:
-                		newBet = BetsJackpot_5_36(user.id, c, True, False)
-                		db.session.add(newBet)
-                		bank.jackpot_5_36 += 1
-                    #newBet = BetsJackpot_5_36(user.id, post_data['combination'], True, False)
-                    #db.session.add(newBet)
-                    #bank.jackpot_5_36 += 1
+                    for c in post_data['tickets']:
+                        newBet = BetsJackpot_5_36(user.id, c['combination'], True, False, None, c['raffles'])
+                        db.session.add(newBet)
+                        bank.jackpot_5_36 += 1
                 if (post_data['type'] == "jackpot_6x45"):
-                	for c in post_data['combinations']:
-                		newBet = BetsJackpot_6_45(user.id, c, True, False)
-                		db.session.add(newBet)
-                		bank.jackpot_6_45 += 1
+                    for c in post_data['tickets']:
+                        newBet = BetsJackpot_6_45(user.id, c['combination'], True, False, None, c['raffles'])
+                        db.session.add(newBet)
+                        bank.jackpot_6_45 += 1
                 if (post_data['type'] == "jackpot_4x21"):
-                	for c in post_data['combinations']:
-                		newBet = BetsJackpot_4_21(user.id, c, True, False)
-                		db.session.add(newBet)
-                		bank.jackpot_4_21 += 1
+                    for c in post_data['tickets']:
+                        newBet = BetsJackpot_4_21(user.id, c['combination'], True, False, None, c['raffles'])
+                        db.session.add(newBet)
+                        bank.jackpot_4_21 += 1
                 if (post_data['type'] == "rapidos"):
-                	for c in post_data['combinations']:
-                		newBet = BetsRapidos(user.id, c, True, False)
-                		db.session.add(newBet)
-                		bank.rapidos += 1
+                    for c in post_data['tickets']:
+                        newBet = BetsRapidos(user.id, c['combination'], True, False, None, c['raffles'])
+                        db.session.add(newBet)
+                        bank.rapidos += 1
                 if (post_data['type'] == "two_numbers"):
-                	for c in post_data['combinations']:
-                		newBet = BetsTwoNumbers(user.id, c, True, False)
-                		db.session.add(newBet)
-                		bank.two_numbers += 1
+                    for c in post_data['tickets']:
+                        newBet = BetsTwoNumbers(user.id, c['combination'], True, False, None, c['raffles'])
+                        db.session.add(newBet)
+                        bank.two_numbers += 1
                 if (post_data['type'] == "prize_jackpot"):
-                	for c in post_data['combinations']:
-                		newBet = BetsPrizeJackpot(user.id, c, True, False)
-                		db.session.add(newBet)
-                		bank.prize_jackpot += 1
+                    for c in post_data['tickets']:
+                        newBet = BetsPrizeJackpot(user.id, c['combination'], True, False, None, c['raffles'])
+                        db.session.add(newBet)
+                        bank.prize_jackpot += 1
                 bank.superjackpot += 1
                 #db.flush()
                 db.session.commit()
                 msg = Message("SuperJackpot Lottery", sender = "vadim.e@lateco.net", recipients=[user.email])
                 #msg.html = "<h1>Superjackpot</h1>"
-                for c in post_data['combinations']:
-                	comb_html = ""
-                	for i in c:
-                		comb_html += "<li><button>" + str(i) + "</button></li>"
-                	msg.html = """<html>
+
+                # create list of combinations
+                comb_html = ""
+                for c in post_data['tickets']:
+                    for i in c['combination']:
+                        comb_html += "<li><button>" + str(i) + "</button></li>"
+                    comb_html += '<br><br><br>'
+
+                # Return combination/combinations based on amount tickets
+                if len(post_data['tickets']) > 1:
+                    comb_str = 'combinations'
+                else:
+                    comb_str = 'combination'
+
+                # Purchased tickets in html response
+                msg.html = """<html>
                                   <head>
                                     <meta name="viewport" content="width=device-width" />
                                     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -955,7 +969,7 @@ class BuyTickets(MethodView):
                                                       <tr>
                                                       <td>
                                                         <p>Hey!</p>
-                                                        <p>Thank you for buying ticket! The next draw will take place soon!</p>
+                                                        <p>Thank you for buying ticket! The next draw will take place tonight! 01:00 (+03:00 GMT)</p>
                                                         <table border="0" cellpadding="0" cellspacing="0" >
                                                           <tbody>
                                                             <tr>
@@ -963,7 +977,7 @@ class BuyTickets(MethodView):
                                                                 <table border="0" cellpadding="0" cellspacing="0">
                                                                   <tbody>
                                                                     <tr>
-                                                                      <td> <a href="http://5.178.87.76:7000" target="_blank" class="buy" style="padding-top: 8px;">Buy Another Ticket!</a> </td>
+                                                                      <td> <a href="http://5.178.87.7:4200" target="_blank" class="buy" style="padding-top: 8px;">Buy Another Ticket!</a> </td>
                                                                     </tr>
                                                                   </tbody>
                                                                 </table>
@@ -971,7 +985,7 @@ class BuyTickets(MethodView):
                                                             </tr>
                                                           </tbody>
                                                         </table>
-                                                        <p>Your choosed combination is:</p>
+                                                        <p>Your choosed """ + comb_str + """ is:</p>
                                                         <ul>""" + comb_html + """</ul>
                                                       </td>
                                                       <td></td>
@@ -1003,10 +1017,10 @@ class BuyTickets(MethodView):
                                     </table>
                                   </body>
                                 </html>""" 
-                	try:
-                		mail.send(msg)
-                	except:
-                		print("Email hasn't been sent")
+                try:
+                    mail.send(msg)
+                except:
+                    print("Email hasn't been sent")
                 responseObject = {
                     'status': 'success'
                 }
@@ -1019,7 +1033,7 @@ class BuyTickets(MethodView):
         else:
             responseObject = {
                 'status': 'fail',
-                'message': 'Provide a valid auth token.'
+                'message': 'Provide a valid auth token1.'
             }
             return make_response(jsonify(responseObject)), 401
 

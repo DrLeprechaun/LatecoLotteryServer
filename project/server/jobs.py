@@ -111,7 +111,18 @@ def jackpot_5x36():
 	lottery_id = str(cv.fetchone()['last_value'])
 	#Close tickets
 	for row in con.execute(clause):
-		con.execute("UPDATE bets_jackpot_5_36 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		if row['amount_bets'] > 1:
+			con.execute("UPDATE bets_jackpot_5_36 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+			con.execute("INSERT INTO bets_jackpot_5_36(user_id, combination, is_active, is_win, made_on, amount_bets) VALUES(" + str(row['user_id']) + ", '{" + str(row['combination'])[1:-1] + "}', TRUE, FALSE, '" + str(row['made_on']) + "', " + str(row['amount_bets']-1) + ")")
+		else:
+			con.execute("UPDATE bets_jackpot_5_36 SET is_active = false, lottery=" + lottery_id + ", amount_bets=0 WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_jackpot_5_36 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_jackpot_5_36 SET amount_bets=amount_bets-1, lottery=array_cat(lottery, '{" + lottery_id + "}') WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_jackpot_5_36 SET amount_bets=amount_bets-1, lottery=lottery || '{" + lottery_id + "}' WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_jackpot_5_36 SET amount_bets=amount_bets-1, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		#if row['amount_bets'] > 1:
+			#con.execute("INSERT INTO bets_jackpot_5_36(user_id, combination, is_active, is_win, made_on, amount_bets, lottery) VALUES (" + str(row['user_id']) + ", " + str(row['combination']) + ", TRUE, FALSE, " + str(row['made_on']) + ", " + str(row[amount_bets])+ " )")
+	#con.execute("UPDATE bets_jackpot_5_36 SET is_active = false WHERE amount_bets = 0")
 
 
 def jackpot_6x45():
@@ -136,7 +147,15 @@ def jackpot_6x45():
 	lottery_id = str(cv.fetchone()['last_value'])
 	#Close tickets
 	for row in con.execute(clause):
-		con.execute("UPDATE bets_jackpot_6_45 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		if row['amount_bets'] > 1:
+			con.execute("UPDATE bets_jackpot_6_45 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+			con.execute("INSERT INTO bets_jackpot_6_45(user_id, combination, is_active, is_win, made_on, amount_bets) VALUES(" + str(row['user_id']) + ", '{" + str(row['combination'])[1:-1] + "}', TRUE, FALSE, '" + str(row['made_on']) + "', " + str(row['amount_bets']-1) + ")")
+		else:
+			con.execute("UPDATE bets_jackpot_6_45 SET is_active = false, lottery=" + lottery_id + ", amount_bets=0 WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_jackpot_6_45 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_jackpot_6_45 SET amount_bets=amount_bets-1, lottery=array_append(lottery, '" + lottery_id + "') WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_jackpot_6_45 SET amount_bets=amount_bets-1, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+	#con.execute("UPDATE bets_jackpot_6_45 SET is_active = false WHERE amount_bets = 0")
 
 
 def jackpot_4x21():
@@ -161,7 +180,15 @@ def jackpot_4x21():
 	lottery_id = str(cv.fetchone()['last_value'])
 	#Close tickets
 	for row in con.execute(clause):
-		con.execute("UPDATE bets_jackpot_4_21 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		if row['amount_bets'] > 1:
+			con.execute("UPDATE bets_jackpot_4_21 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+			con.execute("INSERT INTO bets_jackpot_4_21(user_id, combination, is_active, is_win, made_on, amount_bets) VALUES(" + str(row['user_id']) + ", '{" + str(row['combination'])[1:-1] + "}', TRUE, FALSE, '" + str(row['made_on']) + "', " + str(row['amount_bets']-1) + ")")
+		else:
+			con.execute("UPDATE bets_jackpot_4_21 SET is_active = false, lottery=" + lottery_id + ", amount_bets=0 WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_jackpot_4_21 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_jackpot_4_21 SET amount_bets=amount_bets-1, lottery=array_append(lottery, '" + lottery_id + "') WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_jackpot_4_21 SET amount_bets=amount_bets-1, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+	#con.execute("UPDATE bets_jackpot_4_21 SET is_active = false WHERE amount_bets = 0")
 
 
 def rapidos():
@@ -186,7 +213,15 @@ def rapidos():
 	lottery_id = str(cv.fetchone()['last_value'])
 	#Close tickets
 	for row in con.execute(clause):
-		con.execute("UPDATE bets_rapidos SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		if row['amount_bets'] > 1:
+			con.execute("UPDATE bets_rapidos SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+			#insert_clause = "INSERT INTO bets_rapidos(user_id, combination, is_active, is_win, made_on, amount_bets) VALUES(%s, %s, %s, %s, %s, %s)"
+			#vals = (row['user_id'], row['combination'], 'TRUE', 'FALSE', row['amount_bets']-1)
+			#con.execute(clause, vals)
+			#con.execute("INSERT INTO bets_rapidos(user_id, combination, is_active, is_win, made_on, amount_bets) VALUES(" + str(row['user_id']) + ", '" + str(row['combination']) + "', TRUE, FALSE, " + row['amount_bets']-1 + ")")
+			con.execute("INSERT INTO bets_rapidos(user_id, combination, is_active, is_win, made_on, amount_bets) VALUES(" + str(row['user_id']) + ", '{" + str(row['combination'])[1:-1] + "}', TRUE, FALSE, '" + str(row['made_on']) + "', " + str(row['amount_bets']-1) + ")")
+		else:
+			con.execute("UPDATE bets_rapidos SET is_active = false, lottery=" + lottery_id + ", amount_bets=0 WHERE id = " + str(row['id']))
 
 
 def two_numbers():
@@ -211,7 +246,18 @@ def two_numbers():
 	lottery_id = str(cv.fetchone()['last_value'])
 	#Close tickets
 	for row in con.execute(clause):
-		con.execute("UPDATE bets_two_numbers SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		if row['amount_bets'] > 1:
+			con.execute("UPDATE bets_two_numbers SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+			#insert_clause = "INSERT INTO bets_two_numbers(user_id, combination, is_active, is_win, made_on, amount_bets) VALUES(%s, %s, %s, %s, %s, %s)"
+			#vals = (row['user_id'], row['combination'], 'TRUE', 'FALSE', row['amount_bets']-1)
+			#con.execute(clause, vals)
+			con.execute("INSERT INTO bets_two_numbers(user_id, combination, is_active, is_win, made_on, amount_bets) VALUES(" + str(row['user_id']) + ", '{" + str(row['combination'])[1:-1] + "}', TRUE, FALSE, '" + str(row['made_on']) + "', " + str(row['amount_bets']-1) + ")")
+		else:
+			con.execute("UPDATE bets_two_numbers SET is_active = false, lottery=" + lottery_id + ", amount_bets=0 WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_two_numbers SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_two_numbers SET amount_bets=amount_bets-1, lottery=array_append(lottery, '" + lottery_id + "') WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_two_numbers SET amount_bets=amount_bets-1, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+	#con.execute("UPDATE bets_two_numbers SET is_active = false WHERE amount_bets = 0")
 
 
 def prize_jackpot():
@@ -236,7 +282,18 @@ def prize_jackpot():
 	lottery_id = str(cv.fetchone()['last_value'])
 	#Close tickets
 	for row in con.execute(clause):
-		con.execute("UPDATE bets_prize_jackpot SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		if row['amount_bets'] > 1:
+			con.execute("UPDATE bets_two_numbers SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+			#insert_clause = "INSERT INTO bets_two_numbers(user_id, combination, is_active, is_win, made_on, amount_bets) VALUES(%s, %s, %s, %s, %s, %s)"
+			#vals = (row['user_id'], row['combination'], 'TRUE', 'FALSE', row['amount_bets']-1)
+			#con.execute(clause, vals)
+			con.execute("INSERT INTO bets_prize_jackpot(user_id, combination, is_active, is_win, made_on, amount_bets) VALUES(" + str(row['user_id']) + ", '{" + str(row['combination'])[1:-1] + "}', TRUE, FALSE, '" + str(row['made_on']) + "', " + str(row['amount_bets']-1) + ")")
+		else:
+			con.execute("UPDATE bets_prize_jackpot SET is_active = false, lottery=" + lottery_id + ", amount_bets=0 WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_prize_jackpot SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_prize_jackpot SET amount_bets=amount_bets-1, lottery=array_append(lottery, '" + lottery_id + "') WHERE id = " + str(row['id']))
+		#con.execute("UPDATE bets_prize_jackpot SET amount_bets=amount_bets-1, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+	#con.execute("UPDATE bets_prize_jackpot SET is_active = false WHERE amount_bets = 0")
 
 
 def print_date_time():

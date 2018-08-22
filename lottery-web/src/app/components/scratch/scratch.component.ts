@@ -271,11 +271,11 @@ private mouseMove(e: MouseEvent) {
   if (this.cnv != null && this.scratchNowFlag) {
     var brushPos = this.getBrushPos(e.clientX, e.clientY);
 
-    var leftBut = this.detectLeftButton(e);
+    //var leftBut = this.detectLeftButton(e);
 
-      if (leftBut == true) {
+      //if (leftBut == true) {
         this.drawDot(brushPos.x, brushPos.y);
-    }
+    //}
   }
 }
 

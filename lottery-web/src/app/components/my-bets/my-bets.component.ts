@@ -737,11 +737,11 @@ export class MyBetsComponent implements OnInit {
     if (this.cnv != null) {
       var brushPos = this.getBrushPos(e.clientX, e.clientY);
 
-      var leftBut = this.detectLeftButton(e);
+      //var leftBut = this.detectLeftButton(e);
 
-        if (leftBut == true) {
+        //if (leftBut == true) {
           this.drawDot(brushPos.x, brushPos.y);
-      }
+      //}
     }
   }
 
