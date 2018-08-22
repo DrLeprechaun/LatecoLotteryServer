@@ -27,7 +27,6 @@ import { WalletComponent } from './components/wallet/wallet.component';
 import { MyStatisticsComponent } from './components/my-statistics/my-statistics.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { FaqComponent } from './components/faq/faq.component';
-import { ScratchComponent } from './components/scratch/scratch.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +45,7 @@ import { ScratchComponent } from './components/scratch/scratch.component';
     WalletComponent,
     MyStatisticsComponent,
     SettingsComponent,
-    FaqComponent,
-    ScratchComponent
+    FaqComponent
   ],
   imports: [
     BrowserModule,
@@ -98,11 +96,6 @@ import { ScratchComponent } from './components/scratch/scratch.component';
       {
         path: 'buy-ticket',
         component: BuyTicketComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'scratch',
-        component: ScratchComponent,
         canActivate: [AuthGuard]
       },
       {

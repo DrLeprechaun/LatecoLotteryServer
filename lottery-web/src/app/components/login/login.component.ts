@@ -26,8 +26,6 @@ export class LoginComponent {
       setTimeout(() => this.staticAlertClosed = true, 20000);
       this._alert.subscribe((message) => this.errorMessage = message);
       debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
-      console.log(this.tpService.getScratchType());
-      console.log(this.tpService.getLotteryType());
     }
 
     onLogin(): void {

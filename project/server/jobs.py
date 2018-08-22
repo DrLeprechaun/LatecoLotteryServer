@@ -93,9 +93,9 @@ def lottery_5x36():
 			#print(c)
 '''
 
-def lottery(lottery_name):
+def lottery(lottery_name, win_combination):
 	# win combination
-	win_combination = GetRandomArray(1, 36, 5)
+	#win_combination = GetRandomArray(1, 36, 5)
 
 	#jackpot_5x36 = meta.tables['jackpot_5_36']
 	#bets = meta.tables['bets_jackpot_5_36']
@@ -146,7 +146,10 @@ def lottery(lottery_name):
 
 
 def jackpot_5x36():
-	lottery('jackpot_5_36')
+
+	# win combination
+	win_combination = GetRandomArray(1, 36, 5)
+	lottery('jackpot_5_36', win_combination)
 	'''
 	#win combination
 	win_combination = GetRandomArray(1, 36, 5)
@@ -173,7 +176,9 @@ def jackpot_5x36():
 '''
 
 def jackpot_6x45():
-	lottery('jackpot_6_45')
+	# win combination
+	win_combination = GetRandomArray(1, 45, 6)
+	lottery('jackpot_6_45', win_combination)
 	'''
 	#win combination
 	win_combination = GetRandomArray(1, 45, 6)
@@ -200,7 +205,9 @@ def jackpot_6x45():
 '''
 
 def jackpot_4x21():
-	lottery('jackpot_4_21')
+	# win combination
+	win_combination = GetRandomArray(1, 21, 4)
+	lottery('jackpot_4_21', win_combination)
 	'''
 	#win combination
 	win_combination = GetRandomArray(1, 21, 4)
@@ -227,7 +234,9 @@ def jackpot_4x21():
 '''
 
 def rapidos():
-	lottery('rapidos')
+	# win combination
+	win_combination = GetRandomArray(1, 21, 4)
+	lottery('rapidos', win_combination)
 	'''
 	#win combination
 	win_combination = GetRandomArray(1, 21, 4)
@@ -255,7 +264,9 @@ def rapidos():
 
 
 def supers():
-	lottery('supers')
+	# win combination
+	win_combination = GetRandomArray(1, 36, 5)
+	lottery('supers', win_combination)
 	'''
 	#win combination
 	win_combination = GetRandomArray(1, 36, 5)
@@ -282,7 +293,8 @@ def supers():
 '''
 
 def top3():
-	lottery('top3')
+	win_combination = GetRandomArray(1, 45, 6)
+	lottery('top3', win_combination)
 	'''
 	#win combination
 	win_combination = GetRandomArray(1, 45, 6)
@@ -307,6 +319,55 @@ def top3():
 	for row in con.execute(clause):
 		con.execute("UPDATE bets_top3 SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
 '''
+
+def two_numbers():
+	#win combination
+	win_combination = GetRandomArray(1, 100, 2)
+	two_numbers = meta.tables['two_numbers']
+	bets = meta.tables['bets_two_numbers']
+	winners = []
+	#Fill "Random tickets"
+	clause = bets.select("is_active = true")
+	for row in con.execute(clause):
+		if (row['combination'] is None or len(row['combination']) == 0):
+			con.execute("UPDATE bets_two_numbers SET combination=" + FormatArray(GetRandomArray(1, 36, 5)) + "WHERE id = " + str(row['id']))
+	#Check combinations
+	for row in con.execute(clause):
+		if (CompareArrays(row['combination'], win_combination)):
+			con.execute("UPDATE bets_two_numbers SET is_win = true WHERE id = " + str(row['id']))
+			winners.append(row['id'])
+	#Insert Lottery
+	con.execute("INSERT INTO two_numbers(combination, win_tickets, date) VALUES (" + FormatArray(win_combination) + ", " + FormatArray(winners) + ", current_timestamp);")
+	cv = con.execute("SELECT last_value FROM two_numbers_id_seq AS cv;")
+	lottery_id = str(cv.fetchone()['last_value'])
+	#Close tickets
+	for row in con.execute(clause):
+		con.execute("UPDATE bets_two_numbers SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+
+def prize_jackpot():
+	#win combination
+	win_combination = GetRandomArray(1, 24, 12)
+	prize_jackpot = meta.tables['prize_jackpot']
+	bets = meta.tables['bets_prize_jackpot']
+	winners = []
+	#Fill "Random tickets"
+	clause = bets.select("is_active = true")
+	for row in con.execute(clause):
+		if (row['combination'] is None or len(row['combination']) == 0):
+			con.execute("UPDATE bets_prize_jackpot SET combination=" + FormatArray(GetRandomArray(1, 45, 6)) + "WHERE id = " + str(row['id']))
+	#Check combinations
+	for row in con.execute(clause):
+		if (CompareArrays(row['combination'], win_combination)):
+			con.execute("UPDATE bets_prize_jackpot SET is_win = true WHERE id = " + str(row['id']))
+			winners.append(row['id'])
+	#Insert Lottery
+	con.execute("INSERT INTO prize_jackpot(combination, win_tickets, date) VALUES (" + FormatArray(win_combination) + ", " + FormatArray(winners) + ", current_timestamp);")
+	cv = con.execute("SELECT last_value FROM prize_jackpot_id_seq AS cv;")
+	lottery_id = str(cv.fetchone()['last_value'])
+	#Close tickets
+	for row in con.execute(clause):
+		con.execute("UPDATE bets_prize_jackpot SET is_active = false, lottery=" + lottery_id + " WHERE id = " + str(row['id']))
+
 
 def print_date_time():
 	print ("Server " + time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
