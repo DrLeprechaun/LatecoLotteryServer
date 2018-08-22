@@ -396,6 +396,67 @@ class GetBetsArchive(MethodView):
             resp = User.decode_auth_token(auth_token)
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
+                # Create a list of lotteries
+                jackpot_list = ['jackpot_4_21', 'jackpot_5_36', 'jackpot_6_45', 'rapidos', 'two_numbers',
+                                'prize_jackpot', 'bets_777', 'bets_fruity', 'bets_100_cash']
+
+                #express_list = ['bets_777', 'bets_fruity', 'bets_100cash']
+                #sql_str=bets_777 = 'SELECT ' + bets + '.id AS id, ' + bets + '.combination AS my_combination, ' +
+                #bets + '.is_win AS is_win, ' + bets + '.win_combination AS win_combination, ' + bets + \
+                #'.made_on AS date FROM ' + bets + ' WHERE bets_777.user_id = ' + str(user.id) + ' AND ' + bets + '.is_active = false'
+
+                jackpot_dict = {}
+                for jackpot in jackpot_list:
+                    # Get bets for lottery
+                    """
+                    jackpot_sql_result = db.engine.execute(
+                        'With bets as (Select id, combination, is_win, unnest(lottery) AS lottery from bets_' +
+                        jackpot + ' where user_id = ' + str(user.id) + ' AND is_active = false) '
+                        'select bets.id as id, bets.combination as my_combination, bets.is_win as is_win, '
+                        'jackpot.combination as win_combination,jackpot.date as date from ' + jackpot +
+                        ' as jackpot join bets on bets.lottery = jackpot.id;')
+                    """
+                    if jackpot.startswith('bets'):
+                        jackpot_sql_result = db.engine.execute('SELECT ' + jackpot + '.id AS id, ' + jackpot +
+                        '.combination AS my_combination, ' + jackpot + '.is_win AS is_win, ' + jackpot +
+                        '.win_combination AS win_combination, ' + jackpot + '.made_on AS date FROM ' + jackpot +
+                        ' WHERE ' + jackpot + '.user_id = ' + str(user.id) + ' AND ' + jackpot + '.is_active = false')
+                    else:
+                        jackpot_sql_result = db.engine.execute(
+                    #db.engine.execute(
+                    #'SELECT id , combination, is_win, from bets_' + jackpot + '
+                    #'bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36  INNER JOIN jackpot_5_36 ON jackpot_5_36.id = bets_jackpot_5_36.lottery WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false')
+                    'SELECT bets_' + jackpot + '.id AS id, bets_' + jackpot + '.combination AS my_combination, bets_' +
+                    jackpot + '.is_win AS is_win, ' + jackpot + '.combination AS win_combination, ' + jackpot +
+                    '.date AS date FROM bets_' + jackpot + ' INNER JOIN ' + jackpot + ' ON ' + jackpot +'.id = bets_'
+                    + jackpot + '.lottery WHERE bets_' + jackpot + '.user_id = ' + str(user.id) + ' AND bets_' + jackpot + '.is_active = false;')
+
+                    jackpot_arr = []
+                    for row in jackpot_sql_result:
+                        obj = {
+                            'id': row.id,
+                            'my_combination': row.my_combination,
+                            'is_win': row.is_win,
+                            'win_combination': row.win_combination,
+                            'date': row.date
+                        }
+                        jackpot_arr.append(obj)
+
+                    # remove cash word if it exists
+                    jackpot = jackpot.replace('_cash', '')
+
+                    # Get a dictionary key
+
+                    jackpot_key_list = jackpot.split('jackpot_')
+                    if len(jackpot_key_list) > 1:
+                        jackpot_key = 'jackpot_' + jackpot.split('jackpot_')[1].replace('_', 'x')
+                    else:
+                        jackpot_key = jackpot
+                    jackpot_dict[jackpot_key] = jackpot_arr
+
+
+                # Create an empty dict for output
+                '''
                 #jackpot_5x36
                 jackpot_5x36 = db.engine.execute('SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36  INNER JOIN jackpot_5_36 ON jackpot_5_36.id = bets_jackpot_5_36.lottery WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false')
                 #jackpot_5x36 = db.engine.execute('SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36, jackpot_5_36 WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false AND jackpot_5_36.id = ANY(bets_jackpot_5_36.lottery) AND lottery IS NOT NULL')
@@ -510,12 +571,18 @@ class GetBetsArchive(MethodView):
                         'date': row.date.isoformat()
                     }
                     bets_100_arr.append(obj)
+                '''
+                responseObject = {
+                    'status': 'success',
+                    'data': jackpot_dict
+                }
+                '''
                 responseObject = {
                     'status': 'success',
                     'data': {
+                        'jackpot_4x21': jackpot_4x21_arr,
                         'jackpot_5x36': jackpot_5x36_arr,
                         'jackpot_6x45': jackpot_6x45_arr,
-                        'jackpot_4x21': jackpot_4x21_arr,
                         'rapidos': rapidos_arr,
                         'two_numbers': two_numbers_arr,
                         'prize_jackpot': prize_jackpot_arr,
@@ -524,6 +591,7 @@ class GetBetsArchive(MethodView):
                         'bets_100': bets_100_arr
                     }
                 }
+                '''
                 return make_response(jsonify(responseObject)), 200
             responseObject = {
                 'status': 'fail',
