@@ -28,6 +28,7 @@ import { MyStatisticsComponent } from './components/my-statistics/my-statistics.
 import { SettingsComponent } from './components/settings/settings.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { ScratchComponent } from './components/scratch/scratch.component';
+import { CubeComponent } from './components/templates/cube/cube.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ScratchComponent } from './components/scratch/scratch.component';
     MyStatisticsComponent,
     SettingsComponent,
     FaqComponent,
-    ScratchComponent
+    ScratchComponent,
+    CubeComponent
   ],
   imports: [
     BrowserModule,
