@@ -21,6 +21,15 @@
   z-index: 50;
 }
 
+.newBet {
+  /*background-color: red;*/
+  background: linear-gradient(to right, cyan, orange, violet);
+  color: black;
+}
+
+.betRegular {
+
+}
 
 /*.button-black {
 

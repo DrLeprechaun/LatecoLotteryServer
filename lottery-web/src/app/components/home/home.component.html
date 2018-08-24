@@ -2,7 +2,7 @@
   <table style="margin-left: 20px;">
     <tr>
       <td><img src="assets/img/logo_small.png" alt="logo"></td>
-      <td style="padding-top: 5px;"><a routerLink="/#"><h2 style="cursor: pointer; color=black;"><b>SUPER</b>JACK<b>POT</b></h2></a></td>
+      <td style="padding-top: 5px;"><a routerLink="/#"><h5 style="cursor: pointer; color=black;"><b>SUPER</b>JACK<b>POT</b></h5></a></td>
     </tr>
   </table>
   <p style="font-size: 1em; padding-top: 0px; padding-left: 20px;">BLOCKCHAIN LOTTERY</p>
@@ -11,7 +11,7 @@
 <!--<div class="container">-->
   <table class="page-content">
     <tr>
-      <td width="50px;" style="padding-top: 10%;">
+      <td style="padding-top: 10%;">
         <div id="navbar">
           <p><a routerLink="/home" style="color: grey">Home</a></p>
           <p><a routerLink="/login">Log in</a></p>
@@ -20,7 +20,7 @@
           <p><a routerLink="/public-statistics">Statistics</a></p>
         </div>
     </td>
-    <td class="banner-cell" colspan="3" align="center" style="padding-top: 10%;">
+    <td class="banner-cell" colspan="3" align="center" style="padding-top: 10%; padding-left: 16px; padding-right: 16px;">
         <!--<div>
           <img src="assets/img/title_banner.png" id="titleBanner">
         </div>-->
@@ -36,7 +36,7 @@
               <a href="#slider-image-2" class="slider-change"></a>
           </div>
       </div>-->
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 887px;">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <!--<ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -44,7 +44,7 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img class="d-block w-100" src="assets/img/bannermega_1.jpg" alt="First slide">
-            <div class="carousel-caption d-none d-md-block banner-text ">
+            <div class="carousel-caption d-none d-md-block banner-text">
               <p>{{superjackpot_value}} SJP</p>
             </div>
           </div>
@@ -57,7 +57,7 @@
         </div>
       </div>
     </td>
-    <td style="padding-left: 12%; padding-top: 10%;">
+    <td style="padding-left: 6%; padding-top: 10%;">
       <div class="cube">
         <div class="side" id="side-1" (click)="goLogin('jackpot_4x21')"><img style="width: inherit;" src="assets/img/4_21_small.jpg"></div>
         <div class="side" id="side-2" (click)="goLogin('jackpot_6x45')"><img style="width: inherit;" src="assets/img/6_45_small.jpg"></div>
@@ -69,10 +69,10 @@
     </td>
   </tr>
       <tr>
-        <td style="width: 100%"></td>
+        <td style="width: 100%; padding-right: 180px;"></td>
         <fieldset class="scheduler-border">
             <legend class="scheduler-border"><b>SUPER</b>JACK<b>POT&nbsp;&nbsp;&nbsp;{{superjackpot_value}} SJP</b></legend>
-            <label class="lotteryLabel">Win multimillion jackpots ...</label>
+            <label class="lotteryLabel2">Win multimillion jackpots ...</label>
             <div class="control-group">
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
@@ -195,7 +195,7 @@
                   <div class="lotteryCounter">Any time</div>
                   <div class="lotteryFunds">333 SJP</div>
                   <div class="buttonSector">
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="open('fruity', content)">Rules</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="open('Fruity', content)">Rules</button></div>
                     <div class="buttonDiv"><button (click)="goLoginScratch('fruity')" class="lotteryButton">Buy</button></div>
                     <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
                   </div>
@@ -407,7 +407,7 @@
   In Rapid SJP there are 9 categories of winnings.<br/>
   All winnings, except for the Jackpot, are fixed. The minimum winnings are 1 SJP.<br/>
 
-<table class="table table-dark">
+<table class="table">
   <thead>
     <tr colspan="3">
       <th>You can win in Rapidos</th>
@@ -495,7 +495,7 @@ When the ticket is issued - You are among the contenders for the victory. Congra
 <hr/>
 <p><b>What can be won?</b></p>
 The Jackpot is received by the one who guessed one number in the first part of the field and one number in the second.
-<table class="table table-dark">
+<table class="table">
   <thead>
     <tr colspan="3">
       <th>You can win in Two Numbers Lottery</th>
@@ -555,7 +555,7 @@ It will multiply all your winnings, except for the Jackpot.</p>
 <p><b>What can be won?</b></p>
 Winners are considered to be combinations in which 0, 1, 2, 3, 4, 8, 9, 10, 11 or 12 numbers coincide with the numbers in the draw. All winnings, except for the Prize and the Jackpot, are fixed. The minimum winnings are 2 SJP.
 
-<table class="table table-dark">
+<table class="table">
   <thead>
     <tr colspan="2">
       <th>You can win in Prize&Jackpot Lottery</th>
@@ -625,7 +625,7 @@ By participating in the SJP Lotteries, you agree to the SJP Lotteries rules. By 
     <p>You can withdraw your WalletSpace money to your bank account and cash out at ATM or your bank branch.  If you chose to get a pre-paid debit card issued by certain digital wallet providers (such as Wirex, SpectroCoin), you may withdraw your cash only at ATMs (might not be available in certain countries).</p>
     <p><i><u>Note:</u> All steps until cash withdrawal are performed online. Transaction speed is determined by specific services availability and load, but usually operations happen immediately.</i></p>
     <h5>How to withdraw winnings to a bank account</h5>
-    <table class="table-dark">
+    <table class="table">
       <thead>
         <tr>
           <th>Approach</th>

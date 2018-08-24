@@ -73,6 +73,7 @@ export class MyBetsComponent implements OnInit {
             "type": "jackpot_5x36",
             "combination": this.processCombination(res.json().data.jackpot_5x36[i].combination),
             "is_new": this.checkNewBet("jackpot_5x36", res.json().data.jackpot_5x36[i].combination),
+            "bet_class": this.getBetClass("jackpot_5x36", res.json().data.jackpot_5x36[i].combination),
             "date": new Date(res.json().data.jackpot_5x36[i].date),
             "scratch": false
           }
@@ -87,6 +88,7 @@ export class MyBetsComponent implements OnInit {
             "type": "jackpot_6x45",
             "combination": this.processCombination(res.json().data.jackpot_6x45[i].combination),
             "is_new": this.checkNewBet("jackpot_6x45", res.json().data.jackpot_6x45[i].combination),
+            "bet_class": this.getBetClass("jackpot_6x45", res.json().data.jackpot_6x45[i].combination),
             "date": new Date(res.json().data.jackpot_6x45[i].date),
             "scratch": false
           }
@@ -101,6 +103,7 @@ export class MyBetsComponent implements OnInit {
             "type": "jackpot_4x21",
             "combination": this.processCombination(res.json().data.jackpot_4x21[i].combination),
             "is_new": this.checkNewBet("jackpot_4x21", res.json().data.jackpot_4x21[i].combination),
+            "bet_class": this.getBetClass("jackpot_4x21", res.json().data.jackpot_4x21[i].combination),
             "date": new Date(res.json().data.jackpot_4x21[i].date),
             "scratch": false
           }
@@ -115,6 +118,7 @@ export class MyBetsComponent implements OnInit {
             "type": "rapidos",
             "combination": this.processCombination(res.json().data.rapidos[i].combination),
             "is_new": this.checkNewBet("rapidos", res.json().data.rapidos[i].combination),
+            "bet_class": this.getBetClass("rapidos", res.json().data.rapidos[i].combination),
             "date": new Date(res.json().data.rapidos[i].date),
             "scratch": false
           }
@@ -129,6 +133,7 @@ export class MyBetsComponent implements OnInit {
             "type": "two_numbers",
             "combination": this.processCombination(res.json().data.two_numbers[i].combination),
             "is_new": this.checkNewBet("two_numbers", res.json().data.two_numbers[i].combination),
+            "bet_class": this.getBetClass("two_numbers", res.json().data.two_numbers[i].combination),
             "date": new Date(res.json().data.two_numbers[i].date),
             "scratch": false
           }
@@ -143,6 +148,7 @@ export class MyBetsComponent implements OnInit {
             "type": "prize_jackpot",
             "combination": this.processCombination(res.json().data.prize_jackpot[i].combination),
             "is_new": this.checkNewBet("prize_jackpot", res.json().data.prize_jackpot[i].combination),
+            "bet_class": this.getBetClass("prize_jackpot", res.json().data.prize_jackpot[i].combination),
             "date": new Date(res.json().data.prize_jackpot[i].date),
             "scratch": false
           }
@@ -156,7 +162,8 @@ export class MyBetsComponent implements OnInit {
             "type_name": "777",
             "type": "777",
             "combination": res.json().data.bets_777[i].combination,
-            "is_new": false,
+            "is_new": true,
+            "bet_class": "newBet",
             "date": new Date(res.json().data.bets_777[i].date),
             "scratch": true
           }
@@ -170,7 +177,8 @@ export class MyBetsComponent implements OnInit {
             "type_name": "Fruity",
             "type": "fruity",
             "combination": res.json().data.bets_fruity[i].combination,
-            "is_new": false,
+            "is_new": true,
+            "bet_class": "newBet",
             "date": new Date(res.json().data.bets_fruity[i].date),
             "scratch": true
           }
@@ -184,7 +192,8 @@ export class MyBetsComponent implements OnInit {
             "type_name": "100`000 CASH",
             "type": "100CASH",
             "combination": res.json().data.bets_100[i].combination,
-            "is_new": false,
+            "is_new": true,
+            "bet_class": "newBet",
             "date": new Date(res.json().data.bets_100[i].date),
             "scratch": true
           }
@@ -192,7 +201,11 @@ export class MyBetsComponent implements OnInit {
         }
         this.tableData = this.sortAndFormatBetArray(this.tableData);
       }
-    });
+    },
+    (err) => {
+      console.log(err);
+    }
+  );
 
     //Archive
     this.lottery.getBetsArchive()
@@ -366,6 +379,31 @@ export class MyBetsComponent implements OnInit {
             //result = !compFlag;
             if (!compFlag) {
               result = true;
+            }
+          }
+        }
+      }
+    }
+
+    return result;
+  }
+
+  private getBetClass(t: string, combination: any) {
+    var result = "regularBet";
+
+    if (this.tpService.getNewBets() != null) {
+      var newBets = JSON.parse(this.tpService.getNewBets());
+      if (t == newBets.type) {
+        for (var i = 0; i < newBets.combinations.length; i++) {
+          if (combination.length == newBets.combinations[i].length) {
+            var compFlag = false;
+            for (var j = 0; j < combination.length; j++) {
+              if (combination[j] != newBets.combinations[i][j]) {
+                compFlag = true;
+              }
+            }
+            if (!compFlag) {
+              result = "newBet";
             }
           }
         }
@@ -670,16 +708,18 @@ export class MyBetsComponent implements OnInit {
 
     console.log(new CombinationUpdate(this.editedRecordId, this.lotteryType, this.editableCombination));
 
-    this.lottery.updateCombination(new CombinationUpdate(this.editedRecordId, this.lotteryType, this.editableCombination))
-    .then((res) => {
-      console.log(res.json());
-      if (res.json().status === 'success') {
-        this.loadData();
-      }
-    },
-    (err) => {
-      console.log(err);
-    })
+    if (this.editableCombination.length == this.combinationQuantity || this.editableCombination.length == 0) {
+      this.lottery.updateCombination(new CombinationUpdate(this.editedRecordId, this.lotteryType, this.editableCombination))
+      .then((res) => {
+        console.log(res.json());
+        if (res.json().status === 'success') {
+          this.loadData();
+        }
+      },
+      (err) => {
+        console.log(err);
+      })
+    }
 
     this.editableCombination = [];
     this.lotteryType = "";
