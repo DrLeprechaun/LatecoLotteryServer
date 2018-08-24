@@ -135,26 +135,36 @@ class LotteryTokens(db.Model):
         self.user_id = user_id
         self.amount = amount
 
+class BetsJackpot_4_21(db.Model):
+
+    __tablename__ = 'bets_jackpot_4_21'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    made_on = db.Column(db.DateTime, nullable=False)
+    amount_bets = db.Column(db.Integer, autoincrement=True)
+
+    def __init__(self, user_id, combination, amount_bets):
+        self.user_id = user_id
+        self.combination = combination
+        self.made_on = datetime.datetime.now()
+        self.amount_bets = amount_bets
+
 class BetsJackpot_5_36(db.Model):
 
     __tablename__ = 'bets_jackpot_5_36'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, nullable=False)
     combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
-    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
     amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
+    def __init__(self, user_id, combination, amount_bets):
         self.user_id = user_id
         self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
         self.made_on = datetime.datetime.now()
-        self.lottery = lottery
         self.amount_bets = amount_bets
 
 class BetsJackpot_6_45(db.Model):
@@ -162,43 +172,15 @@ class BetsJackpot_6_45(db.Model):
     __tablename__ = 'bets_jackpot_6_45'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, nullable=False)
     combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
-    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
     amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
+    def __init__(self, user_id, combination, amount_bets):
         self.user_id = user_id
         self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
         self.made_on = datetime.datetime.now()
-        self.lottery = lottery
-        self.amount_bets = amount_bets
-
-class BetsJackpot_4_21(db.Model):
-
-    __tablename__ = 'bets_jackpot_4_21'
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
-    combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
-    made_on = db.Column(db.DateTime, nullable=False)
-    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
-    amount_bets = db.Column(db.Integer, autoincrement=True)
-
-    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
-        self.user_id = user_id
-        self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
-        self.made_on = datetime.datetime.now()
-        self.lottery = lottery
         self.amount_bets = amount_bets
 
 class BetsRapidos(db.Model):
@@ -206,21 +188,15 @@ class BetsRapidos(db.Model):
     __tablename__ = 'bets_rapidos'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, nullable=False)
     combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
-    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
     amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
+    def __init__(self, user_id, combination, amount_bets):
         self.user_id = user_id
         self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
         self.made_on = datetime.datetime.now()
-        self.lottery = lottery
         self.amount_bets = amount_bets
 
 class BetsTwoNumbers(db.Model):
@@ -228,21 +204,15 @@ class BetsTwoNumbers(db.Model):
     __tablename__ = 'bets_two_numbers'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, nullable=False)
     combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
-    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
     amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
+    def __init__(self, user_id, combination, amount_bets):
         self.user_id = user_id
         self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
         self.made_on = datetime.datetime.now()
-        self.lottery = lottery
         self.amount_bets = amount_bets
 
 class BetsPrizeJackpot(db.Model):
@@ -250,22 +220,148 @@ class BetsPrizeJackpot(db.Model):
     __tablename__ = 'bets_prize_jackpot'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, nullable=False)
     combination = db.Column(ARRAY(db.Integer), nullable=True)
-    is_active = db.Column(db.Boolean)
-    is_win = db.Column(db.Boolean)
     made_on = db.Column(db.DateTime, nullable=False)
-    lottery = db.Column(ARRAY(db.BigInteger), nullable=True)
     amount_bets = db.Column(db.Integer, autoincrement=True)
 
-    def __init__(self, user_id, combination, is_active, is_win, lottery, amount_bets):
+    def __init__(self, user_id, combination, amount_bets):
         self.user_id = user_id
         self.combination = combination
-        self.is_active = is_active
-        self.is_win = is_win
         self.made_on = datetime.datetime.now()
-        self.lottery = lottery
         self.amount_bets = amount_bets
+
+class RafflesJackpot_4_21(db.Model):
+
+    __tablename__ = 'raffles_jackpot_4_21'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ticket_id = db.Column(db.Integer, nullable=False)
+    lottery_id = db.Column(db.Integer, nullable=False)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    win_combination = db.Column(ARRAY(db.Integer), nullable=True)
+    date = db.Column(db.DateTime, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, ticket_id, lottery_id, combination, win_combination, user_id, is_win):
+        self.ticket_id = ticket_id
+        self.lottery_id = lottery_id
+        self.combination = combination
+        self.win_combination = win_combination
+        self.date = datetime.datetime.now()
+        self.user_id = user_id
+        self.is_win = is_win
+
+class RafflesJackpot_5_36(db.Model):
+
+    __tablename__ = 'raffles_jackpot_5_36'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ticket_id = db.Column(db.Integer, nullable=False)
+    lottery_id = db.Column(db.Integer, nullable=False)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    win_combination = db.Column(ARRAY(db.Integer), nullable=True)
+    date = db.Column(db.DateTime, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, ticket_id, lottery_id, combination, win_combination, user_id, is_win):
+        self.ticket_id = ticket_id
+        self.lottery_id = lottery_id
+        self.combination = combination
+        self.win_combination = win_combination
+        self.date = datetime.datetime.now()
+        self.user_id = user_id
+        self.is_win = is_win
+
+class RafflesJackpot_6_45(db.Model):
+
+    __tablename__ = 'raffles_jackpot_6_45'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ticket_id = db.Column(db.Integer, nullable=False)
+    lottery_id = db.Column(db.Integer, nullable=False)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    win_combination = db.Column(ARRAY(db.Integer), nullable=True)
+    date = db.Column(db.DateTime, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, ticket_id, lottery_id, combination, win_combination, user_id, is_win):
+        self.ticket_id = ticket_id
+        self.lottery_id = lottery_id
+        self.combination = combination
+        self.win_combination = win_combination
+        self.date = datetime.datetime.now()
+        self.user_id = user_id
+        self.is_win = is_win
+
+class RafflesRapidos(db.Model):
+
+    __tablename__ = 'raffles_rapidos'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ticket_id = db.Column(db.Integer, nullable=False)
+    lottery_id = db.Column(db.Integer, nullable=False)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    win_combination = db.Column(ARRAY(db.Integer), nullable=True)
+    date = db.Column(db.DateTime, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, ticket_id, lottery_id, combination, win_combination, user_id, is_win):
+        self.ticket_id = ticket_id
+        self.lottery_id = lottery_id
+        self.combination = combination
+        self.win_combination = win_combination
+        self.date = datetime.datetime.now()
+        self.user_id = user_id
+        self.is_win = is_win
+
+class RafflesTwoNumbers(db.Model):
+
+    __tablename__ = 'raffles_two_numbers'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ticket_id = db.Column(db.Integer, nullable=False)
+    lottery_id = db.Column(db.Integer, nullable=False)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    win_combination = db.Column(ARRAY(db.Integer), nullable=True)
+    date = db.Column(db.DateTime, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, ticket_id, lottery_id, combination, win_combination, user_id, is_win):
+        self.ticket_id = ticket_id
+        self.lottery_id = lottery_id
+        self.combination = combination
+        self.win_combination = win_combination
+        self.date = datetime.datetime.now()
+        self.user_id = user_id
+        self.is_win = is_win
+
+class RafflesPrizeJackpot(db.Model):
+
+    __tablename__ = 'raffles_prize_jackpot'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    ticket_id = db.Column(db.Integer, nullable=False)
+    lottery_id = db.Column(db.Integer, nullable=False)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    win_combination = db.Column(ARRAY(db.Integer), nullable=True)
+    date = db.Column(db.DateTime, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, ticket_id, lottery_id, combination, win_combination, user_id, is_win):
+        self.ticket_id = ticket_id
+        self.lottery_id = lottery_id
+        self.combination = combination
+        self.win_combination = win_combination
+        self.date = datetime.datetime.now()
+        self.user_id = user_id
+        self.is_win = is_win
 
 class Wallets(db.Model):
 

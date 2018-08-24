@@ -252,68 +252,74 @@ class GetBets(MethodView):
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
                 #jackpot_5x36
-                jackpot_5x36 = db.engine.execute('SELECT * FROM bets_jackpot_5_36 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                #jackpot_5x36 = db.engine.execute('SELECT * FROM bets_jackpot_5_36 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                jackpot_5x36 = db.engine.execute('SELECT * FROM bets_jackpot_5_36 WHERE user_id =' + str(user.id) + ' AND amount_bets > 0')
                 jackpot_5x36_arr = []
                 for row in jackpot_5x36:
                     obj = {
                         'id': row.id,
                         'combination': row.combination,
-                        'is_win': row.is_win,
+                        'is_win': False,
                         'date': row.made_on
                     }
                     jackpot_5x36_arr.append(obj)
                 #jackpot_6x45
-                jackpot_6x45 = db.engine.execute('SELECT * FROM bets_jackpot_6_45 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                #jackpot_6x45 = db.engine.execute('SELECT * FROM bets_jackpot_6_45 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                jackpot_6x45 = db.engine.execute('SELECT * FROM bets_jackpot_6_45 WHERE user_id =' + str(user.id) + ' AND amount_bets > 0')
                 jackpot_6x45_arr = []
                 for row in jackpot_6x45:
                     obj = {
                         'id': row.id,
                         'combination': row.combination,
-                        'is_win': row.is_win,
+                        'is_win': False,
                         'date': row.made_on
                     }
                     jackpot_6x45_arr.append(obj)
                 #jackpot_4x21
-                jackpot_4x21 = db.engine.execute('SELECT * FROM bets_jackpot_4_21 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                #jackpot_4x21 = db.engine.execute('SELECT * FROM bets_jackpot_4_21 WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                jackpot_4x21 = db.engine.execute('SELECT * FROM bets_jackpot_4_21 WHERE user_id =' + str(user.id) + ' AND amount_bets > 0')
                 jackpot_4x21_arr = []
                 for row in jackpot_4x21:
                     obj = {
                         'id': row.id,
                         'combination': row.combination,
-                        'is_win': row.is_win,
+                        'is_win': False,
                         'date': row.made_on
                     }
                     jackpot_4x21_arr.append(obj)
                 #rapidos
-                rapidos = db.engine.execute('SELECT * FROM bets_rapidos WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                #rapidos = db.engine.execute('SELECT * FROM bets_rapidos WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                rapidos = db.engine.execute('SELECT * FROM bets_rapidos WHERE user_id =' + str(user.id) + ' AND amount_bets > 0')
                 rapidos_arr = []
                 for row in rapidos:
                     obj = {
                         'id': row.id,
                         'combination': row.combination,
-                        'is_win': row.is_win,
+                        'is_win': False,
                         'date': row.made_on
                     }
                     rapidos_arr.append(obj)
                 #two_numbers
-                two_numbers = db.engine.execute('SELECT * FROM bets_two_numbers WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                #two_numbers = db.engine.execute('SELECT * FROM bets_two_numbers WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                two_numbers = db.engine.execute('SELECT * FROM bets_two_numbers WHERE user_id =' + str(user.id) + ' AND amount_bets > 0')
                 two_numbers_arr = []
                 for row in two_numbers:
                     obj = {
                         'id': row.id,
                         'combination': row.combination,
-                        'is_win': row.is_win,
+                        'is_win': False,
                         'date': row.made_on
                     }
                     two_numbers_arr.append(obj)
                 #prize_jackpot
-                prize_jackpot = db.engine.execute('SELECT * FROM bets_prize_jackpot WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                #prize_jackpot = db.engine.execute('SELECT * FROM bets_prize_jackpot WHERE user_id =' + str(user.id) + ' AND is_active = TRUE')
+                prize_jackpot = db.engine.execute('SELECT * FROM bets_prize_jackpot WHERE user_id =' + str(user.id) + ' AND amount_bets > 0')
                 prize_jackpot_arr = []
                 for row in prize_jackpot:
                     obj = {
                         'id': row.id,
                         'combination': row.combination,
-                        'is_win': row.is_win,
+                        'is_win': False,
                         'date': row.made_on
                     }
                     prize_jackpot_arr.append(obj)
@@ -397,8 +403,9 @@ class GetBetsArchive(MethodView):
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
                 #jackpot_5x36
-                jackpot_5x36 = db.engine.execute('SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36  INNER JOIN jackpot_5_36 ON jackpot_5_36.id = bets_jackpot_5_36.lottery WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false')
+                #jackpot_5x36 = db.engine.execute('SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36  INNER JOIN jackpot_5_36 ON jackpot_5_36.id = bets_jackpot_5_36.lottery WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false')
                 #jackpot_5x36 = db.engine.execute('SELECT bets_jackpot_5_36.id AS id, bets_jackpot_5_36.combination AS my_combination, bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36, jackpot_5_36 WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false AND jackpot_5_36.id = ANY(bets_jackpot_5_36.lottery) AND lottery IS NOT NULL')
+                jackpot_5x36 = db.engine.execute('SELECT id, ticket_id, combination as my_combination, win_combination, date, is_win FROM raffles_jackpot_5_36 WHERE user_id = ' + str(user.id))
                 jackpot_5x36_arr = []
                 for row in jackpot_5x36:
                     obj = {
@@ -410,8 +417,9 @@ class GetBetsArchive(MethodView):
                     }
                     jackpot_5x36_arr.append(obj)
                 #jackpot_6x45
-                jackpot_6x45 = db.engine.execute('SELECT bets_jackpot_6_45.id AS id, bets_jackpot_6_45.combination AS my_combination, bets_jackpot_6_45.is_win AS is_win, jackpot_6_45.combination AS win_combination,  jackpot_6_45.date AS date FROM bets_jackpot_6_45  INNER JOIN jackpot_6_45 ON jackpot_6_45.id = bets_jackpot_6_45.lottery WHERE bets_jackpot_6_45.user_id = ' + str(user.id) + ' AND bets_jackpot_6_45.is_active = false')
+                #jackpot_6x45 = db.engine.execute('SELECT bets_jackpot_6_45.id AS id, bets_jackpot_6_45.combination AS my_combination, bets_jackpot_6_45.is_win AS is_win, jackpot_6_45.combination AS win_combination,  jackpot_6_45.date AS date FROM bets_jackpot_6_45  INNER JOIN jackpot_6_45 ON jackpot_6_45.id = bets_jackpot_6_45.lottery WHERE bets_jackpot_6_45.user_id = ' + str(user.id) + ' AND bets_jackpot_6_45.is_active = false')
                 #jackpot_6x45 = db.engine.execute('SELECT bets_jackpot_6_45.id AS id, bets_jackpot_6_45.combination AS my_combination, bets_jackpot_6_45.is_win AS is_win, jackpot_6_45.combination AS win_combination,  jackpot_6_45.date AS date FROM bets_jackpot_6_45, jackpot_6_45 WHERE bets_jackpot_6_45.user_id = ' + str(user.id) + ' AND bets_jackpot_6_45.is_active = false AND jackpot_6_45.id=ANY(bets_jackpot_6_45.lottery) AND lottery IS NOT NULL')
+                jackpot_6x45 = db.engine.execute('SELECT id, ticket_id, combination as my_combination, win_combination, date, is_win FROM raffles_jackpot_6_45 WHERE user_id = ' + str(user.id))
                 jackpot_6x45_arr = []
                 for row in jackpot_6x45:
                     obj = {
@@ -423,8 +431,9 @@ class GetBetsArchive(MethodView):
                     }
                     jackpot_6x45_arr.append(obj)
                 #jackpot_4x21
-                jackpot_4x21 = db.engine.execute('SELECT bets_jackpot_4_21.id AS id, bets_jackpot_4_21.combination AS my_combination, bets_jackpot_4_21.is_win AS is_win, jackpot_4_21.combination AS win_combination,  jackpot_4_21.date AS date FROM bets_jackpot_4_21  INNER JOIN jackpot_4_21 ON jackpot_4_21.id = bets_jackpot_4_21.lottery WHERE bets_jackpot_4_21.user_id = ' + str(user.id) + ' AND bets_jackpot_4_21.is_active = false')
+                #jackpot_4x21 = db.engine.execute('SELECT bets_jackpot_4_21.id AS id, bets_jackpot_4_21.combination AS my_combination, bets_jackpot_4_21.is_win AS is_win, jackpot_4_21.combination AS win_combination,  jackpot_4_21.date AS date FROM bets_jackpot_4_21  INNER JOIN jackpot_4_21 ON jackpot_4_21.id = bets_jackpot_4_21.lottery WHERE bets_jackpot_4_21.user_id = ' + str(user.id) + ' AND bets_jackpot_4_21.is_active = false')
                 #jackpot_4x21 = db.engine.execute('SELECT bets_jackpot_4_21.id AS id, bets_jackpot_4_21.combination AS my_combination, bets_jackpot_4_21.is_win AS is_win, jackpot_4_21.combination AS win_combination,  jackpot_4_21.date AS date FROM bets_jackpot_4_21, jackpot_4_21 WHERE bets_jackpot_4_21.user_id = ' + str(user.id) + ' AND bets_jackpot_4_21.is_active = false AND jackpot_4_21.id=ANY(bets_jackpot_4_21.lottery) AND lottery IS NOT NULL')
+                jackpot_4x21 = db.engine.execute('SELECT id, ticket_id, combination as my_combination, win_combination, date, is_win FROM raffles_jackpot_4_21 WHERE user_id = ' + str(user.id))
                 jackpot_4x21_arr = []
                 for row in jackpot_4x21:
                     obj = {
@@ -436,8 +445,9 @@ class GetBetsArchive(MethodView):
                     }
                     jackpot_4x21_arr.append(obj)
                 #rapidos
-                rapidos = db.engine.execute('SELECT bets_rapidos.id AS id, bets_rapidos.combination AS my_combination, bets_rapidos.is_win AS is_win, rapidos.combination AS win_combination,  rapidos.date AS date FROM bets_rapidos INNER JOIN rapidos ON rapidos.id = bets_rapidos.lottery WHERE bets_rapidos.user_id = ' + str(user.id) + ' AND bets_rapidos.is_active = false')
+                #rapidos = db.engine.execute('SELECT bets_rapidos.id AS id, bets_rapidos.combination AS my_combination, bets_rapidos.is_win AS is_win, rapidos.combination AS win_combination,  rapidos.date AS date FROM bets_rapidos INNER JOIN rapidos ON rapidos.id = bets_rapidos.lottery WHERE bets_rapidos.user_id = ' + str(user.id) + ' AND bets_rapidos.is_active = false')
                 #rapidos = db.engine.execute('SELECT bets_rapidos.id AS id, bets_rapidos.combination AS my_combination, bets_rapidos.is_win AS is_win, rapidos.combination AS win_combination,  rapidos.date AS date FROM bets_rapidos, rapidos WHERE bets_rapidos.user_id = ' + str(user.id) + ' AND bets_rapidos.is_active = false AND rapidos.id=ANY(bets_rapidos.lottery) AND lottery IS NOT NULL')
+                rapidos = db.engine.execute('SELECT id, ticket_id, combination as my_combination, win_combination, date, is_win FROM raffles_rapidos WHERE user_id = ' + str(user.id))
                 rapidos_arr = []
                 for row in rapidos:
                     obj = {
@@ -449,8 +459,9 @@ class GetBetsArchive(MethodView):
                     }
                     rapidos_arr.append(obj)
                 #two_numbers
-                two_numbers = db.engine.execute('SELECT bets_two_numbers.id AS id, bets_two_numbers.combination AS my_combination, bets_two_numbers.is_win AS is_win, two_numbers.combination AS win_combination,  two_numbers.date AS date FROM bets_two_numbers INNER JOIN two_numbers ON two_numbers.id = bets_two_numbers.lottery WHERE bets_two_numbers.user_id = ' + str(user.id) + ' AND bets_two_numbers.is_active = false')
+                #two_numbers = db.engine.execute('SELECT bets_two_numbers.id AS id, bets_two_numbers.combination AS my_combination, bets_two_numbers.is_win AS is_win, two_numbers.combination AS win_combination,  two_numbers.date AS date FROM bets_two_numbers INNER JOIN two_numbers ON two_numbers.id = bets_two_numbers.lottery WHERE bets_two_numbers.user_id = ' + str(user.id) + ' AND bets_two_numbers.is_active = false')
                 #jackpot_two_numbers = db.engine.execute('SELECT bets_two_numbers.id AS id, bets_two_numbers.combination AS my_combination, bets_two_numbers.is_win AS is_win, two_numbers.combination AS win_combination, two_numbers.date AS date FROM bets_two_numbers, two_numbers WHERE bets_two_numbers.user_id = ' + str(user.id) + ' AND bets_two_numbers.is_active = false AND two_numbers.id=ANY(bets_two_numbers.lottery) AND lottery IS NOT NULL')
+                two_numbers = db.engine.execute('SELECT id, ticket_id, combination as my_combination, win_combination, date, is_win FROM raffles_two_numbers WHERE user_id = ' + str(user.id))
                 two_numbers_arr = []
                 for row in two_numbers:
                     obj = {
@@ -462,8 +473,9 @@ class GetBetsArchive(MethodView):
                     }
                     two_numbers_arr.append(obj)
                 #prize_jackpot
-                prize_jackpot = db.engine.execute('SELECT bets_prize_jackpot.id AS id, bets_prize_jackpot.combination AS my_combination, bets_prize_jackpot.is_win AS is_win, prize_jackpot.combination AS win_combination,  prize_jackpot.date AS date FROM bets_prize_jackpot INNER JOIN prize_jackpot ON prize_jackpot.id = bets_prize_jackpot.lottery WHERE bets_prize_jackpot.user_id = ' + str(user.id) + ' AND bets_prize_jackpot.is_active = false')
+                #prize_jackpot = db.engine.execute('SELECT bets_prize_jackpot.id AS id, bets_prize_jackpot.combination AS my_combination, bets_prize_jackpot.is_win AS is_win, prize_jackpot.combination AS win_combination,  prize_jackpot.date AS date FROM bets_prize_jackpot INNER JOIN prize_jackpot ON prize_jackpot.id = bets_prize_jackpot.lottery WHERE bets_prize_jackpot.user_id = ' + str(user.id) + ' AND bets_prize_jackpot.is_active = false')
                 #jackpot_prize_jackpot = db.engine.execute('SELECT bets_prize_jackpot.id AS id, bets_prize_jackpot.combination AS my_combination, bets_prize_jackpot.is_win AS is_win, prize_jackpot.combination AS win_combination,  prize_jackpot.date AS date FROM bets_prize_jackpot, prize_jackpot WHERE bets_prize_jackpot.user_id = ' + str(user.id) + ' AND bets_prize_jackpot.is_active = false AND prize_jackpot.id=ANY(bets_prize_jackpot.lottery) AND lottery IS NOT NULL')
+                prize_jackpot = db.engine.execute('SELECT id, ticket_id, combination as my_combination, win_combination, date, is_win FROM raffles_prize_jackpot WHERE user_id = ' + str(user.id))
                 prize_jackpot_arr = []
                 for row in prize_jackpot:
                     obj = {
@@ -616,32 +628,38 @@ class BuyTickets(MethodView):
                 bank = Bank.query.first()
                 if (post_data['type'] == "jackpot_5x36"):
                     for c in post_data['tickets']:
-                        newBet = BetsJackpot_5_36(user.id, c['combination'], True, False, None, c['raffles'])
+                        newBet = BetsJackpot_5_36(user.id, c['combination'], c['raffles'])
+                        #newBet = BetsJackpot_5_36(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.jackpot_5_36 += 1
                 if (post_data['type'] == "jackpot_6x45"):
                     for c in post_data['tickets']:
-                        newBet = BetsJackpot_6_45(user.id, c['combination'], True, False, None, c['raffles'])
+                        newBet = BetsJackpot_6_45(user.id, c['combination'], c['raffles'])
+                        #newBet = BetsJackpot_6_45(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.jackpot_6_45 += 1
                 if (post_data['type'] == "jackpot_4x21"):
                     for c in post_data['tickets']:
-                        newBet = BetsJackpot_4_21(user.id, c['combination'], True, False, None, c['raffles'])
+                        newBet = BetsJackpot_4_21(user.id, c['combination'], c['raffles'])
+                        #newBet = BetsJackpot_4_21(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.jackpot_4_21 += 1
                 if (post_data['type'] == "rapidos"):
                     for c in post_data['tickets']:
-                        newBet = BetsRapidos(user.id, c['combination'], True, False, None, c['raffles'])
+                        newBet = BetsRapidos(user.id, c['combination'], c['raffles'])
+                        #newBet = BetsRapidos(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.rapidos += 1
                 if (post_data['type'] == "two_numbers"):
                     for c in post_data['tickets']:
-                        newBet = BetsTwoNumbers(user.id, c['combination'], True, False, None, c['raffles'])
+                        newBet = BetsTwoNumbers(user.id, c['combination'], c['raffles'])
+                        #newBet = BetsTwoNumbers(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.two_numbers += 1
                 if (post_data['type'] == "prize_jackpot"):
                     for c in post_data['tickets']:
-                        newBet = BetsPrizeJackpot(user.id, c['combination'], True, False, None, c['raffles'])
+                        newBet = BetsPrizeJackpot(user.id, c['combination'], c['raffles'])
+                        #newBet = BetsPrizeJackpot(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.prize_jackpot += 1
                 bank.superjackpot += 1
