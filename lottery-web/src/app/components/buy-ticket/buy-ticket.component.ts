@@ -42,7 +42,7 @@ export class BuyTicketComponent implements OnInit {
 constructor(private router: Router, private lottery: LotteryService, private tpService: TicketsPurchaseService) {
 
   const lotteryTypes = ["jackpot_4x21", "jackpot_5x36", "jackpot_6x45", "rapidos", "two_numbers", "prize_jackpot"];
-  const scratchTypes = ["777", "100CASH", "33"];
+  const scratchTypes = ["777", "100CASH", "fruity"];
 
   //if (this.tpService.getLotteryType() == null || this.tpService.getLotteryType() == "" || lotteryTypes.indexOf(this.tpService.getLotteryType()) == -1) {
   if (this.tpService.getLotteryType() == null || lotteryTypes.indexOf(this.tpService.getLotteryType()) == -1) {
@@ -117,6 +117,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
               break;
            }
          }
+         this.lotteryFunds += 1;
       } else {
         console.log(res.json().message);
       }
@@ -408,6 +409,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     this.combinations.splice(index, 1);
     this.tickets.splice(index, 1);
     this.raffles.splice(index, 1);
+    this.lotteryFunds -= 1;
   }
 
   buyTickets() {
@@ -545,6 +547,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     var newCombination = [];
     this.combinations.push(newCombination);
     this.raffles.push(1);
+    this.lotteryFunds += 1;
   }
 
   countDown() {
