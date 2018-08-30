@@ -414,28 +414,17 @@ class GetBetsArchive(MethodView):
                 jackpot_dict = {}
                 for jackpot in jackpot_list:
                     # Get bets for lottery
-                    """
-                    jackpot_sql_result = db.engine.execute(
-                        'With bets as (Select id, combination, is_win, unnest(lottery) AS lottery from bets_' +
-                        jackpot + ' where user_id = ' + str(user.id) + ' AND is_active = false) '
-                        'select bets.id as id, bets.combination as my_combination, bets.is_win as is_win, '
-                        'jackpot.combination as win_combination,jackpot.date as date from ' + jackpot +
-                        ' as jackpot join bets on bets.lottery = jackpot.id;')
-                    """
                     if jackpot.startswith('bets'):
+                        # Create a sql request for instant lotteries
                         jackpot_sql_result = db.engine.execute('SELECT ' + jackpot + '.id AS id, ' + jackpot +
                         '.combination AS my_combination, ' + jackpot + '.is_win AS is_win, ' + jackpot +
                         '.win_combination AS win_combination, ' + jackpot + '.made_on AS date FROM ' + jackpot +
                         ' WHERE ' + jackpot + '.user_id = ' + str(user.id) + ' AND ' + jackpot + '.is_active = false')
                     else:
+                        # Create a sql request for non instant lotteries
                         jackpot_sql_result = db.engine.execute(
-                    #db.engine.execute(
-                    #'SELECT id , combination, is_win, from bets_' + jackpot + '
-                    #'bets_jackpot_5_36.is_win AS is_win, jackpot_5_36.combination AS win_combination,  jackpot_5_36.date AS date FROM bets_jackpot_5_36  INNER JOIN jackpot_5_36 ON jackpot_5_36.id = bets_jackpot_5_36.lottery WHERE bets_jackpot_5_36.user_id = ' + str(user.id) + ' AND bets_jackpot_5_36.is_active = false')
-                    'SELECT bets_' + jackpot + '.id AS id, bets_' + jackpot + '.combination AS my_combination, bets_' +
-                    jackpot + '.is_win AS is_win, ' + jackpot + '.combination AS win_combination, ' + jackpot +
-                    '.date AS date FROM bets_' + jackpot + ' INNER JOIN ' + jackpot + ' ON ' + jackpot +'.id = bets_'
-                    + jackpot + '.lottery WHERE bets_' + jackpot + '.user_id = ' + str(user.id) + ' AND bets_' + jackpot + '.is_active = false;')
+                    'SELECT id, ticket_id, combination as my_combination, win_combination, date, is_win FROM '
+                    'raffles_jackpot_4_21 WHERE user_id =' + str(user.id) + ' ;')
 
                     jackpot_arr = []
                     for row in jackpot_sql_result:

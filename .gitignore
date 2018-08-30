@@ -3,3 +3,4 @@ venv/
 commit_preparation/
 **/__pycache__/
 test.py
+**.pyc
