@@ -28,7 +28,10 @@ import { MyStatisticsComponent } from './components/my-statistics/my-statistics.
 import { SettingsComponent } from './components/settings/settings.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { ScratchComponent } from './components/scratch/scratch.component';
+import { BuyTestComponent } from './components/buy-test/buy-test.component';
 import { CubeComponent } from './components/templates/cube/cube.component';
+import { GiveTicketComponent } from './components/give-ticket/give-ticket.component';
+import { GiveScratchComponent } from './components/give-scratch/give-scratch.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { CubeComponent } from './components/templates/cube/cube.component';
     SettingsComponent,
     FaqComponent,
     ScratchComponent,
-    CubeComponent
+    BuyTestComponent,
+    CubeComponent,
+    GiveTicketComponent,
+    GiveScratchComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +106,21 @@ import { CubeComponent } from './components/templates/cube/cube.component';
       {
         path: 'buy-ticket',
         component: BuyTicketComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'give-ticket',
+        component: GiveTicketComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'give-scratch',
+        component: GiveScratchComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'buy-test',
+        component: BuyTestComponent,
         canActivate: [AuthGuard]
       },
       {
