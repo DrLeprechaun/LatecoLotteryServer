@@ -5,7 +5,8 @@ from flask import Blueprint, request, make_response, jsonify
 from flask.views import MethodView
 
 from project.server import bcrypt, db
-from project.server.models import User, BlacklistToken, Wallets, LotteryTokens, WaitingTickets
+#from project.server.models import User, BlacklistToken, Wallets, LotteryTokens, WaitingTickets
+from project.server.models import *
 
 auth_blueprint = Blueprint('auth', __name__)
 
@@ -20,6 +21,26 @@ class RegisterAPI(MethodView):
         post_data = request.get_json()
         # check if user already exists
         user = User.query.filter_by(email=post_data.get('email')).first()
+        #w_t = WaitingTickets.query.filter_by(email=post_data.get('email')).all()
+        #for ticket in w_t:
+        #    if (ticket.lottery_type == 'jackpot_4x21'):
+        #        db.session.add(BetsJackpot_4_21(777, ticket.combination, ticket.raffles))
+        #    if (ticket.lottery_type == 'jackpot_5x36'):
+        #        db.session.add(BetsJackpot_5_36(777, ticket.combination, ticket.raffles))
+        #    if (ticket.lottery_type == 'jackpot_6x45'):
+        #        db.session.add(BetsJackpot_6_45(777, ticket.combination, ticket.raffles))
+        #    if (ticket.lottery_type == 'rapidos'):
+        #        db.session.add(BetsRapidos(777, ticket.combination, ticket.raffles))
+        #    if (ticket.lottery_type == 'two_numbers'):
+        #        db.session.add(BetsTwoNumbers(777, ticket.combination, ticket.raffles))
+        #    if (ticket.lottery_type == 'prize_jackpot'):
+        #        db.session.add(BetsPrizeJackpot(777, ticket.combination, ticket.raffles))
+        #    if (ticket.lottery_type == '777'):
+        #        db.session.add(Bets777(777, ticket.combination, ticket.win_combination, True, ticket.is_win))
+        #    if (ticket.lottery_type == 'Fruity'):
+        #        db.session.add(BetsFruity(777, ticket.combination, ticket.win_combination, True, ticket.is_win))
+        #    if (ticket.lottery_type == '100CASH'):
+        #        db.session.add(Bets100Cash(777, ticket.combination, ticket.win_combination, True, ticket.is_win))
         if not user:
             try:
                 user = User(
@@ -31,29 +52,26 @@ class RegisterAPI(MethodView):
                 db.session.commit()
                 # check waiting tickets
                 user = User.query.filter_by(email=post_data.get('email')).first()
-                print(user)
                 w_t = WaitingTickets.query.filter_by(email=post_data.get('email')).all()
-                print(w_t)
                 for ticket in w_t:
-                    print(ticket['type'])
-                    if (ticket['type'] == 'jackpot_4x21'):
+                    if (ticket.lottery_type == 'jackpot_4x21'):
                         db.session.add(BetsJackpot_4_21(user.id, ticket.combination, ticket.raffles))
-                    if (ticket['type'] == 'jackpot_5x36'):
+                    if (ticket.lottery_type == 'jackpot_5x36'):
                         db.session.add(BetsJackpot_5_36(user.id, ticket.combination, ticket.raffles))
-                    if (ticket['type'] == 'jackpot_6x45'):
+                    if (ticket.lottery_type == 'jackpot_6x45'):
                         db.session.add(BetsJackpot_6_45(user.id, ticket.combination, ticket.raffles))
-                    if (ticket['type'] == 'rapidos'):
+                    if (ticket.lottery_type == 'rapidos'):
                         db.session.add(BetsRapidos(user.id, ticket.combination, ticket.raffles))
-                    if (ticket['type'] == 'two_numbers'):
+                    if (ticket.lottery_type == 'two_numbers'):
                         db.session.add(BetsTwoNumbers(user.id, ticket.combination, ticket.raffles))
-                    if (ticket['type'] == 'prize_jackpot'):
+                    if (ticket.lottery_type == 'prize_jackpot'):
                         db.session.add(BetsPrizeJackpot(user.id, ticket.combination, ticket.raffles))
-                    if (ticket['type'] == '777'):
-                        db.session.add(Bets777(user.id, ticket_arr, ticket.win_combination, True, ticket.is_win))
-                    if (ticket['type'] == 'Fruity'):
-                        db.session.add(BetsFruity(user.id, ticket_arr, ticket.win_combination, True, ticket.is_win))
-                    if (ticket['type'] == '100CASH'):
-                        db.session.add(Bets100Cash(user.id, ticket_arr, ticket.win_combination, True, ticket.is_win))
+                    if (ticket.lottery_type == '777'):
+                        db.session.add(Bets777(user.id, ticket.combination, ticket.win_combination, True, ticket.is_win))
+                    if (ticket.lottery_type == 'Fruity'):
+                        db.session.add(BetsFruity(user.id, ticket.combination, ticket.win_combination, True, ticket.is_win))
+                    if (ticket.lottery_type == '100CASH'):
+                        db.session.add(Bets100Cash(user.id, ticket.combination, ticket.win_combination, True, ticket.is_win))
                 db.session.commit()
                 # generate the auth token
                 auth_token = user.encode_auth_token(user.id)
