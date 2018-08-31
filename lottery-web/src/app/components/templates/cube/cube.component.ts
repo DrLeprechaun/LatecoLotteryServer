@@ -15,7 +15,8 @@ export class CubeComponent implements OnInit {
   ngOnInit() {
   }
 
-  private buyTicketRedirect(type: string): void {
+  private buyTicketRedirect(type: string, give: string): void {
+    this.tpService.setWannaGive('no');
     this.tpService.setLotteryType(type);
     this.router.navigateByUrl('/buy-ticket');
   }

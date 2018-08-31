@@ -46,6 +46,10 @@ export class HomeComponent {
       this.countDown();
     }, 1000);
 
+    if (!this.auth.isTokenExpired()) {
+      this.router.navigateByUrl('/privateOffice');
+    }
+
     this.lottery.getBank()
     .then((res) => {
       console.log(res.json());
@@ -295,15 +299,17 @@ export class HomeComponent {
      return hours + "h "+ minutes + "m " + seconds + "s ";
   }
 
-  goLogin(lotteryType: string): void {
+  goLogin(lotteryType: string, give: string): void {
     this.router.navigateByUrl('/login');
     this.tpService.setLotteryType(lotteryType);
+    this.tpService.setWannaGive(give);
   }
 
-  goLoginScratch(scratchType: string): void {
+  goLoginScratch(scratchType: string, give: string): void {
     this.router.navigateByUrl('/login');
     this.tpService.setScratchType(scratchType);
     this.tpService.setLotteryType(scratchType);
+    this.tpService.setWannaGive(give);
   }
 
 }

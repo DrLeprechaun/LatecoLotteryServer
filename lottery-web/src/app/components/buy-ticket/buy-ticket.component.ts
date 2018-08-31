@@ -44,16 +44,24 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
   const lotteryTypes = ["jackpot_4x21", "jackpot_5x36", "jackpot_6x45", "rapidos", "two_numbers", "prize_jackpot"];
   const scratchTypes = ["777", "100CASH", "fruity"];
 
-  //if (this.tpService.getLotteryType() == null || this.tpService.getLotteryType() == "" || lotteryTypes.indexOf(this.tpService.getLotteryType()) == -1) {
+
   if (this.tpService.getLotteryType() == null || lotteryTypes.indexOf(this.tpService.getLotteryType()) == -1) {
     if (scratchTypes.indexOf(this.tpService.getLotteryType()) != -1) {
-      this.router.navigateByUrl('/scratch');
+      if (this.tpService.getWannaGive() === 'yes') {
+        this.router.navigateByUrl('/give-scratch');
+      } else {
+        this.router.navigateByUrl('/scratch');
+      }
     } else {
       this.router.navigateByUrl('/privateOffice');
     }
 
   } else {
-
+    if (this.tpService.getWannaGive() === 'yes') {
+      this.router.navigateByUrl('/give-ticket');
+    } else {
+      //this.router.navigateByUrl('/scratch');
+    }
   }
 
 }

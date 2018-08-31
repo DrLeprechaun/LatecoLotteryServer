@@ -480,3 +480,24 @@ class Bets100Cash(db.Model):
         self.is_active = is_active
         self.is_win = is_win
         self.made_on = datetime.datetime.now()
+
+
+class WaitingTickets(db.Model):
+
+    __tablename__ = 'waiting_tickets'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(255), unique=True, nullable=False)
+    lottery_type = db.Column(db.String(255), unique=True, nullable=False)
+    combination = db.Column(ARRAY(db.Integer), nullable=True)
+    raffles = db.Column(db.Integer, autoincrement=True)
+    win_combination = db.Column(ARRAY(db.Integer), nullable=True)
+    is_win = db.Column(db.Boolean)
+
+    def __init__(self, email, lottery_type, combination, raffles, win_combination, is_win):
+        self.email = email
+        self.lottery_type = lottery_type
+        self.combination = combination
+        self.raffles = raffles
+        self.win_combination = win_combination
+        self.is_win = is_win

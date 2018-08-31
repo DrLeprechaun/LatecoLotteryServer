@@ -133,6 +133,16 @@ export class LotteryService {
     return this.http.post(url, ticket, {headers: headers}).toPromise();
   }
 
+  giveTickets(ticket: any): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/give_tickets`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, ticket, {headers: headers}).toPromise();
+  }
+
   scratchNow(type: string, tickets: number): Promise<any> {
     let token = this.auth.getToken();
     let url: string = `${this.BASE_URL}/scratch_now`;
@@ -151,6 +161,16 @@ export class LotteryService {
       Authorization: `Bearer ${token}`
     });
     return this.http.post(url, {type: type, tickets: tickets}, {headers: headers}).toPromise();
+  }
+
+  giveScratch(type: string, tickets: number, email: string): Promise<any> {
+    let token = this.auth.getToken();
+    let url: string = `${this.BASE_URL}/give_scratch`;
+    let headers: Headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(url, {type: type, tickets: tickets, email: email}, {headers: headers}).toPromise();
   }
 
   updateScratch(id: number, type: string): Promise<any> {
