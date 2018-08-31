@@ -424,7 +424,7 @@ class GetBetsArchive(MethodView):
                         # Create a sql request for non instant lotteries
                         jackpot_sql_result = db.engine.execute(
                     'SELECT id, ticket_id, combination as my_combination, win_combination, date, is_win FROM '
-                    'raffles_jackpot_4_21 WHERE user_id =' + str(user.id) + ' ;')
+                    'raffles_' + jackpot +  ' WHERE user_id =' + str(user.id) + ' ;')
 
                     jackpot_arr = []
                     for row in jackpot_sql_result:
