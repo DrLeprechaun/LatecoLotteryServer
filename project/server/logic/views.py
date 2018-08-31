@@ -25,6 +25,18 @@ def GetRandomArray(min, max, size):
 def CompareArrays(arr1, arr2):
 	return sorted(arr1) == sorted(arr2)
 
+def DetailCompareArrays(arr1, arr2):
+    arr1_sorted = sorted(arr1)
+    arr2_sorted = sorted(arr2)
+    m = 0
+    #m_a = []
+    for i in range(len(arr1_sorted)):
+        for j in range(len(arr2_sorted)):
+            if (arr1_sorted[i] == arr2_sorted[j]):
+                #m_a.append(arr1_sorted[i])
+                m = m + 1
+    return m
+
 
 class GetCominationTest(MethodView):
 	def get(self):
@@ -33,7 +45,8 @@ class GetCominationTest(MethodView):
 		responseObject = {
 			'c1': arr1,
 			'c2': arr2,
-			'r': CompareArrays(arr1, arr2)
+			#'r': CompareArrays(arr1, arr2)
+            'r': DetailCompareArrays(arr1, arr2)
 		}
 		return make_response(jsonify(responseObject)), 200
 
