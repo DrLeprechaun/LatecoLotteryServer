@@ -27,8 +27,6 @@ COV = coverage.coverage(
 )
 COV.start()
 
-
-
 migrate = Migrate(app, db)
 manager = Manager(app)
 
