@@ -27,19 +27,17 @@ export class ScratchComponent implements OnInit, AfterViewInit {
   private cnv: HTMLCanvasElement;
   private ctx: any;
 
-  constructor(private location: Location, private router: Router, private lottery: LotteryService, private tpService: TicketsPurchaseService) {}
+  constructor(private location: Location,
+    private router: Router,
+    private lottery: LotteryService,
+    private tpService: TicketsPurchaseService) {}
 
   ngOnInit() {
 
-    //DEFAULT
-    /*this.bridge = <HTMLCanvasElement> document.getElementById("bridge");
-    this.bridgeCanvas = this.bridge.getContext('2d');
-    this.brushRadius = (this.bridge.width / 200) * 5;
-    this.img = new Image();
-    this.img.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/calgary-bridge-2013.jpg';
-    this.bridgeCanvas.drawImage(this.img, 0, 0, this.bridge.width, this.bridge.height);*/
 
-
+    if (this.tpService.getWannaGive() === 'yes') {
+      this.router.navigateByUrl('/give-scratch');
+    }
 
     if (this.tpService.getScratchType() == "777") {
       this.backgroundImage = "assets/img/b_top3.jpg";

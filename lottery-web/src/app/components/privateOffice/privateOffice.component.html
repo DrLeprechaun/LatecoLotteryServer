@@ -56,7 +56,7 @@
             <div class="control-group">
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a (click)="buyTicketRedirect('jackpot_4x21')" style="cursor: pointer;">
+                  <a (click)="buyTicketRedirect('jackpot_4x21', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/4_21.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">JACK<b>POT</b> 4x21</div>
@@ -64,14 +64,14 @@
                   <div class="lotteryFunds">{{jackpot_4_21_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 4x21', 'about', content)">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('jackpot_4x21')">Buy</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('jackpot_4x21', 'no')">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('jackpot_4x21', 'yes')">Give</button></div>
                   </div>
                 </div>
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a (click)="buyTicketRedirect('jackpot_5x36')" style="cursor: pointer;">
+                  <a (click)="buyTicketRedirect('jackpot_5x36', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/5_36.jpg" alt="Card image cap">
                     </a>
                   <div class="lotteryTitle">JACK<b>POT</b> 5x36</div>
@@ -79,14 +79,14 @@
                   <div class="lotteryFunds">{{jackpot_5_36_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 5x36', 'about', content)">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('jackpot_5x36')">Buy</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('jackpot_5x36', 'no')">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('jackpot_5x36', 'yes')">Give</button></div>
                   </div>
                 </div>
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a (click)="buyTicketRedirect('jackpot_6x45')" style="cursor: pointer;">
+                  <a (click)="buyTicketRedirect('jackpot_6x45', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/6_45.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">JACK<b>POT</b> 6x45</div>
@@ -94,8 +94,8 @@
                   <div class="lotteryFunds">{{jackpot_6_45_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Jackpot 6x45', 'about', content)">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('jackpot_6x45')">Buy</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('jackpot_6x45', 'no')">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('jackpot_6x45', 'yes')">Give</button></div>
                   </div>
                 </div>
               </td>
@@ -111,7 +111,7 @@
             <div class="control-group">
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a (click)="buyTicketRedirect('rapidos')" style="cursor: pointer;">
+                  <a (click)="buyTicketRedirect('rapidos', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/rapidos.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">RAPI<b>DOS</b></div>
@@ -119,14 +119,14 @@
                   <div class="lotteryFunds">{{rapidos_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Rapidos', 'about', content)">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('rapidos')">Buy</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('rapidos', 'no')">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('rapidos', 'yes')">Give</button></div>
                   </div>
                 </div>
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a (click)="buyTicketRedirect('two_numbers')" style="cursor: pointer;">
+                  <a (click)="buyTicketRedirect('two_numbers', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/supers.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">TWO <b>NUMBERS</b></div>
@@ -134,14 +134,14 @@
                   <div class="lotteryFunds">{{two_numbers_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Two Numbers', 'about', content)">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('two_numbers')">Buy</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('two_numbers', 'no')">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('two_numbers', 'yes')">Give</button></div>
                   </div>
                 </div>
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a (click)="buyTicketRedirect('prize_jackpot')" style="cursor: pointer;">
+                  <a (click)="buyTicketRedirect('prize_jackpot', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/prize_jackpot.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">PRIZE&<b>JACKPOT</b></div>
@@ -149,8 +149,8 @@
                   <div class="lotteryFunds">{{prize_jackpot_value}} SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Prize&Jackpot', 'about', content)">Rules</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('prize_jackpot')">Buy</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('prize_jackpot', 'no')">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyTicketRedirect('prize_jackpot', 'yes')">Give</button></div>
                   </div>
                 </div>
               </td>
@@ -166,7 +166,7 @@
             <div class="control-group">
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a style="cursor: pointer;">
+                  <a style="cursor: pointer;" (click)="buyScratch('fruity', 'no')">
                     <img class="card-img-top" src="assets/img/33.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle"><b>Fruity</b></div>
@@ -174,14 +174,14 @@
                   <div class="lotteryFunds">333 SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('Fruity', 'about', content)">Rules</button></div>
-                    <div class="buttonDiv"><button (click)="buyScratch('fruity')" class="lotteryButton">Buy</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                    <div class="buttonDiv"><button (click)="buyScratch('fruity', 'no')" class="lotteryButton">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyScratch('fruity', 'yes')" class="lotteryButton">Give</button></div>
                   </div>
                 </div>
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a style="cursor: pointer;">
+                  <a style="cursor: pointer;" (click)="buyScratch('100CASH', 'no')">
                     <img class="card-img-top" src="assets/img/100000CASH.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle">100'000 <b>CASH</b></div>
@@ -189,14 +189,14 @@
                   <div class="lotteryFunds">1 000 SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('100`000 CASH', 'about', content)">Rules</button></div>
-                    <div class="buttonDiv"><button (click)="buyScratch('100CASH')" class="lotteryButton">Buy</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton" >Give</button></div>
+                    <div class="buttonDiv"><button (click)="buyScratch('100CASH', 'no')" class="lotteryButton">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyScratch('100CASH', 'yes')" class="lotteryButton">Give</button></div>
                   </div>
                 </div>
               </td>
               <td class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
-                  <a style="cursor: pointer;">
+                  <a style="cursor: pointer;" (click)="buyScratch('777', 'no')">
                     <img class="card-img-top" src="assets/img/top3.jpg" alt="Card image cap">
                   </a>
                   <div class="lotteryTitle"><b>777</b></div>
@@ -204,8 +204,8 @@
                   <div class="lotteryFunds">777 SJP</div>
                   <div class="buttonSector">
                     <div class="buttonDiv"><button class="lotteryButton" (click)="open('777', 'about', content)">Rules</button></div>
-                    <div class="buttonDiv"><button (click)="buyScratch('777')" class="lotteryButton">Buy</button></div>
-                    <div class="buttonDiv"><button class="lotteryButton">Give</button></div>
+                    <div class="buttonDiv"><button (click)="buyScratch('777', 'no')" class="lotteryButton">Buy</button></div>
+                    <div class="buttonDiv"><button class="lotteryButton" (click)="buyScratch('777', 'yes')">Give</button></div>
                   </div>
                 </div>
               </td>
@@ -275,7 +275,7 @@
       There are four winning categories in the Lottery: two with fixed winnings and two with accumulated Jackpot.<br/>
       2 - 2 SJP / The number of Players who matched 2 numbers <br/>
       3	- 20 SJP / The number of Players who matched 3 numbers<br/>
-      4	- 50% / The number of Players who matched 4 numbers	<br/>
+      4	- 50 SJP / The number of Players who matched 4 numbers	<br/>
       5 - 50% / Jackpot<br/>
       First, fixed winnings are calculated for 2 and 3 guessed numbers. After that, the rest of the Prize pool is divided equally between the categories 4 and 5  (Jackpot). If there were no Winners in these two categories, then the Prize pools of these categories will be transferred to the next draw Jackpot Prize pool.
       9% are used to cover technical and operating expenses.

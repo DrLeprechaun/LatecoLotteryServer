@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 export const LOTTERY_TYPE: string = "WANNA_BUY";
+export const WANNA_GIVE: string = "WANNA_GIVE";
 export const NEW_BETS: string = "NEW_BETS";
 export const SCRATCH_TYPE: string = "SCRATCH_TYPE";
 
@@ -25,6 +26,14 @@ export class TicketsPurchaseService {
 
   getScratchType(): string {
     return localStorage.getItem(SCRATCH_TYPE);
+  }
+
+  getWannaGive(): string {
+    return localStorage.getItem(WANNA_GIVE);
+  }
+
+  setWannaGive(give: string): void {
+    localStorage.setItem(WANNA_GIVE, give);
   }
 
   setNewBets(newBets: any): void {

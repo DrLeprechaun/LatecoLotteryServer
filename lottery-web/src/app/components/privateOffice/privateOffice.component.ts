@@ -57,6 +57,7 @@ export class PrivateOfficeComponent {
 
     this.tpService.setLotteryType(null);
     this.tpService.setScratchType(null);
+    this.tpService.setWannaGive(null);
 
     this.lottery.getBank()
     .then((res) => {
@@ -353,9 +354,10 @@ export class PrivateOfficeComponent {
     }
   }
 
-  private buyTicketRedirect(type: string): void {
+  private buyTicketRedirect(type: string, give: string): void {
     this.tpService.setLotteryType(type);
     this.router.navigateByUrl('/buy-ticket');
+    this.tpService.setWannaGive(give);
   }
 
   private countDown() {
@@ -487,8 +489,9 @@ export class PrivateOfficeComponent {
      return hours + "h "+ minutes + "m " + seconds + "s ";
   }
 
-  private buyScratch(type: string): void {
+  private buyScratch(type: string, give: string): void {
     this.tpService.setScratchType(type);
+    this.tpService.setWannaGive(give);
     this.router.navigateByUrl('/scratch');
   }
 
