@@ -32,6 +32,8 @@ import { BuyTestComponent } from './components/buy-test/buy-test.component';
 import { CubeComponent } from './components/templates/cube/cube.component';
 import { GiveTicketComponent } from './components/give-ticket/give-ticket.component';
 import { GiveScratchComponent } from './components/give-scratch/give-scratch.component';
+import { NavbarComponent } from './components/templates/navbar/navbar.component';
+import { NavbarRegisteredComponent } from './components/templates/navbar-registered/navbar-registered.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { GiveScratchComponent } from './components/give-scratch/give-scratch.com
     BuyTestComponent,
     CubeComponent,
     GiveTicketComponent,
-    GiveScratchComponent
+    GiveScratchComponent,
+    NavbarComponent,
+    NavbarRegisteredComponent
   ],
   imports: [
     BrowserModule,

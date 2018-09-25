@@ -42,6 +42,7 @@ export class HomeComponent {
     private modalService: NgbModal) {}
 
   ngOnInit(): void {
+
     setInterval(() => {
       this.countDown();
     }, 1000);

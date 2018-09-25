@@ -53,11 +53,6 @@ p {
   margin-bottom: 10px;
 }
 
-#navbar {
-  position: fixed;
-  z-index: 10;
-}
-
 .buy-give {
   width: 60px;
   margin-left: 2px;

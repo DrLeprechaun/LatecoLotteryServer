@@ -1,0 +1,26 @@
+#navbar {
+  /*margin-top: 20px;*/
+  position: fixed;
+  z-index: 10;
+}
+
+a {
+ text-decoration: none;
+ font-weight: bold;
+ color: black;
+ font-size: 13pt;
+ text-shadow: 1px 1px 8px #ffffff;
+ /*font-family: Arial, Helvetica, sans-serif;*/
+}
+
+a:hover {
+ color: grey;
+}
+
+a:active {
+ color: grey;
+}
+
+p {
+ margin-bottom: 10px;
+}
