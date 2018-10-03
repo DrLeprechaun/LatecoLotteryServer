@@ -558,3 +558,38 @@ a h2:hover {
   transform: translate(-50%, -50%);
   font-weight: bold;
 }
+
+.thead-dark th {
+  background-color: black;
+}
+
+.black-button {
+  border: 1px solid #000;
+  /*width: 171px;*/
+  width: 203px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
+.black-button:hover {
+  background-color: white;
+  color: black;
+  transition: 0.3s;
+}
+
+.nav-tabs > a.active {
+  background-color: black;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 3px solid white;
+
+}
+
+.nav-tabs a {
+  border-radius: 0;
+  border-bottom: 3px solid white;
+
+}

@@ -82,14 +82,14 @@
                         <td *ngIf="d.is_new">{{ d.type_name }}</td>
                         <td *ngIf="d.is_new && !d.scratch">{{ d.combination }}</td>
                         <td *ngIf="d.is_new && d.scratch" ></td>
-                        <td *ngIf="d.is_new && !d.scratch" align="center"><button type="button" class="btn btn-dark" (click)="open(d.id, d.fake_id, d.type, d.type_name, content, false)">Reset Combination</button></td>
-                        <td *ngIf="d.is_new && d.scratch" align="center"><button type="button" class="btn btn-dark" style="width: 160px;" (click)="open(d.id, d.fake_id, d.type, d.type_name, content, true)">Scratch</button></td>
+                        <td *ngIf="d.is_new && !d.scratch" align="center"><button type="button" class="black-button" (click)="open(d.id, d.fake_id, d.type, d.type_name, content, false)">Reset Combination</button></td>
+                        <td *ngIf="d.is_new && d.scratch" align="center"><button type="button" class="black-button" style="width: 160px;" (click)="open(d.id, d.fake_id, d.type, d.type_name, content, true)">Scratch</button></td>
                         <td *ngIf="!d.is_new">{{ d.fake_id }}</td>
                         <td *ngIf="!d.is_new">{{ d.type_name }}</td>
                         <td *ngIf="!d.is_new && !d.scratch">{{ d.combination }}</td>
                         <td *ngIf="!d.is_new && d.scratch"></td>
-                        <td *ngIf="!d.is_new && !d.scratch" align="center"><button type="button" class="btn btn-dark" (click)="open(d.id, d.fake_id, d.type, d.type_name, content, false)">Reset Combination</button></td>
-                        <td *ngIf="!d.is_new && d.scratch" align="center"><button type="button" class="btn btn-dark" style="width: 160px;" (click)="open(d.id, d.fake_id, d.type, d.type_name, content, true)">Scratch</button></td>
+                        <td *ngIf="!d.is_new && !d.scratch" align="center"><button type="button" class="black-button" (click)="open(d.id, d.fake_id, d.type, d.type_name, content, false)">Reset Combination</button></td>
+                        <td *ngIf="!d.is_new && d.scratch" align="center"><button type="button" class="black-button" style="width: 160px;" (click)="open(d.id, d.fake_id, d.type, d.type_name, content, true)">Scratch</button></td>
                       </tr>
                     </table>
 

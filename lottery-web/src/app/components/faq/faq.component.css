@@ -250,3 +250,7 @@ legend.scheduler-border {
 a h2:hover {
   color: black;
 }
+
+.table-dark {
+  background-color: black;
+}
