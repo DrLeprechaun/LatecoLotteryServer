@@ -4,6 +4,7 @@ import { User } from '../models/user';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import * as jwt_decode from 'jwt-decode';
+import { ConfigService } from './config.service';
 
 export const TOKEN_NAME: string = 'token';
 
@@ -11,10 +12,14 @@ export const TOKEN_NAME: string = 'token';
 export class AuthService {
 
   //private BASE_URL: string = 'http://178.63.57.162:5000/auth';
-  private BASE_URL: string = 'http://5.178.87.76:5000/auth';
+  //private BASE_URL: string = 'http://5.178.87.76:5000/auth';
   private headers: Headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http) {}
+  constructor(private http: Http, private configService: ConfigService) {}
+
+  getBaseUrl(): string {
+    return this.configService.getSavedServerPath() + "/auth";
+  }
 
   getToken(): string {
     return localStorage.getItem(TOKEN_NAME);
@@ -44,17 +49,20 @@ export class AuthService {
   }
 
   login(user: User): Promise<any> {
-    let url: string = `${this.BASE_URL}/login`;
+    //let url: string = `${this.BASE_URL}/login`;
+    let url: string = `${this.getBaseUrl()}/login`;
     return this.http.post(url, user, {headers: this.headers}).toPromise();
   }
 
   register(user: User): Promise<any> {
-    let url: string = `${this.BASE_URL}/register`;
+    //let url: string = `${this.BASE_URL}/register`;
+    let url: string = `${this.getBaseUrl()}/register`;
     return this.http.post(url, user, {headers: this.headers}).toPromise();
   }
 
   ensureAuthenticated(token): Promise<any> {
-    let url: string = `${this.BASE_URL}/status`;
+    //let url: string = `${this.BASE_URL}/status`;
+    let url: string = `${this.getBaseUrl()}/status`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -63,7 +71,8 @@ export class AuthService {
   }
 
   logout(user: User): Promise<any> {
-    let url: string = `${this.BASE_URL}/logout`;
+    //let url: string = `${this.BASE_URL}/logout`;
+    let url: string = `${this.getBaseUrl()}/logout`;
     return this.http.post(url, user, {headers: this.headers}).toPromise();
   }
 }

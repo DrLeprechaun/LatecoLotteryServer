@@ -3,19 +3,26 @@ import { AuthService } from './auth.service';
 import { Headers, Http } from '@angular/http';
 import { MakeBets } from '../models/make-bets';
 import { CombinationUpdate } from '../models/combination-update';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class LotteryService {
 
-  constructor(private auth: AuthService, private http: Http) { }
+  constructor(private auth: AuthService, private http: Http, private configService: ConfigService) { }
 
   //private BASE_URL: string = 'http://178.63.57.162:5000/logic';
-  private BASE_URL: string = 'http://5.178.87.76:5000/logic';
-  private headers: Headers = new Headers({'Content-Type': 'application/json'});
+  //private BASE_URL: string = 'http://5.178.87.76:5000/logic';
+  //private headers: Headers = new Headers({'Content-Type': 'application/json'});
+
+  getBaseUrl(): string {
+    //return this.BASE_URL + "/logic";
+    return this.configService.getSavedServerPath() + "/logic";
+  }
 
   getTokensAmount(): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/tokens_amount`;
+    //let url: string = `${this.BASE_URL}/tokens_amount`;
+    let url: string = `${this.getBaseUrl()}/tokens_amount`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -25,7 +32,8 @@ export class LotteryService {
 
   getWalletAmount(): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/wallet_amount`;
+    //let url: string = `${this.BASE_URL}/wallet_amount`;
+    let url: string = `${this.getBaseUrl()}/wallet_amount`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -35,7 +43,8 @@ export class LotteryService {
 
   makeBets(bets: MakeBets): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/make_bets`;
+    //let url: string = `${this.BASE_URL}/make_bets`;
+    let url: string = `${this.getBaseUrl()}/make_bets`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -45,7 +54,8 @@ export class LotteryService {
 
   getBets(): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/get_bets`;
+    //let url: string = `${this.BASE_URL}/get_bets`;
+    let url: string = `${this.getBaseUrl()}/get_bets`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -55,7 +65,8 @@ export class LotteryService {
 
   getBetsArchive(): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/get_bets_archive`;
+    //let url: string = `${this.BASE_URL}/get_bets_archive`;
+    let url: string = `${this.getBaseUrl()}/get_bets_archive`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -65,7 +76,8 @@ export class LotteryService {
 
   updateCombination(combinationUpdate: CombinationUpdate): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/update_combination`;
+    //let url: string = `${this.BASE_URL}/update_combination`;
+    let url: string = `${this.getBaseUrl()}/update_combination`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -75,7 +87,8 @@ export class LotteryService {
 
   fillUpWallet(amount: number): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/fill_up_wallet`;
+    //let url: string = `${this.BASE_URL}/fill_up_wallet`;
+    let url: string = `${this.getBaseUrl()}/fill_up_wallet`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -85,7 +98,8 @@ export class LotteryService {
 
   withdrawWallet(amount: number): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/withdraw_wallet`;
+    //let url: string = `${this.BASE_URL}/withdraw_wallet`;
+    let url: string = `${this.getBaseUrl()}/withdraw_wallet`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -95,7 +109,8 @@ export class LotteryService {
 
   fillUpTokens(quantity: number): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/fill_up_tokens`;
+    //let url: string = `${this.BASE_URL}/fill_up_tokens`;
+    let url: string = `${this.getBaseUrl()}/fill_up_tokens`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -105,7 +120,8 @@ export class LotteryService {
 
   getSuperjackpot(): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/get_superjackpot`;
+    //let url: string = `${this.BASE_URL}/get_superjackpot`;
+    let url: string = `${this.getBaseUrl()}/get_superjackpot`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -115,7 +131,8 @@ export class LotteryService {
 
   getBank(): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/get_bank`;
+    //let url: string = `${this.BASE_URL}/get_bank`;
+    let url: string = `${this.getBaseUrl()}/get_bank`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -125,7 +142,8 @@ export class LotteryService {
 
   buyTickets(ticket: any): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/buy_tickets`;
+    //let url: string = `${this.BASE_URL}/buy_tickets`;
+    let url: string = `${this.getBaseUrl()}/buy_tickets`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -135,7 +153,8 @@ export class LotteryService {
 
   giveTickets(ticket: any): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/give_tickets`;
+    //let url: string = `${this.BASE_URL}/give_tickets`;
+    let url: string = `${this.getBaseUrl()}/give_tickets`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -145,7 +164,8 @@ export class LotteryService {
 
   scratchNow(type: string, tickets: number): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/scratch_now`;
+    //let url: string = `${this.BASE_URL}/scratch_now`;
+    let url: string = `${this.getBaseUrl()}/scratch_now`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -155,7 +175,8 @@ export class LotteryService {
 
   buyScratch(type: string, tickets: number): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/buy_scratch`;
+    //let url: string = `${this.BASE_URL}/buy_scratch`;
+    let url: string = `${this.getBaseUrl()}/buy_scratch`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -165,7 +186,8 @@ export class LotteryService {
 
   giveScratch(type: string, tickets: number, email: string): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/give_scratch`;
+    //let url: string = `${this.BASE_URL}/give_scratch`;
+    let url: string = `${this.getBaseUrl()}/give_scratch`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -175,7 +197,8 @@ export class LotteryService {
 
   updateScratch(id: number, type: string): Promise<any> {
     let token = this.auth.getToken();
-    let url: string = `${this.BASE_URL}/update_scratch`;
+    //let url: string = `${this.BASE_URL}/update_scratch`;
+    let url: string = `${this.getBaseUrl()}/update_scratch`;
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`

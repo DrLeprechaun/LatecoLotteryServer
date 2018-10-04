@@ -16,6 +16,7 @@ import { EnsureAuthenticated } from './services/ensure-authenticated.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { LoginRedirect } from './services/login-redirect.service';
 import { LotteryService } from './services/lottery.service';
+import { ConfigService } from './services/config.service';
 import { TicketsPurchaseService } from './services/tickets-purchase.service';
 import { AboutComponent } from './components/about/about.component';
 import { HowItWorksComponent } from './components/how-it-works/how-it-works.component';
@@ -170,6 +171,7 @@ import { NavbarRegisteredComponent } from './components/templates/navbar-registe
     AuthGuard,
     LoginRedirect,
     LotteryService,
+    ConfigService,
     TicketsPurchaseService
   ],
   bootstrap: [AppComponent]
