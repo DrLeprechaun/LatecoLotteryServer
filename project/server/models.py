@@ -393,7 +393,7 @@ class Bank(db.Model):
     def __init__(self, jackpot_5_36, jackpot_6_45, jackpot_4_21, superjackpot, rapidos, supers, top3, two_numbers, prize_jackpot):
         self.jackpot_5_36 = jackpot_5_36
         self.jackpot_6_45 = jackpot_6_45
-        self.jackpot_4_21 = jackpot_4_21
+        self.jackpot_4_21 = jackpot_4_20
         self.superjackpot = superjackpot
         self.rapidos = rapidos
         self.supers = supers

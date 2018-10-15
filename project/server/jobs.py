@@ -1,5 +1,6 @@
 # project/server/jobs.py
 
+import os
 import time
 import atexit
 import sqlalchemy
@@ -14,7 +15,11 @@ def connect():
     '''Returns a connection and a metadata object'''
     # We connect with the help of the PostgreSQL URL
     # postgresql://federer:grandestslam@localhost:5432/tennis
-    url = 'postgresql://postgres:latecO20112017@localhost/lottery'
+    database_name = os.environ.get('LOTTERY_DB_NAME')
+    database_user = os.environ.get('LOTTERY_DB_USER')
+    database_password = os.environ.get('LOTTERY_DB_PASSWORD')
+    database_server = os.environ.get('LOTTERY_DB_SERVER')
+    url = 'postgresql://' + database_user + ':' + database_password + '@' + database_server + '/'
 
     # The return value of create_engine() is our connection object
     con = sqlalchemy.create_engine(url, client_encoding='utf8')
@@ -349,7 +354,7 @@ def jackpot_4x21():
 	con.execute("UPDATE jackpot_4_21 SET win_tickets =" + FormatArray(winners) + " WHERE id = " + lottery_id)
 	#Close tickets
 	con.execute("UPDATE bets_jackpot_4_21 SET amount_bets = amount_bets-1 WHERE amount_bets > 0")
-	#Pay 
+	#Pay
 	for w in winners_2:
 		con.execute("UPDATE wallet SET amount=amount+" + str(0.9 * 0.32 * bank['jackpot_4_21'] / len(winners_2)) + " WHERE user_id=" + str(w))
 	for w in winners_3:
@@ -408,7 +413,7 @@ def jackpot_5x36():
 	con.execute("UPDATE jackpot_5_36 SET win_tickets =" + FormatArray(winners) + " WHERE id = " + lottery_id)
 	#Close tickets
 	con.execute("UPDATE bets_jackpot_5_36 SET amount_bets = amount_bets-1 WHERE amount_bets > 0")
-	#Pay 
+	#Pay
 	for w in winners_2:
 		con.execute("UPDATE wallet SET amount=amount+" + str(2 / len(winners_2)) + " WHERE user_id=" + str(w))
 	for w in winners_3:
@@ -469,7 +474,7 @@ def jackpot_6x45():
 	con.execute("UPDATE jackpot_6_45 SET win_tickets =" + FormatArray(winners) + " WHERE id = " + lottery_id)
 	#Close tickets
 	con.execute("UPDATE bets_jackpot_6_45 SET amount_bets = amount_bets-1 WHERE amount_bets > 0")
-	#Pay 
+	#Pay
 	for w in winners_3:
 		con.execute("UPDATE wallet SET amount=amount+" + str(0.24 * bank['jackpot_6_45'] / len(winners_3)) + " WHERE user_id=" + str(w))
 	for w in winners_4:
@@ -593,7 +598,7 @@ def prize_jackpot():
 	con.execute("UPDATE prize_jackpot SET win_tickets =" + FormatArray(winners) + " WHERE id = " + lottery_id)
 	#Close tickets
 	con.execute("UPDATE bets_prize_jackpot SET amount_bets = amount_bets-1 WHERE amount_bets > 0")
-	#Pay 
+	#Pay
 	for w in winners_2_10:
 		con.execute("UPDATE wallet SET amount=amount+" + str(25) + " WHERE user_id=" + str(w))
 	for w in winners_3_9:
@@ -613,4 +618,3 @@ def print_date_time():
 
 def print_hello():
 	print("Hello")
-

@@ -25,12 +25,12 @@ app_settings = os.getenv(
 app.config.from_object(app_settings)
 
 app.config.update(dict(
-    MAIL_SERVER = 'smtp.mail.ru',
+    MAIL_SERVER = 'smtp.gmail.com',
     MAIL_PORT = 465,
     MAIL_USE_TLS = False,
     MAIL_USE_SSL = True,
-    MAIL_USERNAME = 'vadim.e@lateco.net',
-    MAIL_PASSWORD = '1S13x111041992',
+    MAIL_USERNAME = 'superjackpot.noreply@gmail.com',
+    MAIL_PASSWORD = 'SJPsuperjackpot58731_S',
 ))
 
 mail = Mail(app)

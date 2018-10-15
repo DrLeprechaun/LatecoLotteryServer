@@ -4,9 +4,11 @@ import os
 from flask_apscheduler import APScheduler
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-#postgres_local_base = 'postgresql://postgres:@localhost:5432/'
-postgres_local_base = 'postgresql://postgres:latecO20112017@localhost/'
-database_name = 'lottery'
+database_name = os.environ.get('LOTTERY_DB_NAME')
+database_user = os.environ.get('LOTTERY_DB_USER')
+database_password = os.environ.get('LOTTERY_DB_PASSWORD')
+database_server = os.environ.get('LOTTERY_DB_SERVER')
+postgres_local_base = 'postgresql://' + database_user + ':' + database_password + '@' + database_server + '/'
 
 
 class BaseConfig:
@@ -30,7 +32,7 @@ class BaseConfig:
             #'trigger': 'interval',
             #'seconds': 10
             #'hours': 24
-        #}        
+        #}
         {
             'id': 'jackpot_5x36_4_00',
             'func': 'project.server.jobs:jackpot_5x36',
@@ -96,7 +98,7 @@ class BaseConfig:
             'hour': '0',
             'minute': '0',
             'second': '0',
-        },         
+        },
         {
             'id': 'jackpot_4x21_2_00',
             'func': 'project.server.jobs:jackpot_4x21',
@@ -298,10 +300,10 @@ class BaseConfig:
     ]
 
 SCHEDULER_API_ENABLED = True
-MAIL_SERVER='smtp.mail.ru'
+MAIL_SERVER='smtp.gmail.com'
 MAIL_PORT = 465
-MAIL_USERNAME = 'vadim.e@lateco.net'
-MAIL_PASSWORD = ''
+MAIL_USERNAME = os.environ.get('LOTTERY_MAIL_USERNAME')
+MAIL_PASSWORD = os.environ.get('LOTTERY_MAIL_PASSWORD')
 #MAIL_USE_TLS = False
 #MAIL_USE_SSL = True
 
