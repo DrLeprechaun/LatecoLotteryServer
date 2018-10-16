@@ -2,6 +2,7 @@
 
 import os
 from flask_apscheduler import APScheduler
+import logging
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 database_name = os.environ.get('LOTTERY_DB_NAME')
@@ -17,6 +18,13 @@ class BaseConfig:
     DEBUG = False
     BCRYPT_LOG_ROUNDS = 13
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    log = logging.getLogger('apscheduler.executors.default')
+    log.setLevel(logging.DEBUG)  # DEBUG
+
+    fmt = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
+    h = logging.StreamHandler()
+    h.setFormatter(fmt)
+    log.addHandler(h)
     JOBS = [
         #{
             #'id': 'job1',
