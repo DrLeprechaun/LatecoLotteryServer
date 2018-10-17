@@ -15,7 +15,7 @@ postgres_local_base = 'postgresql://' + database_user + ':' + database_password 
 class BaseConfig:
     """Base configuration."""
     SECRET_KEY = os.getenv('SECRET_KEY', '_Q[6\xdc\xa2\x8a\x0c\xa1<\xf0\x1b\x93\xd9\xf9J%\xa6\xf8\x82 v4\xbe')
-    DEBUG = True
+    DEBUG = False
     BCRYPT_LOG_ROUNDS = 13
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     log = logging.getLogger('apscheduler.executors.default')

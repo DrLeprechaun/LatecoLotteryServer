@@ -8,6 +8,7 @@ from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_apscheduler import APScheduler
+from werkzeug.contrib.fixers import ProxyFix
 
 from . import jobs
 #from .logic import lottery_schedule
@@ -16,6 +17,7 @@ from . import jobs
 
 app = Flask(__name__, static_url_path = "/static", static_folder = "static")
 app.debug = False
+#app.wsgi_app = ProxyFix(app.wsgi_app)
 CORS(app)
 
 app_settings = os.getenv(

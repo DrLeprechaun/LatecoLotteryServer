@@ -7,6 +7,7 @@ import coverage
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from project.server import app, db, models
+from werkzeug.contrib.fixers import ProxyFix
 
 #import schedule
 import time
@@ -77,4 +78,5 @@ def drop_db():
     db.drop_all()
 
 if __name__ == '__main__':
+    manager.wsgi_app = ProxyFix(manager.wsgi_app)
     manager.run()
