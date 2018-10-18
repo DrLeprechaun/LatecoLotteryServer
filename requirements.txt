@@ -39,3 +39,4 @@ tzlocal==1.5.1
 vine==1.1.4
 Werkzeug==0.14.1
 uwsgi==2.0.17
+gunicorn==19.9.0
