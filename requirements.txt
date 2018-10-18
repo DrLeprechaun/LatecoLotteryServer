@@ -39,3 +39,8 @@ SQLAlchemy==1.2.10
 tzlocal==1.5.1
 vine==1.1.4
 Werkzeug==0.14.1
+<<<<<<< HEAD
+=======
+uwsgi==2.0.17
+gunicorn==19.9.0
+>>>>>>> 5ef03e0252f6473b7f19e5a82bf40bcc4410f1b9
