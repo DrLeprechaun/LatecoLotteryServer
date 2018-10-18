@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-# start uswgi
-#uwsgi --ini /usr/src/verbnoun/conf.ini &
-uwsgi --plugin python  --ini /usr/src/latecolottery/conf.ini &
+gunicorn -b 0.0.0.0:9000 manage:app &
 
 # start nginx.
 service nginx restart

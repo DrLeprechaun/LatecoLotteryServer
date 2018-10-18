@@ -19,6 +19,7 @@ Flask-Migrate==2.2.1
 Flask-Script==2.0.6
 Flask-Script-Extras==0.1.4
 Flask-SQLAlchemy==2.3.2
+gunicorn==19.9.0
 idna==2.7
 itsdangerous==0.24
 Jinja2==2.10
@@ -38,4 +39,3 @@ SQLAlchemy==1.2.10
 tzlocal==1.5.1
 vine==1.1.4
 Werkzeug==0.14.1
-uwsgi==2.0.17

@@ -26,7 +26,7 @@ RUN chown -R www-data: /var/www
 # Clean apt
 RUN apt-get clean
 
-EXPOSE 80 5000
+EXPOSE 80
 
 COPY ./execution.sh /usr/bin/execution.sh
 RUN chmod +x /usr/bin/execution.sh
