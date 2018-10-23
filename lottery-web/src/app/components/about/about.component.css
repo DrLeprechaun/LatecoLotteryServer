@@ -251,6 +251,7 @@ legend.scheduler-border {
   font-size: 17pt;
 }
 
-.table-dark {
+.section-dark {
   background-color: black;
+  color: white;
 }

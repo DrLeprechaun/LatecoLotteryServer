@@ -1,9 +1,9 @@
-<div id="navbar">
-  <p><a routerLink="/privateOffice" [ngStyle]="{'color': href === '/privateOffice' ? 'grey' : 'black' }">Buy Ticket</a></p>
-  <p><a routerLink="/my-bets" [ngStyle]="{'color': href === '/my-bets' ? 'grey' : 'black' }">My Bets</a></p>
-  <p><a routerLink="/my-tokens" [ngStyle]="{'color': href === '/my-tokens' ? 'grey' : 'black' }">My Tokens</a></p>
-  <p><a routerLink="/my-statistics" [ngStyle]="{'color': href === '/my-statistics' ? 'grey' : 'black' }">Statistics</a></p>
-  <p><a routerLink="/settings" [ngStyle]="{'color': href === '/settings' ? 'grey' : 'black' }">Settings</a></p>
-  <p><a routerLink="/faq" [ngStyle]="{'color': href === '/faq' ? 'grey' : 'black' }">FAQ</a></p>
-  <p><a (click)="logOut()" routerLink="/home">Logout</a></p>
+<div class="main-nav">
+  <p><a class="main-nav-item" routerLink="/privateOffice"[ngStyle]="{'color': href === '/privateOffice' ? 'grey' : 'black' }">Buy Ticket</a></p>
+  <p><a class="main-nav-item" routerLink="/my-bets"[ngStyle]="{'color': href === '/my-bets' ? 'grey' : 'black' }">My Bets</a></p>
+  <p><a class="main-nav-item" routerLink="/my-tokens"[ngStyle]="{'color': href === '/my-tokens' ? 'grey' : 'black' }">My Tokens</a></p>
+  <p><a class="main-nav-item" routerLink="/my-statistics"[ngStyle]="{'color': href === '/my-statistics' ? 'grey' : 'black' }">Statistics</a></p>
+  <p><a class="main-nav-item" routerLink="/settings"[ngStyle]="{'color': href === '/settings' ? 'grey' : 'black' }">Settings</a></p>
+  <p><a class="main-nav-item" routerLink="/faq"[ngStyle]="{'color': href === '/faq' ? 'grey' : 'black' }">FAQ</a></p>
+  <p><a class="main-nav-item" (click)="logOut()" routerLink="/home">Logout</a></p>
 </div>

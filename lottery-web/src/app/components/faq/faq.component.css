@@ -251,6 +251,7 @@ a h2:hover {
   color: black;
 }
 
-.table-dark {
+.section-dark {
   background-color: black;
+  color: white;
 }

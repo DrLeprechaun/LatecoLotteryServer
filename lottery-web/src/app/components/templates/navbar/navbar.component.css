@@ -1,24 +1,22 @@
-#navbar {
-  /*margin-top: 20px;*/
+.main-nav {
   position: fixed;
   z-index: 10;
 }
 
-a {
+.main-nav-item {
  text-decoration: none;
  font-weight: bold;
  color: black;
  font-size: 13pt;
  text-shadow: 1px 1px 8px #ffffff;
- /*font-family: Arial, Helvetica, sans-serif;*/
 }
 
-a:hover {
- color: grey;
+.main-nav-item:hover {
+ color: grey !important;
 }
 
-a:active {
- color: grey;
+.main-nav-item:active {
+ color: grey !important;
 }
 
 p {
