@@ -256,21 +256,27 @@ legend.scheduler-border {
   z-index: 9;
 }
 
-#present {
-  background-color: #F44336;
-  border: 1px solid #F44336;
-}
-#present:hover {
-  background-color: white;
-  border: 1px solid black;
-}
-
-.lotteryButton:hover {
+.lotteryButton:hover,
+.lotteryButton:focus {
   background-color: #FFF;
   color: #000;
   border-color: #000;
   transition: 0.3s;
+  outline: none;
 }
+
+#present {
+  background-color: #F44336;
+  border: 1px solid #F44336;
+}
+
+#present:hover,
+#present:focus {
+  background-color: white;
+  border: 1px solid black;
+  outline: 0;
+}
+
 
 .lotteryButton p {
   margin-top: 5px;

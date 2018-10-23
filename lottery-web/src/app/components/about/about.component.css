@@ -41,7 +41,8 @@ a {
   /*font-family: Arial, Helvetica, sans-serif;*/
 }
 
-a:hover {
+a:hover,
+a:focus {
   color: grey;
 }
 

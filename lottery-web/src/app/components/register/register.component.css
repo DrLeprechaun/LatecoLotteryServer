@@ -44,11 +44,13 @@ button {
   z-index: 9;
 }
 
-.lotteryButton:hover {
+.lotteryButton:hover,
+.lotteryButton:focus {
   background-color: #FFF;
   color: #000;
   border-color: #000;
   transition: 0.3s;
+  outline: none;
 }
 
 .lotteryButton p {

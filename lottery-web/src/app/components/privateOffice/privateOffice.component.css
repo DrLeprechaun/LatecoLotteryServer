@@ -445,9 +445,11 @@ legend.scheduler-border {
   color: #FFF;
   display: inline-block;
   z-index: 9;
+  outline: 0;
 }
 
-.lotteryButton:hover {
+.lotteryButton:hover,
+.lotteryButton:focus {
   background-color: #FFF;
   color: #000;
   border-color: #000;
@@ -492,7 +494,9 @@ a h2:hover {
   border: 1px solid #F44336;
 }
 
-#present:hover {
+#present:hover,
+#present:focus {
   background-color: white;
   border: 1px solid black;
+  outline: 0;
 }

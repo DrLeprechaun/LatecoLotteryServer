@@ -9,14 +9,21 @@
  color: black;
  font-size: 13pt;
  text-shadow: 1px 1px 8px #ffffff;
+ outline: none;
 }
 
 .main-nav-item:hover {
  color: grey !important;
 }
 
+.main-nav-item:focus {
+  background-color: #000000;
+  color: #ffffff !important;
+}
+
 .main-nav-item:active {
- color: grey !important;
+  color: grey !important;
+  background: transparent;
 }
 
 p {
