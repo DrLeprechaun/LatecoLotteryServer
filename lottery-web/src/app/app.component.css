@@ -10,3 +10,7 @@
   font-family: Gilroy-Thin;
   src: url(assets/fonts/Gilroy-Thin.otf) format("opentype");
 }*/
+
+h3 {
+  color: black;
+}

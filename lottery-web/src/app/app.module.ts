@@ -29,7 +29,6 @@ import { MyStatisticsComponent } from './components/my-statistics/my-statistics.
 import { SettingsComponent } from './components/settings/settings.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { ScratchComponent } from './components/scratch/scratch.component';
-import { BuyTestComponent } from './components/buy-test/buy-test.component';
 import { CubeComponent } from './components/templates/cube/cube.component';
 import { GiveTicketComponent } from './components/give-ticket/give-ticket.component';
 import { GiveScratchComponent } from './components/give-scratch/give-scratch.component';
@@ -55,7 +54,6 @@ import { NavbarRegisteredComponent } from './components/templates/navbar-registe
     SettingsComponent,
     FaqComponent,
     ScratchComponent,
-    BuyTestComponent,
     CubeComponent,
     GiveTicketComponent,
     GiveScratchComponent,
@@ -121,11 +119,6 @@ import { NavbarRegisteredComponent } from './components/templates/navbar-registe
       {
         path: 'give-scratch',
         component: GiveScratchComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'buy-test',
-        component: BuyTestComponent,
         canActivate: [AuthGuard]
       },
       {

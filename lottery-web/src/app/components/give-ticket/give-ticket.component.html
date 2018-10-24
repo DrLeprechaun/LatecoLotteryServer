@@ -48,6 +48,7 @@
                   <div class="form-group">
                     <input type="email" class="form-control" id="inputEmail" [(ngModel)]="email" (ngModelChange)="emailChange()" aria-describedby="emailHelp" placeholder="Enter email">
                     <small id="emailHelp" class="form-text">Enter the email of user you want give tickets to</small>
+                    <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
                   </div>
 
                   <div class="tab-content">
@@ -471,7 +472,7 @@
                       <!--<div class="lotteryFunds">{{lotteryFunds}} SJP</div>-->
                       <div class="lotteryFunds">{{lotteryFunds}} <img style="width:24px;" src="assets/img/logo_small.png" alt="logo"></div>
                       <div class="buttonSector">
-                        <div id="buyButton" class="ok" (click)="open(content)"><p>Give Tickets</p></div>
+                        <div id="buyButton" class="ok" (click)="open(content)"><p>Present Tickets</p></div>
                       </div>
                     </div>
                   </div>

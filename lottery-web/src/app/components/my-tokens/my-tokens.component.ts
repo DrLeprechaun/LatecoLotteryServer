@@ -42,7 +42,7 @@ export class MyTokensComponent implements OnInit {
     })
 
     this.getAmount();
-    this.getWalletAmount();
+    /*this.getWalletAmount();*/
 
     setTimeout(() => this.staticAlertClosed = true, 20000);
 
@@ -53,7 +53,8 @@ export class MyTokensComponent implements OnInit {
   }
 
   getAmount(): void {
-    this.lottery.getTokensAmount()
+    //this.lottery.getTokensAmount()
+    this.lottery.getWalletAmount()
     .then((res) => {
       console.log(res.json());
       if (res.json().status === 'success') {
@@ -112,8 +113,11 @@ export class MyTokensComponent implements OnInit {
 
   fillUp(): void {
     let amount = document.getElementById("fillUpInput") as HTMLSelectElement;
-    this.lottery.fillUpWallet(+amount.value);
-    this.getWalletAmount();
+    this.lottery.fillUpWallet(+amount.value)
+    .then((res) => {
+      this.getAmount();
+    })
+    /*this.getWalletAmount();*/
     amount.value = "0";
   }
 
@@ -128,11 +132,11 @@ export class MyTokensComponent implements OnInit {
         this.walletAlertMessage(res.json().message);
       }
     })
-    this.getWalletAmount();
+    /*this.getWalletAmount();*/
     amount.value = "0";
   }
 
-  getWalletAmount() {
+  /*getWalletAmount() {
     this.lottery.getWalletAmount()
     .then((res) => {
       console.log(res.json());
@@ -140,7 +144,7 @@ export class MyTokensComponent implements OnInit {
         this.walletAmount = res.json().data.amount;
       }
     })
-  }
+  }*/
 
   private buyTicketRedirect(type: string): void {
     this.tpService.setLotteryType(type);

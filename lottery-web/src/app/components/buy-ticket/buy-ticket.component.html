@@ -1,5 +1,3 @@
-<img src="{{backgroundImage}}" style="position: fixed; width: 100%; height: 100%">
-
 <div class="header">
   <table style="margin-left: 20px;">
     <tr>
@@ -18,18 +16,12 @@
             <p><a routerLink="/settings">Settings</a></p>
             <p><a routerLink="/faq">FAQ</a></p>
             <p><a (click)="logOut()" routerLink="/home">Logout</a></p>
-            <hr>
-            <p><a routerLink="/buy-test">Switch Design</a></p>
           </div>
 
           <div class="container" align="center">
             <table border="0" style="margin-bottom: 50px; table-layout: auto; width: 100%;" width="100%">
               <tr>
                 <td colspan="3" align="center">
-                <!--<ul class="nav">
-                  <li><button class="btn-dark top-panel-button" style="margin-left: 0px; width: 312px;" data-toggle="tab" href="#tickets">Tickets</button></li>
-                  <li><button class="btn-dark top-panel-button" style="width: 312px;" data-toggle="tab" href="#rules">Rules</button></li>
-                </ul>-->
                 <div style="width: 630px;">
                   <ul class="nav">
                     <li><button class="btn-dark top-panel-button" style="margin-left: 0px; width: 312px;" data-toggle="tab" href="#tickets">Tickets</button></li>
@@ -38,16 +30,15 @@
                 </div>
               </td>
                 <td align="center" style="padding-left: 80px;">
-                  <!--<h2><b>SUPER</b>JACK<b>POT</b></h2>-->
-                  <a routerLink="/privateOffice"><h2 style="cursor: pointer;"><b>SUPER</b>JACK<b>POT</b></h2></a>
-                  <!--<h4>{{cd}}</h4>-->
+                  <!--<a routerLink="/privateOffice"><h2 style="cursor: pointer;"><b>SUPER</b>JACK<b>POT</b></h2></a>-->
+                  <h3 style="color: black;"><b>TIME</b> REMAINING</h3>
                 </td>
               </tr>
 
               <tr>
                 <td colspan="3" align="center">
 
-                  <div class="tab-content">
+                  <div class="tab-content" [ngStyle]="{'background-image': backgroundImage}">
                     <div class="tab-pane fade show active" id="tickets" role="tabpanel">
 
                       <div *ngFor="let t of tickets; let i = index">
@@ -201,7 +192,7 @@
                       In Rapid SJP there are 9 categories of winnings.<br/>
                       All winnings, except for the Jackpot, are fixed. The minimum winnings are 1 SJP.<br/>
 
-                    <table class="table table-dark" style="text-align: left;">
+                    <table class="table" style="text-align: left;">
                       <thead>
                         <tr colspan="3">
                           <th>You can win in Rapidos</th>
@@ -289,7 +280,7 @@
                     <hr/>
                     <p><b>What can be won?</b></p>
                     The Jackpot is received by the one who guessed one number in the first part of the field and one number in the second.
-                    <table class="table table-dark">
+                    <table class="table">
                       <thead>
                         <tr colspan="3">
                           <th>You can win in Two Numbers Lottery</th>
@@ -349,7 +340,7 @@
                       <p><b>What can be won?</b></p>
                       Winners are considered to be combinations in which 0, 1, 2, 3, 4, 8, 9, 10, 11 or 12 numbers coincide with the numbers in the draw. All winnings, except for the Prize and the Jackpot, are fixed. The minimum winnings are 2 SJP.
 
-                      <table class="table table-dark">
+                      <table class="table">
                         <thead>
                           <tr colspan="2">
                             <th>You can win in Prize&Jackpot Lottery</th>
@@ -419,7 +410,7 @@
                       <p>You can withdraw your WalletSpace money to your bank account and cash out at ATM or your bank branch.  If you chose to get a pre-paid debit card issued by certain digital wallet providers (such as Wirex, SpectroCoin), you may withdraw your cash only at ATMs (might not be available in certain countries).</p>
                       <p><i><u>Note:</u> All steps until cash withdrawal are performed online. Transaction speed is determined by specific services availability and load, but usually operations happen immediately.</i></p>
                       <h5>How to withdraw winnings to a bank account</h5>
-                      <table class="table-dark">
+                      <table class="table">
                         <thead>
                           <tr>
                             <th>Approach</th>
@@ -475,7 +466,14 @@
                 </td>
 
                 <td style="vertical-align: top; padding-left: 5%;">
-                  <app-cube></app-cube>
+                  <div class="cube" style="margin-top: 35px;">
+                    <div class="side" id="side-1" (click)="buyTicketRedirect('jackpot_4x21')"><img style="width: inherit;" src="assets/img/4_21_small.jpg"></div>
+                    <div class="side" id="side-2" (click)="buyTicketRedirect('jackpot_6x45')"><img style="width: inherit;" src="assets/img/6_45_small.jpg"></div>
+                    <div class="side" id="side-3" (click)="buyTicketRedirect('jackpot_5x36')"><img style="width: inherit;" src="assets/img/5_36_small.jpg"></div>
+                    <div class="side" id="side-4" (click)="buyTicketRedirect('rapidos')"><img style="width: inherit;" src="assets/img/rapidos_small.jpg"></div>
+                    <div class="side" id="side-5" (click)="buyTicketRedirect('two_numbers')"><img style="width: inherit;" src="assets/img/two_numbers_small.jpg"></div>
+                    <div class="side" id="side-6" (click)="buyTicketRedirect('prize_jackpot')"><img style="width: inherit;" src="assets/img/prize_jackpot_small.jpg"></div>
+                  </div>
                 </td>
               </tr>
 

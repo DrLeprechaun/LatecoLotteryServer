@@ -49,13 +49,13 @@
                 <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
 
                 <div id="tokensContainer">
-                  <h4>Tokens amount: {{ amount }}</h4>
-                  <hr>
+                  <h4>SJP amount: {{ amount }}</h4>
+                  <!--<hr>
                   <input id="tokensInput" class="form-control" type="number" value="0" (change)="calculateCost()" min ="1">
                   <br>
                   <p>BTC: {{ cost.toPrecision(3) }}</p>
-                  <p>ETC: {{ (0.055 * cost).toPrecision(3) }}</p>
-                  <button type="button" class="lotteryButton" (click)="buy()">Buy!</button>
+                  <p>ETC: {{ (0.055 * cost).toPrecision(3) }}</p>-->
+                  <!--<button type="button" class="lotteryButton" (click)="buy()">Buy!</button>-->
                   <hr>
                   <button type="button" class="lotteryButton" (click)="open(content)">Wallet</button>
                 </div>

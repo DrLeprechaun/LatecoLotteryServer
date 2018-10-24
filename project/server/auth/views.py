@@ -123,10 +123,22 @@ class LoginAPI(MethodView):
                         'auth_token': auth_token.decode()
                     }
                     return make_response(jsonify(responseObject)), 200
+            elif user:
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'Incorrect password'
+                }
+                return make_response(jsonify(responseObject)), 404
+            elif user is None:
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'User ' + post_data.get('email') + ' not found'
+                }
+                return make_response(jsonify(responseObject)), 404
             else:
                 responseObject = {
                     'status': 'fail',
-                    'message': 'User does not exist.'
+                    'message': 'User does not exist'
                 }
                 return make_response(jsonify(responseObject)), 404
         except Exception as e:

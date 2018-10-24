@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 import { LotteryService } from '../../services/lottery.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
+import {Subject} from 'rxjs/Subject';
+import {debounceTime} from 'rxjs/operator/debounceTime';
 
 
 @Component({
@@ -30,6 +32,10 @@ export class GiveScratchComponent implements OnInit  {
   private ctx: any;
   private email: string = "";
 
+  private _alert = new Subject<string>();
+  staticAlertClosed = false;
+  errorMessage: string;
+
   constructor(private location: Location,
     private router: Router,
     private lottery: LotteryService,
@@ -37,7 +43,9 @@ export class GiveScratchComponent implements OnInit  {
     private modalService: NgbModal) {}
 
   ngOnInit() {
-
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    this._alert.subscribe((message) => this.errorMessage = message);
+    debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
 
     if (this.tpService.getScratchType() == "777") {
       this.backgroundImage = "assets/img/b_top3.jpg";
@@ -105,6 +113,7 @@ export class GiveScratchComponent implements OnInit  {
     },
     (err) => {
       console.log(err);
+      this.alertMessage(err.json().message);
     })
   }
 
@@ -208,6 +217,9 @@ open(content) {
   });
 }
 
+alertMessage(message: string) {
+  this._alert.next(message);
+}
 
 
 }

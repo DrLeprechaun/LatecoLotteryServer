@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { LotteryService } from '../../services/lottery.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
+import {Subject} from 'rxjs/Subject';
+import {debounceTime} from 'rxjs/operator/debounceTime';
 
 @Component({
   selector: 'app-give-ticket',
@@ -36,12 +38,20 @@ export class GiveTicketComponent implements OnInit {
   cd: string;
   private email: string = "";
 
+  private _alert = new Subject<string>();
+  staticAlertClosed = false;
+  errorMessage: string;
+
   constructor(private router: Router,
     private lottery: LotteryService,
     private tpService: TicketsPurchaseService,
     private modalService: NgbModal) { }
 
   ngOnInit() {
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    this._alert.subscribe((message) => this.errorMessage = message);
+    debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
+
     setInterval(() => {
       this.countDown();
     }, 1000);
@@ -423,10 +433,14 @@ export class GiveTicketComponent implements OnInit {
       if (res.json().status === 'success') {
         this.router.navigateByUrl('/privateOffice');
       } else {
+
       }
     },
     (err) => {
       console.log(err);
+      console.log(err.json().message);
+      this.alertMessage(err.json().message);
+      //console.log("FAIL");
     })
 
   }
@@ -681,6 +695,10 @@ open(content) {
   logOut(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('WANNA_BUY');
+  }
+
+  alertMessage(message: string) {
+    this._alert.next(message);
   }
 
 }

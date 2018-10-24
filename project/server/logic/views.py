@@ -1031,7 +1031,7 @@ class BuyTickets(MethodView):
                                               <table border="0" cellpadding="0" cellspacing="0">
                                                 <tr>
                                                   <td class="content-block">
-                                                    <span class="apple-link">Powered by Lateco</span>
+                                                    <span class="apple-link">Powered by SuperJackpot Lottery</span>
                                                   </td>
                                                 </tr>
                                                 <tr>
@@ -1257,6 +1257,7 @@ class BuyScratch(MethodView):
     def post(self):
         auth_header = request.headers.get('Authorization')
         post_data = request.get_json()
+        print(post_data)
         if auth_header:
             try:
                 auth_token = auth_header.split(" ")[1]
@@ -1285,10 +1286,365 @@ class BuyScratch(MethodView):
                         bet_fruity = BetsFruity(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
                         db.session.add(bet_fruity)
                     db.session.commit()
-                    #db.flush()
-                    responseObject = {
-                        'status': 'success'
-                    }
+                try:
+                	msg = Message("SuperJackpot Lottery", sender = "superjackpot.noreply@gmail.com", recipients=[user.email])
+                	msg.html = """<html>
+		                                  <head>
+		                                    <meta name="viewport" content="width=device-width" />
+		                                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		                                    <title>SuperJackpot Lottery Ticket</title>
+		                                    <style>
+		                                      img {
+		                                        border: none;
+		                                        -ms-interpolation-mode: bicubic;
+		                                        max-width: 100%; }
+
+		                                      body {
+		                                        background-color: #f6f6f6;
+		                                        font-family: sans-serif;
+		                                        -webkit-font-smoothing: antialiased;
+		                                        font-size: 14px;
+		                                        line-height: 1.4;
+		                                        margin: 0;
+		                                        padding: 0;
+		                                        -ms-text-size-adjust: 100%;
+		                                        -webkit-text-size-adjust: 100%; }
+
+		                                      table {
+		                                        border-collapse: separate;
+		                                        mso-table-lspace: 0pt;
+		                                        mso-table-rspace: 0pt;
+		                                        width: 100%; }
+		                                        table td {
+		                                          font-family: sans-serif;
+		                                          font-size: 18px;
+		                                          vertical-align: top; }
+
+		                                      .body {
+		                                        background-color: #f6f6f6;
+		                                        width: 100%; }
+
+		                                      .container {
+		                                        display: block;
+		                                        Margin: 0 auto !important;
+		                                        max-width: 580px;
+		                                        padding: 10px;
+		                                        width: 580px; }
+
+		                                      .content {
+		                                        box-sizing: border-box;
+		                                        display: block;
+		                                        Margin: 0 auto;
+		                                        max-width: 580px;
+		                                        padding: 10px; }
+
+		                                      .main {
+		                                        background: #ffffff;
+		                                        border-radius: 3px;
+		                                        width: 100%; }
+
+		                                      .wrapper {
+		                                        box-sizing: border-box;
+		                                        padding: 20px; }
+
+		                                      .content-block {
+		                                        padding-bottom: 10px;
+		                                        padding-top: 10px;
+		                                      }
+
+		                                      .footer {
+		                                        clear: both;
+		                                        Margin-top: 10px;
+		                                        text-align: center;
+		                                        width: 100%; }
+		                                        .footer td,
+		                                        .footer p,
+		                                        .footer span,
+		                                        .footer a {
+		                                          color: #999999;
+		                                          font-size: 12px;
+		                                          text-align: center; }
+
+		                                      h1,
+		                                      h2,
+		                                      h3,
+		                                      h4 {
+		                                        color: #000000;
+		                                        font-family: sans-serif;
+		                                        font-weight: 400;
+		                                        line-height: 1.4;
+		                                        margin: 0;
+		                                        Margin-bottom: 30px; }
+
+		                                      h1 {
+		                                        font-size: 35px;
+		                                        font-weight: 300;
+		                                        text-align: center;
+		                                        text-transform: capitalize; }
+
+		                                      p,
+		                                      ul,
+		                                      ol {
+		                                        font-family: sans-serif;
+		                                        font-size: 15px;
+		                                        font-weight: normal;
+		                                        margin: 0;
+		                                        Margin-bottom: 15px; }
+		                                        p li,
+		                                        ul li,
+		                                        ol li {
+		                                          list-style-position: inside;
+		                                          margin-left: 5px; }
+
+		                                      a {
+		                                        text-decoration: underline; }
+
+		                                      .btn {
+		                                        box-sizing: border-box;
+		                                        width: 100%; }
+		                                        .btn > tbody > tr > td {
+		                                          padding-bottom: 15px; }
+		                                        .btn table {
+		                                          width: auto; }
+		                                        .btn table td {
+		                                          text-align: center; }
+		                                        .btn a {
+		                                          box-sizing: border-box;
+		                                          cursor: pointer;
+		                                          display: inline-block;
+		                                          font-size: 14px;
+		                                          font-weight: bold;
+		                                          margin: 0;
+		                                          padding: 12px 25px;
+		                                          text-decoration: none;
+		                                 }
+
+
+		                                      .buy {
+		                                          cursor: pointer;
+		                                          width: 200px;
+		                                          height: 35px;
+		                                          border: 1px solid #FFF;
+		                                          text-align: center;
+		                                          background-color: #000;
+		                                          color: #FFF;
+		                                          text-decoration: none;
+		                                          display: inline-block;
+		                                          font-size: 15px;
+		                                          margin-bottom: 13px;
+		                                        }
+
+		                                      .buy:hover {
+		                                          background-color: #FFF;
+		                                          color: #000;
+		                                          border-color: #000;
+		                                          transition: 0.3s;
+		                                        }
+
+		                                      .buy p {
+		                                        margin-top: 5px;
+		                                      }
+
+		                                      ul {
+		                                        list-style: none;
+		                                        padding: 0;
+		                                        margin:0;
+		                                      }
+
+		                                      ul button {
+		                                        text-decoration: none;
+		                                        color: #FFF;
+		                                        border: none;
+		                                        cursor: pointer;
+		                                        color: #000;
+		                                      }
+
+		                                      ul li button{
+		                                        width: 45px;
+		                                        background: #FFF;
+		                                        height: 45px;
+		                                        border-radius: 50%;
+		                                        border: 1px solid #000;
+		                                        float: left;
+		                                        margin: 5px;
+		                                        margin-left: 4px;
+		                                        margin-top: -10px;
+		                                        font-size: 19px;
+		                                        font-weight: bold;
+		                                      }
+
+
+		                                      .last {
+		                                        margin-bottom: 0; }
+
+		                                      .first {
+		                                        margin-top: 0; }
+
+		                                      .align-center {
+		                                        text-align: center; }
+
+		                                      .align-right {
+		                                        text-align: right; }
+
+		                                      .align-left {
+		                                        text-align: left; }
+
+		                                      .clear {
+		                                        clear: both; }
+
+		                                      .mt0 {
+		                                        margin-top: 0; }
+
+		                                      .mb0 {
+		                                        margin-bottom: 0; }
+
+		                                      .preheader {
+		                                        color: transparent;
+		                                        display: none;
+		                                        height: 0;
+		                                        max-height: 0;
+		                                        max-width: 0;
+		                                        opacity: 0;
+		                                        overflow: hidden;
+		                                        mso-hide: all;
+		                                        visibility: hidden;
+		                                        width: 0; }
+
+		                                      .powered-by a {
+		                                        text-decoration: none; }
+
+		                                      hr {
+		                                        border: 0;
+		                                        border-bottom: 1px solid #f6f6f6;
+		                                        Margin: 20px 0; }
+
+		                                      @media only screen and (max-width: 620px) {
+		                                        table[class=body] h1 {
+		                                          font-size: 28px !important;
+		                                          margin-bottom: 10px !important; }
+		                                        table[class=body] p,
+		                                        table[class=body] ul,
+		                                        table[class=body] ol,
+		                                        table[class=body] td,
+		                                        table[class=body] span,
+		                                        table[class=body] a {
+		                                          font-size: 16px !important; }
+		                                        table[class=body] .wrapper,
+		                                        table[class=body] .article {
+		                                          padding: 10px !important; }
+		                                        table[class=body] .content {
+		                                          padding: 0 !important; }
+		                                        table[class=body] .container {
+		                                          padding: 0 !important;
+		                                          width: 100% !important; }
+		                                        table[class=body] .main {
+		                                          border-left-width: 0 !important;
+		                                          border-radius: 0 !important;
+		                                          border-right-width: 0 !important; }
+		                                        table[class=body] .btn table {
+		                                          width: 100% !important; }
+		                                        table[class=body] .btn a {
+		                                          width: 100% !important; }
+		                                        table[class=body] .img-responsive {
+		                                          height: auto !important;
+		                                          max-width: 100% !important;
+		                                          width: auto !important; }
+		                                          }
+
+		                                      @media all {
+		                                        .ExternalClass {
+		                                          width: 100%; }
+		                                        .ExternalClass,
+		                                        .ExternalClass p,
+		                                        .ExternalClass span,
+		                                        .ExternalClass font,
+		                                        .ExternalClass td,
+		                                        .ExternalClass div {
+		                                          line-height: 100%; }
+		                                        .apple-link a {
+		                                          color: inherit !important;
+		                                          font-family: inherit !important;
+		                                          font-size: inherit !important;
+		                                          font-weight: inherit !important;
+		                                          line-height: inherit !important;
+		                                          text-decoration: none !important; }
+		                                        .btn-primary table td:hover {
+		                                          background-color: #34495e !important; }
+		                                        .btn-primary a:hover {
+		                                          background-color: #34495e !important;
+		                                          border-color: #34495e !important; } }
+
+		                                    </style>
+		                                  </head>
+		                                  <body class="">
+		                                    <table border="0" cellpadding="0" cellspacing="0" class="body">
+		                                      <tr>
+		                                        <td>&nbsp;</td>
+		                                        <td class="container">
+		                                          <div class="content">
+
+		                                            <span class="preheader">You've get a SUPERJACKPOT LOTTERY ticket!</span>
+		                                            <table class="main">
+
+		                                              <tr>
+		                                                <td class="wrapper">
+		                                                  <table border="0" cellpadding="0" cellspacing="0">
+		                                                      <h2><b>SUPER</b>JACK<b>POT</b></h2>
+		                                                      <tr>
+		                                                      <td>
+		                                                        <p>Hey!</p>
+		                                                        <p>Thank you participating! Scratch the cards and get your present!</p>
+		                                                        <table border="0" cellpadding="0" cellspacing="0" >
+		                                                          <tbody>
+		                                                            <tr>
+		                                                              <td align="left">
+		                                                                <table border="0" cellpadding="0" cellspacing="0">
+		                                                                  <tbody>
+		                                                                    <tr>
+		                                                                      <td> <a href="https://mysuperjackpot.com/" target="_blank" class="buy" style="padding-top: 8px;">Buy Another Ticket!</a> </td>
+		                                                                    </tr>
+		                                                                  </tbody>
+		                                                                </table>
+		                                                              </td>
+		                                                            </tr>
+		                                                          </tbody>
+		                                                        </table>
+		                                                      </td>
+		                                                      <td></td>
+		                                                    </tr>
+		                                                  </table>
+		                                                </td>
+		                                              </tr>
+
+		                                            </table>
+
+		                                            <div class="footer">
+		                                              <table border="0" cellpadding="0" cellspacing="0">
+		                                                <tr>
+		                                                  <td class="content-block">
+		                                                    <span class="apple-link">Powered by SuperJackpot Lottery</span>
+		                                                  </td>
+		                                                </tr>
+		                                                <tr>
+		                                                  <td class="content-block powered-by">
+		                                                  </td>
+		                                                </tr>
+		                                              </table>
+		                                            </div>
+
+		                                          </div>
+		                                        </td>
+		                                        <td>&nbsp;</td>
+		                                      </tr>
+		                                    </table>
+		                                  </body>
+		                                </html>"""
+                	mail.send(msg)
+                except:
+                	print("Email hasn't been sent")
+                responseObject = {
+                	'status': 'success'
+                	}
                 return make_response(jsonify(responseObject)), 200
             responseObject = {
                 'status': 'fail',
@@ -1306,7 +1662,6 @@ class UpdateScratch(MethodView):
     def post(self):
         auth_header = request.headers.get('Authorization')
         post_data = request.get_json()
-        print(post_data)
         if auth_header:
             try:
                 auth_token = auth_header.split(" ")[1]
@@ -1370,421 +1725,812 @@ class GiveTickets(MethodView):
             if not isinstance(resp, str):
                 giver = User.query.filter_by(id=resp).first()
                 user = User.query.filter_by(email=post_data['email']).first()
+                wallet = Wallets.query.filter_by(user_id=giver.id).first()
                 bank = Bank.query.first()
-                if (user != None):
+                if (user != None and wallet.amount >= len(post_data['tickets'])):
                     if (post_data['type'] == "jackpot_5x36"):
 	                    for c in post_data['tickets']:
 	                        newBet = BetsJackpot_5_36(user.id, c['combination'], c['raffles'])
 	                        db.session.add(newBet)
 	                        bank.jackpot_5_36 += 1
+	                        wallet.amount -= 1
                     if (post_data['type'] == "jackpot_6x45"):
 	                    for c in post_data['tickets']:
 	                        newBet = BetsJackpot_6_45(user.id, c['combination'], c['raffles'])
 	                        db.session.add(newBet)
 	                        bank.jackpot_6_45 += 1
+	                        wallet.amount -= 1
                     if (post_data['type'] == "jackpot_4x21"):
 	                    for c in post_data['tickets']:
 	                        newBet = BetsJackpot_4_21(user.id, c['combination'], c['raffles'])
 	                        db.session.add(newBet)
 	                        bank.jackpot_4_21 += 1
+	                        wallet.amount -= 1
                     if (post_data['type'] == "rapidos"):
 	                    for c in post_data['tickets']:
 	                        newBet = BetsRapidos(user.id, c['combination'], c['raffles'])
 	                        db.session.add(newBet)
 	                        bank.rapidos += 1
+	                        wallet.amount -= 1
                     if (post_data['type'] == "two_numbers"):
 	                    for c in post_data['tickets']:
 	                        newBet = BetsTwoNumbers(user.id, c['combination'], c['raffles'])
 	                        db.session.add(newBet)
 	                        bank.two_numbers += 1
+	                        wallet.amount -= 1
                     if (post_data['type'] == "prize_jackpot"):
 	                    for c in post_data['tickets']:
 	                        newBet = BetsPrizeJackpot(user.id, c['combination'], c['raffles'])
 	                        db.session.add(newBet)
 	                        bank.prize_jackpot += 1
+	                        wallet.amount -= 1
+                    msg = Message("SuperJackpot Lottery", sender = "superjackpot.noreply@gmail.com", recipients=[post_data['email']])
+
+	                # create list of combinations
+                    comb_html = ""
+                    for c in post_data['tickets']:
+                    	for i in c['combination']:
+                    		comb_html += "<li><button>" + str(i) + "</button></li>"
+                    comb_html += '<br><br><br>'
+
+	                # Return combination/combinations based on amount tickets
+                    if len(post_data['tickets']) > 1:
+                    	comb_str = 'combinations'
+                    else:
+                    	comb_str = 'combination'
+
+	                # Purchased tickets in html response
+                    msg.html = """<html>
+	                                  <head>
+	                                    <meta name="viewport" content="width=device-width" />
+	                                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	                                    <title>SuperJackpot Lottery Ticket</title>
+	                                    <style>
+	                                      img {
+	                                        border: none;
+	                                        -ms-interpolation-mode: bicubic;
+	                                        max-width: 100%; }
+
+	                                      body {
+	                                        background-color: #f6f6f6;
+	                                        font-family: sans-serif;
+	                                        -webkit-font-smoothing: antialiased;
+	                                        font-size: 14px;
+	                                        line-height: 1.4;
+	                                        margin: 0;
+	                                        padding: 0;
+	                                        -ms-text-size-adjust: 100%;
+	                                        -webkit-text-size-adjust: 100%; }
+
+	                                      table {
+	                                        border-collapse: separate;
+	                                        mso-table-lspace: 0pt;
+	                                        mso-table-rspace: 0pt;
+	                                        width: 100%; }
+	                                        table td {
+	                                          font-family: sans-serif;
+	                                          font-size: 18px;
+	                                          vertical-align: top; }
+
+	                                      .body {
+	                                        background-color: #f6f6f6;
+	                                        width: 100%; }
+
+	                                      .container {
+	                                        display: block;
+	                                        Margin: 0 auto !important;
+	                                        max-width: 580px;
+	                                        padding: 10px;
+	                                        width: 580px; }
+
+	                                      .content {
+	                                        box-sizing: border-box;
+	                                        display: block;
+	                                        Margin: 0 auto;
+	                                        max-width: 580px;
+	                                        padding: 10px; }
+
+	                                      .main {
+	                                        background: #ffffff;
+	                                        border-radius: 3px;
+	                                        width: 100%; }
+
+	                                      .wrapper {
+	                                        box-sizing: border-box;
+	                                        padding: 20px; }
+
+	                                      .content-block {
+	                                        padding-bottom: 10px;
+	                                        padding-top: 10px;
+	                                      }
+
+	                                      .footer {
+	                                        clear: both;
+	                                        Margin-top: 10px;
+	                                        text-align: center;
+	                                        width: 100%; }
+	                                        .footer td,
+	                                        .footer p,
+	                                        .footer span,
+	                                        .footer a {
+	                                          color: #999999;
+	                                          font-size: 12px;
+	                                          text-align: center; }
+
+	                                      h1,
+	                                      h2,
+	                                      h3,
+	                                      h4 {
+	                                        color: #000000;
+	                                        font-family: sans-serif;
+	                                        font-weight: 400;
+	                                        line-height: 1.4;
+	                                        margin: 0;
+	                                        Margin-bottom: 30px; }
+
+	                                      h1 {
+	                                        font-size: 35px;
+	                                        font-weight: 300;
+	                                        text-align: center;
+	                                        text-transform: capitalize; }
+
+	                                      p,
+	                                      ul,
+	                                      ol {
+	                                        font-family: sans-serif;
+	                                        font-size: 15px;
+	                                        font-weight: normal;
+	                                        margin: 0;
+	                                        Margin-bottom: 15px; }
+	                                        p li,
+	                                        ul li,
+	                                        ol li {
+	                                          list-style-position: inside;
+	                                          margin-left: 5px; }
+
+	                                      a {
+	                                        text-decoration: underline; }
+
+	                                      .btn {
+	                                        box-sizing: border-box;
+	                                        width: 100%; }
+	                                        .btn > tbody > tr > td {
+	                                          padding-bottom: 15px; }
+	                                        .btn table {
+	                                          width: auto; }
+	                                        .btn table td {
+	                                          text-align: center; }
+	                                        .btn a {
+	                                          box-sizing: border-box;
+	                                          cursor: pointer;
+	                                          display: inline-block;
+	                                          font-size: 14px;
+	                                          font-weight: bold;
+	                                          margin: 0;
+	                                          padding: 12px 25px;
+	                                          text-decoration: none;
+	                                 }
+
+
+	                                      .buy {
+	                                          cursor: pointer;
+	                                          width: 200px;
+	                                          height: 35px;
+	                                          border: 1px solid #FFF;
+	                                          text-align: center;
+	                                          background-color: #000;
+	                                          color: #FFF;
+	                                          text-decoration: none;
+	                                          display: inline-block;
+	                                          font-size: 15px;
+	                                          margin-bottom: 13px;
+	                                        }
+
+	                                      .buy:hover {
+	                                          background-color: #FFF;
+	                                          color: #000;
+	                                          border-color: #000;
+	                                          transition: 0.3s;
+	                                        }
+
+	                                      .buy p {
+	                                        margin-top: 5px;
+	                                      }
+
+	                                      ul {
+	                                        list-style: none;
+	                                        padding: 0;
+	                                        margin:0;
+	                                      }
+
+	                                      ul button {
+	                                        text-decoration: none;
+	                                        color: #FFF;
+	                                        border: none;
+	                                        cursor: pointer;
+	                                        color: #000;
+	                                      }
+
+	                                      ul li button{
+	                                        width: 45px;
+	                                        background: #FFF;
+	                                        height: 45px;
+	                                        border-radius: 50%;
+	                                        border: 1px solid #000;
+	                                        float: left;
+	                                        margin: 5px;
+	                                        margin-left: 4px;
+	                                        margin-top: -10px;
+	                                        font-size: 19px;
+	                                        font-weight: bold;
+	                                      }
+
+
+	                                      .last {
+	                                        margin-bottom: 0; }
+
+	                                      .first {
+	                                        margin-top: 0; }
+
+	                                      .align-center {
+	                                        text-align: center; }
+
+	                                      .align-right {
+	                                        text-align: right; }
+
+	                                      .align-left {
+	                                        text-align: left; }
+
+	                                      .clear {
+	                                        clear: both; }
+
+	                                      .mt0 {
+	                                        margin-top: 0; }
+
+	                                      .mb0 {
+	                                        margin-bottom: 0; }
+
+	                                      .preheader {
+	                                        color: transparent;
+	                                        display: none;
+	                                        height: 0;
+	                                        max-height: 0;
+	                                        max-width: 0;
+	                                        opacity: 0;
+	                                        overflow: hidden;
+	                                        mso-hide: all;
+	                                        visibility: hidden;
+	                                        width: 0; }
+
+	                                      .powered-by a {
+	                                        text-decoration: none; }
+
+	                                      hr {
+	                                        border: 0;
+	                                        border-bottom: 1px solid #f6f6f6;
+	                                        Margin: 20px 0; }
+
+	                                      @media only screen and (max-width: 620px) {
+	                                        table[class=body] h1 {
+	                                          font-size: 28px !important;
+	                                          margin-bottom: 10px !important; }
+	                                        table[class=body] p,
+	                                        table[class=body] ul,
+	                                        table[class=body] ol,
+	                                        table[class=body] td,
+	                                        table[class=body] span,
+	                                        table[class=body] a {
+	                                          font-size: 16px !important; }
+	                                        table[class=body] .wrapper,
+	                                        table[class=body] .article {
+	                                          padding: 10px !important; }
+	                                        table[class=body] .content {
+	                                          padding: 0 !important; }
+	                                        table[class=body] .container {
+	                                          padding: 0 !important;
+	                                          width: 100% !important; }
+	                                        table[class=body] .main {
+	                                          border-left-width: 0 !important;
+	                                          border-radius: 0 !important;
+	                                          border-right-width: 0 !important; }
+	                                        table[class=body] .btn table {
+	                                          width: 100% !important; }
+	                                        table[class=body] .btn a {
+	                                          width: 100% !important; }
+	                                        table[class=body] .img-responsive {
+	                                          height: auto !important;
+	                                          max-width: 100% !important;
+	                                          width: auto !important; }
+	                                          }
+
+	                                      @media all {
+	                                        .ExternalClass {
+	                                          width: 100%; }
+	                                        .ExternalClass,
+	                                        .ExternalClass p,
+	                                        .ExternalClass span,
+	                                        .ExternalClass font,
+	                                        .ExternalClass td,
+	                                        .ExternalClass div {
+	                                          line-height: 100%; }
+	                                        .apple-link a {
+	                                          color: inherit !important;
+	                                          font-family: inherit !important;
+	                                          font-size: inherit !important;
+	                                          font-weight: inherit !important;
+	                                          line-height: inherit !important;
+	                                          text-decoration: none !important; }
+	                                        .btn-primary table td:hover {
+	                                          background-color: #34495e !important; }
+	                                        .btn-primary a:hover {
+	                                          background-color: #34495e !important;
+	                                          border-color: #34495e !important; } }
+
+	                                    </style>
+	                                  </head>
+	                                  <body class="">
+	                                    <table border="0" cellpadding="0" cellspacing="0" class="body">
+	                                      <tr>
+	                                        <td>&nbsp;</td>
+	                                        <td class="container">
+	                                          <div class="content">
+
+	                                            <span class="preheader">You've get a SUPERJACKPOT LOTTERY ticket!</span>
+	                                            <table class="main">
+
+	                                              <tr>
+	                                                <td class="wrapper">
+	                                                  <table border="0" cellpadding="0" cellspacing="0">
+	                                                      <h2><b>SUPER</b>JACK<b>POT</b></h2>
+	                                                      <tr>
+	                                                      <td>
+	                                                        <p>Hey!</p>
+	                                                        <p>Someone gave you a gift! The next draw will take place soon!</p>
+	                                                        <table border="0" cellpadding="0" cellspacing="0" >
+	                                                          <tbody>
+	                                                            <tr>
+	                                                              <td align="left">
+	                                                                <table border="0" cellpadding="0" cellspacing="0">
+	                                                                  <tbody>
+	                                                                    <tr>
+	                                                                      <td> <a href="https://mysuperjackpot.com" target="_blank" class="buy" style="padding-top: 8px;">Get your present!</a> </td>
+	                                                                    </tr>
+	                                                                  </tbody>
+	                                                                </table>
+	                                                              </td>
+	                                                            </tr>
+	                                                          </tbody>
+	                                                        </table>
+	                                                        <p>Your choosed """ + comb_str + """ is:</p>
+	                                                        <ul>""" + comb_html + """</ul>
+	                                                      </td>
+	                                                      <td></td>
+	                                                    </tr>
+	                                                  </table>
+	                                                </td>
+	                                              </tr>
+
+	                                            </table>
+
+	                                            <div class="footer">
+	                                              <table border="0" cellpadding="0" cellspacing="0">
+	                                                <tr>
+	                                                  <td class="content-block">
+	                                                    <span class="apple-link">Powered by SuperJackpot Lottery</span>
+	                                                  </td>
+	                                                </tr>
+	                                                <tr>
+	                                                  <td class="content-block powered-by">
+	                                                  </td>
+	                                                </tr>
+	                                              </table>
+	                                            </div>
+
+	                                          </div>
+	                                        </td>
+	                                        <td>&nbsp;</td>
+	                                      </tr>
+	                                    </table>
+	                                  </body>
+	                                </html>"""
+                    try:
+                    	mail.send(msg)
+                    except:
+                    	print("Email hasn't been sent")
+                    responseObject = {
+                    	'status': 'success'
+                    }
+                    return make_response(jsonify(responseObject)), 200
+
+                elif (wallet.amount < len(post_data['tickets'])):
+                    responseObject = {
+		                'status': 'fail',
+		                'message': 'Sorry, you have not enough founds to present the tickets'
+		            }
+                    return make_response(jsonify(responseObject)), 401
                 else:
                     for c in post_data['tickets']:
                         db.session.add(WaitingTickets(post_data['email'], post_data['type'], c['combination'], c['raffles'], None, False))
-                    #db.session.add(WaitingTickets(post_data['email'], post_data['type']))
-                bank.superjackpot += 1
-                db.session.commit()
-                msg = Message("SuperJackpot Lottery", sender = "superjackpot.noreply@gmail.com", recipients=[post_data['email']])
+                    msg = Message("SuperJackpot Lottery", sender = "superjackpot.noreply@gmail.com", recipients=[post_data['email']])
 
-                # create list of combinations
-                comb_html = ""
-                for c in post_data['tickets']:
-                    for i in c['combination']:
-                        comb_html += "<li><button>" + str(i) + "</button></li>"
+	                # create list of combinations
+                    comb_html = ""
+                    for c in post_data['tickets']:
+                    	for i in c['combination']:
+                    		comb_html += "<li><button>" + str(i) + "</button></li>"
                     comb_html += '<br><br><br>'
 
-                # Return combination/combinations based on amount tickets
-                if len(post_data['tickets']) > 1:
-                    comb_str = 'combinations'
-                else:
-                    comb_str = 'combination'
+	                # Return combination/combinations based on amount tickets
+                    if len(post_data['tickets']) > 1:
+                    	comb_str = 'combinations'
+                    else:
+                    	comb_str = 'combination'
 
-                # Purchased tickets in html response
-                msg.html = """<html>
-                                  <head>
-                                    <meta name="viewport" content="width=device-width" />
-                                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-                                    <title>SuperJackpot Lottery Ticket</title>
-                                    <style>
-                                      img {
-                                        border: none;
-                                        -ms-interpolation-mode: bicubic;
-                                        max-width: 100%; }
+	                # Purchased tickets in html response
+                    msg.html = """<html>
+	                                  <head>
+	                                    <meta name="viewport" content="width=device-width" />
+	                                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	                                    <title>SuperJackpot Lottery Ticket</title>
+	                                    <style>
+	                                      img {
+	                                        border: none;
+	                                        -ms-interpolation-mode: bicubic;
+	                                        max-width: 100%; }
 
-                                      body {
-                                        background-color: #f6f6f6;
-                                        font-family: sans-serif;
-                                        -webkit-font-smoothing: antialiased;
-                                        font-size: 14px;
-                                        line-height: 1.4;
-                                        margin: 0;
-                                        padding: 0;
-                                        -ms-text-size-adjust: 100%;
-                                        -webkit-text-size-adjust: 100%; }
+	                                      body {
+	                                        background-color: #f6f6f6;
+	                                        font-family: sans-serif;
+	                                        -webkit-font-smoothing: antialiased;
+	                                        font-size: 14px;
+	                                        line-height: 1.4;
+	                                        margin: 0;
+	                                        padding: 0;
+	                                        -ms-text-size-adjust: 100%;
+	                                        -webkit-text-size-adjust: 100%; }
 
-                                      table {
-                                        border-collapse: separate;
-                                        mso-table-lspace: 0pt;
-                                        mso-table-rspace: 0pt;
-                                        width: 100%; }
-                                        table td {
-                                          font-family: sans-serif;
-                                          font-size: 18px;
-                                          vertical-align: top; }
+	                                      table {
+	                                        border-collapse: separate;
+	                                        mso-table-lspace: 0pt;
+	                                        mso-table-rspace: 0pt;
+	                                        width: 100%; }
+	                                        table td {
+	                                          font-family: sans-serif;
+	                                          font-size: 18px;
+	                                          vertical-align: top; }
 
-                                      .body {
-                                        background-color: #f6f6f6;
-                                        width: 100%; }
+	                                      .body {
+	                                        background-color: #f6f6f6;
+	                                        width: 100%; }
 
-                                      .container {
-                                        display: block;
-                                        Margin: 0 auto !important;
-                                        max-width: 580px;
-                                        padding: 10px;
-                                        width: 580px; }
+	                                      .container {
+	                                        display: block;
+	                                        Margin: 0 auto !important;
+	                                        max-width: 580px;
+	                                        padding: 10px;
+	                                        width: 580px; }
 
-                                      .content {
-                                        box-sizing: border-box;
-                                        display: block;
-                                        Margin: 0 auto;
-                                        max-width: 580px;
-                                        padding: 10px; }
+	                                      .content {
+	                                        box-sizing: border-box;
+	                                        display: block;
+	                                        Margin: 0 auto;
+	                                        max-width: 580px;
+	                                        padding: 10px; }
 
-                                      .main {
-                                        background: #ffffff;
-                                        border-radius: 3px;
-                                        width: 100%; }
+	                                      .main {
+	                                        background: #ffffff;
+	                                        border-radius: 3px;
+	                                        width: 100%; }
 
-                                      .wrapper {
-                                        box-sizing: border-box;
-                                        padding: 20px; }
+	                                      .wrapper {
+	                                        box-sizing: border-box;
+	                                        padding: 20px; }
 
-                                      .content-block {
-                                        padding-bottom: 10px;
-                                        padding-top: 10px;
-                                      }
+	                                      .content-block {
+	                                        padding-bottom: 10px;
+	                                        padding-top: 10px;
+	                                      }
 
-                                      .footer {
-                                        clear: both;
-                                        Margin-top: 10px;
-                                        text-align: center;
-                                        width: 100%; }
-                                        .footer td,
-                                        .footer p,
-                                        .footer span,
-                                        .footer a {
-                                          color: #999999;
-                                          font-size: 12px;
-                                          text-align: center; }
+	                                      .footer {
+	                                        clear: both;
+	                                        Margin-top: 10px;
+	                                        text-align: center;
+	                                        width: 100%; }
+	                                        .footer td,
+	                                        .footer p,
+	                                        .footer span,
+	                                        .footer a {
+	                                          color: #999999;
+	                                          font-size: 12px;
+	                                          text-align: center; }
 
-                                      h1,
-                                      h2,
-                                      h3,
-                                      h4 {
-                                        color: #000000;
-                                        font-family: sans-serif;
-                                        font-weight: 400;
-                                        line-height: 1.4;
-                                        margin: 0;
-                                        Margin-bottom: 30px; }
+	                                      h1,
+	                                      h2,
+	                                      h3,
+	                                      h4 {
+	                                        color: #000000;
+	                                        font-family: sans-serif;
+	                                        font-weight: 400;
+	                                        line-height: 1.4;
+	                                        margin: 0;
+	                                        Margin-bottom: 30px; }
 
-                                      h1 {
-                                        font-size: 35px;
-                                        font-weight: 300;
-                                        text-align: center;
-                                        text-transform: capitalize; }
+	                                      h1 {
+	                                        font-size: 35px;
+	                                        font-weight: 300;
+	                                        text-align: center;
+	                                        text-transform: capitalize; }
 
-                                      p,
-                                      ul,
-                                      ol {
-                                        font-family: sans-serif;
-                                        font-size: 15px;
-                                        font-weight: normal;
-                                        margin: 0;
-                                        Margin-bottom: 15px; }
-                                        p li,
-                                        ul li,
-                                        ol li {
-                                          list-style-position: inside;
-                                          margin-left: 5px; }
+	                                      p,
+	                                      ul,
+	                                      ol {
+	                                        font-family: sans-serif;
+	                                        font-size: 15px;
+	                                        font-weight: normal;
+	                                        margin: 0;
+	                                        Margin-bottom: 15px; }
+	                                        p li,
+	                                        ul li,
+	                                        ol li {
+	                                          list-style-position: inside;
+	                                          margin-left: 5px; }
 
-                                      a {
-                                        text-decoration: underline; }
+	                                      a {
+	                                        text-decoration: underline; }
 
-                                      .btn {
-                                        box-sizing: border-box;
-                                        width: 100%; }
-                                        .btn > tbody > tr > td {
-                                          padding-bottom: 15px; }
-                                        .btn table {
-                                          width: auto; }
-                                        .btn table td {
-                                          text-align: center; }
-                                        .btn a {
-                                          box-sizing: border-box;
-                                          cursor: pointer;
-                                          display: inline-block;
-                                          font-size: 14px;
-                                          font-weight: bold;
-                                          margin: 0;
-                                          padding: 12px 25px;
-                                          text-decoration: none;
-                                 }
-
-
-                                      .buy {
-                                          cursor: pointer;
-                                          width: 200px;
-                                          height: 35px;
-                                          border: 1px solid #FFF;
-                                          text-align: center;
-                                          background-color: #000;
-                                          color: #FFF;
-                                          text-decoration: none;
-                                          display: inline-block;
-                                          font-size: 15px;
-                                          margin-bottom: 13px;
-                                        }
-
-                                      .buy:hover {
-                                          background-color: #FFF;
-                                          color: #000;
-                                          border-color: #000;
-                                          transition: 0.3s;
-                                        }
-
-                                      .buy p {
-                                        margin-top: 5px;
-                                      }
-
-                                      ul {
-                                        list-style: none;
-                                        padding: 0;
-                                        margin:0;
-                                      }
-
-                                      ul button {
-                                        text-decoration: none;
-                                        color: #FFF;
-                                        border: none;
-                                        cursor: pointer;
-                                        color: #000;
-                                      }
-
-                                      ul li button{
-                                        width: 45px;
-                                        background: #FFF;
-                                        height: 45px;
-                                        border-radius: 50%;
-                                        border: 1px solid #000;
-                                        float: left;
-                                        margin: 5px;
-                                        margin-left: 4px;
-                                        margin-top: -10px;
-                                        font-size: 19px;
-                                        font-weight: bold;
-                                      }
+	                                      .btn {
+	                                        box-sizing: border-box;
+	                                        width: 100%; }
+	                                        .btn > tbody > tr > td {
+	                                          padding-bottom: 15px; }
+	                                        .btn table {
+	                                          width: auto; }
+	                                        .btn table td {
+	                                          text-align: center; }
+	                                        .btn a {
+	                                          box-sizing: border-box;
+	                                          cursor: pointer;
+	                                          display: inline-block;
+	                                          font-size: 14px;
+	                                          font-weight: bold;
+	                                          margin: 0;
+	                                          padding: 12px 25px;
+	                                          text-decoration: none;
+	                                 }
 
 
-                                      .last {
-                                        margin-bottom: 0; }
+	                                      .buy {
+	                                          cursor: pointer;
+	                                          width: 200px;
+	                                          height: 35px;
+	                                          border: 1px solid #FFF;
+	                                          text-align: center;
+	                                          background-color: #000;
+	                                          color: #FFF;
+	                                          text-decoration: none;
+	                                          display: inline-block;
+	                                          font-size: 15px;
+	                                          margin-bottom: 13px;
+	                                        }
 
-                                      .first {
-                                        margin-top: 0; }
+	                                      .buy:hover {
+	                                          background-color: #FFF;
+	                                          color: #000;
+	                                          border-color: #000;
+	                                          transition: 0.3s;
+	                                        }
 
-                                      .align-center {
-                                        text-align: center; }
+	                                      .buy p {
+	                                        margin-top: 5px;
+	                                      }
 
-                                      .align-right {
-                                        text-align: right; }
+	                                      ul {
+	                                        list-style: none;
+	                                        padding: 0;
+	                                        margin:0;
+	                                      }
 
-                                      .align-left {
-                                        text-align: left; }
+	                                      ul button {
+	                                        text-decoration: none;
+	                                        color: #FFF;
+	                                        border: none;
+	                                        cursor: pointer;
+	                                        color: #000;
+	                                      }
 
-                                      .clear {
-                                        clear: both; }
+	                                      ul li button{
+	                                        width: 45px;
+	                                        background: #FFF;
+	                                        height: 45px;
+	                                        border-radius: 50%;
+	                                        border: 1px solid #000;
+	                                        float: left;
+	                                        margin: 5px;
+	                                        margin-left: 4px;
+	                                        margin-top: -10px;
+	                                        font-size: 19px;
+	                                        font-weight: bold;
+	                                      }
 
-                                      .mt0 {
-                                        margin-top: 0; }
 
-                                      .mb0 {
-                                        margin-bottom: 0; }
+	                                      .last {
+	                                        margin-bottom: 0; }
 
-                                      .preheader {
-                                        color: transparent;
-                                        display: none;
-                                        height: 0;
-                                        max-height: 0;
-                                        max-width: 0;
-                                        opacity: 0;
-                                        overflow: hidden;
-                                        mso-hide: all;
-                                        visibility: hidden;
-                                        width: 0; }
+	                                      .first {
+	                                        margin-top: 0; }
 
-                                      .powered-by a {
-                                        text-decoration: none; }
+	                                      .align-center {
+	                                        text-align: center; }
 
-                                      hr {
-                                        border: 0;
-                                        border-bottom: 1px solid #f6f6f6;
-                                        Margin: 20px 0; }
+	                                      .align-right {
+	                                        text-align: right; }
 
-                                      @media only screen and (max-width: 620px) {
-                                        table[class=body] h1 {
-                                          font-size: 28px !important;
-                                          margin-bottom: 10px !important; }
-                                        table[class=body] p,
-                                        table[class=body] ul,
-                                        table[class=body] ol,
-                                        table[class=body] td,
-                                        table[class=body] span,
-                                        table[class=body] a {
-                                          font-size: 16px !important; }
-                                        table[class=body] .wrapper,
-                                        table[class=body] .article {
-                                          padding: 10px !important; }
-                                        table[class=body] .content {
-                                          padding: 0 !important; }
-                                        table[class=body] .container {
-                                          padding: 0 !important;
-                                          width: 100% !important; }
-                                        table[class=body] .main {
-                                          border-left-width: 0 !important;
-                                          border-radius: 0 !important;
-                                          border-right-width: 0 !important; }
-                                        table[class=body] .btn table {
-                                          width: 100% !important; }
-                                        table[class=body] .btn a {
-                                          width: 100% !important; }
-                                        table[class=body] .img-responsive {
-                                          height: auto !important;
-                                          max-width: 100% !important;
-                                          width: auto !important; }
-                                          }
+	                                      .align-left {
+	                                        text-align: left; }
 
-                                      @media all {
-                                        .ExternalClass {
-                                          width: 100%; }
-                                        .ExternalClass,
-                                        .ExternalClass p,
-                                        .ExternalClass span,
-                                        .ExternalClass font,
-                                        .ExternalClass td,
-                                        .ExternalClass div {
-                                          line-height: 100%; }
-                                        .apple-link a {
-                                          color: inherit !important;
-                                          font-family: inherit !important;
-                                          font-size: inherit !important;
-                                          font-weight: inherit !important;
-                                          line-height: inherit !important;
-                                          text-decoration: none !important; }
-                                        .btn-primary table td:hover {
-                                          background-color: #34495e !important; }
-                                        .btn-primary a:hover {
-                                          background-color: #34495e !important;
-                                          border-color: #34495e !important; } }
+	                                      .clear {
+	                                        clear: both; }
 
-                                    </style>
-                                  </head>
-                                  <body class="">
-                                    <table border="0" cellpadding="0" cellspacing="0" class="body">
-                                      <tr>
-                                        <td>&nbsp;</td>
-                                        <td class="container">
-                                          <div class="content">
+	                                      .mt0 {
+	                                        margin-top: 0; }
 
-                                            <span class="preheader">You've get a SUPERJACKPOT LOTTERY ticket!</span>
-                                            <table class="main">
+	                                      .mb0 {
+	                                        margin-bottom: 0; }
 
-                                              <tr>
-                                                <td class="wrapper">
-                                                  <table border="0" cellpadding="0" cellspacing="0">
-                                                      <h2><b>SUPER</b>JACK<b>POT</b></h2>
-                                                      <tr>
-                                                      <td>
-                                                        <p>Hey!</p>
-                                                        <p>Someone gave you a gift! The next draw will take place soon!</p>
-                                                        <table border="0" cellpadding="0" cellspacing="0" >
-                                                          <tbody>
-                                                            <tr>
-                                                              <td align="left">
-                                                                <table border="0" cellpadding="0" cellspacing="0">
-                                                                  <tbody>
-                                                                    <tr>
-                                                                      <td> <a href="http://5.178.87.7:7000" target="_blank" class="buy" style="padding-top: 8px;">Buy Another Ticket!</a> </td>
-                                                                    </tr>
-                                                                  </tbody>
-                                                                </table>
-                                                              </td>
-                                                            </tr>
-                                                          </tbody>
-                                                        </table>
-                                                        <p>Your choosed """ + comb_str + """ is:</p>
-                                                        <ul>""" + comb_html + """</ul>
-                                                      </td>
-                                                      <td></td>
-                                                    </tr>
-                                                  </table>
-                                                </td>
-                                              </tr>
+	                                      .preheader {
+	                                        color: transparent;
+	                                        display: none;
+	                                        height: 0;
+	                                        max-height: 0;
+	                                        max-width: 0;
+	                                        opacity: 0;
+	                                        overflow: hidden;
+	                                        mso-hide: all;
+	                                        visibility: hidden;
+	                                        width: 0; }
 
-                                            </table>
+	                                      .powered-by a {
+	                                        text-decoration: none; }
 
-                                            <div class="footer">
-                                              <table border="0" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                  <td class="content-block">
-                                                    <span class="apple-link">Powered by Lateco</span>
-                                                  </td>
-                                                </tr>
-                                                <tr>
-                                                  <td class="content-block powered-by">
-                                                  </td>
-                                                </tr>
-                                              </table>
-                                            </div>
+	                                      hr {
+	                                        border: 0;
+	                                        border-bottom: 1px solid #f6f6f6;
+	                                        Margin: 20px 0; }
 
-                                          </div>
-                                        </td>
-                                        <td>&nbsp;</td>
-                                      </tr>
-                                    </table>
-                                  </body>
-                                </html>"""
-                try:
-                    mail.send(msg)
-                except:
-                    print("Email hasn't been sent")
-                responseObject = {
-                    'status': 'success'
-                }
-                return make_response(jsonify(responseObject)), 200
+	                                      @media only screen and (max-width: 620px) {
+	                                        table[class=body] h1 {
+	                                          font-size: 28px !important;
+	                                          margin-bottom: 10px !important; }
+	                                        table[class=body] p,
+	                                        table[class=body] ul,
+	                                        table[class=body] ol,
+	                                        table[class=body] td,
+	                                        table[class=body] span,
+	                                        table[class=body] a {
+	                                          font-size: 16px !important; }
+	                                        table[class=body] .wrapper,
+	                                        table[class=body] .article {
+	                                          padding: 10px !important; }
+	                                        table[class=body] .content {
+	                                          padding: 0 !important; }
+	                                        table[class=body] .container {
+	                                          padding: 0 !important;
+	                                          width: 100% !important; }
+	                                        table[class=body] .main {
+	                                          border-left-width: 0 !important;
+	                                          border-radius: 0 !important;
+	                                          border-right-width: 0 !important; }
+	                                        table[class=body] .btn table {
+	                                          width: 100% !important; }
+	                                        table[class=body] .btn a {
+	                                          width: 100% !important; }
+	                                        table[class=body] .img-responsive {
+	                                          height: auto !important;
+	                                          max-width: 100% !important;
+	                                          width: auto !important; }
+	                                          }
+
+	                                      @media all {
+	                                        .ExternalClass {
+	                                          width: 100%; }
+	                                        .ExternalClass,
+	                                        .ExternalClass p,
+	                                        .ExternalClass span,
+	                                        .ExternalClass font,
+	                                        .ExternalClass td,
+	                                        .ExternalClass div {
+	                                          line-height: 100%; }
+	                                        .apple-link a {
+	                                          color: inherit !important;
+	                                          font-family: inherit !important;
+	                                          font-size: inherit !important;
+	                                          font-weight: inherit !important;
+	                                          line-height: inherit !important;
+	                                          text-decoration: none !important; }
+	                                        .btn-primary table td:hover {
+	                                          background-color: #34495e !important; }
+	                                        .btn-primary a:hover {
+	                                          background-color: #34495e !important;
+	                                          border-color: #34495e !important; } }
+
+	                                    </style>
+	                                  </head>
+	                                  <body class="">
+	                                    <table border="0" cellpadding="0" cellspacing="0" class="body">
+	                                      <tr>
+	                                        <td>&nbsp;</td>
+	                                        <td class="container">
+	                                          <div class="content">
+
+	                                            <span class="preheader">You've get a SUPERJACKPOT LOTTERY ticket!</span>
+	                                            <table class="main">
+
+	                                              <tr>
+	                                                <td class="wrapper">
+	                                                  <table border="0" cellpadding="0" cellspacing="0">
+	                                                      <h2><b>SUPER</b>JACK<b>POT</b></h2>
+	                                                      <tr>
+	                                                      <td>
+	                                                        <p>Hey!</p>
+	                                                        <p>Someone gave you a gift! The next draw will take place soon!</p>
+	                                                        <table border="0" cellpadding="0" cellspacing="0" >
+	                                                          <tbody>
+	                                                            <tr>
+	                                                              <td align="left">
+	                                                                <table border="0" cellpadding="0" cellspacing="0">
+	                                                                  <tbody>
+	                                                                    <tr>
+	                                                                      <td> <a href="https://mysuperjackpot.com/register" target="_blank" class="buy" style="padding-top: 8px;">Register now!</a> </td>
+	                                                                    </tr>
+	                                                                  </tbody>
+	                                                                </table>
+	                                                              </td>
+	                                                            </tr>
+	                                                          </tbody>
+	                                                        </table>
+	                                                        <p>Your choosed """ + comb_str + """ is:</p>
+	                                                        <ul>""" + comb_html + """</ul>
+	                                                      </td>
+	                                                      <td></td>
+	                                                    </tr>
+	                                                  </table>
+	                                                </td>
+	                                              </tr>
+
+	                                            </table>
+
+	                                            <div class="footer">
+	                                              <table border="0" cellpadding="0" cellspacing="0">
+	                                                <tr>
+	                                                  <td class="content-block">
+	                                                    <span class="apple-link">Powered by SuperJackpot Lottery</span>
+	                                                  </td>
+	                                                </tr>
+	                                                <tr>
+	                                                  <td class="content-block powered-by">
+	                                                  </td>
+	                                                </tr>
+	                                              </table>
+	                                            </div>
+
+	                                          </div>
+	                                        </td>
+	                                        <td>&nbsp;</td>
+	                                      </tr>
+	                                    </table>
+	                                  </body>
+	                                </html>"""
+                    try:
+                    	mail.send(msg)
+                    except:
+                    	print("Email hasn't been sent")
+                    responseObject = {
+                    	'status': 'success'
+                    }
+                    return make_response(jsonify(responseObject)), 200
+                bank.superjackpot += 1
+                db.session.commit()
+
             responseObject = {
                 'status': 'fail',
                 'message': resp
@@ -1818,31 +2564,759 @@ class GiveScratch(MethodView):
             if not isinstance(resp, str):
                 giver = User.query.filter_by(id=resp).first()
                 user = User.query.filter_by(email=post_data.get('email')).first()
+                wallet = Wallets.query.filter_by(user_id=giver.id).first()
                 win_combination = GetRandomArray(0, 9, 9)
-                if (user != None):
+                if (user != None and wallet.amount >= post_data.get('tickets')):
                     for i in range(0, post_data.get('tickets')):
                         ticket_arr = GetRandomArray(0, 9, 9)
                         if post_data.get('type') == '777':
                             bet_777 = Bets777(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
                             db.session.add(bet_777)
+                            wallet.amount -= 1
                         if post_data.get('type') == '100CASH':
                             bet_100cash = Bets100Cash(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
                             db.session.add(bet_100cash)
+                            wallet.amount -= 1
                         if post_data.get('type') == 'fruity':
                             bet_fruity = BetsFruity(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
                             db.session.add(bet_fruity)
+                            wallet.amount -= 1
                         db.session.commit()
+                    msg = Message("SuperJackpot Lottery", sender = "superjackpot.noreply@gmail.com", recipients=[user.email])
+                    msg.html = """<html>
+	                                  <head>
+	                                    <meta name="viewport" content="width=device-width" />
+	                                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	                                    <title>SuperJackpot Lottery Ticket</title>
+	                                    <style>
+	                                      img {
+	                                        border: none;
+	                                        -ms-interpolation-mode: bicubic;
+	                                        max-width: 100%; }
+
+	                                      body {
+	                                        background-color: #f6f6f6;
+	                                        font-family: sans-serif;
+	                                        -webkit-font-smoothing: antialiased;
+	                                        font-size: 14px;
+	                                        line-height: 1.4;
+	                                        margin: 0;
+	                                        padding: 0;
+	                                        -ms-text-size-adjust: 100%;
+	                                        -webkit-text-size-adjust: 100%; }
+
+	                                      table {
+	                                        border-collapse: separate;
+	                                        mso-table-lspace: 0pt;
+	                                        mso-table-rspace: 0pt;
+	                                        width: 100%; }
+	                                        table td {
+	                                          font-family: sans-serif;
+	                                          font-size: 18px;
+	                                          vertical-align: top; }
+
+	                                      .body {
+	                                        background-color: #f6f6f6;
+	                                        width: 100%; }
+
+	                                      .container {
+	                                        display: block;
+	                                        Margin: 0 auto !important;
+	                                        max-width: 580px;
+	                                        padding: 10px;
+	                                        width: 580px; }
+
+	                                      .content {
+	                                        box-sizing: border-box;
+	                                        display: block;
+	                                        Margin: 0 auto;
+	                                        max-width: 580px;
+	                                        padding: 10px; }
+
+	                                      .main {
+	                                        background: #ffffff;
+	                                        border-radius: 3px;
+	                                        width: 100%; }
+
+	                                      .wrapper {
+	                                        box-sizing: border-box;
+	                                        padding: 20px; }
+
+	                                      .content-block {
+	                                        padding-bottom: 10px;
+	                                        padding-top: 10px;
+	                                      }
+
+	                                      .footer {
+	                                        clear: both;
+	                                        Margin-top: 10px;
+	                                        text-align: center;
+	                                        width: 100%; }
+	                                        .footer td,
+	                                        .footer p,
+	                                        .footer span,
+	                                        .footer a {
+	                                          color: #999999;
+	                                          font-size: 12px;
+	                                          text-align: center; }
+
+	                                      h1,
+	                                      h2,
+	                                      h3,
+	                                      h4 {
+	                                        color: #000000;
+	                                        font-family: sans-serif;
+	                                        font-weight: 400;
+	                                        line-height: 1.4;
+	                                        margin: 0;
+	                                        Margin-bottom: 30px; }
+
+	                                      h1 {
+	                                        font-size: 35px;
+	                                        font-weight: 300;
+	                                        text-align: center;
+	                                        text-transform: capitalize; }
+
+	                                      p,
+	                                      ul,
+	                                      ol {
+	                                        font-family: sans-serif;
+	                                        font-size: 15px;
+	                                        font-weight: normal;
+	                                        margin: 0;
+	                                        Margin-bottom: 15px; }
+	                                        p li,
+	                                        ul li,
+	                                        ol li {
+	                                          list-style-position: inside;
+	                                          margin-left: 5px; }
+
+	                                      a {
+	                                        text-decoration: underline; }
+
+	                                      .btn {
+	                                        box-sizing: border-box;
+	                                        width: 100%; }
+	                                        .btn > tbody > tr > td {
+	                                          padding-bottom: 15px; }
+	                                        .btn table {
+	                                          width: auto; }
+	                                        .btn table td {
+	                                          text-align: center; }
+	                                        .btn a {
+	                                          box-sizing: border-box;
+	                                          cursor: pointer;
+	                                          display: inline-block;
+	                                          font-size: 14px;
+	                                          font-weight: bold;
+	                                          margin: 0;
+	                                          padding: 12px 25px;
+	                                          text-decoration: none;
+	                                 }
+
+
+	                                      .buy {
+	                                          cursor: pointer;
+	                                          width: 200px;
+	                                          height: 35px;
+	                                          border: 1px solid #FFF;
+	                                          text-align: center;
+	                                          background-color: #000;
+	                                          color: #FFF;
+	                                          text-decoration: none;
+	                                          display: inline-block;
+	                                          font-size: 15px;
+	                                          margin-bottom: 13px;
+	                                        }
+
+	                                      .buy:hover {
+	                                          background-color: #FFF;
+	                                          color: #000;
+	                                          border-color: #000;
+	                                          transition: 0.3s;
+	                                        }
+
+	                                      .buy p {
+	                                        margin-top: 5px;
+	                                      }
+
+	                                      ul {
+	                                        list-style: none;
+	                                        padding: 0;
+	                                        margin:0;
+	                                      }
+
+	                                      ul button {
+	                                        text-decoration: none;
+	                                        color: #FFF;
+	                                        border: none;
+	                                        cursor: pointer;
+	                                        color: #000;
+	                                      }
+
+	                                      ul li button{
+	                                        width: 45px;
+	                                        background: #FFF;
+	                                        height: 45px;
+	                                        border-radius: 50%;
+	                                        border: 1px solid #000;
+	                                        float: left;
+	                                        margin: 5px;
+	                                        margin-left: 4px;
+	                                        margin-top: -10px;
+	                                        font-size: 19px;
+	                                        font-weight: bold;
+	                                      }
+
+
+	                                      .last {
+	                                        margin-bottom: 0; }
+
+	                                      .first {
+	                                        margin-top: 0; }
+
+	                                      .align-center {
+	                                        text-align: center; }
+
+	                                      .align-right {
+	                                        text-align: right; }
+
+	                                      .align-left {
+	                                        text-align: left; }
+
+	                                      .clear {
+	                                        clear: both; }
+
+	                                      .mt0 {
+	                                        margin-top: 0; }
+
+	                                      .mb0 {
+	                                        margin-bottom: 0; }
+
+	                                      .preheader {
+	                                        color: transparent;
+	                                        display: none;
+	                                        height: 0;
+	                                        max-height: 0;
+	                                        max-width: 0;
+	                                        opacity: 0;
+	                                        overflow: hidden;
+	                                        mso-hide: all;
+	                                        visibility: hidden;
+	                                        width: 0; }
+
+	                                      .powered-by a {
+	                                        text-decoration: none; }
+
+	                                      hr {
+	                                        border: 0;
+	                                        border-bottom: 1px solid #f6f6f6;
+	                                        Margin: 20px 0; }
+
+	                                      @media only screen and (max-width: 620px) {
+	                                        table[class=body] h1 {
+	                                          font-size: 28px !important;
+	                                          margin-bottom: 10px !important; }
+	                                        table[class=body] p,
+	                                        table[class=body] ul,
+	                                        table[class=body] ol,
+	                                        table[class=body] td,
+	                                        table[class=body] span,
+	                                        table[class=body] a {
+	                                          font-size: 16px !important; }
+	                                        table[class=body] .wrapper,
+	                                        table[class=body] .article {
+	                                          padding: 10px !important; }
+	                                        table[class=body] .content {
+	                                          padding: 0 !important; }
+	                                        table[class=body] .container {
+	                                          padding: 0 !important;
+	                                          width: 100% !important; }
+	                                        table[class=body] .main {
+	                                          border-left-width: 0 !important;
+	                                          border-radius: 0 !important;
+	                                          border-right-width: 0 !important; }
+	                                        table[class=body] .btn table {
+	                                          width: 100% !important; }
+	                                        table[class=body] .btn a {
+	                                          width: 100% !important; }
+	                                        table[class=body] .img-responsive {
+	                                          height: auto !important;
+	                                          max-width: 100% !important;
+	                                          width: auto !important; }
+	                                          }
+
+	                                      @media all {
+	                                        .ExternalClass {
+	                                          width: 100%; }
+	                                        .ExternalClass,
+	                                        .ExternalClass p,
+	                                        .ExternalClass span,
+	                                        .ExternalClass font,
+	                                        .ExternalClass td,
+	                                        .ExternalClass div {
+	                                          line-height: 100%; }
+	                                        .apple-link a {
+	                                          color: inherit !important;
+	                                          font-family: inherit !important;
+	                                          font-size: inherit !important;
+	                                          font-weight: inherit !important;
+	                                          line-height: inherit !important;
+	                                          text-decoration: none !important; }
+	                                        .btn-primary table td:hover {
+	                                          background-color: #34495e !important; }
+	                                        .btn-primary a:hover {
+	                                          background-color: #34495e !important;
+	                                          border-color: #34495e !important; } }
+
+	                                    </style>
+	                                  </head>
+	                                  <body class="">
+	                                    <table border="0" cellpadding="0" cellspacing="0" class="body">
+	                                      <tr>
+	                                        <td>&nbsp;</td>
+	                                        <td class="container">
+	                                          <div class="content">
+
+	                                            <span class="preheader">You've get a SUPERJACKPOT LOTTERY ticket!</span>
+	                                            <table class="main">
+
+	                                              <tr>
+	                                                <td class="wrapper">
+	                                                  <table border="0" cellpadding="0" cellspacing="0">
+	                                                      <h2><b>SUPER</b>JACK<b>POT</b></h2>
+	                                                      <tr>
+	                                                      <td>
+	                                                        <p>Hey!</p>
+	                                                        <p>Someone gave you a gift! The next draw will take place soon!</p>
+	                                                        <table border="0" cellpadding="0" cellspacing="0" >
+	                                                          <tbody>
+	                                                            <tr>
+	                                                              <td align="left">
+	                                                                <table border="0" cellpadding="0" cellspacing="0">
+	                                                                  <tbody>
+	                                                                    <tr>
+	                                                                      <td> <a href="https://mysuperjackpot.com/" target="_blank" class="buy" style="padding-top: 8px;">Get your present!</a> </td>
+	                                                                    </tr>
+	                                                                  </tbody>
+	                                                                </table>
+	                                                              </td>
+	                                                            </tr>
+	                                                          </tbody>
+	                                                        </table>
+	                                                        <p>Scratch the cards and get your prize!</p>
+	                                                      </td>
+	                                                      <td></td>
+	                                                    </tr>
+	                                                  </table>
+	                                                </td>
+	                                              </tr>
+
+	                                            </table>
+
+	                                            <div class="footer">
+	                                              <table border="0" cellpadding="0" cellspacing="0">
+	                                                <tr>
+	                                                  <td class="content-block">
+	                                                    <span class="apple-link">Powered by SuperJackpot Lottery</span>
+	                                                  </td>
+	                                                </tr>
+	                                                <tr>
+	                                                  <td class="content-block powered-by">
+	                                                  </td>
+	                                                </tr>
+	                                              </table>
+	                                            </div>
+
+	                                          </div>
+	                                        </td>
+	                                        <td>&nbsp;</td>
+	                                      </tr>
+	                                    </table>
+	                                  </body>
+	                                </html>"""
+                    try:
+                    	mail.send(msg)
+                    except:
+                    	print("Email hasn't been sent")
+                    responseObject = {
+                    	'status': 'success'
+                    }
+                    return make_response(jsonify(responseObject)), 200
+                elif (wallet.amount < post_data['tickets']):
+                    responseObject = {
+		                'status': 'fail',
+		                'message': 'Sorry, you have not enough founds to present the tickets'
+		            }
+                    return make_response(jsonify(responseObject)), 401
                 else:
                     print(post_data.get('tickets'))
                     for i in range(0, post_data.get('tickets')):
                         ticket_arr = GetRandomArray(0, 9, 9)
                         db.session.add(WaitingTickets(post_data['email'], post_data['type'], ticket_arr, 1, win_combination, CompareArrays(ticket_arr, win_combination)))
                         db.session.commit()
+                        msg = Message("SuperJackpot Lottery", sender = "superjackpot.noreply@gmail.com", recipients=[post_data['email']])
+                        msg.html = """<html>
+		                                  <head>
+		                                    <meta name="viewport" content="width=device-width" />
+		                                    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		                                    <title>SuperJackpot Lottery Ticket</title>
+		                                    <style>
+		                                      img {
+		                                        border: none;
+		                                        -ms-interpolation-mode: bicubic;
+		                                        max-width: 100%; }
+
+		                                      body {
+		                                        background-color: #f6f6f6;
+		                                        font-family: sans-serif;
+		                                        -webkit-font-smoothing: antialiased;
+		                                        font-size: 14px;
+		                                        line-height: 1.4;
+		                                        margin: 0;
+		                                        padding: 0;
+		                                        -ms-text-size-adjust: 100%;
+		                                        -webkit-text-size-adjust: 100%; }
+
+		                                      table {
+		                                        border-collapse: separate;
+		                                        mso-table-lspace: 0pt;
+		                                        mso-table-rspace: 0pt;
+		                                        width: 100%; }
+		                                        table td {
+		                                          font-family: sans-serif;
+		                                          font-size: 18px;
+		                                          vertical-align: top; }
+
+		                                      .body {
+		                                        background-color: #f6f6f6;
+		                                        width: 100%; }
+
+		                                      .container {
+		                                        display: block;
+		                                        Margin: 0 auto !important;
+		                                        max-width: 580px;
+		                                        padding: 10px;
+		                                        width: 580px; }
+
+		                                      .content {
+		                                        box-sizing: border-box;
+		                                        display: block;
+		                                        Margin: 0 auto;
+		                                        max-width: 580px;
+		                                        padding: 10px; }
+
+		                                      .main {
+		                                        background: #ffffff;
+		                                        border-radius: 3px;
+		                                        width: 100%; }
+
+		                                      .wrapper {
+		                                        box-sizing: border-box;
+		                                        padding: 20px; }
+
+		                                      .content-block {
+		                                        padding-bottom: 10px;
+		                                        padding-top: 10px;
+		                                      }
+
+		                                      .footer {
+		                                        clear: both;
+		                                        Margin-top: 10px;
+		                                        text-align: center;
+		                                        width: 100%; }
+		                                        .footer td,
+		                                        .footer p,
+		                                        .footer span,
+		                                        .footer a {
+		                                          color: #999999;
+		                                          font-size: 12px;
+		                                          text-align: center; }
+
+		                                      h1,
+		                                      h2,
+		                                      h3,
+		                                      h4 {
+		                                        color: #000000;
+		                                        font-family: sans-serif;
+		                                        font-weight: 400;
+		                                        line-height: 1.4;
+		                                        margin: 0;
+		                                        Margin-bottom: 30px; }
+
+		                                      h1 {
+		                                        font-size: 35px;
+		                                        font-weight: 300;
+		                                        text-align: center;
+		                                        text-transform: capitalize; }
+
+		                                      p,
+		                                      ul,
+		                                      ol {
+		                                        font-family: sans-serif;
+		                                        font-size: 15px;
+		                                        font-weight: normal;
+		                                        margin: 0;
+		                                        Margin-bottom: 15px; }
+		                                        p li,
+		                                        ul li,
+		                                        ol li {
+		                                          list-style-position: inside;
+		                                          margin-left: 5px; }
+
+		                                      a {
+		                                        text-decoration: underline; }
+
+		                                      .btn {
+		                                        box-sizing: border-box;
+		                                        width: 100%; }
+		                                        .btn > tbody > tr > td {
+		                                          padding-bottom: 15px; }
+		                                        .btn table {
+		                                          width: auto; }
+		                                        .btn table td {
+		                                          text-align: center; }
+		                                        .btn a {
+		                                          box-sizing: border-box;
+		                                          cursor: pointer;
+		                                          display: inline-block;
+		                                          font-size: 14px;
+		                                          font-weight: bold;
+		                                          margin: 0;
+		                                          padding: 12px 25px;
+		                                          text-decoration: none;
+		                                 }
+
+
+		                                      .buy {
+		                                          cursor: pointer;
+		                                          width: 200px;
+		                                          height: 35px;
+		                                          border: 1px solid #FFF;
+		                                          text-align: center;
+		                                          background-color: #000;
+		                                          color: #FFF;
+		                                          text-decoration: none;
+		                                          display: inline-block;
+		                                          font-size: 15px;
+		                                          margin-bottom: 13px;
+		                                        }
+
+		                                      .buy:hover {
+		                                          background-color: #FFF;
+		                                          color: #000;
+		                                          border-color: #000;
+		                                          transition: 0.3s;
+		                                        }
+
+		                                      .buy p {
+		                                        margin-top: 5px;
+		                                      }
+
+		                                      ul {
+		                                        list-style: none;
+		                                        padding: 0;
+		                                        margin:0;
+		                                      }
+
+		                                      ul button {
+		                                        text-decoration: none;
+		                                        color: #FFF;
+		                                        border: none;
+		                                        cursor: pointer;
+		                                        color: #000;
+		                                      }
+
+		                                      ul li button{
+		                                        width: 45px;
+		                                        background: #FFF;
+		                                        height: 45px;
+		                                        border-radius: 50%;
+		                                        border: 1px solid #000;
+		                                        float: left;
+		                                        margin: 5px;
+		                                        margin-left: 4px;
+		                                        margin-top: -10px;
+		                                        font-size: 19px;
+		                                        font-weight: bold;
+		                                      }
+
+
+		                                      .last {
+		                                        margin-bottom: 0; }
+
+		                                      .first {
+		                                        margin-top: 0; }
+
+		                                      .align-center {
+		                                        text-align: center; }
+
+		                                      .align-right {
+		                                        text-align: right; }
+
+		                                      .align-left {
+		                                        text-align: left; }
+
+		                                      .clear {
+		                                        clear: both; }
+
+		                                      .mt0 {
+		                                        margin-top: 0; }
+
+		                                      .mb0 {
+		                                        margin-bottom: 0; }
+
+		                                      .preheader {
+		                                        color: transparent;
+		                                        display: none;
+		                                        height: 0;
+		                                        max-height: 0;
+		                                        max-width: 0;
+		                                        opacity: 0;
+		                                        overflow: hidden;
+		                                        mso-hide: all;
+		                                        visibility: hidden;
+		                                        width: 0; }
+
+		                                      .powered-by a {
+		                                        text-decoration: none; }
+
+		                                      hr {
+		                                        border: 0;
+		                                        border-bottom: 1px solid #f6f6f6;
+		                                        Margin: 20px 0; }
+
+		                                      @media only screen and (max-width: 620px) {
+		                                        table[class=body] h1 {
+		                                          font-size: 28px !important;
+		                                          margin-bottom: 10px !important; }
+		                                        table[class=body] p,
+		                                        table[class=body] ul,
+		                                        table[class=body] ol,
+		                                        table[class=body] td,
+		                                        table[class=body] span,
+		                                        table[class=body] a {
+		                                          font-size: 16px !important; }
+		                                        table[class=body] .wrapper,
+		                                        table[class=body] .article {
+		                                          padding: 10px !important; }
+		                                        table[class=body] .content {
+		                                          padding: 0 !important; }
+		                                        table[class=body] .container {
+		                                          padding: 0 !important;
+		                                          width: 100% !important; }
+		                                        table[class=body] .main {
+		                                          border-left-width: 0 !important;
+		                                          border-radius: 0 !important;
+		                                          border-right-width: 0 !important; }
+		                                        table[class=body] .btn table {
+		                                          width: 100% !important; }
+		                                        table[class=body] .btn a {
+		                                          width: 100% !important; }
+		                                        table[class=body] .img-responsive {
+		                                          height: auto !important;
+		                                          max-width: 100% !important;
+		                                          width: auto !important; }
+		                                          }
+
+		                                      @media all {
+		                                        .ExternalClass {
+		                                          width: 100%; }
+		                                        .ExternalClass,
+		                                        .ExternalClass p,
+		                                        .ExternalClass span,
+		                                        .ExternalClass font,
+		                                        .ExternalClass td,
+		                                        .ExternalClass div {
+		                                          line-height: 100%; }
+		                                        .apple-link a {
+		                                          color: inherit !important;
+		                                          font-family: inherit !important;
+		                                          font-size: inherit !important;
+		                                          font-weight: inherit !important;
+		                                          line-height: inherit !important;
+		                                          text-decoration: none !important; }
+		                                        .btn-primary table td:hover {
+		                                          background-color: #34495e !important; }
+		                                        .btn-primary a:hover {
+		                                          background-color: #34495e !important;
+		                                          border-color: #34495e !important; } }
+
+		                                    </style>
+		                                  </head>
+		                                  <body class="">
+		                                    <table border="0" cellpadding="0" cellspacing="0" class="body">
+		                                      <tr>
+		                                        <td>&nbsp;</td>
+		                                        <td class="container">
+		                                          <div class="content">
+
+		                                            <span class="preheader">You've get a SUPERJACKPOT LOTTERY ticket!</span>
+		                                            <table class="main">
+
+		                                              <tr>
+		                                                <td class="wrapper">
+		                                                  <table border="0" cellpadding="0" cellspacing="0">
+		                                                      <h2><b>SUPER</b>JACK<b>POT</b></h2>
+		                                                      <tr>
+		                                                      <td>
+		                                                        <p>Hey!</p>
+		                                                        <p>Someone gave you a gift! The next draw will take place soon!</p>
+		                                                        <table border="0" cellpadding="0" cellspacing="0" >
+		                                                          <tbody>
+		                                                            <tr>
+		                                                              <td align="left">
+		                                                                <table border="0" cellpadding="0" cellspacing="0">
+		                                                                  <tbody>
+		                                                                    <tr>
+		                                                                      <td> <a href="https://mysuperjackpot.com/register" target="_blank" class="buy" style="padding-top: 8px;">Register now!</a> </td>
+		                                                                    </tr>
+		                                                                  </tbody>
+		                                                                </table>
+		                                                              </td>
+		                                                            </tr>
+		                                                          </tbody>
+		                                                        </table>
+		                                                        <p>Scratch the cards and get your prize!</p>
+		                                                      </td>
+		                                                      <td></td>
+		                                                    </tr>
+		                                                  </table>
+		                                                </td>
+		                                              </tr>
+
+		                                            </table>
+
+		                                            <div class="footer">
+		                                              <table border="0" cellpadding="0" cellspacing="0">
+		                                                <tr>
+		                                                  <td class="content-block">
+		                                                    <span class="apple-link">Powered by SuperJackpot Lottery</span>
+		                                                  </td>
+		                                                </tr>
+		                                                <tr>
+		                                                  <td class="content-block powered-by">
+		                                                  </td>
+		                                                </tr>
+		                                              </table>
+		                                            </div>
+
+		                                          </div>
+		                                        </td>
+		                                        <td>&nbsp;</td>
+		                                      </tr>
+		                                    </table>
+		                                  </body>
+		                                </html>"""
+                        try:
+                        	mail.send(msg)
+                        except:
+                        	print("Email hasn't been sent")
+                        responseObject = {
+			                'status': 'success'
+			            }
+                        return make_response(jsonify(responseObject)), 200
                     #db.flush()
-                    responseObject = {
-                        'status': 'success'
-                    }
-                return make_response(jsonify(responseObject)), 200
             responseObject = {
                 'status': 'fail',
                 'message': resp

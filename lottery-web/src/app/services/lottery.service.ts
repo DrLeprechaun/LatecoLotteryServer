@@ -16,6 +16,7 @@ export class LotteryService {
 
   getBaseUrl(): string {
     //return this.BASE_URL + "/logic";
+    console.log(this.configService.getSavedServerPath() + "/logic");
     return this.configService.getSavedServerPath() + "/logic";
   }
 
@@ -133,6 +134,7 @@ export class LotteryService {
     let token = this.auth.getToken();
     //let url: string = `${this.BASE_URL}/get_bank`;
     let url: string = `${this.getBaseUrl()}/get_bank`;
+    console.log(url);
     let headers: Headers = new Headers({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`

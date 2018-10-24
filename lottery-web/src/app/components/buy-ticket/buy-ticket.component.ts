@@ -137,48 +137,6 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
 
     switch(this.tpService.getLotteryType()) {
-       case "lottery_5x36": {
-          this.maxNumber = 36;
-          this.combinationSize = 5;
-          this.lotteryName = "Lottery 5x36";
-          this.lotteryBunner = "assets/img/5_36.jpg";
-          this.ticketCost = 1;
-          this.lotteryGrequencyDescription = "The lottery is held every day at 01:00 (+03 GMT).";
-          //document.body.setAttribute('style', 'background-image: url("assets/img/b_5_36.jpg");');
-          //statements;
-          break;
-       }
-       case "lottery_6x45": {
-         this.maxNumber = 45;
-         this.combinationSize = 6;
-         this.lotteryName = "Lottery 6x45";
-         this.lotteryBunner = "assets/img/6_45.jpg";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "The lottery is held every day at 01:00 (+03 GMT).";
-         //document.body.setAttribute('style', 'background-image: url("assets/img/b_6_45.jpg");');
-          //statements;
-          break;
-       }
-       case "lottery_4x20": {
-         this.maxNumber = 20;
-         this.combinationSize = 4;
-         this.lotteryName = "Lottery 4x20";
-         this.lotteryBunner = "assets/img/4_20.jpg";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "The lottery is held every day at 01:00 (+03 GMT).";
-          //statements;
-          break;
-       }
-       case "lottery_7x49": {
-         this.maxNumber = 49;
-         this.combinationSize = 7;
-         this.lotteryName = "Lottery 7x49";
-         this.lotteryBunner = "assets/img/7_49.jpg";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "The lottery is held every day at 01:00 (+03 GMT).";
-          //statements;
-          break;
-       }
        case "jackpot_5x36": {
          this.maxNumber = 36;
          this.combinationSize = 5;
@@ -186,7 +144,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.lotteryBunner = "assets/img/5_36.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
-         this.backgroundImage = "assets/img/b_5_36.jpg";
+         //this.backgroundImage = "assets/img/b_5_36.jpg";
+         this.backgroundImage = "url(assets/img/b_5_36.jpg)";
          this. lottery_description = 2;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_5_36.jpg");');
           //statements;
@@ -199,19 +158,10 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.lotteryBunner = "assets/img/6_45.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
-         this.backgroundImage = "assets/img/b_6_45.jpg";
+         //this.backgroundImage = "assets/img/b_6_45.jpg";
+         this.backgroundImage = "url(assets/img/b_6_45.jpg)";
          this. lottery_description = 3;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_6_45.jpg");');
-          //statements;
-          break;
-       }
-       case "jackpot_4x20": {
-         this.maxNumber = 20;
-         this.combinationSize = 4;
-         this.lotteryName = "Jackpot 4x20";
-         this.lotteryBunner = "assets/img/4_20.jpg";
-         this.ticketCost = 1;
-         this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
           //statements;
           break;
        }
@@ -222,7 +172,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.lotteryBunner = "assets/img/4_21.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
-         this.backgroundImage = "assets/img/b_4_21.jpg";
+         //this.backgroundImage = "assets/img/b_4_21.jpg";
+         this.backgroundImage = "url(assets/img/b_4_21.jpg)";
          this. lottery_description = 1;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_4_21.jpg");');
           //statements;
@@ -235,6 +186,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.lotteryBunner = "assets/img/7_49.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
+         this.backgroundImage = "url(assets/img/b_7_49.jpg)";
           //statements;
           break;
        } case "rapidos": {
@@ -244,7 +196,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.lotteryBunner = "assets/img/rapidos.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Rapidos is held every 5 minutes.";
-         this.backgroundImage = "assets/img/b_rapidos.jpg";
+         //this.backgroundImage = "assets/img/b_rapidos.jpg";
+         this.backgroundImage = "url(assets/img/b_rapidos.jpg)";
          this. lottery_description = 4;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_rapidos.jpg");');
           //statements;
@@ -256,7 +209,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.lotteryBunner = "assets/img/supers.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Supers is held every 5 minutes.";
-         this.backgroundImage = "assets/img/b_two_numbers.jpg";
+         //this.backgroundImage = "assets/img/b_two_numbers.jpg";
+         this.backgroundImage = "url(assets/img/b_two_numbers.jpg)";
          this. lottery_description = 5;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_supers.jpg");');
           //statements;
@@ -268,7 +222,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
          this.lotteryBunner = "assets/img/prize_jackpot.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Top 3 is held every 5 minutes.";
-         this.backgroundImage = "assets/img/b_prize_jackpot.jpg";
+         //this.backgroundImage = "assets/img/b_prize_jackpot.jpg";
+         this.backgroundImage = "url(assets/img/b_prize_jackpot.jpg)";
          this. lottery_description = 6;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_top3.jpg");');
           //statements;
