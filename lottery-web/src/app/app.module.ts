@@ -34,6 +34,8 @@ import { GiveTicketComponent } from './components/give-ticket/give-ticket.compon
 import { GiveScratchComponent } from './components/give-scratch/give-scratch.component';
 import { NavbarComponent } from './components/templates/navbar/navbar.component';
 import { NavbarRegisteredComponent } from './components/templates/navbar-registered/navbar-registered.component';
+import { LanguageBarComponent } from './components/templates/language-bar/language-bar.component';
+import { MainBunnerComponent } from './components/templates/main-bunner/main-bunner.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { NavbarRegisteredComponent } from './components/templates/navbar-registe
     GiveTicketComponent,
     GiveScratchComponent,
     NavbarComponent,
-    NavbarRegisteredComponent
+    NavbarRegisteredComponent,
+    LanguageBarComponent,
+    MainBunnerComponent
   ],
   imports: [
     BrowserModule,

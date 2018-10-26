@@ -16,6 +16,10 @@
             <p><a routerLink="/settings">Settings</a></p>
             <p><a routerLink="/faq">FAQ</a></p>
             <p><a (click)="logOut()" routerLink="/home">Logout</a></p>
+            <hr>
+            <p><b>Your balance:</b></p>
+            <p>{{ balance }} <img style="width:24px;" src="assets/img/logo_small.png" alt="logo"></p>
+            <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
           </div>
 
           <div class="container" align="center">
@@ -484,4 +488,5 @@
                 </td>
               </tr>
             </table>
+            <app-language-bar></app-language-bar>
           </div>

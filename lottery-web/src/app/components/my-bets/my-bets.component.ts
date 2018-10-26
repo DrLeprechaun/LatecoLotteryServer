@@ -36,6 +36,9 @@ export class MyBetsComponent implements OnInit {
   private ctx: any;
   private brushRadius: number = 20;
 
+  private scratchBall: number = -1;
+  private currentBall: number = -1;
+
   constructor(private router: Router, private lottery: LotteryService, private modalService: NgbModal, private tpService: TicketsPurchaseService) { }
 
   ngOnInit() {
@@ -224,7 +227,8 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.jackpot_5x36[i].my_combination),
             "won_combination": this.processCombination(res.json().data.jackpot_5x36[i].win_combination),
             "is_win": res.json().data.jackpot_5x36[i].is_win,
-            "date": new Date(res.json().data.jackpot_5x36[i].date)
+            "date": new Date(res.json().data.jackpot_5x36[i].date),
+            "bet_class": this.getArchClass(res.json().data.jackpot_5x36[i].is_win)
           }
           this.archiveTableData.push(rowData);
         }
@@ -238,7 +242,8 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.jackpot_6x45[i].my_combination),
             "won_combination": this.processCombination(res.json().data.jackpot_6x45[i].win_combination),
             "is_win": res.json().data.jackpot_6x45[i].is_win,
-            "date": new Date(res.json().data.jackpot_6x45[i].date)
+            "date": new Date(res.json().data.jackpot_6x45[i].date),
+            "bet_class": this.getArchClass(res.json().data.jackpot_6x45[i].is_win)
           }
           this.archiveTableData.push(rowData);
         }
@@ -252,7 +257,8 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.jackpot_4x21[i].my_combination),
             "won_combination": this.processCombination(res.json().data.jackpot_4x21[i].win_combination),
             "is_win": res.json().data.jackpot_4x21[i].is_win,
-            "date": new Date(res.json().data.jackpot_4x21[i].date)
+            "date": new Date(res.json().data.jackpot_4x21[i].date),
+            "bet_class": this.getArchClass(res.json().data.jackpot_4x21[i].is_win)
           }
           this.archiveTableData.push(rowData);
         }
@@ -266,7 +272,8 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.rapidos[i].my_combination),
             "won_combination": this.processCombination(res.json().data.rapidos[i].win_combination),
             "is_win": res.json().data.rapidos[i].is_win,
-            "date": new Date(res.json().data.rapidos[i].date)
+            "date": new Date(res.json().data.rapidos[i].date),
+            "bet_class": this.getArchClass(res.json().data.rapidos[i].is_win)
           }
           this.archiveTableData.push(rowData);
         }
@@ -280,7 +287,8 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.two_numbers[i].my_combination),
             "won_combination": this.processCombination(res.json().data.two_numbers[i].win_combination),
             "is_win": res.json().data.two_numbers[i].is_win,
-            "date": new Date(res.json().data.two_numbers[i].date)
+            "date": new Date(res.json().data.two_numbers[i].date),
+            "bet_class": this.getArchClass(res.json().data.two_numbers[i].is_win)
           }
           this.archiveTableData.push(rowData);
         }
@@ -294,7 +302,8 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.prize_jackpot[i].my_combination),
             "won_combination": this.processCombination(res.json().data.prize_jackpot[i].win_combination),
             "is_win": res.json().data.prize_jackpot[i].is_win,
-            "date": new Date(res.json().data.prize_jackpot[i].date)
+            "date": new Date(res.json().data.prize_jackpot[i].date),
+            "bet_class": this.getArchClass(res.json().data.prize_jackpot[i].is_win)
           }
           this.archiveTableData.push(rowData);
         }
@@ -308,7 +317,8 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.bets_777[i].my_combination),
             "won_combination": this.processCombination(res.json().data.bets_777[i].win_combination),
             "is_win": res.json().data.bets_777[i].is_win,
-            "date": new Date(res.json().data.bets_777[i].date)
+            "date": new Date(res.json().data.bets_777[i].date),
+            "bet_class": this.getArchClass(res.json().data.bets_777[i].is_win)
           }
           this.archiveTableData.push(rowData);
         }
@@ -322,7 +332,8 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.bets_fruity[i].my_combination),
             "won_combination": this.processCombination(res.json().data.bets_fruity[i].win_combination),
             "is_win": res.json().data.bets_fruity[i].is_win,
-            "date": new Date(res.json().data.bets_fruity[i].date)
+            "date": new Date(res.json().data.bets_fruity[i].date),
+            "bet_class": this.getArchClass(res.json().data.bets_fruity[i].is_win)
           }
           this.archiveTableData.push(rowData);
         }
@@ -336,7 +347,8 @@ export class MyBetsComponent implements OnInit {
             "combination": this.processCombination(res.json().data.bets_100[i].my_combination),
             "won_combination": this.processCombination(res.json().data.bets_100[i].win_combination),
             "is_win": res.json().data.bets_100[i].is_win,
-            "date": new Date(res.json().data.bets_100[i].date)
+            "date": new Date(res.json().data.bets_100[i].date),
+            "bet_class": this.getArchClass(res.json().data.bets_100[i].is_win),
           }
           this.archiveTableData.push(rowData);
         }
@@ -411,6 +423,14 @@ export class MyBetsComponent implements OnInit {
     }
 
     return result;
+  }
+
+  private getArchClass(is_win: boolean) {
+    if (is_win) {
+      return "newBet";
+    } else {
+      return "regularBet";
+    }
   }
 
   processCombination(combination: number[]): string {
@@ -490,7 +510,7 @@ export class MyBetsComponent implements OnInit {
         if (this.checkUpdateScratch.length == 9) {
           this.lottery.updateScratch(id, type)
           .then((res) => {
-            console.log(res.json());
+            //console.log(res.json());
             if (res.json().status === 'success') {
               this.loadData();
             }
@@ -530,9 +550,16 @@ export class MyBetsComponent implements OnInit {
       this.ctx = this.cnv.getContext('2d');
       var ball = document.getElementById("ball_" + i);
       ball.style.opacity = "100";
+      this.currentBall = i;
       if (this.checkUpdateScratch.indexOf(i) == -1) {
         this.checkUpdateScratch.push(i);
       }
+      return false;
+  }
+
+  private setScratchBall(i: number) {
+    this.scratchBall = i;
+    return false;
   }
 
   private fadeImg(obj: any) {
@@ -565,7 +592,6 @@ export class MyBetsComponent implements OnInit {
       this.combinationQuantity = 12;
     }
     this.setModalButtonsArray(this.modalButtonsQuantity);
-    console.log(type);
   }
 
   private setModalButtonsArray(max: number): void {
@@ -701,17 +727,11 @@ export class MyBetsComponent implements OnInit {
   }
 
   updateCombination() {
-    console.log("UPDATE");
-    console.log(this.editableCombination);
-    console.log(this.lotteryType);
-    console.log(this.editedRecordId);
-
-    console.log(new CombinationUpdate(this.editedRecordId, this.lotteryType, this.editableCombination));
 
     if (this.editableCombination.length == this.combinationQuantity || this.editableCombination.length == 0) {
       this.lottery.updateCombination(new CombinationUpdate(this.editedRecordId, this.lotteryType, this.editableCombination))
       .then((res) => {
-        console.log(res.json());
+        //console.log(res.json());
         if (res.json().status === 'success') {
           this.loadData();
         }
@@ -777,11 +797,11 @@ export class MyBetsComponent implements OnInit {
     if (this.cnv != null) {
       var brushPos = this.getBrushPos(e.clientX, e.clientY);
 
-      //var leftBut = this.detectLeftButton(e);
+      var leftBut = this.detectLeftButton(e);
 
-        //if (leftBut == true) {
+        if (leftBut == true && this.scratchBall == this.currentBall) {
           this.drawDot(brushPos.x, brushPos.y);
-      //}
+      }
     }
   }
 

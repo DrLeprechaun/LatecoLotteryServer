@@ -1,4 +1,4 @@
-<img src="{{backgroundImage}}" style="position: fixed; width: 100%; height: 100%">
+<!--<img src="{{backgroundImage}}" style="position: fixed; width: 100%; height: 100%">-->
 
 <div class="header">
   <table style="margin-left: 20px;">
@@ -18,6 +18,10 @@
             <p><a routerLink="/settings">Settings</a></p>
             <p><a routerLink="/faq">FAQ</a></p>
             <p><a (click)="logOut()" routerLink="/home">Logout</a></p>
+            <hr>
+            <p><b>Your balance:</b></p>
+            <p>{{ balance }} <img style="width:24px;" src="assets/img/logo_small.png" alt="logo"></p>
+            <ngb-alert *ngIf="errorMessage2" type="danger" (close)="errorMessage2 = null">{{ errorMessage2 }}</ngb-alert>
           </div>
 
           <div class="container" align="center">
@@ -51,7 +55,7 @@
                     <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
                   </div>
 
-                  <div class="tab-content">
+                  <div class="tab-content" [ngStyle]="{'background-image': backgroundImage}">
                     <div class="tab-pane fade show active" id="tickets" role="tabpanel">
 
                       <div *ngFor="let t of tickets; let i = index">
@@ -490,7 +494,10 @@
                 </td>
               </tr>
             </table>
+            <app-language-bar></app-language-bar>
           </div>
+
+
 
 
           <ng-template #content let-c="close" let-d="dismiss">

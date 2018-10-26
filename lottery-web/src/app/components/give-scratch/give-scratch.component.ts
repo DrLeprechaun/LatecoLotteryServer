@@ -33,8 +33,12 @@ export class GiveScratchComponent implements OnInit  {
   private email: string = "";
 
   private _alert = new Subject<string>();
+  private _alert2 = new Subject<string>();
   staticAlertClosed = false;
+  staticAlertClosed2 = false;
   errorMessage: string;
+  errorMessage2: string;
+  private balance: number;
 
   constructor(private location: Location,
     private router: Router,
@@ -44,21 +48,35 @@ export class GiveScratchComponent implements OnInit  {
 
   ngOnInit() {
     setTimeout(() => this.staticAlertClosed = true, 20000);
+    setTimeout(() => this.staticAlertClosed2 = true, 20000);
     this._alert.subscribe((message) => this.errorMessage = message);
+    this._alert2.subscribe((message) => this.errorMessage2 = message);
     debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
+    debounceTime.call(this._alert2, 5000).subscribe(() => this.errorMessage2 = null);
+
+    this.lottery.getWalletAmount()
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        this.balance = res.json().data.amount;
+      }
+    })
 
     if (this.tpService.getScratchType() == "777") {
-      this.backgroundImage = "assets/img/b_top3.jpg";
+      //this.backgroundImage = "assets/img/b_top3.jpg";
+      this.backgroundImage = "url(assets/img/b_top3.jpg)";
       this.lotteryFunds = 777;
       this.lotteryName = "777";
       this.lotteryBunner = "assets/img/top3.jpg";
     } else if (this.tpService.getScratchType() == "100CASH") {
-      this.backgroundImage = "assets/img/b_4_21.jpg";
+      //this.backgroundImage = "assets/img/b_4_21.jpg";
+      this.backgroundImage = "url(assets/img/b_4_21.jpg)";
       this.lotteryFunds = 100;
       this.lotteryName = "100'000 CASH";
       this.lotteryBunner = "assets/img/100000CASH.jpg";
     } else if (this.tpService.getScratchType() == "fruity") {
-      this.backgroundImage = "assets/img/b_rapidos.jpg";
+      //this.backgroundImage = "assets/img/b_rapidos.jpg";
+      this.backgroundImage = "url(assets/img/b_rapidos.jpg)";
       this.lotteryFunds = 333;
       this.lotteryName = "Fruity";
       this.lotteryBunner = "assets/img/33.jpg";
@@ -124,12 +142,18 @@ export class GiveScratchComponent implements OnInit  {
   }
 
   addTicket() {
-    var arr = [];
-    this.tickets.push(arr);
+    if (this.balance >= 1) {
+      var arr = [];
+      this.tickets.push(arr);
+      this.balance -= 1;
+    } else {
+      this.alertMessage2("Not enough funds!");
+    }
   }
 
   removeTicket(index: number) {
     this.tickets.splice(index, 1);
+    this.balance += 1; 
   }
 
   private removeButtonFlag(): boolean {
@@ -219,6 +243,10 @@ open(content) {
 
 alertMessage(message: string) {
   this._alert.next(message);
+}
+
+alertMessage2(message: string) {
+  this._alert2.next(message);
 }
 
 

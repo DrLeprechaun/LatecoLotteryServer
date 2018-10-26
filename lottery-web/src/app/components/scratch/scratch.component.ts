@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { LotteryService } from '../../services/lottery.service';
 import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
+import {Subject} from 'rxjs/Subject';
+import {debounceTime} from 'rxjs/operator/debounceTime';
 
 @Component({
   selector: 'app-scratch',
@@ -27,6 +29,16 @@ export class ScratchComponent implements OnInit, AfterViewInit {
   private cnv: HTMLCanvasElement;
   private ctx: any;
 
+  private _scratchBall: number = -1;
+  private _currentBall: number = -1;
+  private _scratchCard: number = -1;
+  private _currentCard: number = -1;
+
+  private balance: number;
+  errorMessage: string;
+  private _alert = new Subject<string>();
+  staticAlertClosed = false;
+
   constructor(private location: Location,
     private router: Router,
     private lottery: LotteryService,
@@ -34,23 +46,29 @@ export class ScratchComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    this._alert.subscribe((message) => this.errorMessage = message);
+    debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
 
     if (this.tpService.getWannaGive() === 'yes') {
       this.router.navigateByUrl('/give-scratch');
     }
 
     if (this.tpService.getScratchType() == "777") {
-      this.backgroundImage = "assets/img/b_top3.jpg";
+      //this.backgroundImage = "assets/img/b_top3.jpg";
+      this.backgroundImage = "url(assets/img/b_top3.jpg)";
       this.lotteryFunds = 777;
       this.lotteryName = "777";
       this.lotteryBunner = "assets/img/top3.jpg";
     } else if (this.tpService.getScratchType() == "100CASH") {
-      this.backgroundImage = "assets/img/b_4_21.jpg";
+      //this.backgroundImage = "assets/img/b_4_21.jpg";
+      this.backgroundImage = "url(assets/img/b_4_21.jpg)";
       this.lotteryFunds = 100;
       this.lotteryName = "100'000 CASH";
       this.lotteryBunner = "assets/img/100000CASH.jpg";
     } else if (this.tpService.getScratchType() == "fruity") {
-      this.backgroundImage = "assets/img/b_rapidos.jpg";
+      //this.backgroundImage = "assets/img/b_rapidos.jpg";
+      this.backgroundImage = "url(assets/img/b_rapidos.jpg)";
       this.lotteryFunds = 333;
       this.lotteryName = "Fruity";
       this.lotteryBunner = "assets/img/33.jpg";
@@ -61,6 +79,14 @@ export class ScratchComponent implements OnInit, AfterViewInit {
     //this.addTicket();
     var arr = [];
     this.tickets.push(arr);
+
+    this.lottery.getWalletAmount()
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        this.balance = res.json().data.amount;
+      }
+    })
 
   }
 
@@ -155,12 +181,20 @@ export class ScratchComponent implements OnInit, AfterViewInit {
   }
 
   addTicket() {
-    var arr = [];
-    this.tickets.push(arr);
+    if (this.balance >= 1) {
+      var arr = [];
+      this.tickets.push(arr);
+      this.balance = this.balance - 1;
+    } else {
+      this.alertMessage("Not enough funds!");
+    }
   }
 
   removeTicket(index: number) {
-    this.tickets.splice(index, 1);
+    if (this.tickets.length > 1) {
+      this.tickets.splice(index, 1);
+      this.balance = this.balance + 1;
+    }
   }
 
   private removeButtonFlag(): boolean {
@@ -243,9 +277,17 @@ private setBall(i: number, j: number) {
     this.ctx = this.cnv.getContext('2d');
     var ball = document.getElementById("ball_" + i + "_" + j);
     ball.style.opacity = "100";
+    this._currentCard = i;
+    this._currentBall = j;
     var ballImage = document.getElementById("ballImage_" + i + "_" + j);
     ballImage.style.opacity = "100";
   }
+}
+
+private setScratchBall(i: number, j: number) {
+  this._scratchCard = i;
+  this._scratchBall = j;
+  return false;
 }
 
 private getBrushPos(xRef, yRef) {
@@ -269,12 +311,13 @@ private mouseMove(e: MouseEvent) {
   if (this.cnv != null && this.scratchNowFlag) {
     var brushPos = this.getBrushPos(e.clientX, e.clientY);
 
-    //var leftBut = this.detectLeftButton(e);
+    var leftBut = this.detectLeftButton(e);
 
-      //if (leftBut == true) {
+      if (leftBut == true && this._scratchBall == this._currentBall && this._scratchCard == this._currentCard) {
         this.drawDot(brushPos.x, brushPos.y);
-    //}
+    }
   }
+  return false;
 }
 
 /*private getBrushPos(xRef, yRef, ticket_id: number, ball_id: number) {
@@ -306,6 +349,8 @@ private mouseMove(e: MouseEvent, ticket_id: number, ball_id: number) {
       this.drawDot(brushPos.x, brushPos.y, ticket_id, ball_id);
   }
 }*/
-
+alertMessage(message: string) {
+  this._alert.next(message);
+}
 
 }

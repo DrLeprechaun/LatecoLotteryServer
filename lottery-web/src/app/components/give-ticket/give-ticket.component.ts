@@ -39,8 +39,12 @@ export class GiveTicketComponent implements OnInit {
   private email: string = "";
 
   private _alert = new Subject<string>();
+  private _alert2 = new Subject<string>();
   staticAlertClosed = false;
+  staticAlertClosed2 = false;
   errorMessage: string;
+  errorMessage2: string;
+  private balance: number;
 
   constructor(private router: Router,
     private lottery: LotteryService,
@@ -49,12 +53,25 @@ export class GiveTicketComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => this.staticAlertClosed = true, 20000);
+    setTimeout(() => this.staticAlertClosed2 = true, 20000);
     this._alert.subscribe((message) => this.errorMessage = message);
+    this._alert2.subscribe((message) => this.errorMessage2 = message);
     debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
+    debounceTime.call(this._alert2, 5000).subscribe(() => this.errorMessage2 = null);
 
     setInterval(() => {
       this.countDown();
     }, 1000);
+
+    this.lottery.getWalletAmount()
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        this.balance = res.json().data.amount;
+        this.addTicketToTable();
+        this.raffles.push(1);
+      }
+    })
 
     this.lottery.getBank()
     .then((res) => {
@@ -159,7 +176,8 @@ export class GiveTicketComponent implements OnInit {
          this.lotteryBunner = "assets/img/5_36.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
-         this.backgroundImage = "assets/img/b_5_36.jpg";
+         //this.backgroundImage = "assets/img/b_5_36.jpg";
+         this.backgroundImage = "url(assets/img/b_5_36.jpg)";
          this. lottery_description = 2;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_5_36.jpg");');
           //statements;
@@ -172,7 +190,8 @@ export class GiveTicketComponent implements OnInit {
          this.lotteryBunner = "assets/img/6_45.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
-         this.backgroundImage = "assets/img/b_6_45.jpg";
+         //this.backgroundImage = "assets/img/b_6_45.jpg";
+         this.backgroundImage = "url(assets/img/b_6_45.jpg)";
          this. lottery_description = 3;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_6_45.jpg");');
           //statements;
@@ -195,7 +214,8 @@ export class GiveTicketComponent implements OnInit {
          this.lotteryBunner = "assets/img/4_21.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Jackpot is held on 7th day of every month at 01:00 (+03 GMT).";
-         this.backgroundImage = "assets/img/b_4_21.jpg";
+         //this.backgroundImage = "assets/img/b_4_21.jpg";
+         this.backgroundImage = "url(assets/img/b_4_21.jpg)";
          this. lottery_description = 1;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_4_21.jpg");');
           //statements;
@@ -217,7 +237,8 @@ export class GiveTicketComponent implements OnInit {
          this.lotteryBunner = "assets/img/rapidos.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Rapidos is held every 5 minutes.";
-         this.backgroundImage = "assets/img/b_rapidos.jpg";
+         //this.backgroundImage = "assets/img/b_rapidos.jpg";
+         this.backgroundImage = "url(assets/img/b_rapidos.jpg)";
          this. lottery_description = 4;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_rapidos.jpg");');
           //statements;
@@ -229,7 +250,8 @@ export class GiveTicketComponent implements OnInit {
          this.lotteryBunner = "assets/img/supers.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Supers is held every 5 minutes.";
-         this.backgroundImage = "assets/img/b_two_numbers.jpg";
+         //this.backgroundImage = "assets/img/b_two_numbers.jpg";
+         this.backgroundImage = "url(assets/img/b_two_numbers.jpg)";
          this. lottery_description = 5;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_supers.jpg");');
           //statements;
@@ -241,7 +263,8 @@ export class GiveTicketComponent implements OnInit {
          this.lotteryBunner = "assets/img/prize_jackpot.jpg";
          this.ticketCost = 1;
          this.lotteryGrequencyDescription = "Top 3 is held every 5 minutes.";
-         this.backgroundImage = "assets/img/b_prize_jackpot.jpg";
+         //this.backgroundImage = "assets/img/b_prize_jackpot.jpg";
+         this.backgroundImage = "url(assets/img/b_prize_jackpot.jpg)";
          this. lottery_description = 6;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_top3.jpg");');
           //statements;
@@ -256,13 +279,15 @@ export class GiveTicketComponent implements OnInit {
     var newCombination = [];
     this.combinations.push(newCombination);
 
-    this.addTicketToTable();
-    this.raffles.push(1);
+    //this.addTicketToTable();
+    //this.raffles.push(1);
 
     window.scrollTo(0, 0);
   }
 
   addTicketToTable() {
+
+    if (this.balance >= 1) {
     var blocks = [];
 
     for (var i = 0; i < this.maxNumber; i++) {
@@ -346,6 +371,10 @@ export class GiveTicketComponent implements OnInit {
       }
     }
     this.tickets.push(numberTable);
+    this.balance = this.balance - 1;
+  } else {
+    this.alertMessage2("Not enough funds!");
+  }
   }
 
   private checkCombinationSelected(): boolean {
@@ -387,12 +416,18 @@ export class GiveTicketComponent implements OnInit {
   }
 
   addRaffle(i: number) {
-    this.raffles[i] = this.raffles[i] + 1;
+    if (this.balance >= 1) {
+      this.raffles[i] = this.raffles[i] + 1;
+      this.balance = this.balance - 1;
+    } else {
+      this.alertMessage2("Not enough funds!");
+    }
   }
 
   removeRaffle(i: number) {
     if (this.raffles[i] > 1) {
       this.raffles[i] = this.raffles[i] - 1;
+      this.balance = this.balance + 1;
     }
   }
 
@@ -401,6 +436,7 @@ export class GiveTicketComponent implements OnInit {
     this.tickets.splice(index, 1);
     this.raffles.splice(index, 1);
     this.lotteryFunds -= 1;
+    this.balance += 1;
   }
 
   buyTickets() {
@@ -447,9 +483,9 @@ export class GiveTicketComponent implements OnInit {
 
   checkCombination() {
     if (this.combination.length > this.combinationSize) {
-      alert("You've selected more than " + this.combinationSize + "  numbers");
+      this.alertMessage("You've selected more than " + this.combinationSize + "  numbers");
     } if (this.combination.length < this.combinationSize) {
-      alert("You've selected less than " + this.combinationSize + "  numbers");
+      this.alertMessage("You've selected less than " + this.combinationSize + "  numbers");
     }
   }
 
@@ -699,6 +735,10 @@ open(content) {
 
   alertMessage(message: string) {
     this._alert.next(message);
+  }
+
+  alertMessage2(message: string) {
+    this._alert2.next(message);
   }
 
 }

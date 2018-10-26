@@ -1,4 +1,4 @@
-<img src="{{backgroundImage}}" style="position: fixed; width: 100%; height: 100%">
+<!--<img src="{{backgroundImage}}" style="position: fixed; width: 100%; height: 100%">-->
 
 <div class="header">
   <table style="margin-left: 20px;">
@@ -18,6 +18,10 @@
             <p><a routerLink="/settings">Settings</a></p>
             <p><a routerLink="/faq">FAQ</a></p>
             <p><a (click)="logOut()" routerLink="/home">Logout</a></p>
+            <hr>
+            <p><b>Your balance:</b></p>
+            <p>{{ balance }} <img style="width:24px;" src="assets/img/logo_small.png" alt="logo"></p>
+            <ngb-alert *ngIf="errorMessage2" type="danger" (close)="errorMessage2 = null">{{ errorMessage2 }}</ngb-alert>
           </div>
 
           <div class="container" align="center">
@@ -37,7 +41,7 @@
               <tr>
                 <td colspan="3" align="center">
 
-                  <div class="tab-content">
+                  <div class="tab-content" >
 
                     <div class="form-group">
                       <input type="email" class="form-control" id="inputEmail" [(ngModel)]="email" (ngModelChange)="emailChange()" aria-describedby="emailHelp" placeholder="Enter email">
@@ -45,7 +49,7 @@
                       <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
                     </div>
 
-                    <div class="tab-pane fade show active" id="tickets" role="tabpanel">
+                    <div class="tab-pane fade show active" id="tickets" role="tabpanel" [ngStyle]="{'background-image': backgroundImage}">
                       <div style="margin-bottom: 5px;" *ngFor="let t of tickets; let i = index">
                         <div class="border" id="ballsContainer">
                           <!--<table id="ballsTable" cellpadding="5">
@@ -277,6 +281,7 @@
                 </td>
               </tr>
             </table>
+            <app-language-bar></app-language-bar>
           </div>
 
 

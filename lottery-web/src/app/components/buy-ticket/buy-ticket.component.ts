@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LotteryService } from '../../services/lottery.service';
 import { TicketsPurchaseService } from '../../services/tickets-purchase.service';
+import {Subject} from 'rxjs/Subject';
+import {debounceTime} from 'rxjs/operator/debounceTime';
 
 
 @Component({
@@ -38,6 +40,11 @@ export class BuyTicketComponent implements OnInit {
   private lottery_description: number = 0;
   cd: string;
 
+  private balance: number;
+  errorMessage: string;
+  private _alert = new Subject<string>();
+  staticAlertClosed = false;
+
 
 constructor(private router: Router, private lottery: LotteryService, private tpService: TicketsPurchaseService) {
 
@@ -68,7 +75,9 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
 
   ngOnInit() {
 
-    //this.countDown();
+    setTimeout(() => this.staticAlertClosed = true, 20000);
+    this._alert.subscribe((message) => this.errorMessage = message);
+    debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
 
     setInterval(() => {
       this.countDown();
@@ -242,6 +251,14 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     this.raffles.push(1);
 
     window.scrollTo(0, 0);
+
+    this.lottery.getWalletAmount()
+    .then((res) => {
+      console.log(res.json());
+      if (res.json().status === 'success') {
+        this.balance = res.json().data.amount;
+      }
+    })
   }
 
   addTicketToTable() {
@@ -359,12 +376,18 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
   }
 
   addRaffle(i: number) {
-    this.raffles[i] = this.raffles[i] + 1;
+    if (this.balance >= 1) {
+      this.raffles[i] = this.raffles[i] + 1;
+      this.balance = this.balance -1;
+    } else {
+      this.alertMessage("Not enough funds!");
+    }
   }
 
   removeRaffle(i: number) {
     if (this.raffles[i] > 1) {
       this.raffles[i] = this.raffles[i] - 1;
+      this.balance = this.balance +1;
     }
   }
 
@@ -373,6 +396,7 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     this.tickets.splice(index, 1);
     this.raffles.splice(index, 1);
     this.lotteryFunds -= 1;
+    this.balance = this.balance + 1;
   }
 
   buyTickets() {
@@ -506,11 +530,16 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
   }
 
   addTicket() {
-    this.addTicketToTable();
-    var newCombination = [];
-    this.combinations.push(newCombination);
-    this.raffles.push(1);
-    this.lotteryFunds += 1;
+    if (this.balance >= 1) {
+      this.addTicketToTable();
+      var newCombination = [];
+      this.combinations.push(newCombination);
+      this.raffles.push(1);
+      this.lotteryFunds += 1;
+      this.balance = this.balance - 1;
+    } else {
+      this.alertMessage("Not enough funds!");
+    }
   }
 
   countDown() {
@@ -642,6 +671,10 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     } else {
       return false;
     }
+  }
+
+  alertMessage(message: string) {
+    this._alert.next(message);
   }
 
   logOut(): void {

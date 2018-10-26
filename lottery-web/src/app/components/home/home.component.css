@@ -200,9 +200,17 @@ legend.scheduler-border {
 
 .banner-text {
   height: 170px;
-  font-size: 3.5em !important;
+  font-size: 2.5em !important;
   font-weight: 100;
   padding-left: 10%;
+}
+
+.banner-text2 {
+  height: 170px;
+  font-size: 1.5em !important;
+  font-weight: 100;
+  padding-left: 10%;
+  padding-top: 70px;
 }
 
 .card {
@@ -270,8 +278,10 @@ legend.scheduler-border {
 }
 
 #present {
-  background-color: #F44336;
-  border: 1px solid #F44336;
+  /*background-color: #F44336;
+  border: 1px solid #F44336;*/
+  background-color: red;
+  border: 1px solid red;
 }
 
 #present:hover,
