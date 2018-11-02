@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: gilroy-light;
+  src: url(/assets/fonts/Gilroy-Light.ttf) format("opentype");
+}
+
+.gilroy-light{
+  font-family: 'gilroy-light';
+  color: black;
+}
+
+@font-face {
+  font-family: gilroy-thin;
+  src: url(/assets/fonts/Gilroy-Thin.otf) format("opentype");
+}
+
+.gilroy-thin{
+  font-family: 'gilroy-thin';
+  color: black;
+}
+
+@font-face {
+  font-family: gilroy-extra-bold;
+  src: url(/assets/fonts/Gilroy-ExtraBold.ttf) format("opentype");
+}
+
+.gilroy-extra-bold{
+  font-family: 'gilroy-extra-bold';
+  color: black;
+}
+
+* {
+  font-family: 'gilroy-light';
+}

@@ -7,7 +7,7 @@
       <img src="assets/img/logo_small.png" alt="logo" align="right" style="padding: 30px;">
       <br>
       <div style="padding: 30px 80px 35px 80px;">
-        <h1 style="font-size: 30px; padding-bottom: 15px;"><strong>Register</strong></h1>
+        <h1 style="font-size: 30px; padding-bottom: 15px;"><strong class="gilroy-extra-bold">Register</strong></h1>
 
 
         <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
@@ -25,7 +25,7 @@
            <input type="password" class="form-control" id="repeat-password" placeholder="Repeat password" [(ngModel)]="repeatPassword" name="repeat-password" required>
          </div>
 
-         <button type="submit" class="lotteryButton"><strong>Submit</strong></button>
+         <button type="submit" class="lotteryButton"><strong style="font-family: gilroy-extra-bold;">Submit</strong></button>
         </form>
 
     </div>

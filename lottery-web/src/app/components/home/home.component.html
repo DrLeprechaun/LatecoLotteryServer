@@ -1,12 +1,13 @@
-<div class="header">
+<!--<div class="header">
   <table style="margin-left: 20px;">
     <tr>
       <td><img src="assets/img/logo_small.png" alt="logo"></td>
-      <td style="padding-top: 5px;"><a  tabindex="-1" routerLink="/#"><h5 style="cursor: pointer; color=black;"><b>SUPER</b>JACK<b>POT</b></h5></a></td>
+      <td style="padding-top: 5px;"><a  tabindex="-1" href="/#"><h5 style="cursor: pointer; color=black;" class="gilroy-light"><span class="gilroy-extra-bold">SUPER</span>JACK<span class="gilroy-extra-bold">POT</span></h5></a></td>
     </tr>
   </table>
   <p style="font-size: 1em; padding-top: 0px; padding-left: 20px;">BLOCKCHAIN LOTTERY</p>
-</div>
+</div>-->
+<app-header></app-header>
 
 <!--<div class="container">-->
   <table class="page-content">
@@ -55,7 +56,7 @@
       <tr>
         <td style="width: 100%; padding-right: 180px;"></td>
         <fieldset class="scheduler-border">
-            <legend class="scheduler-border"><b>SUPER</b>JACK<b>POT&nbsp;&nbsp;&nbsp;{{superjackpot_value}} SJP</b></legend>
+            <legend class="scheduler-border"><span class="gilroy-extra-bold">SUPER</span>JACK<span class="gilroy-extra-bold">POT &nbsp;{{superjackpot_value}} SJP</span></legend>
             <label class="lotteryLabel2">Win multimillion jackpots ...</label>
             <div class="control-group">
               <td class="lottery-cell">
@@ -63,7 +64,7 @@
                   <a (click)="goLogin('jackpot_4x21', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/4_21.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle">JACK<b>POT</b> 4x21</div>
+                  <div class="lotteryTitle">JACK<span class="gilroy-extra-bold">POT</span> 4x21</div>
                   <div class="lotteryCounter">{{jackpot_4_21_counter}}</div>
                   <div class="lotteryFunds">{{jackpot_4_21_value}} SJP</div>
                   <div class="buttonSector">
@@ -78,7 +79,7 @@
                   <a (click)="goLogin('jackpot_5x36', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/5_36.jpg" alt="Card image cap">
                     </a>
-                  <div class="lotteryTitle">JACK<b>POT</b> 5x36</div>
+                  <div class="lotteryTitle">JACK<span class="gilroy-extra-bold">POT</span> 5x36</div>
                   <div class="lotteryCounter">{{jackpot_5_36_counter}}</div>
                   <div class="lotteryFunds">{{jackpot_5_36_value}} SJP</div>
                   <div class="buttonSector">
@@ -93,7 +94,7 @@
                   <a (click)="goLogin('jackpot_6x45', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/6_45.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle">JACK<b>POT</b> 6x45</div>
+                  <div class="lotteryTitle">JACK<span class="gilroy-extra-bold">POT</span> 6x45</div>
                   <div class="lotteryCounter">{{jackpot_6_45_counter}}</div>
                   <div class="lotteryFunds">{{jackpot_6_45_value}} SJP</div>
                   <div class="buttonSector">
@@ -110,7 +111,7 @@
       <tr>
         <td></td>
         <fieldset class="scheduler-border">
-            <legend class="scheduler-border">INSTANT<b>LOTTO</b></legend>
+            <legend class="scheduler-border">INSTANT<span class="gilroy-extra-bold">LOTTO</span></legend>
             <label class="lotteryLabel2">These are the fastest lotteries. Ways to win - a great many. You can become a Winner, even if you do not guess a single number. You decide how to participate, how many numbers to note, and, of course, how much You want to win.<br/>The choice is Yours!</label>
             <div class="control-group">
               <td class="lottery-cell">
@@ -118,7 +119,7 @@
                   <a (click)="goLogin('rapidos', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/rapidos.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle">RAPI<b>DOS</b></div>
+                  <div class="lotteryTitle">RAPI<span class="gilroy-extra-bold">DOS</span></div>
                   <div class="lotteryCounter">{{rapidos_counter}}</div>
                   <div class="lotteryFunds">{{rapidos_value}} SJP</div>
                   <div class="buttonSector">
@@ -134,7 +135,7 @@
                   <a (click)="goLogin('two_numbers', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/two_numbers.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle">TWO <b>NUMBERS</b></div>
+                  <div class="lotteryTitle">TWO <span class="gilroy-extra-bold">NUMBERS</span></div>
                   <div class="lotteryCounter">{{two_numbers_counter}}</div>
                   <div class="lotteryFunds">{{two_numbers_value}} SJP</div>
                   <div class="buttonSector">
@@ -150,7 +151,7 @@
                   <a (click)="goLogin('prize_jackpot', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/prize_jackpot.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle">PRIZE&<b>JACKPOT</b></div>
+                  <div class="lotteryTitle">PRIZE&<span class="gilroy-extra-bold">JACKPOT</span></div>
                   <div class="lotteryCounter">{{prize_jackpot_counter}}</div>
                   <div class="lotteryFunds">{{prize_jackpot_value}} SJP</div>
                   <div class="buttonSector">
@@ -167,7 +168,7 @@
       <tr>
         <td></td>
         <fieldset class="scheduler-border">
-            <legend class="scheduler-border">SCRATCH <b>LOTTERIES</b></legend>
+            <legend class="scheduler-border">SCRATCH <span class="gilroy-extra-bold">LOTTERIES</span></legend>
             <label class="lotteryLabel"></label>
             <div class="control-group">
               <td class="lottery-cell">
@@ -175,7 +176,7 @@
                   <a (click)="goLoginScratch('fruity', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/33.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle"><b>Fruity</b></div>
+                  <div class="lotteryTitle"><span class="gilroy-extra-bold">Fruity</span></div>
                   <div class="lotteryCounter">Any time</div>
                   <div class="lotteryFunds">333 SJP</div>
                   <div class="buttonSector">
@@ -190,7 +191,7 @@
                 <a (click)="goLoginScratch('100CASH', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/100000CASH.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle">100'000 <b>CASH</b></div>
+                  <div class="lotteryTitle">100'000 <span class="gilroy-extra-bold">CASH</span></div>
                   <div class="lotteryCounter">Any time</div>
                   <div class="lotteryFunds">1 000 SJP</div>
                   <div class="buttonSector">
@@ -205,7 +206,7 @@
                   <a (click)="goLoginScratch('777', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/top3.jpg" alt="Card image cap">
                   </a>
-                  <div class="lotteryTitle"><b>777</b></div>
+                  <div class="lotteryTitle"><span class="gilroy-extra-bold">777</span></div>
                   <div class="lotteryCounter">Any time</div>
                   <div class="lotteryFunds">777 SJP</div>
                   <div class="buttonSector">

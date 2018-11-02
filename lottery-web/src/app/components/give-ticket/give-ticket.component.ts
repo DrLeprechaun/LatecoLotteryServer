@@ -46,6 +46,12 @@ export class GiveTicketComponent implements OnInit {
   errorMessage2: string;
   private balance: number;
 
+  private isDoubleDeck: boolean = false;
+  private doubleDeck = ["rapidos", "two_numbers"];
+  private secondDeckNumber: number;
+  private secondDeckMaxNumber: number;
+  private secondDeck: any[] = [];
+
   constructor(private router: Router,
     private lottery: LotteryService,
     private tpService: TicketsPurchaseService,
@@ -63,6 +69,10 @@ export class GiveTicketComponent implements OnInit {
       this.countDown();
     }, 1000);
 
+    setInterval(() => {
+      this.updateAmount();
+    }, 5000);
+
     this.lottery.getWalletAmount()
     .then((res) => {
       console.log(res.json());
@@ -75,9 +85,7 @@ export class GiveTicketComponent implements OnInit {
 
     this.lottery.getBank()
     .then((res) => {
-      console.log(res.json());
       if (res.json().status === 'success') {
-        console.log(res.json().data);
         this.superjackpot_value = res.json().data.superjackpot;
         this.jackpot_5_36_value = res.json().data.jackpot_5x36;
         this.jackpot_6_45_value = res.json().data.jackpot_6x45;
@@ -117,7 +125,6 @@ export class GiveTicketComponent implements OnInit {
          }
          this.lotteryFunds += 1;
       } else {
-        console.log(res.json().message);
       }
     },
     (err) => {
@@ -239,13 +246,16 @@ export class GiveTicketComponent implements OnInit {
          this.lotteryGrequencyDescription = "Rapidos is held every 5 minutes.";
          //this.backgroundImage = "assets/img/b_rapidos.jpg";
          this.backgroundImage = "url(assets/img/b_rapidos.jpg)";
-         this. lottery_description = 4;
+         this.lottery_description = 4;
+         this.isDoubleDeck = true;
+         this.secondDeckNumber = 1;
+         this.secondDeckMaxNumber = 4;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_rapidos.jpg");');
           //statements;
           break;
        } case "two_numbers": {
          this.maxNumber = 100;
-         this.combinationSize = 2;
+         this.combinationSize = 1;
          this.lotteryName = "Two Numbers";
          this.lotteryBunner = "assets/img/supers.jpg";
          this.ticketCost = 1;
@@ -253,6 +263,9 @@ export class GiveTicketComponent implements OnInit {
          //this.backgroundImage = "assets/img/b_two_numbers.jpg";
          this.backgroundImage = "url(assets/img/b_two_numbers.jpg)";
          this. lottery_description = 5;
+         this.isDoubleDeck = true;
+         this.secondDeckNumber = 1;
+         this.secondDeckMaxNumber = 8;
          //document.body.setAttribute('style', 'background-image: url("assets/img/b_supers.jpg");');
           //statements;
           break;
@@ -375,6 +388,51 @@ export class GiveTicketComponent implements OnInit {
   } else {
     this.alertMessage2("Not enough funds!");
   }
+
+  if (this.isDoubleDeck) {
+
+    if (this.secondDeckMaxNumber == 4) {
+
+      var rows = [];
+      var row = [];
+
+      for (var i = 0; i < this.secondDeckMaxNumber; i++) {
+        let block = {
+          num: i+1,
+          clicked: false
+        }
+        row.push(block);
+      }
+      rows.push(row);
+      this.secondDeck.push(rows);
+
+    } else if (this.secondDeckMaxNumber == 8) {
+
+      var rows = [];
+      var row1 = [];
+      var row2 = [];
+
+      for (var i = 0; i < 4; i++) {
+        let block = {
+          num: i+1,
+          clicked: false
+        }
+        row1.push(block);
+      }
+      for (var i = 4; i < 8; i++) {
+        let block = {
+          num: i+1,
+          clicked: false
+        }
+        row2.push(block);
+      }
+      rows.push(row1);
+      rows.push(row2);
+      this.secondDeck.push(rows);
+    }
+
+  }
+
   }
 
   private checkCombinationSelected(): boolean {
@@ -400,7 +458,7 @@ export class GiveTicketComponent implements OnInit {
       this.combinations[i].splice(index, 1);
     }
 
-    let flag = false;
+    /*let flag = false;
     for (var i = 0; i < this.combinations.length; i++) {
       if (this.combinations[i].length != this.combinationSize) {
         flag = true;
@@ -411,9 +469,92 @@ export class GiveTicketComponent implements OnInit {
       document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
     } else {
       document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+    }*/
+
+    let flag = false;
+    let flag1 = false;
+    for (var k = 0; k < this.combinations.length; k++) {
+      if (this.combinations[k].length != this.combinationSize) {
+        flag1 = true;
+      }
+    }
+
+    let flag2 = false;
+    if (this.isDoubleDeck) {
+    let addCounter = 0;
+    for (var i = 0; i < this.secondDeck.length; i++) {
+      for (var r = 0; r < this.secondDeck[i].length; r++) {
+        for (var b = 0; b < this.secondDeck[i][r].length; b++) {
+          if (this.secondDeck[i][r][b].clicked == true) {
+            addCounter += 1;
+          }
+        }
+      }
+    }
+    if (addCounter != this.secondDeck.length) {
+      flag2 = true;
+    }
+  }
+
+    flag = flag1 || flag2;
+
+    if (!flag) {
+      document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
+    } else {
+      document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
     }
 
   }
+
+
+  addDeleteSecond(i: number, j: number) {
+
+    for (var r = 0; r < this.secondDeck[i].length; r++) {
+      for (var b = 0; b < this.secondDeck[i][r].length; b++) {
+        if (this.secondDeck[i][r][b].num == j) {
+          this.secondDeck[i][r][b].clicked = !this.secondDeck[i][r][b].clicked;
+        } else {
+          this.secondDeck[i][r][b].clicked = false;
+        }
+      }
+    }
+
+    let flag = false;
+    let flag1 = false;
+    for (var k = 0; k < this.combinations.length; k++) {
+      if (this.combinations[k].length != this.combinationSize) {
+        flag1 = true;
+      }
+    }
+
+    let flag2 = false;
+    if (this.isDoubleDeck) {
+    let addCounter = 0;
+    for (var i = 0; i < this.secondDeck.length; i++) {
+      for (var r = 0; r < this.secondDeck[i].length; r++) {
+        for (var b = 0; b < this.secondDeck[i][r].length; b++) {
+          if (this.secondDeck[i][r][b].clicked == true) {
+            addCounter += 1;
+          }
+        }
+      }
+    }
+
+    if (addCounter != this.secondDeck.length) {
+      flag2 = true;
+    }
+  }
+
+    flag = flag1 || flag2;
+
+    if (!flag) {
+      document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
+    } else {
+      document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+    }
+
+  }
+
 
   addRaffle(i: number) {
     if (this.balance >= 1) {
@@ -442,10 +583,27 @@ export class GiveTicketComponent implements OnInit {
   buyTickets() {
 
     var t_arr = [];
+    let s_arr = [];
+
+    if (this.isDoubleDeck) {
+    for (var i = 0; i < this.secondDeck.length; i++) {
+      for (var r = 0; r < this.secondDeck[i].length; r++) {
+        for (var b = 0; b < this.secondDeck[i][r].length; b++) {
+          if (this.secondDeck[i][r][b].clicked == true) {
+            s_arr.push(this.secondDeck[i][r][b].num);
+          }
+        }
+      }
+    }
+  }
+
     for (var i = 0; i < this.combinations.length; i++) {
       var ticket = {
         combination: this.combinations[i],
         raffles: this.raffles[i]
+      }
+      if (this.isDoubleDeck) {
+        ticket.combination.push(s_arr[i]);
       }
       t_arr.push(ticket);
     }
@@ -513,7 +671,7 @@ export class GiveTicketComponent implements OnInit {
       this.combinations[i] = r_comb;
     }
 
-    let flag = false;
+    /*let flag = false;
     for (var i = 0; i < this.combinations.length; i++) {
       if (this.combinations[i].length != this.combinationSize) {
         flag = true;
@@ -524,7 +682,41 @@ export class GiveTicketComponent implements OnInit {
       document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
     } else {
       document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+    }*/
+
+    let flag = false;
+    let flag1 = false;
+    for (var k = 0; k < this.combinations.length; k++) {
+      if (this.combinations[k].length != this.combinationSize) {
+        flag1 = true;
+      }
     }
+
+    let flag2 = false;
+    if (this.isDoubleDeck) {
+    let addCounter = 0;
+    for (var i = 0; i < this.secondDeck.length; i++) {
+      for (var r = 0; r < this.secondDeck[i].length; r++) {
+        for (var b = 0; b < this.secondDeck[i][r].length; b++) {
+          if (this.secondDeck[i][r][b].clicked == true) {
+            addCounter += 1;
+          }
+        }
+      }
+    }
+    if (addCounter != this.secondDeck.length) {
+      flag2 = true;
+    }
+  }
+
+    flag = flag1 || flag2;
+
+    if (!flag) {
+      document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
+    } else {
+      document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+    }
+
   }
 
 
@@ -551,7 +743,7 @@ export class GiveTicketComponent implements OnInit {
     this.combinations[i] = r_comb;
 
 
-    let flag = false;
+  /*  let flag = false;
     for (var k = 0; k < this.combinations.length; k++) {
       if (this.combinations[k].length != this.combinationSize) {
         flag = true;
@@ -562,7 +754,53 @@ export class GiveTicketComponent implements OnInit {
       document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
     } else {
       document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
-    }
+    }*/
+
+    if (this.isDoubleDeck) {
+        let additionalElement = this.randomInt(1, this.secondDeckMaxNumber);
+        for (var r = 0; r < this.secondDeck[i].length; r++) {
+          for (var b = 0; b < this.secondDeck[i][r].length; b++) {
+            if (this.secondDeck[i][r][b].num == additionalElement) {
+              this.secondDeck[i][r][b].clicked = true;
+            } else {
+              this.secondDeck[i][r][b].clicked = false;
+            }
+          }
+        }
+      }
+
+        let flag = false;
+        let flag1 = false;
+        for (var k = 0; k < this.combinations.length; k++) {
+          if (this.combinations[k].length != this.combinationSize) {
+            flag1 = true;
+          }
+        }
+
+        let flag2 = false;
+        if (this.isDoubleDeck) {
+        let addCounter = 0;
+        for (var i = 0; i < this.secondDeck.length; i++) {
+          for (var r = 0; r < this.secondDeck[i].length; r++) {
+            for (var b = 0; b < this.secondDeck[i][r].length; b++) {
+              if (this.secondDeck[i][r][b].clicked == true) {
+                addCounter += 1;
+              }
+            }
+          }
+        }
+        if (addCounter != this.secondDeck.length) {
+          flag2 = true;
+        }
+      }
+
+        flag = flag1 || flag2;
+
+        if (!flag) {
+          document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
+        } else {
+          document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+        }
   }
 
 
@@ -576,6 +814,39 @@ export class GiveTicketComponent implements OnInit {
     this.combinations.push(newCombination);
     this.raffles.push(1);
     this.lotteryFunds += 1;
+
+    let flag = false;
+    let flag1 = false;
+    for (var k = 0; k < this.combinations.length; k++) {
+      if (this.combinations[k].length != this.combinationSize) {
+        flag1 = true;
+      }
+    }
+
+    let flag2 = false;
+    if (this.isDoubleDeck) {
+    let addCounter = 0;
+    for (var i = 0; i < this.secondDeck.length; i++) {
+      for (var r = 0; r < this.secondDeck[i].length; r++) {
+        for (var b = 0; b < this.secondDeck[i][r].length; b++) {
+          if (this.secondDeck[i][r][b].clicked == true) {
+            addCounter += 1;
+          }
+        }
+      }
+    }
+    if (addCounter != this.secondDeck.length) {
+      flag2 = true;
+    }
+  }
+
+    flag = flag1 || flag2;
+
+    if (!flag) {
+      document.getElementById("buyButton").setAttribute("style", "visibility: visible;");
+    } else {
+      document.getElementById("buyButton").setAttribute("style", "visibility: hidden;");
+    }
   }
 
   countDown() {
@@ -726,6 +997,56 @@ open(content) {
   }, (reason) => {
     //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
   });
+}
+
+private updateAmount() {
+  this.lottery.getBank()
+  .then((res) => {
+    if (res.json().status === 'success') {
+      this.superjackpot_value = res.json().data.superjackpot;
+      this.jackpot_5_36_value = res.json().data.jackpot_5x36;
+      this.jackpot_6_45_value = res.json().data.jackpot_6x45;
+      this.jackpot_4_21_value = res.json().data.jackpot_4x21;
+      this.rapidos_value = res.json().data.rapidos;
+      this.two_numbers_value = res.json().data.two_numbers;
+      this.prize_jackpot_value = res.json().data.prize_jackpot;
+
+      switch(this.tpService.getLotteryType()) {
+         case "jackpot_5x36": {
+           this.lotteryFunds = res.json().data.jackpot_5x36 + this.tickets.length;
+           break;
+         }
+         case "jackpot_4x21": {
+           this.lotteryFunds = res.json().data.jackpot_4x21 + this.tickets.length;
+           break;
+         }
+         case "jackpot_6x45": {
+           this.lotteryFunds = res.json().data.jackpot_6x45 + this.tickets.length;
+           break;
+         }
+         case "rapidos": {
+           this.lotteryFunds = res.json().data.rapidos + this.tickets.length;
+           break;
+         }
+         case "two_numbers": {
+           this.lotteryFunds = res.json().data.two_numbers + this.tickets.length;
+           break;
+         }
+         case "prize_jackpot": {
+           this.lotteryFunds = res.json().data.prize_jackpot + this.tickets.length;
+           break;
+         }
+         default: {
+            break;
+         }
+       }
+    } else {
+
+    }
+  },
+  (err) => {
+    console.log(err);
+  })
 }
 
   logOut(): void {

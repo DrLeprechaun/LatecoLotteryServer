@@ -1,0 +1,14 @@
+.header {
+  margin-top: 20px;
+  position: fixed;
+  margin-bottom: 50px;
+  z-index: 10;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  font-size: 13pt;
+  text-shadow: 1px 1px 8px #ffffff;
+}

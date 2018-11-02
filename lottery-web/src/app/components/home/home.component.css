@@ -10,6 +10,48 @@ h3 {
   /*color: black;*/
 }
 
+/*@font-face {
+    font-family: 'Gilroy-Thin';
+    src: url(http://localhost:4200/assets/fonts/Gilroy-Thin.otf);
+}*/
+
+/*@font-face {
+  font-family: gilroy-light;
+  src: url(../../../assets/fonts/Gilroy-Light.ttf) format("opentype");
+}
+
+.gilroy-light{
+  font-family: 'gilroy-light';
+  color: black;
+}
+
+@font-face {
+  font-family: gilroy-thin;
+  src: url(../../../assets/fonts/Gilroy-Thin.otf) format("opentype");
+}
+
+.gilroy-thin{
+  font-family: 'gilroy-thin';
+  color: black;
+}
+
+@font-face {
+  font-family: gilroy-extra-bold;
+  src: url(../../../assets/fonts/Gilroy-ExtraBold.ttf) format("opentype");
+}
+
+.gilroy-extra-bold{
+  font-family: 'gilroy-extra-bold';
+  color: black;
+}*/
+
+
+
+
+/*.gilroy-thin {
+    font-family: 'Gilroty-Thin';
+}*/
+
 .header {
   margin-top: 20px;
   position: fixed;

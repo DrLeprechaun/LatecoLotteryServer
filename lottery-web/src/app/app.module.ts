@@ -36,6 +36,7 @@ import { NavbarComponent } from './components/templates/navbar/navbar.component'
 import { NavbarRegisteredComponent } from './components/templates/navbar-registered/navbar-registered.component';
 import { LanguageBarComponent } from './components/templates/language-bar/language-bar.component';
 import { MainBunnerComponent } from './components/templates/main-bunner/main-bunner.component';
+import { HeaderComponent } from './components/templates/header/header.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { MainBunnerComponent } from './components/templates/main-bunner/main-bun
     NavbarComponent,
     NavbarRegisteredComponent,
     LanguageBarComponent,
-    MainBunnerComponent
+    MainBunnerComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

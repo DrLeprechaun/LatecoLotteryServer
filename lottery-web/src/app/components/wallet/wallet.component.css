@@ -9,3 +9,7 @@ input {
 button {
   width: 150px;
 }
+
+.button-black {
+  background-color: black;
+}
