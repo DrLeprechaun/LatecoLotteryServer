@@ -8,26 +8,22 @@
   <p style="font-size: 1em; padding-top: 0px; padding-left: 20px;">BLOCKCHAIN LOTTERY</p>
 </div>-->
 <app-header></app-header>
+<div class="navbar">
+    <app-navbar-registered></app-navbar-registered>
+</div>
+  <div class="page-content" border="1">
 
-  <table class="page-content">
-    <tr>
-      <td width="50px;" style="padding-top: 10%;">
-        <app-navbar-registered></app-navbar-registered>
-    </td>
-    <td class="banner-cell" colspan="3" align="center" style="padding-top: 10%; padding-left: 16px; padding-right: 16px;">
+    <div class="content-block">
+    <div class="banner-cell" colspan="3" align="center">
       <app-main-bunner></app-main-bunner>
-    </td>
-    <td style="padding-left: 6%; padding-top: 10%;">
-      <app-cube></app-cube>
-    </td>
-  </tr>
-      <tr>
-        <td style="width: 100%; padding-right: 180px;"></td>
+    </div>
+
+      <div class="lottery-block">
         <fieldset class="scheduler-border">
             <legend class="scheduler-border"><span class="gilroy-extra-bold">SUPER</span>JACK<span class="gilroy-extra-bold">POT&nbsp;{{superjackpot_value}} SJP</span></legend>
             <label class="lotteryLabel2">Win multimillion jackpots ...</label>
             <div class="control-group">
-              <td class="lottery-cell">
+              <div class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
                   <a (click)="buyTicketRedirect('jackpot_4x21', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/4_21.jpg" alt="Card image cap">
@@ -41,8 +37,8 @@
                     <div class="buttonDiv"><button class="lotteryButton" id="present" (click)="buyTicketRedirect('jackpot_4x21', 'yes')">Present</button></div>
                   </div>
                 </div>
-              </td>
-              <td class="lottery-cell">
+              </div>
+              <div class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
                   <a (click)="buyTicketRedirect('jackpot_5x36', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/5_36.jpg" alt="Card image cap">
@@ -56,8 +52,8 @@
                     <div class="buttonDiv"><button class="lotteryButton" id="present" (click)="buyTicketRedirect('jackpot_5x36', 'yes')">Present</button></div>
                   </div>
                 </div>
-              </td>
-              <td class="lottery-cell">
+              </div>
+              <div class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
                   <a (click)="buyTicketRedirect('jackpot_6x45', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/6_45.jpg" alt="Card image cap">
@@ -71,18 +67,17 @@
                     <div class="buttonDiv"><button class="lotteryButton" id="present" (click)="buyTicketRedirect('jackpot_6x45', 'yes')">Present</button></div>
                   </div>
                 </div>
-              </td>
+              </div>
             </div>
         </fieldset>
-      </tr>
+      </div>
 
-      <tr>
-        <td></td>
+      <div class="lottery-block">
         <fieldset class="scheduler-border">
             <legend class="scheduler-border">INSTANT<span class="gilroy-extra-bold">LOTTO</span></legend>
             <label class="lotteryLabel2">These are the fastest lotteries. Ways to win - a great many. You can become a Winner, even if you do not guess a single number. You decide how to participate, how many numbers to note, and, of course, how much You want to win.<br/>The choice is Yours!</label>
             <div class="control-group">
-              <td class="lottery-cell">
+              <div class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
                   <a (click)="buyTicketRedirect('rapidos', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/rapidos.jpg" alt="Card image cap">
@@ -96,8 +91,8 @@
                     <div class="buttonDiv"><button class="lotteryButton" id="present" (click)="buyTicketRedirect('rapidos', 'yes')">Present</button></div>
                   </div>
                 </div>
-              </td>
-              <td class="lottery-cell">
+              </div>
+              <div class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
                   <a (click)="buyTicketRedirect('two_numbers', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/supers.jpg" alt="Card image cap">
@@ -111,8 +106,8 @@
                     <div class="buttonDiv"><button class="lotteryButton" id="present" (click)="buyTicketRedirect('two_numbers', 'yes')">Present</button></div>
                   </div>
                 </div>
-              </td>
-              <td class="lottery-cell">
+              </div>
+              <div class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
                   <a (click)="buyTicketRedirect('prize_jackpot', 'no')" style="cursor: pointer;">
                     <img class="card-img-top" src="assets/img/prize_jackpot.jpg" alt="Card image cap">
@@ -126,18 +121,18 @@
                     <div class="buttonDiv"><button class="lotteryButton" id="present" (click)="buyTicketRedirect('prize_jackpot', 'yes')">Present</button></div>
                   </div>
                 </div>
-              </td>
+              </div>
             </div>
         </fieldset>
-      </tr>
+      </div>
 
-      <tr>
-        <td></td>
+      <div class="lottery-block">
+
         <fieldset class="scheduler-border">
             <legend class="scheduler-border">SCRATCH <span class="gilroy-extra-bold">LOTTERIES</span></legend>
             <label class="lotteryLabel"></label>
             <div class="control-group">
-              <td class="lottery-cell">
+              <div class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
                   <a style="cursor: pointer;" (click)="buyScratch('fruity', 'no')">
                     <img class="card-img-top" src="assets/img/33.jpg" alt="Card image cap">
@@ -151,8 +146,8 @@
                     <div class="buttonDiv"><button class="lotteryButton" id="present" (click)="buyScratch('fruity', 'yes')" class="lotteryButton">Present</button></div>
                   </div>
                 </div>
-              </td>
-              <td class="lottery-cell">
+              </div>
+              <div class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
                   <a style="cursor: pointer;" (click)="buyScratch('100CASH', 'no')">
                     <img class="card-img-top" src="assets/img/100000CASH.jpg" alt="Card image cap">
@@ -166,8 +161,8 @@
                     <div class="buttonDiv"><button class="lotteryButton" id="present" (click)="buyScratch('100CASH', 'yes')" class="lotteryButton">Present</button></div>
                   </div>
                 </div>
-              </td>
-              <td class="lottery-cell">
+              </div>
+              <div class="lottery-cell">
                 <div class="card" style="width: 15rem;  margin: 0 auto;">
                   <a style="cursor: pointer;" (click)="buyScratch('777', 'no')">
                     <img class="card-img-top" src="assets/img/top3.jpg" alt="Card image cap">
@@ -181,12 +176,18 @@
                     <div class="buttonDiv"><button class="lotteryButton" id="present" (click)="buyScratch('777', 'yes')">Present</button></div>
                   </div>
                 </div>
-              </td>
+              </div>
             </div>
         </fieldset>
-      </tr>
+        </div>
+      </div>
 
-    </table>
+      <div class="lottery-cube">
+        <app-cube></app-cube>
+      </div>
+
+
+    </div>
 
 
     <ng-template #content let-c="close" let-d="dismiss">

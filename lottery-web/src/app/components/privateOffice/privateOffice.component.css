@@ -231,9 +231,7 @@ legend.scheduler-border {
 }
 
 .page-content {
-  width: 80%;
-  table-layout: auto;
-
+  width: 100%;
 }
 
 .page-content td {
@@ -499,4 +497,43 @@ a h2:hover {
   background-color: white;
   border: 1px solid black;
   outline: 0;
+}
+
+.control-group {
+  margin: 0px 20px 20px 20px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 40px;
+  justify-content: space-around;
+}
+
+.page-content {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  justify-content: center;
+  grid-template-areas:
+   ". a b";
+}
+
+.content-block {
+ grid-area: a;
+ align-self: center;
+ justify-self: center;
+ width: 100%;
+}
+
+.lottery-cube {
+  grid-area: b;
+  margin-left: 30%;
+}
+
+.navbar {
+  padding-top: 8%;
+}
+
+.banner-cell {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 30px;
 }
