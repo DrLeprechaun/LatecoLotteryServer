@@ -234,11 +234,6 @@ legend.scheduler-border {
   width: 100%;
 }
 
-.page-content td {
-  vertical-align: top;
-  padding: 20px;
-}
-
 
 .lottery-cell {
   text-align: center;
@@ -520,16 +515,18 @@ a h2:hover {
  grid-area: a;
  align-self: center;
  justify-self: center;
- width: 100%;
+ min-width: 100%;
 }
 
 .lottery-cube {
   grid-area: b;
-  margin-left: 30%;
+  margin-left: 150px;
+  justify-content:
 }
 
 .navbar {
-  padding-top: 8%;
+  padding-top: 150px;
+  padding-left: 20px;
 }
 
 .banner-cell {
