@@ -26,14 +26,15 @@ export class GiveTicketComponent implements OnInit {
   tableData: any[] = [];
   tickets: any[] = [];
   raffles: number[] = [];
-  private superjackpot_value: 0;
-  private jackpot_5_36_value: 0;
-  private jackpot_6_45_value: 0;
-  private jackpot_4_21_value: 0;
-  private two_numbers_value: 0;
-  private prize_jackpot_value: 0;
-  private rapidos_value: 0;
-  lotteryFunds: 0;
+  private superjackpot_value: number = 0;
+  private jackpot_5_36_value: number = 0;
+  private jackpot_6_45_value: number = 0;
+  private jackpot_4_21_value: number = 0;
+  private two_numbers_value: number = 0;
+  private prize_jackpot_value: number = 0;
+  private rapidos_value: number = 0;
+  private lotteryFunds: number = 0;
+  private lotteryFundsReal: number = 0;
   private lottery_description: number = 0;
   cd: string;
   private email: string = "";
@@ -97,26 +98,32 @@ export class GiveTicketComponent implements OnInit {
         switch(this.tpService.getLotteryType()) {
            case "jackpot_5x36": {
              this.lotteryFunds = res.json().data.jackpot_5x36;
+             this.lotteryFundsReal = res.json().data.jackpot_5x36;
              break;
            }
            case "jackpot_4x21": {
              this.lotteryFunds = res.json().data.jackpot_4x21;
+             this.lotteryFundsReal = res.json().data.jackpot_4x21;
              break;
            }
            case "jackpot_6x45": {
              this.lotteryFunds = res.json().data.jackpot_6x45;
+             this.lotteryFundsReal = res.json().data.jackpot_6x45;
              break;
            }
            case "rapidos": {
              this.lotteryFunds = res.json().data.rapidos;
+             this.lotteryFundsReal = res.json().data.rapidos;
              break;
            }
            case "two_numbers": {
              this.lotteryFunds = res.json().data.two_numbers;
+             this.lotteryFundsReal = res.json().data.two_numbers;
              break;
            }
            case "prize_jackpot": {
              this.lotteryFunds = res.json().data.prize_jackpot;
+             this.lotteryFundsReal = res.json().data.prize_jackpot;
              break;
            }
            default: {
@@ -576,7 +583,8 @@ export class GiveTicketComponent implements OnInit {
     this.combinations.splice(index, 1);
     this.tickets.splice(index, 1);
     this.raffles.splice(index, 1);
-    this.lotteryFunds -= 1;
+    //this.lotteryFunds -= 1;
+    this.lotteryFunds = this.lotteryFundsReal + this.tickets.length;
     this.balance += 1;
   }
 
@@ -813,7 +821,8 @@ export class GiveTicketComponent implements OnInit {
     var newCombination = [];
     this.combinations.push(newCombination);
     this.raffles.push(1);
-    this.lotteryFunds += 1;
+    //this.lotteryFunds += 1;
+    this.lotteryFunds = this.lotteryFundsReal + this.tickets.length;
 
     let flag = false;
     let flag1 = false;
@@ -1013,27 +1022,39 @@ private updateAmount() {
 
       switch(this.tpService.getLotteryType()) {
          case "jackpot_5x36": {
-           this.lotteryFunds = res.json().data.jackpot_5x36 + this.tickets.length;
+           //this.lotteryFunds = res.json().data.jackpot_5x36 + this.tickets.length;
+           this.beautifulUpdate(res.json().data.jackpot_5x36);
+           this.lotteryFundsReal = res.json().data.jackpot_5x36;
            break;
          }
          case "jackpot_4x21": {
-           this.lotteryFunds = res.json().data.jackpot_4x21 + this.tickets.length;
+           //this.lotteryFunds = res.json().data.jackpot_4x21 + this.tickets.length;
+           this.beautifulUpdate(res.json().data.jackpot_4x21);
+           this.lotteryFundsReal = res.json().data.jackpot_4x21;
            break;
          }
          case "jackpot_6x45": {
-           this.lotteryFunds = res.json().data.jackpot_6x45 + this.tickets.length;
+           //this.lotteryFunds = res.json().data.jackpot_6x45 + this.tickets.length;
+           this.beautifulUpdate(res.json().data.jackpot_6x45);
+           this.lotteryFundsReal = res.json().data.jackpot_6x45;
            break;
          }
          case "rapidos": {
-           this.lotteryFunds = res.json().data.rapidos + this.tickets.length;
+           //this.lotteryFunds = res.json().data.rapidos + this.tickets.length;
+           this.beautifulUpdate(res.json().data.rapidos);
+           this.lotteryFundsReal = res.json().data.rapidos;
            break;
          }
          case "two_numbers": {
-           this.lotteryFunds = res.json().data.two_numbers + this.tickets.length;
+           //this.lotteryFunds = res.json().data.two_numbers + this.tickets.length;
+           this.beautifulUpdate(res.json().data.two_numbers);
+           this.lotteryFundsReal = res.json().data.two_numbers;
            break;
          }
          case "prize_jackpot": {
-           this.lotteryFunds = res.json().data.prize_jackpot + this.tickets.length;
+           //this.lotteryFunds = res.json().data.prize_jackpot + this.tickets.length;
+           this.beautifulUpdate(res.json().data.prize_jackpot);
+           this.lotteryFundsReal = res.json().data.prize_jackpot;
            break;
          }
          default: {
@@ -1047,6 +1068,25 @@ private updateAmount() {
   (err) => {
     console.log(err);
   })
+}
+
+private beautifulUpdate(newValue: number) {
+
+  if (newValue > this.lotteryFunds) {
+    let theLoop: (k: number) => void = (k: number) => {
+        setTimeout(() => {
+            this.beautifulIncrease();
+            if (--k) {
+                theLoop(k);
+            }
+        }, 10);
+    };
+    theLoop(newValue + this.tickets.length - this.lotteryFunds);
+  }
+}
+
+private beautifulIncrease() {
+  this.lotteryFunds += 1;
 }
 
   logOut(): void {

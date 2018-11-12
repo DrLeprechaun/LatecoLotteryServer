@@ -16,10 +16,15 @@ export class ScratchComponent implements OnInit, AfterViewInit {
   private backgroundImage: string;
   private lotteryName: string;
   private lotteryFunds: number;
+  private lotteryFundsReal: number;
   private lotteryBunner: string;
   private tickets: any[] = [];
   private fakeBallsArray: number[] = [];
   private scratchNowFlag: boolean = false;
+
+  private s777_value: 0;
+  private s100cash_value: 0;
+  private fruity_value: 0;
 
   private bridge: any;
   private bridgeCanvas: any;
@@ -50,26 +55,67 @@ export class ScratchComponent implements OnInit, AfterViewInit {
     this._alert.subscribe((message) => this.errorMessage = message);
     debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
 
+    setInterval(() => {
+      this.updateAmount();
+    }, 5000);
+
     if (this.tpService.getWannaGive() === 'yes') {
       this.router.navigateByUrl('/give-scratch');
     }
 
+    this.lottery.getBank()
+    .then((res) => {
+      console.log(res.json());
+      console.log(this.tpService.getScratchType());
+      if (res.json().status === 'success') {
+        this.s777_value = res.json().data.s777;
+        this.s100cash_value = res.json().data.s100cash;
+        this.fruity_value = res.json().data.fruity;
+
+        switch(this.tpService.getScratchType()) {
+           case "777": {
+             this.lotteryFunds = res.json().data.s777 + 1;
+             this.lotteryFundsReal = res.json().data.s777;
+             break;
+           }
+           case "100CASH": {
+             this.lotteryFunds = res.json().data.s100cash + 1;
+             this.lotteryFundsReal = res.json().data.s100cash;
+             break;
+           }
+           case "fruity": {
+             this.lotteryFunds = res.json().data.fruity + 1;
+             this.lotteryFundsReal = res.json().data.fruity;
+             break;
+           }
+           default: {
+              break;
+           }
+         }
+      } else {
+
+      }
+    },
+    (err) => {
+      console.log(err);
+    })
+
     if (this.tpService.getScratchType() == "777") {
       //this.backgroundImage = "assets/img/b_top3.jpg";
       this.backgroundImage = "url(assets/img/b_top3.jpg)";
-      this.lotteryFunds = 777;
+      //this.lotteryFunds = 777;
       this.lotteryName = "777";
       this.lotteryBunner = "assets/img/top3.jpg";
     } else if (this.tpService.getScratchType() == "100CASH") {
       //this.backgroundImage = "assets/img/b_4_21.jpg";
       this.backgroundImage = "url(assets/img/b_4_21.jpg)";
-      this.lotteryFunds = 100;
+      //this.lotteryFunds = 100;
       this.lotteryName = "100'000 CASH";
       this.lotteryBunner = "assets/img/100000CASH.jpg";
     } else if (this.tpService.getScratchType() == "fruity") {
       //this.backgroundImage = "assets/img/b_rapidos.jpg";
       this.backgroundImage = "url(assets/img/b_rapidos.jpg)";
-      this.lotteryFunds = 333;
+      //this.lotteryFunds = 333;
       this.lotteryName = "Fruity";
       this.lotteryBunner = "assets/img/33.jpg";
     }
@@ -185,6 +231,7 @@ export class ScratchComponent implements OnInit, AfterViewInit {
       var arr = [];
       this.tickets.push(arr);
       this.balance = this.balance - 1;
+      this.lotteryFunds = this.lotteryFundsReal + this.tickets.length;
     } else {
       this.alertMessage("Not enough funds!");
     }
@@ -194,6 +241,7 @@ export class ScratchComponent implements OnInit, AfterViewInit {
     if (this.tickets.length > 1) {
       this.tickets.splice(index, 1);
       this.balance = this.balance + 1;
+      this.lotteryFunds = this.lotteryFundsReal + this.tickets.length;
     }
   }
 
@@ -349,6 +397,68 @@ private mouseMove(e: MouseEvent, ticket_id: number, ball_id: number) {
       this.drawDot(brushPos.x, brushPos.y, ticket_id, ball_id);
   }
 }*/
+
+
+private updateAmount() {
+  this.lottery.getBank()
+  .then((res) => {
+    if (res.json().status === 'success') {
+      this.s777_value = res.json().data.s777;
+      this.s100cash_value = res.json().data.s100cash;
+      this.fruity_value = res.json().data.fruity;
+
+      switch(this.tpService.getScratchType()) {
+         case "777": {
+           //this.lotteryFunds = res.json().data.jackpot_5x36 + this.tickets.length;
+           this.beautifulUpdate(res.json().data.s777);
+           this.lotteryFundsReal = res.json().data.s777;
+           break;
+         }
+         case "100CASH": {
+           //this.lotteryFunds = res.json().data.jackpot_4x21 + this.tickets.length;
+           this.beautifulUpdate(res.json().data.s100cash);
+           this.lotteryFundsReal = res.json().data.s100cash;
+           break;
+         }
+         case "fruity": {
+           //this.lotteryFunds = res.json().data.jackpot_6x45 + this.tickets.length;
+           this.beautifulUpdate(res.json().data.fruity);
+           this.lotteryFundsReal = res.json().data.fruity;
+           break;
+         }
+         default: {
+            break;
+         }
+       }
+    } else {
+
+    }
+  },
+  (err) => {
+    console.log(err);
+  })
+}
+
+private beautifulUpdate(newValue: number) {
+
+  if (newValue > this.lotteryFunds) {
+    let theLoop: (k: number) => void = (k: number) => {
+        setTimeout(() => {
+            this.beautifulIncrease();
+            if (--k) {
+                theLoop(k);
+            }
+        }, 10);
+    };
+    theLoop(newValue + this.tickets.length - this.lotteryFunds);
+  }
+}
+
+private beautifulIncrease() {
+  this.lotteryFunds += 1;
+}
+
+
 alertMessage(message: string) {
   this._alert.next(message);
 }

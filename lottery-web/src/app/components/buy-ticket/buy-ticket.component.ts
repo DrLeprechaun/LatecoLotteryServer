@@ -33,7 +33,8 @@ export class BuyTicketComponent implements OnInit {
   private two_numbers_value: 0;
   private prize_jackpot_value: 0;
   private rapidos_value: 0;
-  lotteryFunds: 0;
+  private lotteryFunds: number = 0;
+  private lotteryFundsReal: number = 0;
   private lottery_description: number = 0;
   cd: string;
 
@@ -106,26 +107,32 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
         switch(this.tpService.getLotteryType()) {
            case "jackpot_5x36": {
              this.lotteryFunds = res.json().data.jackpot_5x36;
+             this.lotteryFundsReal = res.json().data.jackpot_5x36;
              break;
            }
            case "jackpot_4x21": {
              this.lotteryFunds = res.json().data.jackpot_4x21;
+             this.lotteryFundsReal = res.json().data.jackpot_4x21;
              break;
            }
            case "jackpot_6x45": {
              this.lotteryFunds = res.json().data.jackpot_6x45;
+             this.lotteryFundsReal = res.json().data.jackpot_6x45;
              break;
            }
            case "rapidos": {
              this.lotteryFunds = res.json().data.rapidos;
+             this.lotteryFundsReal = res.json().data.rapidos;
              break;
            }
            case "two_numbers": {
              this.lotteryFunds = res.json().data.two_numbers;
+             this.lotteryFundsReal = res.json().data.two_numbers;
              break;
            }
            case "prize_jackpot": {
              this.lotteryFunds = res.json().data.prize_jackpot;
+             this.lotteryFundsReal = res.json().data.prize_jackpot;
              break;
            }
            default: {
@@ -525,7 +532,8 @@ constructor(private router: Router, private lottery: LotteryService, private tpS
     this.combinations.splice(index, 1);
     this.tickets.splice(index, 1);
     this.raffles.splice(index, 1);
-    this.lotteryFunds -= 1;
+    //this.lotteryFunds -= 1;
+    this.lotteryFunds = this.lotteryFundsReal + this.tickets.length;
     this.balance = this.balance + 1;
     this.secondDeck.splice(index, 1);
   }
@@ -744,7 +752,8 @@ if (this.isDoubleDeck) {
       var newCombination = [];
       this.combinations.push(newCombination);
       this.raffles.push(1);
-      this.lotteryFunds += 1;
+      //this.lotteryFunds += 1;
+      this.lotteryFunds = this.lotteryFundsReal + this.tickets.length;
       this.balance = this.balance - 1;
     } else {
       this.alertMessage("Not enough funds!");
@@ -915,76 +924,6 @@ if (this.isDoubleDeck) {
     }
   }
 
-  /*private updateAmount() {
-    this.lottery.getBank()
-    .then((res) => {
-      if (res.json().status === 'success') {
-        this.superjackpot_value = res.json().data.superjackpot;
-        this.jackpot_5_36_value = res.json().data.jackpot_5x36;
-        this.jackpot_6_45_value = res.json().data.jackpot_6x45;
-        this.jackpot_4_21_value = res.json().data.jackpot_4x21;
-        this.rapidos_value = res.json().data.rapidos;
-        this.two_numbers_value = res.json().data.two_numbers;
-        this.prize_jackpot_value = res.json().data.prize_jackpot;
-
-        switch(this.tpService.getLotteryType()) {
-           case "jackpot_5x36": {
-             this.beautifulUpdate(res.json().data.jackpot_5x36);
-             break;
-           }
-           case "jackpot_4x21": {
-             this.beautifulUpdate(res.json().data.jackpot_4x21);
-             break;
-           }
-           case "jackpot_6x45": {
-             this.beautifulUpdate(res.json().data.jackpot_6x45);
-             break;
-           }
-           case "rapidos": {
-             this.beautifulUpdate(res.json().data.rapidos);
-             break;
-           }
-           case "two_numbers": {
-             this.beautifulUpdate(res.json().data.two_numbers);
-             break;
-           }
-           case "prize_jackpot": {
-             this.beautifulUpdate(res.json().data.prize_jackpot);
-             break;
-           }
-           default: {
-              break;
-           }
-         }
-      } else {
-
-      }
-    },
-    (err) => {
-      console.log(err);
-    })
-  }
-
-  private beautifulUpdate(amount: number) {
-
-    if (amount > this.lotteryFunds) {
-      while (amount > this.lotteryFunds) {
-        //setTimeout(function() {
-          //this.lotteryFunds += 1;
-        //}, 100);
-        this.lotteryFunds += 1;
-      }
-      //this.lotteryFunds = amount + this.tickets.length;
-    } else if (amount < this.lotteryFunds) {
-      while (amount < this.lotteryFunds) {
-        //setTimeout(function() {
-          //this.lotteryFunds -= 1;
-        //}, 100);
-        this.lotteryFunds -= 1;
-      }
-      //this.lotteryFunds = amount + this.tickets.length;
-    }
-  }*/
 
   private updateAmount() {
     this.lottery.getBank()
@@ -1000,27 +939,35 @@ if (this.isDoubleDeck) {
 
         switch(this.tpService.getLotteryType()) {
            case "jackpot_5x36": {
-             this.lotteryFunds = res.json().data.jackpot_5x36 + this.tickets.length;
+             this.beautifulUpdate(res.json().data.jackpot_5x36);
+             this.lotteryFundsReal = res.json().data.jackpot_5x36;
              break;
            }
            case "jackpot_4x21": {
-             this.lotteryFunds = res.json().data.jackpot_4x21 + this.tickets.length;
+             //this.beautifulUpdate(this.lotteryFunds + 10);
+             this.beautifulUpdate(res.json().data.jackpot_4x21);
+             this.lotteryFundsReal = res.json().data.jackpot_4x21;
+             //console.log(res.json().data.jackpot_4x21);
              break;
            }
            case "jackpot_6x45": {
-             this.lotteryFunds = res.json().data.jackpot_6x45 + this.tickets.length;
+             this.beautifulUpdate(res.json().data.jackpot_6x45);
+             this.lotteryFundsReal = res.json().data.jackpot_6x45;
              break;
            }
            case "rapidos": {
-             this.lotteryFunds = res.json().data.rapidos + this.tickets.length;
+             this.beautifulUpdate(res.json().data.rapidos);
+             this.lotteryFundsReal = res.json().data.rapidos;
              break;
            }
            case "two_numbers": {
-             this.lotteryFunds = res.json().data.two_numbers + this.tickets.length;
+             this.beautifulUpdate(res.json().data.two_numbers);
+             this.lotteryFundsReal = res.json().data.two_numbers;
              break;
            }
            case "prize_jackpot": {
-             this.lotteryFunds = res.json().data.prize_jackpot + this.tickets.length;
+             this.beautifulUpdate(res.json().data.prize_jackpot);
+             this.lotteryFundsReal = res.json().data.prize_jackpot;
              break;
            }
            default: {
@@ -1034,6 +981,25 @@ if (this.isDoubleDeck) {
     (err) => {
       console.log(err);
     })
+  }
+
+  private beautifulUpdate(newValue: number) {
+
+    if (newValue > this.lotteryFunds) {
+      let theLoop: (k: number) => void = (k: number) => {
+          setTimeout(() => {
+              this.beautifulIncrease();
+              if (--k) {
+                  theLoop(k);
+              }
+          }, 10);
+      };
+      theLoop(newValue + this.tickets.length - this.lotteryFunds);
+    }
+  }
+
+  private beautifulIncrease() {
+    this.lotteryFunds += 1;
   }
 
   alertMessage(message: string) {

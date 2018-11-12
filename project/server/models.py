@@ -126,7 +126,7 @@ class BlacklistToken(db.Model):
 class LotteryTokens(db.Model):
 
     __tablename__ = 'lottery_tokens'
-    
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, nullable=True)
     amount = db.Column(db.BigInteger, nullable=True)
@@ -389,8 +389,11 @@ class Bank(db.Model):
     top3 = db.Column(REAL, nullable=True)
     two_numbers = db.Column(REAL, nullable=True)
     prize_jackpot = db.Column(REAL, nullable=True)
+    s777 = db.Column(REAL, nullable=True)
+    s100cash = db.Column(REAL, nullable=True)
+    fruity = db.Column(REAL, nullable=True)
 
-    def __init__(self, jackpot_5_36, jackpot_6_45, jackpot_4_21, superjackpot, rapidos, supers, top3, two_numbers, prize_jackpot):
+    def __init__(self, jackpot_5_36, jackpot_6_45, jackpot_4_21, superjackpot, rapidos, supers, top3, two_numbers, prize_jackpot, s777, s100cash, fruity):
         self.jackpot_5_36 = jackpot_5_36
         self.jackpot_6_45 = jackpot_6_45
         self.jackpot_4_21 = jackpot_4_20
@@ -400,6 +403,9 @@ class Bank(db.Model):
         self.top3 = top3
         self.two_numbers = two_numbers
         self.prize_jackpot = prize_jackpot
+        self.s777 = s777
+        self.s100cash = s100cash
+        self.fruity = fruity
 
 class Bets777(db.Model):
 

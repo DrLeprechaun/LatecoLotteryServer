@@ -34,6 +34,9 @@ export class PrivateOfficeComponent {
   private two_numbers_value: 0;
   private prize_jackpot_value: 0;
   private rapidos_value: 0;
+  private s777_value: 0;
+  private s100cash_value: 0;
+  private fruity_value: 0;
   private lottery_description: number = 0;
 
   private jackpot_5_36_counter: string;
@@ -71,6 +74,9 @@ export class PrivateOfficeComponent {
         this.rapidos_value = res.json().data.rapidos;
         this.two_numbers_value = res.json().data.two_numbers;
         this.prize_jackpot_value = res.json().data.prize_jackpot;
+        this.s777_value = res.json().data.s777;
+        this.s100cash_value = res.json().data.s100cash;
+        this.fruity_value = res.json().data.fruity;
       } else {
         console.log(res.json().message);
       }

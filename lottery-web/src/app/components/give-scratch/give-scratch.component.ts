@@ -17,11 +17,16 @@ export class GiveScratchComponent implements OnInit  {
 
   private backgroundImage: string;
   private lotteryName: string;
-  private lotteryFunds: number;
+  private lotteryFunds: number = 0;
+  private lotteryFundsReal: number = 0;
   private lotteryBunner: string;
   private tickets: any[] = [];
   private fakeBallsArray: number[] = [];
   private scratchNowFlag: boolean = false;
+
+  private s777_value: 0;
+  private s100cash_value: 0;
+  private fruity_value: 0;
 
   private bridge: any;
   private bridgeCanvas: any;
@@ -54,6 +59,10 @@ export class GiveScratchComponent implements OnInit  {
     debounceTime.call(this._alert, 5000).subscribe(() => this.errorMessage = null);
     debounceTime.call(this._alert2, 5000).subscribe(() => this.errorMessage2 = null);
 
+    setInterval(() => {
+      this.updateAmount();
+    }, 5000);
+
     this.lottery.getWalletAmount()
     .then((res) => {
       console.log(res.json());
@@ -62,22 +71,59 @@ export class GiveScratchComponent implements OnInit  {
       }
     })
 
+    this.lottery.getBank()
+    .then((res) => {
+      console.log(res.json());
+      console.log(this.tpService.getScratchType());
+      if (res.json().status === 'success') {
+        this.s777_value = res.json().data.s777;
+        this.s100cash_value = res.json().data.s100cash;
+        this.fruity_value = res.json().data.fruity;
+
+        switch(this.tpService.getScratchType()) {
+           case "777": {
+             this.lotteryFunds = res.json().data.s777 + 1;
+             this.lotteryFundsReal = res.json().data.s777;
+             break;
+           }
+           case "100CASH": {
+             this.lotteryFunds = res.json().data.s100cash + 1;
+             this.lotteryFundsReal = res.json().data.s100cash;
+             break;
+           }
+           case "fruity": {
+             this.lotteryFunds = res.json().data.fruity + 1;
+             this.lotteryFundsReal = res.json().data.fruity;
+             break;
+           }
+           default: {
+              break;
+           }
+         }
+      } else {
+
+      }
+    },
+    (err) => {
+      console.log(err);
+    })
+
     if (this.tpService.getScratchType() == "777") {
       //this.backgroundImage = "assets/img/b_top3.jpg";
       this.backgroundImage = "url(assets/img/b_top3.jpg)";
-      this.lotteryFunds = 777;
+      //this.lotteryFunds = 777;
       this.lotteryName = "777";
       this.lotteryBunner = "assets/img/top3.jpg";
     } else if (this.tpService.getScratchType() == "100CASH") {
       //this.backgroundImage = "assets/img/b_4_21.jpg";
       this.backgroundImage = "url(assets/img/b_4_21.jpg)";
-      this.lotteryFunds = 100;
+      //this.lotteryFunds = 100;
       this.lotteryName = "100'000 CASH";
       this.lotteryBunner = "assets/img/100000CASH.jpg";
     } else if (this.tpService.getScratchType() == "fruity") {
       //this.backgroundImage = "assets/img/b_rapidos.jpg";
       this.backgroundImage = "url(assets/img/b_rapidos.jpg)";
-      this.lotteryFunds = 333;
+      //this.lotteryFunds = 333;
       this.lotteryName = "Fruity";
       this.lotteryBunner = "assets/img/33.jpg";
     }
@@ -87,6 +133,7 @@ export class GiveScratchComponent implements OnInit  {
     //this.addTicket();
     var arr = [];
     this.tickets.push(arr);
+    this.lotteryFunds = this.lotteryFundsReal + this.tickets.length;
 
   }
 
@@ -153,7 +200,8 @@ export class GiveScratchComponent implements OnInit  {
 
   removeTicket(index: number) {
     this.tickets.splice(index, 1);
-    this.balance += 1; 
+    this.balance += 1;
+    this.lotteryFunds = this.lotteryFundsReal + this.tickets.length;
   }
 
   private removeButtonFlag(): boolean {
@@ -247,6 +295,65 @@ alertMessage(message: string) {
 
 alertMessage2(message: string) {
   this._alert2.next(message);
+}
+
+private updateAmount() {
+  this.lottery.getBank()
+  .then((res) => {
+    if (res.json().status === 'success') {
+      this.s777_value = res.json().data.s777;
+      this.s100cash_value = res.json().data.s100cash;
+      this.fruity_value = res.json().data.fruity;
+
+      switch(this.tpService.getScratchType()) {
+         case "777": {
+           //this.lotteryFunds = res.json().data.jackpot_5x36 + this.tickets.length;
+           this.beautifulUpdate(res.json().data.s777);
+           this.lotteryFundsReal = res.json().data.s777;
+           break;
+         }
+         case "100CASH": {
+           //this.lotteryFunds = res.json().data.jackpot_4x21 + this.tickets.length;
+           this.beautifulUpdate(res.json().data.s100cash);
+           this.lotteryFundsReal = res.json().data.s100cash;
+           break;
+         }
+         case "fruity": {
+           //this.lotteryFunds = res.json().data.jackpot_6x45 + this.tickets.length;
+           this.beautifulUpdate(res.json().data.fruity);
+           this.lotteryFundsReal = res.json().data.fruity;
+           break;
+         }
+         default: {
+            break;
+         }
+       }
+    } else {
+
+    }
+  },
+  (err) => {
+    console.log(err);
+  })
+}
+
+private beautifulUpdate(newValue: number) {
+
+  if (newValue > this.lotteryFunds) {
+    let theLoop: (k: number) => void = (k: number) => {
+        setTimeout(() => {
+            this.beautifulIncrease();
+            if (--k) {
+                theLoop(k);
+            }
+        }, 10);
+    };
+    theLoop(newValue + this.tickets.length - this.lotteryFunds);
+  }
+}
+
+private beautifulIncrease() {
+  this.lotteryFunds += 1;
 }
 
 

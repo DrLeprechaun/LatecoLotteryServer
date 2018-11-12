@@ -76,7 +76,10 @@ class GetBank(MethodView):
                     'superjackpot': bank.superjackpot,
                     'rapidos': bank.rapidos,
                     'two_numbers': bank.two_numbers,
-                    'prize_jackpot': bank.prize_jackpot
+                    'prize_jackpot': bank.prize_jackpot,
+					's777': bank.s777,
+					's100cash': bank.s100cash,
+					'fruity': bank.fruity
                 }
             }
         return make_response(jsonify(responseObject)), 200
@@ -639,42 +642,49 @@ class BuyTickets(MethodView):
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
                 bank = Bank.query.first()
+                wallet = Wallets.query.filter_by(user_id=user.id).first()
                 if (post_data['type'] == "jackpot_5x36"):
                     for c in post_data['tickets']:
                         newBet = BetsJackpot_5_36(user.id, c['combination'], c['raffles'])
                         #newBet = BetsJackpot_5_36(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.jackpot_5_36 += 1
+                        wallet.amount -= 1
                 if (post_data['type'] == "jackpot_6x45"):
                     for c in post_data['tickets']:
                         newBet = BetsJackpot_6_45(user.id, c['combination'], c['raffles'])
                         #newBet = BetsJackpot_6_45(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.jackpot_6_45 += 1
+                        wallet.amount -= 1
                 if (post_data['type'] == "jackpot_4x21"):
                     for c in post_data['tickets']:
                         newBet = BetsJackpot_4_21(user.id, c['combination'], c['raffles'])
                         #newBet = BetsJackpot_4_21(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.jackpot_4_21 += 1
+                        wallet.amount -= 1
                 if (post_data['type'] == "rapidos"):
                     for c in post_data['tickets']:
                         newBet = BetsRapidos(user.id, c['combination'], c['raffles'])
                         #newBet = BetsRapidos(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.rapidos += 1
+                        wallet.amount -= 1
                 if (post_data['type'] == "two_numbers"):
                     for c in post_data['tickets']:
                         newBet = BetsTwoNumbers(user.id, c['combination'], c['raffles'])
                         #newBet = BetsTwoNumbers(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.two_numbers += 1
+                        wallet.amount -= 1
                 if (post_data['type'] == "prize_jackpot"):
                     for c in post_data['tickets']:
                         newBet = BetsPrizeJackpot(user.id, c['combination'], c['raffles'])
                         #newBet = BetsPrizeJackpot(user.id, c['combination'], True, False, None, c['raffles'])
                         db.session.add(newBet)
                         bank.prize_jackpot += 1
+                        wallet.amount -= 1
                 bank.superjackpot += 1
                 #db.flush()
                 db.session.commit()
@@ -1257,7 +1267,6 @@ class BuyScratch(MethodView):
     def post(self):
         auth_header = request.headers.get('Authorization')
         post_data = request.get_json()
-        print(post_data)
         if auth_header:
             try:
                 auth_token = auth_header.split(" ")[1]
@@ -1274,17 +1283,25 @@ class BuyScratch(MethodView):
             if not isinstance(resp, str):
                 user = User.query.filter_by(id=resp).first()
                 win_combination = GetRandomArray(0, 9, 9)
+                bank = Bank.query.first()
+                wallet = Wallets.query.filter_by(user_id=user.id).first()
                 for i in range(0, post_data.get('tickets')):
                     ticket_arr = GetRandomArray(0, 9, 9)
                     if post_data.get('type') == '777':
                         bet_777 = Bets777(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
                         db.session.add(bet_777)
+                        bank.s777 += 1
+                        wallet.amount -= 1
                     if post_data.get('type') == '100CASH':
                         bet_100cash = Bets100Cash(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
                         db.session.add(bet_100cash)
+                        bank.s100cash += 1
+                        wallet.amount -= 1
                     if post_data.get('type') == 'fruity':
                         bet_fruity = BetsFruity(user.id, ticket_arr, win_combination, True, CompareArrays(ticket_arr, win_combination))
                         db.session.add(bet_fruity)
+                        db.session.fruity += 1
+                        wallet.amount -= 1
                     db.session.commit()
                 try:
                 	msg = Message("SuperJackpot Lottery", sender = "superjackpot.noreply@gmail.com", recipients=[user.email])
@@ -2566,6 +2583,7 @@ class GiveScratch(MethodView):
                 user = User.query.filter_by(email=post_data.get('email')).first()
                 wallet = Wallets.query.filter_by(user_id=giver.id).first()
                 win_combination = GetRandomArray(0, 9, 9)
+                bank = Bank.query.first()
                 if (user != None and wallet.amount >= post_data.get('tickets')):
                     for i in range(0, post_data.get('tickets')):
                         ticket_arr = GetRandomArray(0, 9, 9)
