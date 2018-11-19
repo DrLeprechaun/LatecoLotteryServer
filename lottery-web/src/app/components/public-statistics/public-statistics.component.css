@@ -11,14 +11,10 @@
 }
 
 .page-content {
-  width: 80%;
+  min-width: 100%;
   table-layout: auto;
 }
 
-.page-content td {
-  vertical-align: top;
-  padding: 20px;
-}
 
 a h2:hover {
   color: black;
@@ -86,7 +82,6 @@ legend.scheduler-border {
 }
 
 .container {
-  margin-left: 10px;
   width: 100%;
   align-content: center;
   align-items: center;
@@ -249,4 +244,37 @@ legend.scheduler-border {
   top: 68%;
   width: 100%;
   font-size: 17pt;
+}
+
+.page-content {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  justify-content: center;
+  grid-template-areas:
+   ". a b";
+}
+
+.content-block {
+ grid-area: a;
+ align-self: center;
+ justify-self: center;
+ min-width: 100%;
+}
+
+.lottery-cube {
+  grid-area: b;
+  margin-left: 150px;
+}
+
+.navbar {
+  padding-top: 150px;
+  padding-left: 20px;
+}
+
+.banner-cell {
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 30px;
+  width: 952px;
 }
