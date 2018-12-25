@@ -12,3 +12,16 @@ a {
   font-size: 13pt;
   text-shadow: 1px 1px 8px #ffffff;
 }
+
+.wrap {
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+}
+
+.text-logo {
+  margin: 0;
+  cursor: pointer;
+  color: black;
+}

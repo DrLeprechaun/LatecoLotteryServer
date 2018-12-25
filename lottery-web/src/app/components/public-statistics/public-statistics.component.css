@@ -259,7 +259,7 @@ legend.scheduler-border {
  grid-area: a;
  align-self: center;
  justify-self: center;
- min-width: 100%;
+ min-width: 950px;
 }
 
 .lottery-cube {
@@ -276,5 +276,10 @@ legend.scheduler-border {
   padding-left: 16px;
   padding-right: 16px;
   margin-bottom: 30px;
-  width: 952px;
+}
+
+@media screen and (max-width: 1200px) {
+  .page-content {
+    grid-template-columns: 30% 70%;
+  }
 }
